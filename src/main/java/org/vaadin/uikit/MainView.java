@@ -25,6 +25,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToBooleanConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
+import com.vaadin.flow.data.validator.IntegerRangeValidator;
 import com.vaadin.flow.data.validator.StringLengthValidator;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
@@ -103,6 +104,9 @@ public class MainView extends Div {
     	offcanvasBar.add(closeButton,title,p);
     	offcanvas.add(offcanvasBar);
     	add(offcanvas,openButton,toggle);
+    	offcanvas.getElement().addEventListener("hide", event -> {
+    		System.out.println("Drawer closed");
+    	});
     	
     	Person person = new Person();
     	Div dialog = new Div();
@@ -149,7 +153,10 @@ public class MainView extends Div {
     		.asRequired("Required")
     		.withValidator(new StringLengthValidator("Too long",0,20))
     		.bind(Person::getName,Person::setName);
-    	binder.forField(ageField).withConverter(new StringToIntegerConverter("Not a number")).bind(Person::getAge,Person::setAge);
+    	binder.forField(ageField)
+    		.withConverter(new StringToIntegerConverter("Not a number"))
+    		.withValidator(new IntegerRangeValidator("Minimum 18",18,null))
+    		.bind(Person::getAge,Person::setAge);
     	binder.forField(acceptField).withConverter(new StringToBooleanConverter("Not a boolean")).bind(Person::isAccept,Person::setAccept);
     	binder.forField(storyField).bind(Person::getStory,Person::setStory);
 
@@ -168,6 +175,9 @@ public class MainView extends Div {
 	    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0, status: 'dange'})", "Person not valid"));
 			}
     	});
+    	dialog.getElement().addEventListener("hide", event -> {
+    		System.out.println("Dialog closed");
+    	});
     }
     
     public class MyInput extends Input implements HasValidation {
@@ -178,7 +188,11 @@ public class MainView extends Div {
 		@Override
 		public void setErrorMessage(String errorMessage) {
 			this.errorMessage = errorMessage;
-	    	getElement().setAttribute("uk-tooltip", errorMessage);
+			if (errorMessage != null && !errorMessage.isEmpty()) {
+				getElement().setAttribute("uk-tooltip", errorMessage);
+			} else {
+				getElement().removeAttribute("uk-tooltip");
+			}
 		}
 
 		@Override
@@ -193,6 +207,7 @@ public class MainView extends Div {
 				addClassName("uk-form-danger");				
 			} else {
 				removeClassName("uk-form-danger");
+				getElement().removeAttribute("uk-tooltip");
 			}
 			
 		}

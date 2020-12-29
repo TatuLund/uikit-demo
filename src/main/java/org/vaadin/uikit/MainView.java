@@ -9,7 +9,9 @@ import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Paragraph;
@@ -18,6 +20,10 @@ import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.converter.StringToBooleanConverter;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
@@ -75,11 +81,11 @@ public class MainView extends Div {
     	});
     	add(button);
 
-    	NativeButton openButton = new NativeButton("Open");
+    	NativeButton openButton = new NativeButton("Open drawer");
     	openButton.addClassNames("uk-button","uk-button-default","uk-margin-small-right");
     	openButton.getElement().setAttribute("type", "button");
     	openButton.getElement().setAttribute("uk-toggle", "target: #offcanvas-usage");
-    	Anchor toggle = new Anchor("#offcanvas-usage","Open");
+    	Anchor toggle = new Anchor("#offcanvas-usage","Open drawer");
     	toggle.getElement().setAttribute("uk-toggle",true);
     	Div offcanvas = new Div();
     	offcanvas.setId("offcanvas-usage");
@@ -96,5 +102,97 @@ public class MainView extends Div {
     	offcanvas.add(offcanvasBar);
     	add(offcanvas,openButton,toggle);
     	
+    	Person person = new Person();
+    	Div dialog = new Div();
+    	dialog.setId("modal-sections");
+    	dialog.getElement().setAttribute("uk-modal", true);
+    	Div dialogContent = new Div();
+    	dialogContent.addClassName("uk-modal-dialog");
+    	NativeButton dialogClose = new NativeButton();
+    	dialogClose.addClassName("uk-modal-close-fault");
+    	dialogClose.getElement().setAttribute("type", "button");
+    	dialogClose.getElement().setAttribute("uk-close", true);
+    	Div header = new Div();
+    	header.addClassName("uk-modal-header");
+    	H2 dialogTitle = new H2("Person");
+    	dialogTitle.addClassName("uk-modal-title");
+    	header.add(dialogTitle);
+    	Div form = new Div();
+    	form.addClassName("uk-modal-body");
+    	Input nameField = new Input();
+    	nameField.addClassName("uk-input");
+    	nameField.setPlaceholder("name");
+    	Input ageField = new Input();
+    	ageField.addClassName("uk-input");
+    	ageField.setPlaceholder("age");
+    	Input acceptField = new Input();
+    	acceptField.addClassName("uk-checkbox");
+    	acceptField.getElement().setAttribute("type", "checkbox");
+    	Input storyField = new Input();
+    	storyField.addClassName("uk-textarea");
+    	storyField.setPlaceholder("story");
+    	form.add(nameField,ageField,acceptField,storyField);
+    	Div footer = new Div();
+    	footer.addClassNames("uk-modal-footer","uk-text-right");
+    	NativeButton cancelButton = new NativeButton("Cancel");
+    	cancelButton.addClassNames("uk-button","uk-button-default","uk-modal-close");
+    	NativeButton saveButton = new NativeButton("Save");
+    	saveButton.addClassNames("uk-button","uk-button-primary");
+    	footer.add(cancelButton,saveButton);
+    	dialogContent.add(header,form,footer);
+    	dialog.add(dialogContent);
+
+    	Binder<Person> binder = new Binder<>();
+    	binder.forField(nameField).bind(Person::getName,Person::setName);
+    	binder.forField(ageField).withConverter(new StringToIntegerConverter("Not a number")).bind(Person::getAge,Person::setAge);
+    	binder.forField(acceptField).withConverter(new StringToBooleanConverter("Not a boolean")).bind(Person::isAccept,Person::setAccept);
+    	binder.forField(storyField).bind(Person::getStory,Person::setStory);
+
+    	NativeButton openDialog = new NativeButton("Edit");
+    	openDialog.getElement().setAttribute("uk-toggle", "target: #modal-sections");
+    	openDialog.addClassNames("uk-button","uk-button-default","uk-margin-small-right");
+    	add(openDialog,dialog);
+    	openDialog.addClickListener(event -> {
+    		binder.readBean(person);
+    	});
+    	saveButton.addClickListener(event -> {
+    		try {
+				binder.writeBean(person);
+	    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0});UIkit.modal($1).hide()", "Saved: "+person.getName()+" "+person.getAge()+" "+person.getStory(),dialog.getElement()));
+			} catch (ValidationException e) {
+	    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0, status: 'dange'})", "Person not valid"));
+			}
+    	});
+    }
+    
+    public class Person {
+    	private String name;
+    	private int age;
+    	private boolean accept;
+    	private String story;
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+		public boolean isAccept() {
+			return accept;
+		}
+		public void setAccept(boolean accept) {
+			this.accept = accept;
+		}
+		public String getStory() {
+			return story;
+		}
+		public void setStory(String story) {
+			this.story = story;
+		}
     }
 }

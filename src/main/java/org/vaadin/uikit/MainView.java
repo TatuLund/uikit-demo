@@ -65,6 +65,7 @@ public class MainView extends Div {
     	Span icon = new Span();
     	icon.addClassName("uk-margin-small-right");
     	icon.getElement().setAttribute("uk-icon", "check");
+    	icon.getElement().setAttribute("uk-tooltip", "This is an icon");
     	add(icon);
 
     	NativeButton button = new NativeButton("Click me");

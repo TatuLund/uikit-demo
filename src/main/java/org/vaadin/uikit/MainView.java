@@ -1,5 +1,6 @@
 package org.vaadin.uikit;
 
+import com.vaadin.flow.component.HasValidation;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
@@ -24,6 +25,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToBooleanConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
+import com.vaadin.flow.data.validator.StringLengthValidator;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
@@ -119,16 +121,16 @@ public class MainView extends Div {
     	header.add(dialogTitle);
     	Div form = new Div();
     	form.addClassName("uk-modal-body");
-    	Input nameField = new Input();
+    	MyInput nameField = new MyInput();
     	nameField.addClassName("uk-input");
     	nameField.setPlaceholder("name");
-    	Input ageField = new Input();
+    	MyInput ageField = new MyInput();
     	ageField.addClassName("uk-input");
     	ageField.setPlaceholder("age");
-    	Input acceptField = new Input();
+    	MyInput acceptField = new MyInput();
     	acceptField.addClassName("uk-checkbox");
     	acceptField.getElement().setAttribute("type", "checkbox");
-    	Input storyField = new Input();
+    	MyInput storyField = new MyInput();
     	storyField.addClassName("uk-textarea");
     	storyField.setPlaceholder("story");
     	form.add(nameField,ageField,acceptField,storyField);
@@ -143,7 +145,10 @@ public class MainView extends Div {
     	dialog.add(dialogContent);
 
     	Binder<Person> binder = new Binder<>();
-    	binder.forField(nameField).bind(Person::getName,Person::setName);
+    	binder.forField(nameField)
+    		.asRequired("Required")
+    		.withValidator(new StringLengthValidator("Too long",0,20))
+    		.bind(Person::getName,Person::setName);
     	binder.forField(ageField).withConverter(new StringToIntegerConverter("Not a number")).bind(Person::getAge,Person::setAge);
     	binder.forField(acceptField).withConverter(new StringToBooleanConverter("Not a boolean")).bind(Person::isAccept,Person::setAccept);
     	binder.forField(storyField).bind(Person::getStory,Person::setStory);
@@ -163,6 +168,40 @@ public class MainView extends Div {
 	    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0, status: 'dange'})", "Person not valid"));
 			}
     	});
+    }
+    
+    public class MyInput extends Input implements HasValidation {
+
+		private boolean invalid = false;
+		private String errorMessage = "";
+
+		@Override
+		public void setErrorMessage(String errorMessage) {
+			this.errorMessage = errorMessage;
+	    	getElement().setAttribute("uk-tooltip", errorMessage);
+		}
+
+		@Override
+		public String getErrorMessage() {
+			return errorMessage;
+		}
+
+		@Override
+		public void setInvalid(boolean invalid) {
+			this.invalid = invalid;
+			if (invalid) {
+				addClassName("uk-form-danger");				
+			} else {
+				removeClassName("uk-form-danger");
+			}
+			
+		}
+
+		@Override
+		public boolean isInvalid() {
+			return invalid;
+		}
+    	
     }
     
     public class Person {

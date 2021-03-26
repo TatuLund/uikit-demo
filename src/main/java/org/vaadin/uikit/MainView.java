@@ -2,10 +2,6 @@ package org.vaadin.uikit;
 
 import com.vaadin.flow.component.HasValidation;
 import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
@@ -18,9 +14,6 @@ import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToBooleanConverter;
@@ -178,45 +171,6 @@ public class MainView extends Div {
     	dialog.getElement().addEventListener("hide", event -> {
     		System.out.println("Dialog closed");
     	});
-    }
-    
-    public class MyInput extends Input implements HasValidation {
-
-		private boolean invalid = false;
-		private String errorMessage = "";
-
-		@Override
-		public void setErrorMessage(String errorMessage) {
-			this.errorMessage = errorMessage;
-			if (errorMessage != null && !errorMessage.isEmpty()) {
-				getElement().setAttribute("uk-tooltip", errorMessage);
-			} else {
-				getElement().removeAttribute("uk-tooltip");
-			}
-		}
-
-		@Override
-		public String getErrorMessage() {
-			return errorMessage;
-		}
-
-		@Override
-		public void setInvalid(boolean invalid) {
-			this.invalid = invalid;
-			if (invalid) {
-				addClassName("uk-form-danger");				
-			} else {
-				removeClassName("uk-form-danger");
-				getElement().removeAttribute("uk-tooltip");
-			}
-			
-		}
-
-		@Override
-		public boolean isInvalid() {
-			return invalid;
-		}
-    	
     }
     
     public class Person {

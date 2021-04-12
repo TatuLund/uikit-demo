@@ -1,14 +1,16 @@
 package org.vaadin.uikit;
 
-import com.vaadin.flow.component.HasValidation;
-import com.vaadin.flow.component.Html;
+import org.vaadin.uikit.UKCard.CardVariant;
+import org.vaadin.uikit.UKNotification.Position;
+import org.vaadin.uikit.UKNotification.Status;
+import org.vaadin.uikit.UKOffCanvas.AnimationMode;
+
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Paragraph;
@@ -40,14 +42,16 @@ public class MainView extends Div {
     	getElement().getStyle().set("justify-content","space-evenly");
     	setSizeFull();
     	
-    	Div card = new Div();
+    	UKCard card = new UKCard();
     	card.setWidth("500px");
     	card.setHeight("200px");
-    	card.addClassNames("uk-card","uk-card-default","uk-card-body","uk-width-1-2@m");
-    	H3 h3 = new H3("Default");
-    	h3.addClassName("uk-card-title");
-    	Html html = new Html("<p>Lorem ipsum <a href=\"#\">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>");
-    	card.add(h3,html);
+    	card.setTitle("Default");
+    	String html = "<p>Lorem ipsum <a href=\"#\">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>";
+    	card.setContent(html);
+    	card.setHoverEffect(true);
+    	card.setBadge("Badge");
+    	card.setVariant(CardVariant.SECONDARY);
+    	card.setTooltip("Tooltip");
     	add(card);
 
     	UnorderedList breadcrumb = new UnorderedList();
@@ -70,33 +74,29 @@ public class MainView extends Div {
     	icon.getElement().setAttribute("uk-tooltip", "This is an icon");
     	add(icon);
 
-    	NativeButton button = new NativeButton("Click me");
-    	button.addClassNames("demo","uk-button","uk-button-default");
+    	UKButton button = new UKButton("Click me");
     	button.addClickListener(event -> {
-    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0})", "Notification message"));
+    		UKNotification notification = new UKNotification();
+    		notification
+    			.withPosition(Position.BOTTOM_CENTER)
+    			.withStatus(Status.SUCCESS)
+    			.view("Notification message");
     	});
     	add(button);
 
-    	NativeButton openButton = new NativeButton("Open drawer");
-    	openButton.addClassNames("uk-button","uk-button-default","uk-margin-small-right");
-    	openButton.getElement().setAttribute("type", "button");
-    	openButton.getElement().setAttribute("uk-toggle", "target: #offcanvas-usage");
-    	Anchor toggle = new Anchor("#offcanvas-usage","Open drawer");
-    	toggle.getElement().setAttribute("uk-toggle",true);
-    	Div offcanvas = new Div();
-    	offcanvas.setId("offcanvas-usage");
-    	offcanvas.getElement().setAttribute("uk-offcanvas", true);
-    	Div offcanvasBar = new Div();
-    	offcanvasBar.addClassName("uk-offcanvas-bar");
-    	NativeButton closeButton = new NativeButton();
-    	closeButton.addClassName("uk-offcanvas-close");
-    	closeButton.getElement().setAttribute("type", "button");
-    	closeButton.getElement().setAttribute("uk-close", true);
-    	H3 title = new H3("title");
+    	UKOffCanvas offcanvas = new UKOffCanvas(AnimationMode.SLIDE);
+    	UKButton openButton = new UKButton("Open drawer");
+    	openButton.setTooltip("Open off-canvas");
+    	openButton.addClickListener(event -> {
+    		offcanvas.show();
+    	});
+    	
+    	offcanvas.setTitle("Title");
+    	offcanvas.setFlip(true);
+    	offcanvas.setEscClose(false);
     	Paragraph p = new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
-    	offcanvasBar.add(closeButton,title,p);
-    	offcanvas.add(offcanvasBar);
-    	add(offcanvas,openButton,toggle);
+    	offcanvas.setContent(p);
+    	add(offcanvas,openButton);
     	offcanvas.getElement().addEventListener("hide", event -> {
     		System.out.println("Drawer closed");
     	});

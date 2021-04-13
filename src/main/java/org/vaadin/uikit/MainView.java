@@ -1,5 +1,6 @@
 package org.vaadin.uikit;
 
+import org.vaadin.uikit.UKButton.ButtonVariant;
 import org.vaadin.uikit.UKCard.CardVariant;
 import org.vaadin.uikit.UKNotification.Position;
 import org.vaadin.uikit.UKNotification.Status;
@@ -93,6 +94,7 @@ public class MainView extends Div {
     	
     	offcanvas.setTitle("Title");
     	offcanvas.setFlip(true);
+    	offcanvas.setCloseButtonVisible(false);
     	offcanvas.setEscClose(false);
     	Paragraph p = new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
     	offcanvas.setContent(p);
@@ -101,46 +103,30 @@ public class MainView extends Div {
     		System.out.println("Drawer closed");
     	});
     	
-    	Person person = new Person();
-    	Div dialog = new Div();
-    	dialog.setId("modal-sections");
-    	dialog.getElement().setAttribute("uk-modal", true);
-    	Div dialogContent = new Div();
-    	dialogContent.addClassName("uk-modal-dialog");
-    	NativeButton dialogClose = new NativeButton();
-    	dialogClose.addClassName("uk-modal-close-fault");
-    	dialogClose.getElement().setAttribute("type", "button");
-    	dialogClose.getElement().setAttribute("uk-close", true);
-    	Div header = new Div();
-    	header.addClassName("uk-modal-header");
-    	H2 dialogTitle = new H2("Person");
-    	dialogTitle.addClassName("uk-modal-title");
-    	header.add(dialogTitle);
-    	Div form = new Div();
-    	form.addClassName("uk-modal-body");
-    	MyInput nameField = new MyInput();
+    	UKModal dialog = new UKModal();
+    	
+    	AbstractInput nameField = new AbstractInput();
     	nameField.addClassName("uk-input");
     	nameField.setPlaceholder("name");
-    	MyInput ageField = new MyInput();
+    	AbstractInput ageField = new AbstractInput();
     	ageField.addClassName("uk-input");
     	ageField.setPlaceholder("age");
-    	MyInput acceptField = new MyInput();
-    	acceptField.addClassName("uk-checkbox");
-    	acceptField.getElement().setAttribute("type", "checkbox");
-    	MyInput storyField = new MyInput();
+    	UKCheckbox acceptField = new UKCheckbox();
+    	AbstractInput storyField = new AbstractInput();
     	storyField.addClassName("uk-textarea");
     	storyField.setPlaceholder("story");
-    	form.add(nameField,ageField,acceptField,storyField);
-    	Div footer = new Div();
-    	footer.addClassNames("uk-modal-footer","uk-text-right");
-    	NativeButton cancelButton = new NativeButton("Cancel");
-    	cancelButton.addClassNames("uk-button","uk-button-default","uk-modal-close");
-    	NativeButton saveButton = new NativeButton("Save");
-    	saveButton.addClassNames("uk-button","uk-button-primary");
-    	footer.add(cancelButton,saveButton);
-    	dialogContent.add(header,form,footer);
-    	dialog.add(dialogContent);
+    	dialog.add(nameField,ageField,acceptField,storyField);
 
+    	UKButton cancelButton = new UKButton("Cancel");
+    	cancelButton.addClickListener(event -> {
+    		dialog.hide();
+    	});
+    	UKButton saveButton = new UKButton("Save");
+    	saveButton.setVariant(ButtonVariant.PRIMARY);
+
+    	dialog.addToFooter(cancelButton,saveButton);
+
+    	Person person = new Person();
     	Binder<Person> binder = new Binder<>();
     	binder.forField(nameField)
     		.asRequired("Required")
@@ -150,12 +136,15 @@ public class MainView extends Div {
     		.withConverter(new StringToIntegerConverter("Not a number"))
     		.withValidator(new IntegerRangeValidator("Minimum 18",18,null))
     		.bind(Person::getAge,Person::setAge);
-    	binder.forField(acceptField).withConverter(new StringToBooleanConverter("Not a boolean")).bind(Person::isAccept,Person::setAccept);
+    	binder.forField(acceptField).bind(Person::isAccept,Person::setAccept);
+//    	binder.forField(acceptField).withConverter(new StringToBooleanConverter("Not a boolean")).bind(Person::isAccept,Person::setAccept);
     	binder.forField(storyField).bind(Person::getStory,Person::setStory);
 
-    	NativeButton openDialog = new NativeButton("Edit");
-    	openDialog.getElement().setAttribute("uk-toggle", "target: #modal-sections");
-    	openDialog.addClassNames("uk-button","uk-button-default","uk-margin-small-right");
+    	UKButton openDialog = new UKButton("Edit");
+    	openDialog.addClickListener(event -> {
+    		dialog.show();
+    	});
+
     	add(openDialog,dialog);
     	openDialog.addClickListener(event -> {
     		binder.readBean(person);
@@ -163,9 +152,17 @@ public class MainView extends Div {
     	saveButton.addClickListener(event -> {
     		try {
 				binder.writeBean(person);
-	    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0});UIkit.modal($1).hide()", "Saved: "+person.getName()+" "+person.getAge()+" "+person.getStory(),dialog.getElement()));
+				dialog.hide();
+				UKNotification note = new UKNotification();
+				note
+					.withStatus(Status.SUCCESS)
+					.view("Saved: "+person.getName()+" "+person.getAge()+" "+person.getStory());
+				
 			} catch (ValidationException e) {
-	    		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0, status: 'dange'})", "Person not valid"));
+				UKNotification note = new UKNotification();
+				note
+					.withStatus(Status.DANGER)
+					.view("Person not valid");
 			}
     	});
     	dialog.getElement().addEventListener("hide", event -> {

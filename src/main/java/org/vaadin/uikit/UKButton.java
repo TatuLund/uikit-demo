@@ -4,7 +4,7 @@ import org.vaadin.uikit.UKCard.CardVariant;
 
 import com.vaadin.flow.component.html.NativeButton;
 
-public class UKButton extends NativeButton implements HasTooltip {
+public class UKButton extends NativeButton implements UKTooltip {
 
 	public enum ButtonVariant {
 		DEFAULT("uk-button-default"),
@@ -20,11 +20,6 @@ public class UKButton extends NativeButton implements HasTooltip {
 	        this.variant = variant;
 	    }
 
-	    /**
-	     * Gets the variant name.
-	     *
-	     * @return variant name
-	     */
 	    public String getVariantName() {
 	        return variant;
 	    }

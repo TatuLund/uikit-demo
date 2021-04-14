@@ -1,11 +1,13 @@
 package org.vaadin.uikit;
 
 import com.vaadin.flow.component.AbstractField;
+import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 
 @Tag("input")
-public class UKCheckbox extends AbstractField<UKCheckbox,Boolean> implements UKValidation, HasStyle {
+public class UKCheckbox extends AbstractField<UKCheckbox, Boolean>
+		implements UKValidation, HasStyle, Focusable<UKCheckbox>, UKTooltip {
 
 	public UKCheckbox() {
 		super(false);
@@ -22,7 +24,7 @@ public class UKCheckbox extends AbstractField<UKCheckbox,Boolean> implements UKV
 	@Override
 	public void setReadOnly(boolean readOnly) {
 		setReadOnly(readOnly);
-		
+
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class UKCheckbox extends AbstractField<UKCheckbox,Boolean> implements UKV
 	@Override
 	public void setRequiredIndicatorVisible(boolean requiredIndicatorVisible) {
 		setRequiredIndicatorVisible(requiredIndicatorVisible);
-		
+
 	}
 
 	@Override

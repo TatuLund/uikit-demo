@@ -1,10 +1,13 @@
 package org.vaadin.uikit;
 
+import org.vaadin.uikit.UKAlert.AlertVariant;
 import org.vaadin.uikit.UKButton.ButtonVariant;
 import org.vaadin.uikit.UKCard.CardVariant;
 import org.vaadin.uikit.UKNotification.Position;
 import org.vaadin.uikit.UKNotification.Status;
 import org.vaadin.uikit.UKOffCanvas.AnimationMode;
+import org.vaadin.uikit.UKWidthAndHeight.FixedHeight;
+import org.vaadin.uikit.UKWidthAndHeight.FixedWidth;
 
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
@@ -43,6 +46,8 @@ public class MainView extends Div {
     	getElement().getStyle().set("justify-content","space-evenly");
     	setSizeFull();
     	
+    	add(new UKAlert("Demo app loaded",AlertVariant.SUCCESS));
+
     	UKCard card = new UKCard();
     	card.setWidth("500px");
     	card.setHeight("200px");
@@ -54,6 +59,12 @@ public class MainView extends Div {
     	card.setVariant(CardVariant.SECONDARY);
     	card.setTooltip("Tooltip");
     	add(card);
+
+    	UKProgress progress = new UKProgress();
+    	progress.setWidth(FixedWidth.MEDIUM);
+    	progress.setTooltip("Progress bar");
+    	progress.setValue(73);
+    	add(progress);
 
     	UnorderedList breadcrumb = new UnorderedList();
     	breadcrumb.addClassName("uk-breadcrumb");
@@ -69,9 +80,7 @@ public class MainView extends Div {
     	breadcrumb.add(item1,item2,item3,item4);
     	add(breadcrumb);
     	
-    	Span icon = new Span();
-    	icon.addClassName("uk-margin-small-right");
-    	icon.getElement().setAttribute("uk-icon", "check");
+    	UKIcon icon = UKIcons.CHECK.create();
     	icon.getElement().setAttribute("uk-tooltip", "This is an icon");
     	add(icon);
 
@@ -104,18 +113,28 @@ public class MainView extends Div {
     	});
     	
     	UKModal dialog = new UKModal();
+    	dialog.setWidth(FixedWidth.XLARGE);
+    	dialog.setHeight(FixedHeight.LARGE);
     	
-    	AbstractInput nameField = new AbstractInput();
-    	nameField.addClassName("uk-input");
+    	UKForm form = new UKForm();
+    	form.setHorizontal(true);
+
+    	UKTextField nameField = new UKTextField();
+    	UKInline inline = new UKInline(UKIcons.USER, nameField);
     	nameField.setPlaceholder("name");
-    	AbstractInput ageField = new AbstractInput();
-    	ageField.addClassName("uk-input");
+    	UKTextField ageField = new UKTextField();
     	ageField.setPlaceholder("age");
     	UKCheckbox acceptField = new UKCheckbox();
-    	AbstractInput storyField = new AbstractInput();
-    	storyField.addClassName("uk-textarea");
+    	UKTextField storyField = new UKTextField();
     	storyField.setPlaceholder("story");
-    	dialog.add(nameField,ageField,acceptField,storyField);
+    	
+    	form.add("Name",inline);
+    	form.add("Age",ageField);
+    	form.add("Story",storyField);
+    	form.add("Accept",acceptField);
+
+    	dialog.add(form);
+//    	dialog.add(nameField,ageField,acceptField,storyField);
 
     	UKButton cancelButton = new UKButton("Cancel");
     	cancelButton.addClickListener(event -> {
@@ -137,7 +156,6 @@ public class MainView extends Div {
     		.withValidator(new IntegerRangeValidator("Minimum 18",18,null))
     		.bind(Person::getAge,Person::setAge);
     	binder.forField(acceptField).bind(Person::isAccept,Person::setAccept);
-//    	binder.forField(acceptField).withConverter(new StringToBooleanConverter("Not a boolean")).bind(Person::isAccept,Person::setAccept);
     	binder.forField(storyField).bind(Person::getStory,Person::setStory);
 
     	UKButton openDialog = new UKButton("Edit");

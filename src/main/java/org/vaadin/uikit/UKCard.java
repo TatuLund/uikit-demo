@@ -7,11 +7,11 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
-public class UKCard extends Composite<Div> implements HasSize, HasTooltip {
+public class UKCard extends Composite<Div> implements HasSize, UKTooltip, UKWidthAndHeight {
 
 	H3 titleComponent = new H3();
 	Div div = new Div();
-	Component content;
+	Component content = new Div();
 	Div badge = new Div();
 	
 	public enum CardVariant {
@@ -34,17 +34,25 @@ public class UKCard extends Composite<Div> implements HasSize, HasTooltip {
 	        return variant;
 	    }
 	}
-	
+
 	public UKCard() {
+	}
 	
+	public UKCard(String title) {
+		setTitle(title);
+	}
+	
+	public UKCard(String title, Component component) {
+		setTitle(title);
+		setContent(component);
 	}
 
 	@Override
     protected Div initContent() {
-    	div.addClassNames("uk-card","uk-card-default","uk-card-body","uk-width-1-2@m");
+    	div.addClassNames("uk-card","uk-card-default","uk-card-body");
     	titleComponent.addClassName("uk-card-title");
     	badge.addClassNames("uk-card-badge","uk-label");
-    	div.add(titleComponent);
+    	div.add(titleComponent,content);
     	return div;
     }
 

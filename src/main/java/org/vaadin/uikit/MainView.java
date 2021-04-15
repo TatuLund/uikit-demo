@@ -37,13 +37,12 @@ import com.vaadin.flow.server.PWA;
 @StyleSheet("context://uikit.css")
 @JavaScript("context://uikit.js")
 @JavaScript("context://uikit-icons.js")
-public class MainView extends Div {
+public class MainView extends UKFlex {
 
     public MainView() {
-    	getElement().getStyle().set("display","flex");
-    	getElement().getStyle().set("flex-direction","column");
-    	getElement().getStyle().set("align-items","center");
-    	getElement().getStyle().set("justify-content","space-evenly");
+    	setDirection(Direction.COLUMN);
+    	setVerticalAlignment(VerticalAlignment.MIDDLE);
+    	setHorizontalAlignment(HorizontalAlignment.AROUND);
     	setSizeFull();
     	
     	add(new UKAlert("Demo app loaded",AlertVariant.SUCCESS));

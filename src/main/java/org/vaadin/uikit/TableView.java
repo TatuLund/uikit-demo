@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.tatu.BeanTable;
+import org.vaadin.uikit.UKFlex.Direction;
+import org.vaadin.uikit.UKFlex.HorizontalAlignment;
+import org.vaadin.uikit.UKFlex.VerticalAlignment;
 
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
@@ -16,7 +19,7 @@ import com.vaadin.flow.router.Route;
 @StyleSheet("context://uikit.css")
 @JavaScript("context://uikit.js")
 @JavaScript("context://uikit-icons.js")
-public class TableView extends Div {
+public class TableView extends UKFlex {
 
     int year = 2000;
     private List<MonthlyExpense> data;
@@ -24,10 +27,10 @@ public class TableView extends Div {
     private int index = 0;
 
     public TableView() {
-    	getElement().getStyle().set("display","flex");
-    	getElement().getStyle().set("flex-direction","column");
-    	getElement().getStyle().set("align-items","center");
-    	getElement().getStyle().set("justify-content","space-evenly");
+    	setDirection(Direction.COLUMN);
+    	setVerticalAlignment(VerticalAlignment.MIDDLE);
+    	setHorizontalAlignment(HorizontalAlignment.AROUND);
+    	setSizeFull();
     	setSizeFull();
         BeanTable<MonthlyExpense> table = new BeanTable<>(MonthlyExpense.class,false);
         table.removeClassName("bean-table");

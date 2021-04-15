@@ -1,5 +1,8 @@
 package org.vaadin.uikit;
 
+import org.vaadin.uikit.UKFlex.Direction;
+import org.vaadin.uikit.UKFlex.HorizontalAlignment;
+import org.vaadin.uikit.UKFlex.VerticalAlignment;
 import org.vaadin.uikit.UKGrid.GapModifier;
 
 import com.vaadin.flow.component.dependency.JavaScript;
@@ -13,15 +16,15 @@ import com.vaadin.flow.router.Route;
 @StyleSheet("context://uikit.css")
 @JavaScript("context://uikit.js")
 @JavaScript("context://uikit-icons.js")
-public class AccordionView extends Div {
+public class AccordionView extends UKFlex {
 
 	String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
 	public AccordionView() {
-    	getElement().getStyle().set("display","flex");
-    	getElement().getStyle().set("flex-direction","column");
-    	getElement().getStyle().set("align-items","center");
-    	getElement().getStyle().set("justify-content","space-evenly");
+    	setDirection(Direction.COLUMN);
+    	setVerticalAlignment(VerticalAlignment.MIDDLE);
+    	setHorizontalAlignment(HorizontalAlignment.AROUND);
+    	setSizeFull();
 
     	UKAccordion accordion = new UKAccordion();
     	accordion.addItem("Tab 1", new Paragraph(loremIpsum));

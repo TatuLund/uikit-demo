@@ -3,7 +3,7 @@ package org.vaadin.uikit;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 
-public class UKIcon extends Composite<Span> implements UKTooltip {
+public class UKIcon extends Composite<Span> implements UKTooltip, UKMargin {
 	Span icon = new Span();
 
 	public UKIcon(UKIcons iconName) {

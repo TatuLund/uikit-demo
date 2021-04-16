@@ -72,4 +72,5 @@ public interface UKWidthAndHeight extends HasElement {
 				getElement().getClassList().remove(height);
 			}
 		});
-	}}
+	}
+}

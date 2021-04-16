@@ -1,9 +1,12 @@
 package org.vaadin.uikit;
 
+import org.vaadin.uikit.UKCard.CardVariant;
 import org.vaadin.uikit.UKFlex.Direction;
 import org.vaadin.uikit.UKFlex.HorizontalAlignment;
 import org.vaadin.uikit.UKFlex.VerticalAlignment;
 import org.vaadin.uikit.UKGrid.GapModifier;
+import org.vaadin.uikit.UKTabSwitcher.TabAlignment;
+import org.vaadin.uikit.UKTabSwitcher.TabPlacement;
 
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
@@ -31,10 +34,24 @@ public class AccordionView extends UKFlex {
     	accordion.addItem("Tab 2", createGrid());
     	accordion.addItem("Tab 3", new Paragraph(loremIpsum));
     	accordion.addItem("Tab 4", new Paragraph(loremIpsum));
-    	add(accordion);
-//    	UKGrid grid = createGrid();
-//    	add(grid);
+    	add(accordion,createTabSwitcher());
+
     }
+
+	UKTabSwitcher createTabSwitcher() {
+		UKTabSwitcher tabSwitcher = new UKTabSwitcher();
+		UKCard card1 = new UKCard("Card 1", new Paragraph(loremIpsum));
+		card1.setVariant(CardVariant.DEFAULT);
+		UKCard card2 = new UKCard("Card 2", new Paragraph(loremIpsum));
+		card2.setVariant(CardVariant.SECONDARY);
+		UKCard card3 = new UKCard("Card 3", new Paragraph(loremIpsum));
+		card3.setVariant(CardVariant.PRIMARY);
+		tabSwitcher.addItem("Tab 1", card1);
+		tabSwitcher.addItem("Tab 2", card2);
+		tabSwitcher.addItem("Tab 3", card3);
+		tabSwitcher.setTabAlignment(TabAlignment.CENTER);
+		return tabSwitcher;
+	}
 	
 	UKGrid createGrid() {
 		UKGrid grid = new UKGrid();

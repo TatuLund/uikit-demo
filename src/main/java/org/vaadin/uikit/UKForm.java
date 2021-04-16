@@ -10,7 +10,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 
 @Tag("form")
-public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWidthAndHeight {
+public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWidthAndHeight, UKMargin {
 
 	public class UKFormItem extends Composite<Div> implements UKTooltip {
 		Label label = new Label();

@@ -11,7 +11,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 
-public class UKAccordion extends Composite<UnorderedList> implements UKWidthAndHeight, HasSize {
+public class UKAccordion extends Composite<UnorderedList> implements UKWidthAndHeight, UKMargin, HasSize {
 
 	public class UKAccordionItem extends Composite<ListItem> {
 		ListItem listItem = new ListItem();

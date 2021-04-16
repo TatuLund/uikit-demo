@@ -4,7 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 
 @Tag("progress")
-public class UKProgress extends Component implements UKWidthAndHeight, UKTooltip {
+public class UKProgress extends Component implements UKWidthAndHeight, UKTooltip, UKMargin {
 
 	int max = 100;
 

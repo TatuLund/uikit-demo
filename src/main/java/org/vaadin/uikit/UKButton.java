@@ -4,7 +4,7 @@ import org.vaadin.uikit.UKCard.CardVariant;
 
 import com.vaadin.flow.component.html.NativeButton;
 
-public class UKButton extends NativeButton implements UKTooltip {
+public class UKButton extends NativeButton implements UKTooltip, UKMargin {
 
 	public enum ButtonVariant {
 		DEFAULT("uk-button-default"),

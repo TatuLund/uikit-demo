@@ -8,7 +8,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.html.Div;
 
-public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight {
+public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight, UKMargin {
 
 	public enum GapModifier {
 		SMALL("uk-grid-small"), MEDIUM("uk-grid-medium"), LARGE("uk-grid-large"),

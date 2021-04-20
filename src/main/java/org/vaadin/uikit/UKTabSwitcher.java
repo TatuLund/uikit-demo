@@ -110,10 +110,10 @@ public class UKTabSwitcher extends Composite<Div> implements UKWidthAndHeight, U
 	public void setTabPlacement(TabPlacement tabPlacement) {
 		if (tabPlacement == TabPlacement.BOTTOM) {
 			tabNav.addClassName("uk-tab-bottom");
-			wrapper.getStyle().set("flex-direction", "column-reverse");
+			getElement().getStyle().set("flex-direction", "column-reverse");
 		} else {
 			tabNav.removeClassName("uk-tab-bottom");
-			wrapper.getStyle().set("flex-direction", "column");
+			getElement().getStyle().set("flex-direction", "column");
 		}
 	}
 

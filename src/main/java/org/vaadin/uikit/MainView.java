@@ -124,7 +124,7 @@ public class MainView extends UKFlex {
     	UKTextField ageField = new UKTextField();
     	ageField.setPlaceholder("age");
     	UKCheckbox acceptField = new UKCheckbox();
-    	UKTextField storyField = new UKTextField();
+    	UKTextArea storyField = new UKTextArea();
     	storyField.setPlaceholder("story");
     	
     	form.add("Name",inline);

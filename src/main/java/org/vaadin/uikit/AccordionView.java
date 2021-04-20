@@ -5,6 +5,7 @@ import org.vaadin.uikit.UKFlex.Direction;
 import org.vaadin.uikit.UKFlex.HorizontalAlignment;
 import org.vaadin.uikit.UKFlex.VerticalAlignment;
 import org.vaadin.uikit.UKGrid.GapModifier;
+import org.vaadin.uikit.UKGrid.ResponsiveBreak;
 import org.vaadin.uikit.UKTabSwitcher.TabAlignment;
 import org.vaadin.uikit.UKTabSwitcher.TabPlacement;
 
@@ -34,6 +35,7 @@ public class AccordionView extends UKFlex {
     	accordion.addItem("Tab 2", createGrid());
     	accordion.addItem("Tab 3", new Paragraph(loremIpsum));
     	accordion.addItem("Tab 4", new Paragraph(loremIpsum));
+    	accordion.setWidth(2, 3);
     	add(accordion,createTabSwitcher());
 
     }
@@ -49,7 +51,10 @@ public class AccordionView extends UKFlex {
 		tabSwitcher.addItem("Tab 1", card1);
 		tabSwitcher.addItem("Tab 2", card2);
 		tabSwitcher.addItem("Tab 3", card3);
-		tabSwitcher.setTabAlignment(TabAlignment.CENTER);
+		tabSwitcher.addItem("Tab 4", createGrid());
+		tabSwitcher.setTabAlignment(TabAlignment.RIGHT);
+		tabSwitcher.setTabPlacement(TabPlacement.BOTTOM);
+    	tabSwitcher.setWidth(2, 3);
 		return tabSwitcher;
 	}
 	

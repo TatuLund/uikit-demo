@@ -25,6 +25,21 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 		}
 	}
 
+	public enum ResponsiveBreak {
+		NONE(""), SMALL_640PX("@s"), MEDIUM_960PX("@m"), LARGE_1200PX("@l");  
+
+		private final String responsiveBreak;
+
+		ResponsiveBreak(String responsiveBreak) {
+			this.responsiveBreak = responsiveBreak;
+		}
+
+		public String getResponsiveBreak() {
+			return responsiveBreak;
+		}
+	}
+	
+	
 	public class UKGridCell extends Composite<Div> {
 		
 		Div cellDiv = new Div(); 
@@ -35,7 +50,7 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 				rmw = rowMaxWidth / width;
 				width = 1;
 			}
-			cellDiv.addClassName("uk-width-"+width+"-"+rmw);
+			cellDiv.addClassName("uk-width-"+width+"-"+rmw+responsiveBreak.getResponsiveBreak());
 		}
 
 		public UKGridCell(int width, int rowMaxWidth, Component... components) {
@@ -44,7 +59,7 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 				rmw = rowMaxWidth / width;
 				width = 1;
 			}
-			cellDiv.addClassName("uk-width-"+width+"-"+rmw);
+			cellDiv.addClassName("uk-width-"+width+"-"+rmw+responsiveBreak.getResponsiveBreak());
 			if (components != null) cellDiv.add(components);
 		}
 
@@ -124,8 +139,14 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 	private boolean isBuilt = false; 
 	Div grid = new Div();
 	private int numRows = 0;
+	private ResponsiveBreak responsiveBreak = ResponsiveBreak.MEDIUM_960PX;
 	
 	public UKGrid() {
+		this(ResponsiveBreak.MEDIUM_960PX);
+	}
+	
+	public UKGrid(ResponsiveBreak responsiveBreak) {
+		this.responsiveBreak = responsiveBreak;
 		getElement().setAttribute("uk-grid", true);
 	}
 	

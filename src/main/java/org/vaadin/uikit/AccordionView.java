@@ -52,8 +52,8 @@ public class AccordionView extends UKFlex {
 		tabSwitcher.addItem("Tab 2", card2);
 		tabSwitcher.addItem("Tab 3", card3);
 		tabSwitcher.addItem("Tab 4", createGrid());
-		tabSwitcher.setTabAlignment(TabAlignment.RIGHT);
-		tabSwitcher.setTabPlacement(TabPlacement.BOTTOM);
+//		tabSwitcher.setTabAlignment(TabAlignment.RIGHT);
+//		tabSwitcher.setTabPlacement(TabPlacement.BOTTOM);
     	tabSwitcher.setWidth(2, 3);
 		return tabSwitcher;
 	}

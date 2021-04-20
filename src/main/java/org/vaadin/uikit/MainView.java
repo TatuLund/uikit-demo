@@ -20,6 +20,7 @@ import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToBooleanConverter;
@@ -65,6 +66,20 @@ public class MainView extends UKFlex {
     	progress.setValue(73);
     	add(progress);
 
+    	UKRange range = new UKRange(1,10,0.1);
+    	range.setTooltip("Range slider");
+    	range.setValue(5d);
+    	range.addValueChangeListener(event -> {
+    		Notification.show("Value: "+event.getValue());
+    	});
+    	add(range);
+
+    	UKCheckbox check = new UKCheckbox();
+    	check.addValueChangeListener(event -> {
+    		Notification.show("Value: "+event.getValue());
+    	});
+    	add(check);
+
     	UnorderedList breadcrumb = new UnorderedList();
     	breadcrumb.addClassName("uk-breadcrumb");
     	ListItem item1 = new ListItem();
@@ -89,7 +104,7 @@ public class MainView extends UKFlex {
     		notification
     			.withPosition(Position.BOTTOM_CENTER)
     			.withStatus(Status.SUCCESS)
-    			.view("Notification message");
+    			.view("Notification message "+range.getValue());
     	});
     	add(button);
 

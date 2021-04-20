@@ -1,52 +1,50 @@
 package org.vaadin.uikit;
 
-import com.vaadin.flow.component.AbstractField;
+import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 
-@Tag("input")
-public class UKCheckbox extends AbstractField<UKCheckbox, Boolean>
+@Tag(Tag.INPUT)
+public class UKCheckbox extends AbstractSinglePropertyField<UKCheckbox, Boolean>
 		implements UKValidation, HasStyle, Focusable<UKCheckbox>, UKTooltip {
 
 	public UKCheckbox() {
-		super(false);
+		super("value", false, String.class, value -> Boolean.valueOf(value), value -> ""+value);
+		getElement().addEventListener("click", event -> {
+			this.setModelValue(!getValue(), true);
+		});
 		addClassName("uk-checkbox");
 		getElement().setAttribute("type", "checkbox");
 	}
 
-//	@Override
-//	public Boolean getValue() {
-//		super.getValue()
-//		return Boolean.valueOf(checkbox.getValue());
-//	}
+	public void setDisabled(boolean disabled) {
+		this.getElement().setProperty("disabled", disabled);
+	}
+
+	public boolean isDisabled() {
+		return getElement().getProperty("disabled", false);
+	}
 
 	@Override
 	public void setReadOnly(boolean readOnly) {
-		setReadOnly(readOnly);
-
+		super.setReadOnly(readOnly);
 	}
 
 	@Override
 	public boolean isReadOnly() {
-		return isReadOnly();
+		return super.isReadOnly();
 	}
 
 	@Override
 	public void setRequiredIndicatorVisible(boolean requiredIndicatorVisible) {
-		setRequiredIndicatorVisible(requiredIndicatorVisible);
+		super.setRequiredIndicatorVisible(requiredIndicatorVisible);
 
 	}
 
 	@Override
 	public boolean isRequiredIndicatorVisible() {
-		return isRequiredIndicatorVisible();
-	}
-
-	@Override
-	protected void setPresentationValue(Boolean newPresentationValue) {
-//		setValue(newPresentationValue.toString());
-		getElement().setProperty("value", newPresentationValue.toString());
+		return super.isRequiredIndicatorVisible();
 	}
 
 }

@@ -19,9 +19,6 @@ public class TextAreaBase extends AbstractSinglePropertyField<TextAreaBase, Stri
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");
 
-    private static final PropertyDescriptor<String, String> typeDescriptor = PropertyDescriptors
-            .attributeWithDefault("type", "text");
-
     private int valueChangeTimeout = DEFAULT_CHANGE_TIMEOUT;
 
     private ValueChangeMode currentMode;
@@ -67,29 +64,6 @@ public class TextAreaBase extends AbstractSinglePropertyField<TextAreaBase, Stri
      */
     public Optional<String> getPlaceholder() {
         return get(placeholderDescriptor);
-    }
-
-    /**
-     * Sets the type of this input.
-     *
-     * @see <a href=
-     *      "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">
-     *      Overview of supported type values</a>
-     *
-     * @param type
-     *            the type, not <code>null</code>
-     */
-    public void setType(String type) {
-        set(typeDescriptor, type);
-    }
-
-    /**
-     * Gets the type of this input.
-     *
-     * @return the input type, by default "text"
-     */
-    public String getType() {
-        return get(typeDescriptor);
     }
 
     @Override

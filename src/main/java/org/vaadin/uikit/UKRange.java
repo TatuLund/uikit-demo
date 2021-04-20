@@ -10,7 +10,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 
 @Tag(Tag.INPUT)
 public class UKRange extends AbstractSinglePropertyField<UKRange, Double>
-	implements UKValidation, HasStyle, Focusable<UKRange>, UKTooltip  {
+	implements UKValidation, HasStyle, Focusable<UKRange>, UKTooltip, UKFormSizing  {
 
     private static final PropertyDescriptor<String, String> typeDescriptor = PropertyDescriptors
             .attributeWithDefault("type", "range");	

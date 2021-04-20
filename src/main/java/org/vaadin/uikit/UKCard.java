@@ -7,7 +7,7 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
-public class UKCard extends Composite<Div> implements HasSize, UKTooltip, UKWidthAndHeight, UKMargin {
+public class UKCard extends Composite<Div> implements HasSize, UKWidthAndHeight, UKMargin {
 
 	H3 titleComponent = new H3();
 	Div div = new Div();

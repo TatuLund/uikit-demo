@@ -3,6 +3,8 @@ package org.vaadin.uikit;
 import org.vaadin.uikit.UKAlert.AlertVariant;
 import org.vaadin.uikit.UKButton.ButtonVariant;
 import org.vaadin.uikit.UKCard.CardVariant;
+import org.vaadin.uikit.UKFormSizing.FieldSize;
+import org.vaadin.uikit.UKFormSizing.FieldWidth;
 import org.vaadin.uikit.UKNotification.Position;
 import org.vaadin.uikit.UKNotification.Status;
 import org.vaadin.uikit.UKOffCanvas.AnimationMode;
@@ -57,7 +59,6 @@ public class MainView extends UKFlex {
     	card.setHoverEffect(true);
     	card.setBadge("Badge");
     	card.setVariant(CardVariant.SECONDARY);
-    	card.setTooltip("Tooltip");
     	add(card);
 
     	UKProgress progress = new UKProgress();
@@ -72,6 +73,8 @@ public class MainView extends UKFlex {
     	range.addValueChangeListener(event -> {
     		Notification.show("Value: "+event.getValue());
     	});
+    	range.setWidth(FieldWidth.MEDIUM);
+    	range.setSize(FieldSize.SMALL);
     	add(range);
 
     	UKCheckbox check = new UKCheckbox();
@@ -135,6 +138,7 @@ public class MainView extends UKFlex {
 
     	UKTextField nameField = new UKTextField();
     	UKInline inline = new UKInline(UKIcons.USER, nameField);
+    	inline.setIconFlip(true);
     	nameField.setPlaceholder("name");
     	UKTextField ageField = new UKTextField();
     	ageField.setPlaceholder("age");

@@ -4,10 +4,12 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.HasStyle;
+import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.HtmlContainer;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.dom.Element;
 
 @Tag("form")
 public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWidthAndHeight, UKMargin {
@@ -20,7 +22,15 @@ public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWid
 		public UKFormItem(String labelText, Component field) {
 			label.setText(labelText);
 			fieldWrapper.add(field);
-		}
+            field.getElement()
+                    .addPropertyChangeListener("required", event -> {
+                        if (field.getElement().getProperty("required").equals("true")) {
+                        	label.setText(labelText+" *");
+                        } else {
+                        	label.setText(labelText);
+                        }
+                    });
+            }
 
 		@Override
 		protected Div initContent() {
@@ -39,8 +49,20 @@ public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWid
 		}
 	}
 
+	Element fieldSet = new Element("fieldset");
+	Element legend = new Element("legend");
+	
 	public UKForm() {
+		fieldSet.getClassList().add("uk-fieldset");
+		legend.getClassList().add("uk-legend");
+		fieldSet.appendChild(legend);
+		getElement().appendChild(fieldSet);
 		addClassName("uk-form-stacked");
+		
+	}
+
+	public void setLegend(String legendText) {
+		legend.setText(legendText);
 	}
 
 	public void setHorizontal(boolean horizontal) {
@@ -66,7 +88,7 @@ public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWid
 	
 	public void add(UKFormItem...formItems) {
 		for (UKFormItem formItem : formItems) {
-			getElement().appendChild(formItem.getElement());
+			fieldSet.appendChild(formItem.getElement());
 		}
 	}
 }

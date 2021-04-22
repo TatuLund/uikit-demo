@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.HasStyle;
-import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.HtmlContainer;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.html.Div;
@@ -22,6 +21,7 @@ public class UKForm extends HtmlContainer implements HasStyle, HasElement, UKWid
 		public UKFormItem(String labelText, Component field) {
 			label.setText(labelText);
 			fieldWrapper.add(field);
+			field.getId().ifPresent(id -> label.getElement().setAttribute("for", id));
             field.getElement()
                     .addPropertyChangeListener("required", event -> {
                         if (field.getElement().getProperty("required").equals("true")) {

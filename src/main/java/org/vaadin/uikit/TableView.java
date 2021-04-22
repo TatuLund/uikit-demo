@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.tatu.BeanTable;
+import org.vaadin.uikit.UKButton.ButtonVariant;
 import org.vaadin.uikit.UKFlex.Direction;
 import org.vaadin.uikit.UKFlex.HorizontalAlignment;
 import org.vaadin.uikit.UKFlex.VerticalAlignment;
@@ -40,20 +41,18 @@ public class TableView extends UKFlex {
         table.addColumn("month", expense -> "<i>" + expense.getMonth() + "</i>");
         table.addColumn("expense", MonthlyExpense::getExpenses);
         table.addComponentColumn(null, expense -> {
-        	NativeButton edit = new NativeButton("edit");
-        	edit.addClassNames("demo","uk-button","uk-button-default");
+        	UKButton edit = new UKButton("edit");
+        	edit.setVariant(ButtonVariant.PRIMARY);
         	edit.addClickListener(event -> {
-        		getUI().ifPresent(ui -> ui.getPage().executeJs("UIkit.notification({message: $0})", "Not implemented"));
+        		UKNotification.show("Not implemented");
         	});
            return edit;
         });
 //        table.setColumns("year","month","expenses");
         data = getData();
         table.setItems(data);
-    	NativeButton plus = new NativeButton("+");
-    	plus.addClassNames("demo","uk-button","uk-button-default");
-    	NativeButton minus = new NativeButton("-");
-    	minus.addClassNames("demo","uk-button","uk-button-default");
+    	UKButton plus = new UKButton("+");
+    	UKButton minus = new UKButton("-");
         dp = (ListDataProvider<MonthlyExpense>) table.getDataProvider();
         dp.setFilter(expense -> expense.getYear() == year);
         plus.addClickListener(event -> {
@@ -65,7 +64,9 @@ public class TableView extends UKFlex {
             dp.setFilter(expense -> expense.getYear() == year);
         });
         table.setWidthFull();
-        add(plus,minus,table);        
+        UKFlex buttons = new UKFlex();
+        buttons.add(plus,minus);
+        add(buttons,table);        
     }
 
 

@@ -8,24 +8,16 @@ import org.vaadin.uikit.UKFormSizing.FieldWidth;
 import org.vaadin.uikit.UKNotification.Position;
 import org.vaadin.uikit.UKNotification.Status;
 import org.vaadin.uikit.UKOffCanvas.AnimationMode;
-import org.vaadin.uikit.UKWidthAndHeight.FixedHeight;
-import org.vaadin.uikit.UKWidthAndHeight.FixedWidth;
 
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.ListItem;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.data.converter.StringToBooleanConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.validator.IntegerRangeValidator;
 import com.vaadin.flow.data.validator.StringLengthValidator;
@@ -54,7 +46,7 @@ public class MainView extends UKFlex {
     	card.setWidth("500px");
     	card.setHeight("200px");
     	card.setTitle("Default");
-    	String html = "<p>Lorem ipsum <a href=\"#\">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>";
+    	String html = "<p>Lorem ipsum <a href=\"#\">dolor</a> sit amet, <b>consectetur</b> adipiscing elit, sed do eiusmod <i>tempor</i> incididunt ut labore et dolore magna aliqua.</p>";
     	card.setContent(html);
     	card.setHoverEffect(true);
     	card.setBadge("Badge");
@@ -71,7 +63,7 @@ public class MainView extends UKFlex {
     	range.setTooltip("Range slider");
     	range.setValue(5d);
     	range.addValueChangeListener(event -> {
-    		Notification.show("Value: "+event.getValue());
+    		UKNotification.show("Value: "+event.getValue());
     	});
     	range.setWidth(FieldWidth.MEDIUM);
     	range.setSize(FieldSize.SMALL);
@@ -79,7 +71,7 @@ public class MainView extends UKFlex {
 
     	UKCheckbox check = new UKCheckbox();
     	check.addValueChangeListener(event -> {
-    		Notification.show("Value: "+event.getValue());
+    		UKNotification.show("Value: "+event.getValue());
     	});
     	add(check);
 

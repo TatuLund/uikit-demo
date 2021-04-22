@@ -1,5 +1,8 @@
 package org.vaadin.uikit;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
@@ -68,8 +71,9 @@ public class UKCard extends Composite<Div> implements HasSize, UKWidthAndHeight,
 	}
 
 	public void setContent(String htmlContent) {
+		String sanitized = Jsoup.clean(htmlContent, Whitelist.basic());
 		if (content != null) div.remove(content);
-    	Html html = new Html(htmlContent);
+    	Html html = new Html(sanitized);
     	div.add(html);
     	content = html;
 	}

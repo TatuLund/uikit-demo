@@ -33,13 +33,13 @@ public class AccordionView extends UKFlex {
     	UKAccordion accordion = new UKAccordion();
     	accordion.addItem("Tab 1", new Paragraph(loremIpsum));
     	accordion.addItem("Tab 2", createGrid());
-    	accordion.addItem("Tab 3", new Paragraph(loremIpsum));
+    	accordion.addItem("Tab 3", createTable());
     	accordion.addItem("Tab 4", new Paragraph(loremIpsum));
     	accordion.setWidth(2, 3);
     	add(accordion,createTabSwitcher());
 
     }
-
+	
 	UKTabSwitcher createTabSwitcher() {
 		UKTabSwitcher tabSwitcher = new UKTabSwitcher();
 		UKCard card1 = new UKCard("Card 1", new Paragraph(loremIpsum));
@@ -74,5 +74,31 @@ public class AccordionView extends UKFlex {
 			.build();
 		grid.setGapModifier(GapModifier.COLLAPSE);
 		return grid;
+	}
+
+	UKTable createTable() {
+		UKTable table = new UKTable();
+		table
+//			.withHeaderRow()
+//			.withCell("Title")
+//			.withCell("Column 1")
+//			.withCell("Column 2")
+			.withRow()
+			.withCell(1, 2, loremIpsum)
+			.withCell(new UKCard("card",new UKLabel("Cell 1,2")))
+			.withCell(new UKCard("card",new UKLabel("Cell 2,2")))
+			.withRow()
+			.withCell(2
+					,1,loremIpsum)
+			.withRow()
+			.withCell("cell 1,3")
+			.withCell("cell 2,3")
+			.withCell("cell 3,3")
+//			.withFooterRow()
+//			.withCell(3,1,"footer")
+			.build();
+		table.setDivider(true);
+		table.setMiddle(true);
+		return table;
 	}
 }

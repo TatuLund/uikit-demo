@@ -157,7 +157,7 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 	}
 
 	public void populate(int row, int cell, Component...components) {
-		if (isBuilt) {
+		if (!isBuilt) {
 			throw new IllegalStateException("Can't populate grid that has not been built");			
 		}
 		if (row > numRows && cell > rows.get(row).getCellCount()) {
@@ -169,7 +169,7 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 	}
 
 	public void populate(UKGridRow row, int cell, Component...components) {
-		if (isBuilt) {
+		if (!isBuilt) {
 			throw new IllegalStateException("Can't populate grid that has not been built");			
 		}
 		if (cell > row.getCellCount()) {
@@ -181,7 +181,7 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 	}
 
 	public void populate(UKGridCell cell, Component...components) {
-		if (isBuilt) {
+		if (!isBuilt) {
 			throw new IllegalStateException("Can't populate grid that has not been built");			
 		}
 		cell.removeAll();

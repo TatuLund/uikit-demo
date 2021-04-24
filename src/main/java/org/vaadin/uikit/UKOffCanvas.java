@@ -1,13 +1,14 @@
 package org.vaadin.uikit;
 
-import java.io.Serializable;
-
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.NativeButton;
+import com.vaadin.flow.shared.Registration;
 
 public class UKOffCanvas extends Composite<Div> {
 
@@ -39,7 +40,18 @@ public class UKOffCanvas extends Composite<Div> {
 	public UKOffCanvas() {
 	}
 
+    public Registration addOffCanvasHiddenListener(
+            ComponentEventListener<OffCanvasHiddenEvent> listener) {
+        return addListener(OffCanvasHiddenEvent.class, listener);
+    }
+
+    public Registration addOffCanvasShownListener(
+            ComponentEventListener<OffCanvasShownEvent> listener) {
+        return addListener(OffCanvasShownEvent.class, listener);
+    }
+    
 	public UKOffCanvas(String title, AnimationMode animationMode) {
+		this();
 		this.animationMode = animationMode;
 		titleComponent.setText(title);
 	}
@@ -123,9 +135,29 @@ public class UKOffCanvas extends Composite<Div> {
 		closeButton.getElement().setAttribute("uk-close", true);
 		offcanvasBar.add(closeButton, titleComponent, content);
 		offcanvas.add(offcanvasBar);
-		offcanvas.getElement().addEventListener("hide", event -> {
-			System.out.println("Drawer closed");
-		});
+		offcanvas.getElement().addEventListener("hidden", event -> {
+    		fireEvent(new OffCanvasHiddenEvent(this, true));    		
+    	});
+		offcanvas.getElement().addEventListener("shown", event -> {
+    		fireEvent(new OffCanvasShownEvent(this, true));    		
+    	});
 		return offcanvas;
 	}
+
+
+    public static class OffCanvasHiddenEvent extends ComponentEvent<UKOffCanvas> {
+
+        public OffCanvasHiddenEvent(UKOffCanvas source,
+                boolean fromClient) {
+            super(source, fromClient);
+        }
+    }
+
+    public static class OffCanvasShownEvent extends ComponentEvent<UKOffCanvas> {
+
+        public OffCanvasShownEvent(UKOffCanvas source,
+                boolean fromClient) {
+            super(source, fromClient);
+        }
+    }
 }

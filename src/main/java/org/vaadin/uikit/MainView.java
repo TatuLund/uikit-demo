@@ -16,6 +16,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
@@ -117,10 +118,11 @@ public class MainView extends UKFlex {
     	Paragraph p = new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
     	offcanvas.setContent(p);
     	add(offcanvas,openButton);
-    	offcanvas.getElement().addEventListener("hide", event -> {
-    		System.out.println("Drawer closed");
+    	offcanvas.addOffCanvasHiddenListener(event -> {
+    		Notification.show("Good bye!");
+    		offcanvas.setFlip(false);
     	});
-    	
+
     	UKModal dialog = new UKModal();
     	dialog.setWidth(FixedWidth.XLARGE);
     	dialog.setHeight(FixedHeight.LARGE);
@@ -193,8 +195,9 @@ public class MainView extends UKFlex {
 					.view("Person not valid");
 			}
     	});
-    	dialog.getElement().addEventListener("hide", event -> {
-    		System.out.println("Dialog closed");
+    	
+    	dialog.addModalHiddenListener(event -> {
+    		UKNotification.show("Thanks!");
     	});
     }
     

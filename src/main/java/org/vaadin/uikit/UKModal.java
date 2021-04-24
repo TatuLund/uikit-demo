@@ -1,14 +1,13 @@
 package org.vaadin.uikit;
 
-import org.vaadin.uikit.UKWidthAndHeight.FixedHeight;
-
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.NativeButton;
-import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.shared.Registration;
 
 public class UKModal extends Composite<Div> implements UKWidthAndHeight {
 
@@ -19,6 +18,25 @@ public class UKModal extends Composite<Div> implements UKWidthAndHeight {
 	Div body = new Div();
 	Div header = new Div();
 	NativeButton dialogClose = new NativeButton();
+
+	public UKModal() {
+    	getElement().addEventListener("hidden", event -> {
+    		fireEvent(new ModalHiddenEvent(this, true));    		
+    	});
+    	getElement().addEventListener("shown", event -> {
+    		fireEvent(new ModalShownEvent(this, true));    		
+    	});
+	}
+
+    public Registration addModalHiddenListener(
+            ComponentEventListener<ModalHiddenEvent> listener) {
+        return addListener(ModalHiddenEvent.class, listener);
+    }
+
+    public Registration addModalShownListener(
+            ComponentEventListener<ModalShownEvent> listener) {
+        return addListener(ModalShownEvent.class, listener);
+    }
 
 	@Override
 	protected Div initContent() {
@@ -108,4 +126,20 @@ public class UKModal extends Composite<Div> implements UKWidthAndHeight {
 			}
 		});
 	}
+
+    public static class ModalHiddenEvent extends ComponentEvent<UKModal> {
+
+        public ModalHiddenEvent(UKModal source,
+                boolean fromClient) {
+            super(source, fromClient);
+        }
+    }
+
+    public static class ModalShownEvent extends ComponentEvent<UKModal> {
+
+        public ModalShownEvent(UKModal source,
+                boolean fromClient) {
+            super(source, fromClient);
+        }
+    }
 }

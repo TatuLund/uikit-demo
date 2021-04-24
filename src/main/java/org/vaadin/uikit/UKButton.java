@@ -1,7 +1,5 @@
 package org.vaadin.uikit;
 
-import org.vaadin.uikit.UKCard.CardVariant;
-
 import com.vaadin.flow.component.html.NativeButton;
 
 public class UKButton extends NativeButton implements UKTooltip, UKMargin {

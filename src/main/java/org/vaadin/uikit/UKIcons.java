@@ -1,7 +1,5 @@
 package org.vaadin.uikit;
 
-import com.vaadin.flow.component.icon.Icon;
-
 public enum UKIcons {
 	HOME("home"),
 	SIGN_IN("sign-in"),

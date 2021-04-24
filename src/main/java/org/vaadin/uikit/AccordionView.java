@@ -36,6 +36,13 @@ public class AccordionView extends UKFlex {
     	accordion.addItem("Tab 3", createTable());
     	accordion.addItem("Tab 4", new Paragraph(loremIpsum));
     	accordion.setWidth(2, 3);
+    	accordion.addItemHiddenListener(event -> {
+    		UKNotification.show("Item "+event.getIndex()+" '"+event.getItem().getCaption()+"' hidden");
+    		if (event.getIndex() == 0) {
+    			event.getItem().removeAll();
+    			event.getItem().add(new UKCard("Ipsum",new Paragraph(loremIpsum.toUpperCase())));
+    		}
+    	});
     	add(accordion,createTabSwitcher());
 
     }
@@ -55,6 +62,9 @@ public class AccordionView extends UKFlex {
 //		tabSwitcher.setTabAlignment(TabAlignment.RIGHT);
 //		tabSwitcher.setTabPlacement(TabPlacement.BOTTOM);
     	tabSwitcher.setWidth(2, 3);
+    	tabSwitcher.addItemShownListener(event -> {
+    		UKNotification.show("Item "+event.getIndex()+" '"+event.getItem().getCaption()+"' shown");    		
+    	});
 		return tabSwitcher;
 	}
 	

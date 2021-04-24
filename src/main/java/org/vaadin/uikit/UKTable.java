@@ -3,7 +3,6 @@ package org.vaadin.uikit;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.Tag;
@@ -51,6 +50,7 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
 		}
 
 		public void setContent(Component component) {
+			getElement().removeAllChildren();
 			getElement().appendChild(component.getElement());
 		}
 

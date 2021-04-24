@@ -1,5 +1,6 @@
 package org.vaadin.uikit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class UKGrid extends Composite<Div> implements HasSize, UKWidthAndHeight,
 		}
 	}
 
-	public class UKGridRow {
+	public class UKGridRow implements Serializable {
 		List<UKGridCell> cells = new ArrayList<>(); 
 		int maxRowWidth;
 		int totalWidth;

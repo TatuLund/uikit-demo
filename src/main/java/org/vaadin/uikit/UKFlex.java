@@ -1,7 +1,5 @@
 package org.vaadin.uikit;
 
-import org.vaadin.uikit.UKButton.ButtonVariant;
-
 import com.vaadin.flow.component.html.Div;
 
 public class UKFlex extends Div implements UKMargin, UKWidthAndHeight {

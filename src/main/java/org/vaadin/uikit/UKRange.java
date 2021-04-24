@@ -6,7 +6,6 @@ import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.data.value.ValueChangeMode;
 
 @Tag(Tag.INPUT)
 public class UKRange extends AbstractSinglePropertyField<UKRange, Double>

@@ -16,7 +16,6 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
@@ -41,7 +40,11 @@ public class MainView extends UKFlex {
     	setHorizontalAlignment(HorizontalAlignment.AROUND);
     	setSizeFull();
     	
-    	add(new UKAlert("Demo app loaded",AlertVariant.SUCCESS));
+    	UKAlert alert = new UKAlert("Demo app loaded",AlertVariant.SUCCESS);
+    	alert.addAlertHiddenListener(event -> {
+    		UKNotification.show("Ack!");
+    	});
+    	add(alert);
 
     	UKCard card = new UKCard();
     	card.setWidth("500px");
@@ -119,7 +122,7 @@ public class MainView extends UKFlex {
     	offcanvas.setContent(p);
     	add(offcanvas,openButton);
     	offcanvas.addOffCanvasHiddenListener(event -> {
-    		Notification.show("Good bye!");
+    		UKNotification.show("Good bye!");
     		offcanvas.setFlip(false);
     	});
 

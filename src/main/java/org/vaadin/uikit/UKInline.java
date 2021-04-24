@@ -16,7 +16,6 @@ public class UKInline extends Composite<Div> {
 		div.setWidth("100%");
 		div.add(icon, component);
 		component.getElement().addPropertyChangeListener("required", event -> {
-			System.out.println("required");
 			if (((HasValue) component).isRequiredIndicatorVisible()) {
 				getElement().setProperty("required", true);
 			} else {

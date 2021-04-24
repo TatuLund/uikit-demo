@@ -4,11 +4,12 @@ Vaadin in addition its own components has Java API for standard html elements. T
 
 ## Notes
 
-* This is not a best practice example, just proof of concept
-* You can't use Vaadin normal components fully, in order to keep the UI compatible with UIkit
+* This is not a best practice example, just proof of concept how to build Java API for another frontend stack
+* You can't use all Vaadin normal components fully, in order to keep the UI compatible with UIkit, I would assume z-planes go differently with modals, notifications etc.
 * You will miss useful funcionality Vaadin provides normally with its own components
+* This is work in progress, I will probably re-package this as re-usable add-on library later
 
-## Runnoing the app
+## Running the app
 
 Run using `mvn jetty:run` and open [http://localhost:8080](http://localhost:8080) in the browser.
 

@@ -3,16 +3,10 @@ package org.vaadin.uikit;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.tatu.BeanTable;
 import org.vaadin.uikit.UKButton.ButtonVariant;
-import org.vaadin.uikit.UKFlex.Direction;
-import org.vaadin.uikit.UKFlex.HorizontalAlignment;
-import org.vaadin.uikit.UKFlex.VerticalAlignment;
 
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.Route;
 
@@ -33,13 +27,13 @@ public class TableView extends UKFlex {
     	setHorizontalAlignment(HorizontalAlignment.AROUND);
     	setSizeFull();
     	setSizeFull();
-        BeanTable<MonthlyExpense> table = new BeanTable<>(MonthlyExpense.class,false);
-        table.removeClassName("bean-table");
-        table.addClassNames("uk-table","uk-table-striped","uk-table-small","uk-table-responsive");
+        UKBeanTable<MonthlyExpense> table = new UKBeanTable<>(MonthlyExpense.class,false,12);
         table.setHtmlAllowed(true);
+        table.setSmall(true);
         table.addColumn("year", MonthlyExpense::getYear);
         table.addColumn("month", expense -> "<i>" + expense.getMonth() + "</i>");
         table.addColumn("expense", MonthlyExpense::getExpenses);
+        table.setStripes(true);
         table.addComponentColumn(null, expense -> {
         	UKButton edit = new UKButton("edit");
         	edit.setVariant(ButtonVariant.PRIMARY);
@@ -54,7 +48,7 @@ public class TableView extends UKFlex {
     	UKButton plus = new UKButton("+");
     	UKButton minus = new UKButton("-");
         dp = (ListDataProvider<MonthlyExpense>) table.getDataProvider();
-        dp.setFilter(expense -> expense.getYear() == year);
+//        dp.setFilter(expense -> expense.getYear() == year);
         plus.addClickListener(event -> {
             year++;
             dp.setFilter(expense -> expense.getYear() == year);
@@ -66,7 +60,7 @@ public class TableView extends UKFlex {
         table.setWidthFull();
         UKFlex buttons = new UKFlex();
         buttons.add(plus,minus);
-        add(buttons,table);        
+        add(table);        
     }
 
 

@@ -41,12 +41,7 @@ public class AccordionView extends UKFlex {
     			event.getItem().add(new UKCard("Ipsum",new Paragraph(loremIpsum.toUpperCase())));
     		}
     	});
-    	TextArea area = new TextArea();
-    	area.setValue(loremIpsum);
-    	area.setWidth("200px");
-    	area.setMaxHeight("100px");
-    	area.getElement().executeJs("$0.inputElement.disabled = true", area.getElement());
-    	add(accordion,area,createTabSwitcher());
+    	add(accordion,createTabSwitcher());
     }
 	
 	Html createChart(String color) {

@@ -1,7 +1,10 @@
 package org.vaadin.uikit;
 
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.shared.Registration;
 
 public class UKIcon extends Composite<Span> implements UKTooltip, UKMargin {
 	Span icon = new Span();
@@ -24,7 +27,11 @@ public class UKIcon extends Composite<Span> implements UKTooltip, UKMargin {
 		}		
 	}
 	
-    @Override
+	public Registration addClickListener(ComponentEventListener<ClickEvent<Span>> listener) {
+		return icon.addClickListener(listener);
+	}
+
+	@Override
 	protected Span initContent() {
 		return icon;
 	}

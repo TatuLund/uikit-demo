@@ -35,4 +35,14 @@ public interface UKTableOptions extends HasElement {
 			getElement().getClassList().remove("uk-table-middle");			
 		}
 	}
+
+	default void setSmall(boolean small) {
+		if (small) {
+			getElement().getClassList().remove("uk-table-large");			
+			getElement().getClassList().add("uk-table-small");
+		} else {
+			getElement().getClassList().remove("uk-table-small");			
+			getElement().getClassList().add("uk-table-large");
+		}
+	}
 }

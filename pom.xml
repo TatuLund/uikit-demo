@@ -118,12 +118,6 @@
             <scope>test</scope>
         </dependency>
 
-		<dependency>
-   			<groupId>org.vaadin.tatu</groupId>
-   			<artifactId>beantable</artifactId>
-   			<version>1.0.2</version>
-		</dependency>
-
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>

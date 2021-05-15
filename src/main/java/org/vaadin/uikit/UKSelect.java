@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.ItemLabelGenerator;
@@ -131,14 +133,39 @@ public class UKSelect<T> extends SelectBase<UKSelect<T>, T>
 		}
 		dataProviderListenerRegistration = dataProvider.addDataProviderListener(event -> {
 			if (event instanceof DataChangeEvent.DataRefreshEvent) {
-//                        resetRadioButton(
-//                            ((DataChangeEvent.DataRefreshEvent<T>) event).getItem());
+                        resetOption(
+                            ((DataChangeEvent.DataRefreshEvent<T>) event).getItem());
 			} else {
 				reset();
 			}
 		});
 	}
 
+
+    @Override
+    protected void onAttach(AttachEvent attachEvent) {
+        super.onAttach(attachEvent);
+        if (getDataProvider() != null && dataProviderListenerRegistration == null) {
+            setupDataProviderListener(getDataProvider());
+        }
+    }
+
+    @Override
+    protected void onDetach(DetachEvent detachEvent) {
+        if (dataProviderListenerRegistration != null) {
+        	dataProviderListenerRegistration.remove();
+        	dataProviderListenerRegistration = null;
+        }
+        super.onDetach(detachEvent);
+    }	
+
+    private void resetOption(T item) {
+        getOptions().filter(radioButton ->
+            getDataProvider().getId(radioButton.getItem()).equals(getDataProvider().getId(item)))
+        .findFirst()
+        .ifPresent(this::updateOption);
+    }
+	
 	private void reset() {
 		keyMapper.removeAll();
 		removeAll();
@@ -163,17 +190,6 @@ public class UKSelect<T> extends SelectBase<UKSelect<T>, T>
 		return option;
 	}
 
-//	public void setItems(String... items) {
-//		getElement().removeAllChildren();
-//		getElement().setAttribute("name", "selection");
-//		for (String item : items) {
-//			Element option = new Element(Tag.OPTION);
-//			option.setAttribute("value", item);
-//			option.setText(item);
-//			getElement().appendChild(option);
-//		}
-//	}
-
 	public DataProvider<T, ?> getDataProvider() {
 		return dataProvider;
 	}
@@ -185,7 +201,6 @@ public class UKSelect<T> extends SelectBase<UKSelect<T>, T>
 		Option(String key, R item) {
 			this.item = item;
 			getElement().setProperty("value", key);
-//	        getElement().setText(key);	        
 		}
 
 		public void setLabel(String label) {

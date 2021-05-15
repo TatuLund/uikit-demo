@@ -8,6 +8,7 @@ import org.vaadin.uikit.UKFormSizing.FieldWidth;
 import org.vaadin.uikit.UKNotification.Position;
 import org.vaadin.uikit.UKNotification.Status;
 import org.vaadin.uikit.UKOffCanvas.AnimationMode;
+import org.vaadin.uikit.UKTile.TileVariant;
 
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
@@ -97,10 +98,13 @@ public class MainView extends UKFlex {
     	select.setItems("One","Two","Three","Four","Five","Six","Seven");
     	select.setSize(FieldSize.DEFAULT);
     	select.setWidth(FieldWidth.MEDIUM);
+//    	select.setValue("Three");
+    	select.setItemEnabledProvider(item -> !item.equals("Five"));
     	select.setTooltip("Select one of these");
     	select.addValueChangeListener(event -> {
-    		UKNotification.show(event.getValue());
+    		UKNotification.show(select.getValue());
     	});
+    	select.setItemLabelGenerator(item -> item.toUpperCase());
     	add(select);
 
     	UKIcon icon = UKIcons.CHECK.create();
@@ -128,8 +132,10 @@ public class MainView extends UKFlex {
     	offcanvas.setFlip(true);
     	offcanvas.setCloseButtonVisible(false);
     	offcanvas.setEscClose(false);
-    	Paragraph p = new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
-    	offcanvas.setContent(p);
+    	UKTile tile = new UKTile(new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."));
+    	tile.setPadding(PaddingSize.SMALL);
+    	tile.setVariant(TileVariant.PRIMARY);
+    	offcanvas.setContent(tile);
     	add(offcanvas,openButton);
     	offcanvas.addOffCanvasHiddenListener(event -> {
     		UKNotification.show("Good bye!");

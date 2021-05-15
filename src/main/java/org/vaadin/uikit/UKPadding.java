@@ -8,9 +8,9 @@ public interface UKPadding extends HasElement {
 	static String MODIFIER_BASE = "uk-padding-remove"; 
 	
 	public enum PaddingSize {
-		DEFAULT("uk-margin"),
-		SMALL("uk-margin-small"),
-		LARGE("uk-margin-large");
+		DEFAULT("uk-padding"),
+		SMALL("uk-padding-small"),
+		LARGE("uk-padding-large");
 
 	    private final String padding;
 

@@ -1,10 +1,5 @@
 package org.vaadin.uikit;
 
-import com.vaadin.flow.component.AbstractField.ComponentValueChangeEvent;
-import com.vaadin.flow.component.radiobutton.GeneratedVaadinRadioGroup;
-
-import java.io.Serializable;
-
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasStyle;

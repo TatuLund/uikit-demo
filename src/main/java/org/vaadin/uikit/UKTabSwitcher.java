@@ -14,7 +14,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.shared.Registration;
 
-public class UKTabSwitcher extends Composite<Div> implements UKWidthAndHeight, UKMargin {
+public class UKTabSwitcher extends Composite<Div> implements UKWidthAndHeight, UKMargin, UKPadding {
 
 	public enum TabPlacement {
 		TOP, BOTTOM;

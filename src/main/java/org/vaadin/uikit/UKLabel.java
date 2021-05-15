@@ -3,7 +3,7 @@ package org.vaadin.uikit;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 
-public class UKLabel extends Composite<Span> implements UKTooltip, UKMargin, UKWidthAndHeight {
+public class UKLabel extends Composite<Span> implements UKTooltip, UKMargin, UKWidthAndHeight, UKPadding {
 
 	public enum LabelVariant {
 		SUCCESS("uk-label-success"), WARNING("uk-label-warning"),

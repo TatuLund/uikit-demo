@@ -6,6 +6,55 @@ import com.vaadin.flow.component.HasElement;
 
 public interface UKText extends HasElement {
 	
+	public enum FontSize {
+		SMALL("uk-text-small"),
+		DEFAULT(null),
+		LARGE("uk-text-large");
+
+	    private String fontSize;
+
+	    FontSize(String fontSize) {
+	        this.fontSize = fontSize;
+	    }
+
+	    public String getFontSize() {
+	        return fontSize;
+	    }
+	}
+
+
+	default void setFontSize(FontSize fontSize) {
+		for (FontSize size : FontSize.values()) {
+			if (size.getFontSize() != null) getElement().getClassList().remove(size.getFontSize());
+		}
+		if (fontSize != FontSize.DEFAULT) getElement().getClassList().add(fontSize.getFontSize());
+	}
+
+	public enum FontWeight {
+		LIGHT("uk-text-light"),
+		NORMAL("uk-text-normal"),
+		BOLD("uk-text-bold"),
+		LIGHTER("uk-text-lighter"),
+		BOLDER("uk-text-bolder");
+
+	    private String fontWeight;
+
+	    FontWeight(String fontWeight) {
+	        this.fontWeight = fontWeight;
+	    }
+
+	    public String getFontWeigth() {
+	        return fontWeight;
+	    }
+	}
+
+	default void setFontWeigth(FontWeight fontWeight) {
+		for (FontWeight weight : FontWeight.values()) {
+			getElement().getClassList().remove(weight.getFontWeigth());
+		}
+		getElement().getClassList().add(fontWeight.getFontWeigth());		
+	}
+
 	public enum TextAlignment {
 		LEFT("uk-text-left"),
 		RIGH("uk-text-right"),

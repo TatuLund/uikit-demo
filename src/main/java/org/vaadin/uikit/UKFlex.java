@@ -2,7 +2,7 @@ package org.vaadin.uikit;
 
 import com.vaadin.flow.component.html.Div;
 
-public class UKFlex extends Div implements UKMargin, UKWidthAndHeight {
+public class UKFlex extends Div implements UKMargin, UKWidthAndHeight, UKPadding {
 
 	public enum HorizontalAlignment {
 		LEFT("uk-flex-left"), CENTER("uk-flex-center"), RIGHT("uk-flex-right"), BETWEEN("uk-flex-between"),

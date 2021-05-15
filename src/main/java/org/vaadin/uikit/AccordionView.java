@@ -1,19 +1,17 @@
 package org.vaadin.uikit;
 
-import org.vaadin.uikit.UKCard.CardVariant;
-import org.vaadin.uikit.UKFlex.Direction;
-import org.vaadin.uikit.UKFlex.HorizontalAlignment;
-import org.vaadin.uikit.UKFlex.VerticalAlignment;
-import org.vaadin.uikit.UKGrid.GapModifier;
-import org.vaadin.uikit.UKGrid.ResponsiveBreak;
-import org.vaadin.uikit.UKTabSwitcher.TabAlignment;
-import org.vaadin.uikit.UKTabSwitcher.TabPlacement;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
+import org.vaadin.uikit.UKCard.CardVariant;
+import org.vaadin.uikit.UKGrid.GapModifier;
+
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
 @Route("accordion")
@@ -43,9 +41,28 @@ public class AccordionView extends UKFlex {
     			event.getItem().add(new UKCard("Ipsum",new Paragraph(loremIpsum.toUpperCase())));
     		}
     	});
-    	add(accordion,createTabSwitcher());
-
+    	TextArea area = new TextArea();
+    	area.setValue(loremIpsum);
+    	area.setWidth("200px");
+    	area.setMaxHeight("100px");
+    	area.getElement().executeJs("$0.inputElement.disabled = true", area.getElement());
+    	add(accordion,area,createTabSwitcher());
     }
+	
+	Html createChart(String color) {
+		Random random = new Random();
+		List<Integer> data = random.ints(300,-100,100).boxed().collect(Collectors.toList());
+		String svg = "<div><svg class=\"uk-animation-stroke\" style=\"width: 100%; height: 100%; --uk-animation-stroke: 100000;\" preserveAspectRatio=\"none\" viewBox=\"0 -100 600 200\"><polyline points=\"";
+		int index = 0;
+		for (int number : data) {
+			svg+=index+","+number+" ";
+			index+=2;
+		}
+		svg+="\" style=\"stroke-width: 1;fill:none;stroke:"+color+"\"></polyline></svg></div>";
+		Html chart = new Html(svg);
+		chart.getElement().getStyle().set("height", "100px");
+		return chart;
+	}
 	
 	UKTabSwitcher createTabSwitcher() {
 		UKTabSwitcher tabSwitcher = new UKTabSwitcher();
@@ -53,7 +70,7 @@ public class AccordionView extends UKFlex {
 		card1.setVariant(CardVariant.DEFAULT);
 		UKCard card2 = new UKCard("Card 2", new Paragraph(loremIpsum));
 		card2.setVariant(CardVariant.SECONDARY);
-		UKCard card3 = new UKCard("Card 3", new Paragraph(loremIpsum));
+		UKCard card3 = new UKCard("Card 3: Chart", createChart("white"));
 		card3.setVariant(CardVariant.PRIMARY);
 		tabSwitcher.addItem("Tab 1", card1);
 		tabSwitcher.addItem("Tab 2", card2);
@@ -94,7 +111,7 @@ public class AccordionView extends UKFlex {
 //			.withCell("Column 1")
 //			.withCell("Column 2")
 			.withRow()
-			.withCell(1, 2, loremIpsum)
+			.withCell(1, 2, new UKCard("chart",createChart("black")))
 			.withCell(new UKCard("card",new UKLabel("Cell 1,2")))
 			.withCell(new UKCard("card",new UKLabel("Cell 2,2")))
 			.withRow()

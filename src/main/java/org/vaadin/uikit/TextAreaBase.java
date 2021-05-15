@@ -13,7 +13,7 @@ import com.vaadin.flow.data.value.HasValueChangeMode;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
 @Tag(Tag.TEXTAREA)
-public class TextAreaBase extends AbstractSinglePropertyField<TextAreaBase, String>
+public abstract class TextAreaBase extends AbstractSinglePropertyField<TextAreaBase, String>
         implements Focusable<TextAreaBase>, HasSize, HasStyle, HasValueChangeMode {
 
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors

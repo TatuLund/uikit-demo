@@ -79,20 +79,30 @@ public class MainView extends UKFlex {
     	});
     	add(check);
 
-    	UnorderedList breadcrumb = new UnorderedList();
-    	breadcrumb.addClassName("uk-breadcrumb");
-    	ListItem item1 = new ListItem();
-    	item1.add(new Anchor("#","Home"));
-    	ListItem item2 = new ListItem();
-    	item2.add(new Anchor("#","Linked Category"));
-    	ListItem item3 = new ListItem();
-    	item3.addClassName("uk-disabled");
-    	item3.add(new Anchor("#","Disabled Category"));
-    	ListItem item4 = new ListItem();
-    	item4.add(new Span("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
-    	breadcrumb.add(item1,item2,item3,item4);
-    	add(breadcrumb);
+//    	UnorderedList breadcrumb = new UnorderedList();
+//    	breadcrumb.addClassName("uk-breadcrumb");
+//    	ListItem item1 = new ListItem();
+//    	item1.add(new Anchor("#","Home"));
+//    	ListItem item2 = new ListItem();
+//    	item2.add(new Anchor("#","Linked Category"));
+//    	ListItem item3 = new ListItem();
+//    	item3.addClassName("uk-disabled");
+//    	item3.add(new Anchor("#","Disabled Category"));
+//    	ListItem item4 = new ListItem();
+//    	item4.add(new Span("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."));
+//    	breadcrumb.add(item1,item2,item3,item4);
+//    	add(breadcrumb);
     	
+    	UKSelect<String> select = new UKSelect<>();
+    	select.setItems("One","Two","Three","Four","Five","Six","Seven");
+    	select.setSize(FieldSize.DEFAULT);
+    	select.setWidth(FieldWidth.MEDIUM);
+    	select.setTooltip("Select one of these");
+    	select.addValueChangeListener(event -> {
+    		UKNotification.show(event.getValue());
+    	});
+    	add(select);
+
     	UKIcon icon = UKIcons.CHECK.create();
     	icon.getElement().setAttribute("uk-tooltip", "This is an icon");
     	add(icon);

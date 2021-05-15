@@ -1,5 +1,7 @@
 package org.vaadin.uikit;
 
+import org.vaadin.uikit.UKText.FontSize;
+
 import com.vaadin.flow.component.HasElement;
 
 public interface UKFormSizing extends HasElement {
@@ -39,14 +41,14 @@ public interface UKFormSizing extends HasElement {
 
 	default void setSize(FieldSize size) {
 		for (FieldSize s : FieldSize.values()) {
-			if (s != null) getElement().getClassList().remove(s);
+			if (s.getSize() != null) getElement().getClassList().remove(s.getSize());
 		}
-		getElement().getClassList().add(size.getSize());		
+		if (size != FieldSize.DEFAULT) getElement().getClassList().add(size.getSize());		
 	}
 
 	default void setWidth(FieldWidth width) {
 		for (FieldSize w : FieldSize.values()) {
-			getElement().getClassList().remove(w);
+			getElement().getClassList().remove(w.getSize());
 		}
 		getElement().getClassList().add(width.getSize());		
 	}

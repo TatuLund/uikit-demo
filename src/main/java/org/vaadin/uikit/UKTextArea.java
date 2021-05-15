@@ -1,6 +1,6 @@
 package org.vaadin.uikit;
 
-public class UKTextArea extends TextAreaBase implements UKValidation, UKTooltip, UKMargin, UKFormSizing {
+public class UKTextArea extends TextAreaBase implements UKValidation, UKTooltip, UKMargin, UKPadding, UKFormSizing {
 
 	public UKTextArea() {
 		addClassName("uk-textarea");
@@ -18,5 +18,13 @@ public class UKTextArea extends TextAreaBase implements UKValidation, UKTooltip,
 		if (rows > 0) {
 			getElement().setProperty("rows", "" + rows);
 		}
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.getElement().setProperty("disabled", disabled);
+	}
+
+	public boolean isDisabled() {
+		return getElement().getProperty("disabled", false);
 	}
 }

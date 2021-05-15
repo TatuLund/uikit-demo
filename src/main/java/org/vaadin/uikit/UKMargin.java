@@ -40,21 +40,28 @@ public interface UKMargin extends HasElement {
 	}
 
 	default void setMargin() {
+		clearMargin();
 		getElement().getClassList().add(MarginSize.DEFAULT.getMargin());
 	}
 	
-	default void setMargin(MarginSize margin) {
-		getElement().getClassList().add(margin.getMargin());		
+	default void setMargin(MarginSize marginSize) {
+		clearMargin();
+		getElement().getClassList().add(marginSize.getMargin());		
 	}
 
-	default void setMargin(MarginSize margin, MarginSide marginSide) {
-		getElement().getClassList().add(margin.getMargin()+marginSide.getMarginSide());		
+	default void setMargin(MarginSize marginSize, MarginSide marginSide) {
+		getElement().getClassList().forEach(margin -> {
+			if (margin.startsWith(marginSize.getMargin())) {
+				getElement().getClassList().remove(margin);
+			}
+		});
+		getElement().getClassList().add(marginSize.getMargin()+marginSide.getMarginSide());		
 	}	
 
 	default void clearMargin() {
-		getElement().getClassList().forEach(height -> {
-			if (height.startsWith("uk-margin")) {
-				getElement().getClassList().remove(height);
+		getElement().getClassList().forEach(margin -> {
+			if (margin.startsWith("uk-margin")) {
+				getElement().getClassList().remove(margin);
 			}
 		});
 	}

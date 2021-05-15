@@ -10,21 +10,20 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
-public class UKCard extends Composite<Div> implements HasSize, UKWidthAndHeight, UKMargin, UKPadding {
+public class UKTile extends Composite<Div> implements HasSize, UKWidthAndHeight, UKMargin, UKPadding {
 
-	H3 titleComponent = new H3();
 	Div div = new Div();
 	Component content = new Div();
-	Div badge = new Div();
 	
-	public enum CardVariant {
+	public enum TileVariant {
 		DEFAULT("uk-card-default"),
+		MUTED("uk-card-muted"),
 		PRIMARY("uk-card-primary"),
 		SECONDARY("uk-card-secondary");
 
 	    private final String variant;
 
-	    CardVariant(String variant) {
+	    TileVariant(String variant) {
 	        this.variant = variant;
 	    }
 
@@ -38,36 +37,29 @@ public class UKCard extends Composite<Div> implements HasSize, UKWidthAndHeight,
 	    }
 	}
 
-	public UKCard() {
+	public UKTile() {
 	}
 	
-	public UKCard(String title) {
-		setTitle(title);
+	public UKTile(String htmlContent) {
+		setContent(htmlContent);
 	}
 	
-	public UKCard(String title, Component component) {
-		setTitle(title);
+	public UKTile(Component component) {
 		setContent(component);
 	}
 
 	@Override
     protected Div initContent() {
-    	div.addClassNames("uk-card","uk-card-default","uk-card-body");
-    	titleComponent.addClassName("uk-card-title");
-    	badge.addClassNames("uk-card-badge","uk-label");
-    	div.add(titleComponent,content);
+    	div.addClassNames("uk-tile","uk-card-default");
+    	div.add(content);
     	return div;
     }
 
-	public void setVariant(CardVariant cardVariant) {
-		for (CardVariant variant : CardVariant.values()) { 
+	public void setVariant(TileVariant cardVariant) {
+		for (TileVariant variant : TileVariant.values()) { 
 			div.removeClassName(variant.getVariantName());	
 		}
 		div.addClassName(cardVariant.getVariantName());
-	}
-
-	public void setTitle(String title) {
-		titleComponent.setText(title);
 	}
 
 	public void setContent(String htmlContent) {
@@ -82,20 +74,4 @@ public class UKCard extends Composite<Div> implements HasSize, UKWidthAndHeight,
 		content = component;
 	}
 
-	public void setBadge(String badgeText) {
-		if (badgeText != null && !badgeText.isEmpty()) {
-			badge.setText(badgeText);
-			div.add(badge);
-		} else {
-			div.remove(badge);
-		}
-	}
-
-	public void setHoverEffect(boolean hoverEffect) {
-		if (hoverEffect) {
-			div.addClassName("uk-card-hover");
-		} else {
-			div.removeClassName("uk-card-hover");
-		}
-	}
 }

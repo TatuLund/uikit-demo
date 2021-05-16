@@ -99,26 +99,18 @@ public class MainView extends UKFlex {
 //    	add(breadcrumb);
     	
     	UKCombo<String> select = new UKCombo<>();
-    	String[] array = { "One","Two","Three","Four","Five","Six", "Seven" };
+    	String[] array = { "One","Two","Three","Four","Five","Six", "Seven", "Eight", "Nine", "Ten" };
     	List<String> list = new ArrayList<>();
     	for (String item : array) list.add(item);
     	select.setItems(list);
     	select.setSize(FieldSize.DEFAULT);
     	select.setWidth(FieldWidth.MEDIUM);
-    	select.setItemEnabledProvider(item -> !item.equals("Five"));
     	select.setTooltip("Select one of these");
     	select.addValueChangeListener(event -> {
     		UKNotification.show(select.getValue());
     	});
     	select.setItemLabelGenerator(item -> item.toUpperCase());
     	select.setPlaceholder("number");
-    	select.setAllowCustomValue(true);
-    	select.addCustomValueListener(event -> {
-    		ListDataProvider<String> dp = (ListDataProvider<String>) select.getDataProvider();
-    		dp.getItems().add(event.getValue());
-    		dp.refreshAll();
-    		select.setValue(event.getValue());
-    	});
     	select.focus();
     	add(select);
 
@@ -164,8 +156,7 @@ public class MainView extends UKFlex {
     	UKForm form = new UKForm();
     	form.setHorizontal(true);
 
-    	UKCombo<String> nameField = new UKCombo<>();
-    	nameField.setItems("John","Mathew","Mike","Elijah");
+    	UKTextField nameField = new UKTextField();
     	UKInline inline = new UKInline(UKIcons.USER, nameField);
     	inline.setIconFlip(true);
     	nameField.setPlaceholder("name");

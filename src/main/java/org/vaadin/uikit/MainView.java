@@ -1,5 +1,8 @@
 package org.vaadin.uikit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.vaadin.uikit.UKAlert.AlertVariant;
 import org.vaadin.uikit.UKButton.ButtonVariant;
 import org.vaadin.uikit.UKCard.CardVariant;
@@ -20,6 +23,7 @@ import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
+import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.validator.IntegerRangeValidator;
 import com.vaadin.flow.data.validator.StringLengthValidator;
 import com.vaadin.flow.router.Route;
@@ -94,17 +98,28 @@ public class MainView extends UKFlex {
 //    	breadcrumb.add(item1,item2,item3,item4);
 //    	add(breadcrumb);
     	
-    	UKSelect<String> select = new UKSelect<>();
-    	select.setItems("One","Two","Three","Four","Five","Six","Seven");
+    	UKCombo<String> select = new UKCombo<>();
+    	String[] array = { "One","Two","Three","Four","Five","Six", "Seven" };
+    	List<String> list = new ArrayList<>();
+    	for (String item : array) list.add(item);
+    	select.setItems(list);
     	select.setSize(FieldSize.DEFAULT);
     	select.setWidth(FieldWidth.MEDIUM);
-//    	select.setValue("Three");
     	select.setItemEnabledProvider(item -> !item.equals("Five"));
     	select.setTooltip("Select one of these");
     	select.addValueChangeListener(event -> {
     		UKNotification.show(select.getValue());
     	});
     	select.setItemLabelGenerator(item -> item.toUpperCase());
+    	select.setPlaceholder("number");
+    	select.setAllowCustomValue(true);
+    	select.addCustomValueListener(event -> {
+    		ListDataProvider<String> dp = (ListDataProvider<String>) select.getDataProvider();
+    		dp.getItems().add(event.getValue());
+    		dp.refreshAll();
+    		select.setValue(event.getValue());
+    	});
+    	select.focus();
     	add(select);
 
     	UKIcon icon = UKIcons.CHECK.create();
@@ -149,7 +164,8 @@ public class MainView extends UKFlex {
     	UKForm form = new UKForm();
     	form.setHorizontal(true);
 
-    	UKTextField nameField = new UKTextField();
+    	UKCombo<String> nameField = new UKCombo<>();
+    	nameField.setItems("John","Mathew","Mike","Elijah");
     	UKInline inline = new UKInline(UKIcons.USER, nameField);
     	inline.setIconFlip(true);
     	nameField.setPlaceholder("name");

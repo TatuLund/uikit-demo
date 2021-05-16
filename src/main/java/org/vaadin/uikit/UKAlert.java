@@ -57,7 +57,6 @@ public class UKAlert extends Composite<Div> implements HasSize {
             ComponentEventListener<AlertHiddenEvent> listener) {
         return addListener(AlertHiddenEvent.class, listener);
     }
-
 	
 	private void sendSettings(int duration, boolean animation) {
 		alert.getElement().executeJs("UIkit.alert($0,{animation: $1, duration: $2, selClose: '.uk-alert-close'})",

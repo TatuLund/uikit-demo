@@ -2,6 +2,7 @@ package org.vaadin.uikit;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -39,6 +40,10 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
 
 	private boolean isReadOnly;
 
+	private Random random = new Random();
+
+	private String name = "combo-"+random.nextInt();
+	
 	private static <T> T presentationToModel(UKRadioGroup<T> select, String presentation) {
 		if (!select.keyMapper.containsKey(presentation)) {
 			return null;
@@ -199,7 +204,7 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
 	}
 
 	protected String getName() {
-		return "radiogroup";
+		return name;
 	}
 
 	@Tag(Tag.DIV)

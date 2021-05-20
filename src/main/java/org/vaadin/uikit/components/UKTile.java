@@ -20,10 +20,10 @@ public class UKTile extends Composite<Div>
     Component content = new Div();
 
     public enum TileVariant {
-        DEFAULT("uk-card-default"),
-        MUTED("uk-card-muted"),
-        PRIMARY("uk-card-primary"),
-        SECONDARY("uk-card-secondary");
+        DEFAULT("uk-tile-default"),
+        MUTED("uk-tile-muted"),
+        PRIMARY("uk-tile-primary"),
+        SECONDARY("uk-tile-secondary");
 
         private final String variant;
 
@@ -54,7 +54,7 @@ public class UKTile extends Composite<Div>
 
     @Override
     protected Div initContent() {
-        div.addClassNames("uk-tile", "uk-card-default");
+        div.addClassNames("uk-tile", "uk-tile-default");
         div.add(content);
         return div;
     }

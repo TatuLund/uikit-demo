@@ -3,6 +3,8 @@ package org.vaadin.uikit.components;
 import org.vaadin.uikit.interfaces.UKMargin;
 import org.vaadin.uikit.interfaces.UKTooltip;
 
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.html.NativeButton;
 
 public class UKButton extends NativeButton implements UKTooltip, UKMargin {
@@ -26,10 +28,21 @@ public class UKButton extends NativeButton implements UKTooltip, UKMargin {
         }
     }
 
-    public UKButton(String caption) {
-        super(caption);
+    public UKButton() {
+        super();
         getElement().setAttribute("type", "button");
-        addClassNames("uk-button", "uk-button-default");
+        addClassNames("uk-button", "uk-button-default");        
+    }
+
+    public UKButton(String text) {
+        this();
+        setText(text);
+    }
+
+    public UKButton(String text,
+            ComponentEventListener<ClickEvent<NativeButton>> clickListener) {
+        this(text);
+        addClickListener(clickListener);
     }
 
     public void setVariant(ButtonVariant buttonVariant) {

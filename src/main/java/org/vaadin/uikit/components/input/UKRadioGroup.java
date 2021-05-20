@@ -68,8 +68,16 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
     }
 
     public UKRadioGroup() {
+        this(-1);
+    }
+
+    public UKRadioGroup(int columns) {
         super(null, null, String.class, UKRadioGroup::presentationToModel,
                 UKRadioGroup::modelToPresentation);
+        if (columns > 0) {
+            getElement().setAttribute("uk-grid", true);
+            addClassNames("uk-flex-left","uk-grid-collapse","uk-child-width-1-"+columns);
+        }
     }
 
     public SerializablePredicate<T> getItemEnabledProvider() {

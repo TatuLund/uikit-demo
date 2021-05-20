@@ -2,6 +2,7 @@ package org.vaadin.uikit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.vaadin.uikit.components.UKAlert;
 import org.vaadin.uikit.components.UKButton;
@@ -13,15 +14,20 @@ import org.vaadin.uikit.components.UKModal;
 import org.vaadin.uikit.components.UKNotification;
 import org.vaadin.uikit.components.UKOffCanvas;
 import org.vaadin.uikit.components.UKProgress;
+import org.vaadin.uikit.components.UKSpinner;
 import org.vaadin.uikit.components.UKTile;
 import org.vaadin.uikit.components.UKAlert.AlertVariant;
 import org.vaadin.uikit.components.UKButton.ButtonVariant;
 import org.vaadin.uikit.components.UKCard.CardVariant;
+import org.vaadin.uikit.components.UKDropdown;
 import org.vaadin.uikit.components.UKNotification.Position;
 import org.vaadin.uikit.components.UKNotification.Status;
 import org.vaadin.uikit.components.UKOffCanvas.AnimationMode;
 import org.vaadin.uikit.components.UKTile.TileVariant;
 import org.vaadin.uikit.components.input.UKCheckbox;
+import org.vaadin.uikit.components.input.UKDateField;
+import org.vaadin.uikit.components.input.UKDateField.Resolution;
+import org.vaadin.uikit.components.input.UKNumberField;
 import org.vaadin.uikit.components.input.UKRange;
 import org.vaadin.uikit.components.input.UKTextArea;
 import org.vaadin.uikit.components.input.UKTextField;
@@ -30,6 +36,7 @@ import org.vaadin.uikit.components.layout.UKForm;
 import org.vaadin.uikit.interfaces.UKFormSizing.FieldSize;
 import org.vaadin.uikit.interfaces.UKFormSizing.FieldWidth;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
@@ -68,6 +75,13 @@ public class MainView extends UKFlex {
         });
         add(alert);
 
+        UKDropdown dropdown = new UKDropdown(true); 
+        dropdown.setCaption("Dropdown");
+        dropdown.addDropdownHiddenListener(event -> {
+            UKNotification.show("Dropdown hidden");
+        });
+        add(dropdown);
+        
         UKCard card = new UKCard();
         card.setWidth("500px");
         card.setHeight("200px");
@@ -77,7 +91,7 @@ public class MainView extends UKFlex {
         card.setHoverEffect(true);
         card.setBadge("Badge");
         card.setVariant(CardVariant.SECONDARY);
-        add(card);
+        dropdown.add(card);
 
         UKProgress progress = new UKProgress();
         progress.setWidth(FixedWidth.MEDIUM);
@@ -95,6 +109,14 @@ public class MainView extends UKFlex {
         range.setSize(FieldSize.SMALL);
         add(range);
 
+        UKDateField dateField = new UKDateField();
+        dateField.setWidth(FieldWidth.MEDIUM);
+        dateField.setSize(FieldSize.SMALL);
+        dateField.addValueChangeListener(event -> {
+            UKNotification.show("Date: " + event.getValue());
+        });
+        add(dateField);
+        
         UKCheckbox check = new UKCheckbox();
         check.addValueChangeListener(event -> {
             UKNotification.show("Value: " + event.getValue());

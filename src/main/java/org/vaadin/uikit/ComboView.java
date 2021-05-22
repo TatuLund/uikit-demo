@@ -48,17 +48,17 @@ public class ComboView extends UKFlex {
         UKForm form = new UKForm();
         form.add("Combo" , combo);
         form.add("Select" , select);
-        form.add("Radios" , radioGroup);
-        form.add("Checkboxes" , checkboxGroup);
-        form.setWidth(FixedWidth.MEDIUM);
+        form.add("Select one" , radioGroup);
+        form.add("Select all that apply" , checkboxGroup);
+        form.setWidth(FixedWidth.LARGE);
         card.setContent(form);
         add(card);
     }
 
     private UKCheckboxGroup<Item> createCheckboxGroup() {
         UKCheckboxGroup<Item> radios = new UKCheckboxGroup<>(2);
-        String[] array = { "Zero Nine Six Eight And Four And I Do Not Know Why", "One", "Two", "Three", "Four", "Five", "Six",
-                "Seven", "Eight", "Nine" };
+        String[] array = { "Front end development", "Back end development", "CI/CD experience", "Java programming", "JavaScript coding", "SQL queries", "Integration tests",
+                "Unit tests", "Selenium", "Maven" };
         List<Item> list = new ArrayList<>();
         for (String item : array)
             list.add(new Item(item));

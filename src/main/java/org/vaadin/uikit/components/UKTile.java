@@ -2,9 +2,10 @@ package org.vaadin.uikit.components;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -13,8 +14,8 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
-public class UKTile extends Composite<Div>
-        implements HasSize, UKWidthAndHeight, UKMargin, UKPadding {
+public class UkTile extends Composite<Div>
+        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder {
 
     Div div = new Div();
     Component content = new Div();
@@ -41,14 +42,14 @@ public class UKTile extends Composite<Div>
         }
     }
 
-    public UKTile() {
+    public UkTile() {
     }
 
-    public UKTile(String htmlContent) {
-        setContent(htmlContent);
+    public UkTile(String textContent) {
+        setText(textContent);
     }
 
-    public UKTile(Component component) {
+    public UkTile(Component component) {
         setContent(component);
     }
 
@@ -64,6 +65,11 @@ public class UKTile extends Composite<Div>
             div.removeClassName(variant.getVariantName());
         }
         div.addClassName(cardVariant.getVariantName());
+    }
+
+
+    public void setText(String textContent) {
+        div.setText(textContent);
     }
 
     public void setContent(String htmlContent) {

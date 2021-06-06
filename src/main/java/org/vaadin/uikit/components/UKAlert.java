@@ -10,7 +10,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.shared.Registration;
 
-public class UKAlert extends Composite<Div> implements HasSize {
+public class UkAlert extends Composite<Div> implements HasSize {
 
     public enum AlertVariant {
         SUCCESS("uk-alert-success"),
@@ -38,15 +38,15 @@ public class UKAlert extends Composite<Div> implements HasSize {
     H3 titleComponent = new H3();
     Paragraph p = new Paragraph();
 
-    public UKAlert(String alertText) {
+    public UkAlert(String alertText) {
         this(alertText, null, 150, true);
     }
 
-    public UKAlert(String alertText, AlertVariant variant) {
+    public UkAlert(String alertText, AlertVariant variant) {
         this(alertText, variant, 150, true);
     }
 
-    public UKAlert(String alertText, AlertVariant variant, int duration,
+    public UkAlert(String alertText, AlertVariant variant, int duration,
             boolean animation) {
         if (variant != null)
             alert.addClassName(variant.getVariantName());
@@ -83,9 +83,9 @@ public class UKAlert extends Composite<Div> implements HasSize {
                 alert.getElement());
     }
 
-    public static class AlertHiddenEvent extends ComponentEvent<UKAlert> {
+    public static class AlertHiddenEvent extends ComponentEvent<UkAlert> {
 
-        public AlertHiddenEvent(UKAlert source, boolean fromClient) {
+        public AlertHiddenEvent(UkAlert source, boolean fromClient) {
             super(source, fromClient);
         }
     }

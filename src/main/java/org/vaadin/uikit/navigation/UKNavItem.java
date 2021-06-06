@@ -4,35 +4,35 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.router.RouterLink;
 
-public class UKNavItem extends UKMenuItemBase {
+public class UkNavItem extends MenuItemBase {
 
-    public UKNavItem(String text) {
+    public UkNavItem(String text) {
         super(text);
     }
 
-    public UKNavItem(String text,
+    public UkNavItem(String text,
             Class<? extends Component> navigationTarget) {
         super(text,navigationTarget);
     }
 
-    public UKNavItem(String text, String href) {
+    public UkNavItem(String text, String href) {
         super(text,href);
     }
 
-    public UKNavItem(Anchor anchor) {
+    public UkNavItem(Anchor anchor) {
         super(anchor);
     }
 
-    public UKNavItem(RouterLink link) {
+    public UkNavItem(RouterLink link) {
         super(link);
     }
 
-    public UKSubNav addSubMenu() {
+    public UkSubNav addSubMenu() {
         if (!subMenuPossible) {
             throw new IllegalStateException(
                     "Sub menu not possible in MenuItem having a link");
         }
-        UKSubNav subMenu = new UKSubNav();
+        UkSubNav subMenu = new UkSubNav();
         li.addClassName("uk-parent");
         li.add(subMenu);
         return subMenu;

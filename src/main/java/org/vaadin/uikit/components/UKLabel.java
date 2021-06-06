@@ -1,15 +1,15 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 
-public class UKLabel extends Composite<Span>
-        implements UKTooltip, UKMargin, UKWidthAndHeight, UKPadding {
+public class UkLabel extends Composite<Span>
+        implements UkTooltip, UkMargin, UkSizing, UkPadding {
 
     public enum LabelVariant {
         SUCCESS("uk-label-success"), 
@@ -29,11 +29,11 @@ public class UKLabel extends Composite<Span>
 
     Span span = new Span();
 
-    public UKLabel(String label) {
+    public UkLabel(String label) {
         span.setText(label);
     }
 
-    public UKLabel(String label, LabelVariant variant) {
+    public UkLabel(String label, LabelVariant variant) {
         span.setText(label);
         span.addClassName(variant.getVariantName());
     }

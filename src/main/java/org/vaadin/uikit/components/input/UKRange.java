@@ -1,8 +1,8 @@
 package org.vaadin.uikit.components.input;
 
-import org.vaadin.uikit.interfaces.UKFormSizing;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKValidation;
+import org.vaadin.uikit.interfaces.UkFormSizing;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.Focusable;
@@ -12,18 +12,18 @@ import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 
 @Tag(Tag.INPUT)
-public class UKRange extends AbstractSinglePropertyField<UKRange, Double>
-        implements UKValidation, HasStyle, Focusable<UKRange>, UKTooltip,
-        UKFormSizing {
+public class UkRange extends AbstractSinglePropertyField<UkRange, Double>
+        implements UkValidation, HasStyle, Focusable<UkRange>, UkTooltip,
+        UkFormSizing {
 
     private static final PropertyDescriptor<String, String> typeDescriptor = PropertyDescriptors
             .attributeWithDefault("type", "range");
 
-    public UKRange() {
+    public UkRange() {
         this(0d, 100d, 1.0d);
     }
 
-    public UKRange(double min, double max, double step) {
+    public UkRange(double min, double max, double step) {
         super("value", 0d, String.class, value -> Double.valueOf(value),
                 value -> "" + value);
         addClassName("uk-range");

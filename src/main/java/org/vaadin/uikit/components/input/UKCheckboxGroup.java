@@ -7,18 +7,19 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.UKFormSizing;
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKValidation;
+import org.vaadin.uikit.interfaces.StringProvider;
+import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.interfaces.UkFormSizing;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasValidation;
-import com.vaadin.flow.component.ItemLabelGenerator;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
@@ -39,10 +40,10 @@ import elemental.json.Json;
 import elemental.json.JsonArray;
 
 @Tag(Tag.DIV)
-public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
+public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
         implements HasItemsAndComponents<T>, HasSize, HasValidation,
-        MultiSelect<UKCheckboxGroup<T>, T>, HasDataProvider<T>, UKValidation,
-        UKTooltip, UKFormSizing, UKMargin, UKPadding {
+        MultiSelect<UkCheckboxGroup<T>, T>, HasDataProvider<T>, UkValidation,
+        UkTooltip, UkFormSizing, UkMargin, UkPadding {
 
     private static final String VALUE = "value";
 
@@ -54,9 +55,11 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
 
     private SerializablePredicate<T> itemEnabledProvider = item -> isEnabled();
 
-    private ItemLabelGenerator<T> itemLabelGenerator = String::valueOf;
+    private StringProvider<T> itemLabelGenerator = String::valueOf;
 
     private Registration dataProviderListenerRegistration;
+
+    private BorderStyle borderStyle = BorderStyle.SHARP;
 
     private class CheckboxItem<R> extends Composite<Div>
             implements ItemComponent<T> {
@@ -64,32 +67,33 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
         private final R item;
         private Div div = new Div();
         private Span text = new Span();
-        private UKCheckbox checkbox = new UKCheckbox();
+        private UkCheckbox checkbox = new UkCheckbox();
 
         private CheckboxItem(String id, R item) {
             this.item = item;
             checkbox.getElement().setProperty(VALUE, id);
+            checkbox.setBorder(borderStyle);
             text.addClassName("uk-margin-small-left");
             checkbox.addValueChangeListener(event -> {
                 if (event.getValue()) {
-                    JsonArray value = (JsonArray) UKCheckboxGroup.this
+                    JsonArray value = (JsonArray) UkCheckboxGroup.this
                             .getElement().getPropertyRaw("value");
                     Set<R> set = (Set<R>) presentationToModel(
-                            UKCheckboxGroup.this, value);
+                            UkCheckboxGroup.this, value);
                     set.add(item);
                     JsonArray newValue = modelToPresentation(
-                            UKCheckboxGroup.this, (Set<T>) set);
-                    UKCheckboxGroup.this.getElement().setPropertyJson("value",
+                            UkCheckboxGroup.this, (Set<T>) set);
+                    UkCheckboxGroup.this.getElement().setPropertyJson("value",
                             newValue);
                 } else {
-                    JsonArray value = (JsonArray) UKCheckboxGroup.this
+                    JsonArray value = (JsonArray) UkCheckboxGroup.this
                             .getElement().getPropertyRaw("value");
                     Set<R> set = (Set<R>) presentationToModel(
-                            UKCheckboxGroup.this, value);
+                            UkCheckboxGroup.this, value);
                     set.remove(item);
                     JsonArray newValue = modelToPresentation(
-                            UKCheckboxGroup.this, (Set<T>) set);
-                    UKCheckboxGroup.this.getElement().setPropertyJson("value",
+                            UkCheckboxGroup.this, (Set<T>) set);
+                    UkCheckboxGroup.this.getElement().setPropertyJson("value",
                             newValue);
                 }
             });
@@ -107,8 +111,8 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
             text.setText(label);
         }
 
-        public Element getCheckboxElement() {
-            return checkbox.getElement();
+        public UkCheckbox getCheckbox() {
+            return checkbox;
         }
 
         public void setDisabled(boolean disabled) {
@@ -128,14 +132,14 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
 
     }
 
-    public UKCheckboxGroup() {
+    public UkCheckboxGroup() {
         this(-1);
     }
 
-    public UKCheckboxGroup(int columns) {
+    public UkCheckboxGroup(int columns) {
         super(Collections.emptySet(), Collections.emptySet(), JsonArray.class,
-                UKCheckboxGroup::presentationToModel,
-                UKCheckboxGroup::modelToPresentation);
+                UkCheckboxGroup::presentationToModel,
+                UkCheckboxGroup::modelToPresentation);
         if (columns > 0) {
             getElement().setAttribute("uk-grid", true);
             addClassNames("uk-flex-left", "uk-grid-collapse",
@@ -143,7 +147,7 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
         }
     }
 
-    private static <T> Set<T> presentationToModel(UKCheckboxGroup<T> group,
+    private static <T> Set<T> presentationToModel(UkCheckboxGroup<T> group,
             JsonArray presentation) {
         JsonArray array = presentation;
         Set<T> set = new HashSet<>();
@@ -153,7 +157,7 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
         return set;
     }
 
-    private static <T> JsonArray modelToPresentation(UKCheckboxGroup<T> group,
+    private static <T> JsonArray modelToPresentation(UkCheckboxGroup<T> group,
             Set<T> model) {
         JsonArray array = Json.createArray();
         if (model.isEmpty()) {
@@ -211,7 +215,7 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
     }
 
     public void setItemLabelGenerator(
-            ItemLabelGenerator<T> itemLabelGenerator) {
+            StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;
@@ -243,7 +247,7 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
 
     @Override
     public Registration addSelectionListener(
-            MultiSelectionListener<UKCheckboxGroup<T>, T> listener) {
+            MultiSelectionListener<UkCheckboxGroup<T>, T> listener) {
         return addValueChangeListener(event -> listener
                 .selectionChange(new MultiSelectionEvent<>(this, this,
                         event.getOldValue(), event.isFromClient())));
@@ -304,8 +308,13 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
         return checkbox;
     }
 
-    public ItemLabelGenerator<T> getItemLabelGenerator() {
+    public StringProvider<T> getItemLabelGenerator() {
         return itemLabelGenerator;
+    }
+
+    public void setCheckboxBorder(BorderStyle borderStyle) {
+        this.borderStyle = borderStyle;
+        getCheckboxItems().forEach(checkbox -> checkbox.getCheckbox().setBorder(borderStyle));
     }
 
     private void updateCheckbox(CheckboxItem<T> checkbox) {
@@ -319,7 +328,7 @@ public class UKCheckboxGroup<T> extends SelectBase<UKCheckboxGroup<T>, Set<T>>
     private void updateEnabled(CheckboxItem<T> checkbox) {
         boolean disabled = isDisabledBoolean()
                 || !getItemEnabledProvider().test(checkbox.getItem());
-        Serializable rawValue = checkbox.getCheckboxElement()
+        Serializable rawValue = checkbox.getCheckbox().getElement()
                 .getPropertyRaw("disabled");
         if (rawValue instanceof Boolean) {
             // convert the boolean value to a String to force update the

@@ -6,11 +6,11 @@ import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 
-public class UKInline extends Composite<Div> {
+public class UkInline extends Composite<Div> {
     Div div = new Div();
     Span icon = new Span();
 
-    public UKInline(UKIcons iconName, Component component) {
+    public UkInline(UkIcons iconName, Component component) {
         icon.addClassName("uk-form-icon");
         icon.getElement().setAttribute("uk-icon", iconName.getIconName());
         div.setWidth("100%");

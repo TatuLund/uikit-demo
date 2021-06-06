@@ -1,13 +1,14 @@
 package org.vaadin.uikit.components.layout;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkOverflow;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.html.Div;
 
-public class UKFlex extends Div
-        implements UKMargin, UKWidthAndHeight, UKPadding {
+public class UkFlex extends Div
+        implements UkMargin, UkSizing, UkPadding, UkOverflow {
 
     public enum HorizontalAlignment {
         LEFT("uk-flex-left"),
@@ -45,8 +46,10 @@ public class UKFlex extends Div
     }
 
     public enum Direction {
-        ROW("uk-flex-row"), ROW_REVERSE("uk-flex-row-reverse"), COLUMN(
-                "uk-flex-column"), COLUMN_REVERSE("uk-flex-column-reverse");
+        ROW("uk-flex-row"),
+        ROW_REVERSE("uk-flex-row-reverse"), 
+        COLUMN("uk-flex-column"), 
+        COLUMN_REVERSE("uk-flex-column-reverse");
 
         private final String direction;
 
@@ -60,8 +63,9 @@ public class UKFlex extends Div
     }
 
     public enum WrapBehavior {
-        WRAP("uk-flex-wrap"), WRAP_REVERSE("uk-flex-wrap-reverse"), NOWRAP(
-                "uk-flex-nowrap");
+        WRAP("uk-flex-wrap"),
+        WRAP_REVERSE("uk-flex-wrap-reverse"),
+        NOWRAP("uk-flex-nowrap");
 
         private final String wrapBehavior;
 
@@ -75,11 +79,12 @@ public class UKFlex extends Div
     }
 
     public enum WrapModifier {
-        STRETCH("uk-flex-wrap-stretch"), BETWEEN(
-                "uk-flex-wrap-between"), AROUND("uk-flex-wrap-around"), TOP(
-                        "uk-flex-wrap-top"), MIDDLE(
-                                "uk-flex-wrap-middle"), BOTTOM(
-                                        "uk-flex-wrap-bottom");
+        STRETCH("uk-flex-wrap-stretch"),
+        BETWEEN("uk-flex-wrap-between"),
+        AROUND("uk-flex-wrap-around"),
+        TOP("uk-flex-wrap-top"),
+        MIDDLE("uk-flex-wrap-middle"),
+        BOTTOM("uk-flex-wrap-bottom");
 
         private final String wrapModifier;
 
@@ -92,11 +97,11 @@ public class UKFlex extends Div
         }
     }
 
-    public UKFlex() {
+    public UkFlex() {
         this(false);
     }
 
-    public UKFlex(boolean inline) {
+    public UkFlex(boolean inline) {
         if (inline) {
             addClassName("uk-flex");
         } else {

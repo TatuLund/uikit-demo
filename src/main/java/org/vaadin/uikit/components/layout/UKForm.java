@@ -1,9 +1,9 @@
 package org.vaadin.uikit.components.layout;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -16,15 +16,15 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.dom.Element;
 
 @Tag("form")
-public class UKForm extends HtmlContainer
-        implements HasStyle, HasElement, UKWidthAndHeight, UKMargin, UKPadding {
+public class UkForm extends HtmlContainer
+        implements HasStyle, HasElement, UkSizing, UkMargin, UkPadding {
 
-    public class UKFormItem extends Composite<Div> implements UKTooltip {
+    public class UkFormItem extends Composite<Div> implements UkTooltip {
         Label label = new Label();
         Div div = new Div();
         Div fieldWrapper = new Div();
 
-        public UKFormItem(String labelText, Component field) {
+        public UkFormItem(String labelText, Component field) {
             label.setText(labelText);
             fieldWrapper.add(field);
             field.getId().ifPresent(
@@ -58,7 +58,7 @@ public class UKForm extends HtmlContainer
     Element fieldSet = new Element("fieldset");
     Element legend = new Element("legend");
 
-    public UKForm() {
+    public UkForm() {
         fieldSet.getClassList().add("uk-fieldset");
         legend.getClassList().add("uk-legend");
         fieldSet.appendChild(legend);
@@ -88,12 +88,12 @@ public class UKForm extends HtmlContainer
     }
 
     public void add(String label, Component field) {
-        UKFormItem item = new UKFormItem(label, field);
+        UkFormItem item = new UkFormItem(label, field);
         add(item);
     }
 
-    public void add(UKFormItem... formItems) {
-        for (UKFormItem formItem : formItems) {
+    public void add(UkFormItem... formItems) {
+        for (UkFormItem formItem : formItems) {
             fieldSet.appendChild(formItem.getElement());
         }
     }

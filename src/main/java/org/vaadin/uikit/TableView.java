@@ -3,22 +3,18 @@ package org.vaadin.uikit;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.components.UKBeanTable;
-import org.vaadin.uikit.components.UKButton;
-import org.vaadin.uikit.components.UKNotification;
-import org.vaadin.uikit.components.UKButton.ButtonVariant;
-import org.vaadin.uikit.components.layout.UKFlex;
+import org.vaadin.uikit.components.UkBeanTable;
+import org.vaadin.uikit.components.UkButton;
+import org.vaadin.uikit.components.UkNotification;
+import org.vaadin.uikit.components.UkButton.ButtonVariant;
+import org.vaadin.uikit.components.layout.UkFlex;
+import org.vaadin.uikit.interfaces.UkOverflow.OverflowMode;
 
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.Route;
 
-@Route("table")
-@StyleSheet("context://uikit.css")
-@JavaScript("context://uikit.js")
-@JavaScript("context://uikit-icons.js")
-public class TableView extends UKFlex {
+@Route(value = "table", layout = MainLayout.class)
+public class TableView extends UkFlex {
 
     int year = 2000;
     private List<MonthlyExpense> data;
@@ -29,9 +25,10 @@ public class TableView extends UKFlex {
         setDirection(Direction.COLUMN);
         setVerticalAlignment(VerticalAlignment.MIDDLE);
         setHorizontalAlignment(HorizontalAlignment.AROUND);
+        setOverflow(OverflowMode.AUTO);
         setSizeFull();
-        setSizeFull();
-        UKBeanTable<MonthlyExpense> table = new UKBeanTable<>(
+
+        UkBeanTable<MonthlyExpense> table = new UkBeanTable<>(
                 MonthlyExpense.class, false, 12);
         table.setHtmlAllowed(true);
         table.setSmall(true);
@@ -41,18 +38,18 @@ public class TableView extends UKFlex {
         table.addColumn("expense", MonthlyExpense::getExpenses);
         table.setStripes(true);
         table.addComponentColumn(null, expense -> {
-            UKButton edit = new UKButton("edit");
+            UkButton edit = new UkButton("edit");
             edit.setVariant(ButtonVariant.PRIMARY);
             edit.addClickListener(event -> {
-                UKNotification.show("Not implemented");
+                UkNotification.show("Not implemented");
             });
             return edit;
         });
         // table.setColumns("year","month","expenses");
         data = getData();
         table.setItems(data);
-        UKButton plus = new UKButton("+");
-        UKButton minus = new UKButton("-");
+        UkButton plus = new UkButton("+");
+        UkButton minus = new UkButton("-");
         dp = (ListDataProvider<MonthlyExpense>) table.getDataProvider();
         // dp.setFilter(expense -> expense.getYear() == year);
         plus.addClickListener(event -> {
@@ -64,7 +61,7 @@ public class TableView extends UKFlex {
             dp.setFilter(expense -> expense.getYear() == year);
         });
         table.setWidthFull();
-        UKFlex buttons = new UKFlex();
+        UkFlex buttons = new UkFlex();
         buttons.add(plus, minus);
         add(table);
     }

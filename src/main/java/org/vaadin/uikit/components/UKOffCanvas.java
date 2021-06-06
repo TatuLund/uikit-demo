@@ -10,7 +10,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.shared.Registration;
 
-public class UKOffCanvas extends Composite<Div> {
+public class UkOffCanvas extends Composite<Div> {
 
     public enum AnimationMode {
         SLIDE("slide"),
@@ -40,7 +40,7 @@ public class UKOffCanvas extends Composite<Div> {
     private boolean flip = false;
     private String container = "false";
 
-    public UKOffCanvas() {
+    public UkOffCanvas() {
     }
 
     public Registration addOffCanvasHiddenListener(
@@ -53,13 +53,13 @@ public class UKOffCanvas extends Composite<Div> {
         return addListener(OffCanvasShownEvent.class, listener);
     }
 
-    public UKOffCanvas(String title, AnimationMode animationMode) {
+    public UkOffCanvas(String title, AnimationMode animationMode) {
         this();
         this.animationMode = animationMode;
         titleComponent.setText(title);
     }
 
-    public UKOffCanvas(AnimationMode animationMode) {
+    public UkOffCanvas(AnimationMode animationMode) {
         this.animationMode = animationMode;
     }
 
@@ -152,17 +152,17 @@ public class UKOffCanvas extends Composite<Div> {
     }
 
     public static class OffCanvasHiddenEvent
-            extends ComponentEvent<UKOffCanvas> {
+            extends ComponentEvent<UkOffCanvas> {
 
-        public OffCanvasHiddenEvent(UKOffCanvas source, boolean fromClient) {
+        public OffCanvasHiddenEvent(UkOffCanvas source, boolean fromClient) {
             super(source, fromClient);
         }
     }
 
     public static class OffCanvasShownEvent
-            extends ComponentEvent<UKOffCanvas> {
+            extends ComponentEvent<UkOffCanvas> {
 
-        public OffCanvasShownEvent(UKOffCanvas source, boolean fromClient) {
+        public OffCanvasShownEvent(UkOffCanvas source, boolean fromClient) {
             super(source, fromClient);
         }
     }

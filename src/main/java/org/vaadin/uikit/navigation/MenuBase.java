@@ -3,9 +3,9 @@ package org.vaadin.uikit.navigation;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -14,8 +14,8 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.RouterLink;
 
-public abstract class UKMenuBase extends Composite<UnorderedList>
-        implements UKWidthAndHeight, UKMargin, UKPadding {
+public abstract class MenuBase extends Composite<UnorderedList>
+        implements UkSizing, UkMargin, UkPadding {
 
     private UnorderedList ul = new UnorderedList();
 
@@ -28,33 +28,33 @@ public abstract class UKMenuBase extends Composite<UnorderedList>
         ul.getElement().getClassList().add("uk-nav-parent-icon");
     }
 
-    public UKNavItem addMenuItem(String text) {
-        UKNavItem menuItem = new UKNavItem(text);
+    public UkNavItem addMenuItem(String text) {
+        UkNavItem menuItem = new UkNavItem(text);
         ul.add(menuItem);
         return menuItem;
     }
 
-    public UKNavItem addMenuItem(String text,
+    public UkNavItem addMenuItem(String text,
             Class<? extends Component> navigationTarget) {
-        UKNavItem menuItem = new UKNavItem(text, navigationTarget);
+        UkNavItem menuItem = new UkNavItem(text, navigationTarget);
         ul.add(menuItem);
         return menuItem;
     }
 
-    public UKNavItem addMenuItem(String text, String href) {
-        UKNavItem menuItem = new UKNavItem(text, href);
+    public UkNavItem addMenuItem(String text, String href) {
+        UkNavItem menuItem = new UkNavItem(text, href);
         ul.add(menuItem);
         return menuItem;
     }
 
-    public UKNavItem addMenuItem(RouterLink link) {
-        UKNavItem menuItem = new UKNavItem(link);
+    public UkNavItem addMenuItem(RouterLink link) {
+        UkNavItem menuItem = new UkNavItem(link);
         ul.add(menuItem);
         return menuItem;
     }
 
-    public UKNavItem addMenuItem(Anchor anchor) {
-        UKNavItem menuItem = new UKNavItem(anchor);
+    public UkNavItem addMenuItem(Anchor anchor) {
+        UkNavItem menuItem = new UkNavItem(anchor);
         ul.add(menuItem);
         return menuItem;
     }
@@ -81,7 +81,7 @@ public abstract class UKMenuBase extends Composite<UnorderedList>
         ul.addClassName("uk-nav-primary");
     }
 
-    public void toggle(UKNavItem item) {
+    public void toggle(UkNavItem item) {
         List<Component> items = ul.getChildren().collect(Collectors.toList());
         int index = items.indexOf(item) + 1;
         ul.getElement().executeJs("UIkit.nav($0).toggle($1)", ul.getElement(),

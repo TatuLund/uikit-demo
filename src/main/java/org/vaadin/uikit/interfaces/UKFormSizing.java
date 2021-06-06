@@ -1,14 +1,14 @@
 package org.vaadin.uikit.interfaces;
 
-import org.vaadin.uikit.interfaces.UKText.FontSize;
+import org.vaadin.uikit.interfaces.UkText.FontSize;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKFormSizing extends HasElement {
+public interface UkFormSizing extends HasElement {
 
     public enum FieldSize {
         SMALL("uk-form-small"),
-        DEFAULT(null),
+        MEDIUM(null),
         LARGE("uk-form-large");
 
         private final String size;
@@ -44,7 +44,7 @@ public interface UKFormSizing extends HasElement {
             if (s.getSize() != null)
                 getElement().getClassList().remove(s.getSize());
         }
-        if (size != FieldSize.DEFAULT)
+        if (size != FieldSize.MEDIUM)
             getElement().getClassList().add(size.getSize());
     }
 

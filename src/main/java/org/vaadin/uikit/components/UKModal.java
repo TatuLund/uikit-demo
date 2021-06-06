@@ -1,8 +1,8 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight.FixedHeight;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight.FixedWidth;
+import org.vaadin.uikit.interfaces.UkSizing;
+import org.vaadin.uikit.interfaces.UkSizing.FixedHeight;
+import org.vaadin.uikit.interfaces.UkSizing.FixedWidth;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -13,7 +13,7 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.shared.Registration;
 
-public class UKModal extends Composite<Div> implements UKWidthAndHeight {
+public class UkModal extends Composite<Div> implements UkSizing {
 
     Div dialog = new Div();
     Div dialogContent = new Div();
@@ -23,7 +23,7 @@ public class UKModal extends Composite<Div> implements UKWidthAndHeight {
     Div header = new Div();
     NativeButton dialogClose = new NativeButton();
 
-    public UKModal() {
+    public UkModal() {
         getElement().addEventListener("hidden", event -> {
             fireEvent(new ModalHiddenEvent(this, true));
         });
@@ -55,6 +55,7 @@ public class UKModal extends Composite<Div> implements UKWidthAndHeight {
         header.add(dialogTitle);
         footer.addClassNames("uk-modal-footer", "uk-text-right");
         body.addClassName("uk-modal-body");
+        body.getElement().setAttribute("uk-overflow-auto",true);
         dialogContent.add(header, body, footer);
         dialog.add(dialogContent);
         return dialog;
@@ -134,16 +135,16 @@ public class UKModal extends Composite<Div> implements UKWidthAndHeight {
         });
     }
 
-    public static class ModalHiddenEvent extends ComponentEvent<UKModal> {
+    public static class ModalHiddenEvent extends ComponentEvent<UkModal> {
 
-        public ModalHiddenEvent(UKModal source, boolean fromClient) {
+        public ModalHiddenEvent(UkModal source, boolean fromClient) {
             super(source, fromClient);
         }
     }
 
-    public static class ModalShownEvent extends ComponentEvent<UKModal> {
+    public static class ModalShownEvent extends ComponentEvent<UkModal> {
 
-        public ModalShownEvent(UKModal source, boolean fromClient) {
+        public ModalShownEvent(UkModal source, boolean fromClient) {
             super(source, fromClient);
         }
     }

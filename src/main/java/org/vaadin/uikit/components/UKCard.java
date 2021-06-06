@@ -2,9 +2,10 @@ package org.vaadin.uikit.components;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -13,8 +14,8 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
-public class UKCard extends Composite<Div>
-        implements HasSize, UKWidthAndHeight, UKMargin, UKPadding {
+public class UkCard extends Composite<Div>
+        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder {
 
     H3 titleComponent = new H3();
     Div div = new Div();
@@ -42,16 +43,21 @@ public class UKCard extends Composite<Div>
         }
     }
 
-    public UKCard() {
+    public UkCard() {
     }
 
-    public UKCard(String title) {
+    public UkCard(String title) {
         setTitle(title);
     }
 
-    public UKCard(String title, Component component) {
+    public UkCard(String title, Component component) {
         setTitle(title);
         setContent(component);
+    }
+
+    public UkCard(String title, String textContent) {
+        setTitle(title);
+        setText(textContent);
     }
 
     @Override
@@ -72,6 +78,10 @@ public class UKCard extends Composite<Div>
 
     public void setTitle(String title) {
         titleComponent.setText(title);
+    }
+
+    public void setText(String textContent) {
+        div.setText(textContent);
     }
 
     public void setContent(String htmlContent) {

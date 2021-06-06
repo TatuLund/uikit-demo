@@ -5,18 +5,18 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.UKFormSizing;
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKValidation;
+import org.vaadin.uikit.interfaces.StringProvider;
+import org.vaadin.uikit.interfaces.UkFormSizing;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HtmlComponent;
-import com.vaadin.flow.component.ItemLabelGenerator;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.data.binder.HasDataProvider;
 import com.vaadin.flow.data.binder.HasItemsAndComponents;
@@ -30,10 +30,10 @@ import com.vaadin.flow.function.SerializablePredicate;
 import com.vaadin.flow.shared.Registration;
 
 @Tag(Tag.DIV)
-public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
-        implements HasItemsAndComponents<T>, SingleSelect<UKRadioGroup<T>, T>,
-        Focusable<UKRadioGroup<T>>, HasDataProvider<T>, UKValidation, UKTooltip,
-        UKFormSizing, UKMargin, UKPadding {
+public class UkRadioGroup<T> extends SelectBase<UkRadioGroup<T>, T>
+        implements HasItemsAndComponents<T>, SingleSelect<UkRadioGroup<T>, T>,
+        Focusable<UkRadioGroup<T>>, HasDataProvider<T>, UkValidation, UkTooltip,
+        UkFormSizing, UkMargin, UkPadding {
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>();
 
@@ -43,7 +43,7 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
 
     private SerializablePredicate<T> itemEnabledProvider = item -> isEnabled();
 
-    private ItemLabelGenerator<T> itemLabelGenerator = String::valueOf;
+    private StringProvider<T> itemLabelGenerator = String::valueOf;
 
     private boolean isReadOnly;
 
@@ -51,7 +51,7 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
 
     private String name = "combo-" + random.nextInt();
 
-    private static <T> T presentationToModel(UKRadioGroup<T> select,
+    private static <T> T presentationToModel(UkRadioGroup<T> select,
             String presentation) {
         if (!select.keyMapper.containsKey(presentation)) {
             return null;
@@ -59,7 +59,7 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
         return select.keyMapper.get(presentation);
     }
 
-    private static <T> String modelToPresentation(UKRadioGroup<T> select,
+    private static <T> String modelToPresentation(UkRadioGroup<T> select,
             T model) {
         if (!select.keyMapper.has(model)) {
             return null;
@@ -67,13 +67,13 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
         return select.keyMapper.key(model);
     }
 
-    public UKRadioGroup() {
+    public UkRadioGroup() {
         this(-1);
     }
 
-    public UKRadioGroup(int columns) {
-        super(null, null, String.class, UKRadioGroup::presentationToModel,
-                UKRadioGroup::modelToPresentation);
+    public UkRadioGroup(int columns) {
+        super(null, null, String.class, UkRadioGroup::presentationToModel,
+                UkRadioGroup::modelToPresentation);
         if (columns > 0) {
             getElement().setAttribute("uk-grid", true);
             addClassNames("uk-flex-left","uk-grid-collapse","uk-child-width-1-"+columns);
@@ -213,14 +213,14 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
     }
 
     public void setItemLabelGenerator(
-            ItemLabelGenerator<T> itemLabelGenerator) {
+            StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;
         reset();
     }
 
-    public ItemLabelGenerator<T> getItemLabelGenerator() {
+    public StringProvider<T> getItemLabelGenerator() {
         return itemLabelGenerator;
     }
 
@@ -250,7 +250,7 @@ public class UKRadioGroup<T> extends SelectBase<UKRadioGroup<T>, T>
             getElement().appendChild(input);
             getElement().appendChild(label);
             input.addEventListener("click", event -> {
-                UKRadioGroup.this.getElement().setProperty("value", key);
+                UkRadioGroup.this.getElement().setProperty("value", key);
             });
         }
 

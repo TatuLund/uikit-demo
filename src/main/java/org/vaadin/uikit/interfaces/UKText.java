@@ -1,10 +1,10 @@
 package org.vaadin.uikit.interfaces;
 
-import org.vaadin.uikit.interfaces.UKWidthAndHeight.FixedWidth;
+import org.vaadin.uikit.interfaces.UkSizing.FixedWidth;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKText extends HasElement {
+public interface UkText extends HasElement {
 
     public enum FontSize {
         SMALL("uk-text-small"),

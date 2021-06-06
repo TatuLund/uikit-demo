@@ -1,6 +1,6 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.components.UKButton.ButtonVariant;
+import org.vaadin.uikit.components.UkButton.ButtonVariant;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -9,7 +9,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
-public class UKDropdown extends Composite<Div> {
+public class UkDropdown extends Composite<Div> {
 
     public enum Position {
         TOP_JUSTIFY("top-justify"),
@@ -38,7 +38,7 @@ public class UKDropdown extends Composite<Div> {
         }        
     }
 
-    UKButton button = new UKButton();
+    UkButton button = new UkButton();
     Div div = new Div();
     Div dropdown = new Div();
     Position position = Position.BOTTOM_LEFT;
@@ -47,11 +47,11 @@ public class UKDropdown extends Composite<Div> {
     int duration = 200;
     boolean flip = true;
 
-    public UKDropdown() {
+    public UkDropdown() {
         this(false);
     }
 
-    public UKDropdown(boolean click) {
+    public UkDropdown(boolean click) {
         if (click) {
             mode = "click";
             sendSettings();
@@ -150,17 +150,17 @@ public class UKDropdown extends Composite<Div> {
     }
 
     public static class DropdownHiddenEvent
-            extends ComponentEvent<UKDropdown> {
+            extends ComponentEvent<UkDropdown> {
 
-        public DropdownHiddenEvent(UKDropdown source, boolean fromClient) {
+        public DropdownHiddenEvent(UkDropdown source, boolean fromClient) {
             super(source, fromClient);
         }
     }
 
     public static class DropdownShownEvent
-            extends ComponentEvent<UKDropdown> {
+            extends ComponentEvent<UkDropdown> {
 
-        public DropdownShownEvent(UKDropdown source, boolean fromClient) {
+        public DropdownShownEvent(UkDropdown source, boolean fromClient) {
             super(source, fromClient);
         }
     }

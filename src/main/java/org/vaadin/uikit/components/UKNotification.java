@@ -2,7 +2,7 @@ package org.vaadin.uikit.components;
 
 import com.vaadin.flow.component.UI;
 
-public class UKNotification {
+public class UkNotification {
 
     public enum Position {
         TOP_LEFT("top-left"),
@@ -45,17 +45,17 @@ public class UKNotification {
     private int timeout = 5000;
     private Position position = Position.TOP_CENTER;
 
-    public UKNotification withStatus(Status status) {
+    public UkNotification withStatus(Status status) {
         this.status = status;
         return this;
     }
 
-    public UKNotification withPosition(Position position) {
+    public UkNotification withPosition(Position position) {
         this.position = position;
         return this;
     }
 
-    public UKNotification withTimeout(int timeout) {
+    public UkNotification withTimeout(int timeout) {
         this.timeout = timeout;
         return this;
     }

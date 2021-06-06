@@ -3,15 +3,15 @@ package org.vaadin.uikit.components;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
 
-public class UKSpinner extends Composite<Div> {
+public class UkSpinner extends Composite<Div> {
 
     Div div = new Div();
 
-    public UKSpinner() {
+    public UkSpinner() {
         div.getElement().setAttribute("uk-spinner",true);        
     }
 
-    public UKSpinner(double i) {
+    public UkSpinner(double i) {
         div.getElement().setAttribute("uk-spinner","ratio: "+i);        
     }
 

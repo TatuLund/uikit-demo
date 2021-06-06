@@ -7,44 +7,49 @@ import java.util.stream.Collectors;
 import org.vaadin.uikit.components.UkCard;
 import org.vaadin.uikit.components.UkLabel;
 import org.vaadin.uikit.components.UkNotification;
-import org.vaadin.uikit.components.layout.UkAccordion;
+import org.vaadin.uikit.components.UkCard.CardVariant;
+import org.vaadin.uikit.components.layout.UkTabSwitcher;
 import org.vaadin.uikit.components.layout.UkFlex;
 import org.vaadin.uikit.components.layout.UkGrid;
-import org.vaadin.uikit.components.layout.UkTable;
 import org.vaadin.uikit.components.layout.UkGrid.GapModifier;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.router.Route;
 
-@Route(value = "accordion", layout = MainLayout.class)
-public class AccordionView extends UkFlex {
+@Route(value = "tab", layout = MainLayout.class)
+public class TabView extends UkFlex {
 
     String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
-    public AccordionView() {
+    public TabView() {
         setDirection(Direction.COLUMN);
         setVerticalAlignment(VerticalAlignment.MIDDLE);
         setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
         setSizeFull();
+        add(createTabSwitcher());
+    }
 
-        UkAccordion accordion = new UkAccordion();
-        accordion.addItem("Tab 1", new Paragraph(loremIpsum));
-        accordion.addItem("Tab 2", createGrid());
-        accordion.addItem("Tab 3", createTable());
-        accordion.addItem("Tab 4", new Paragraph(loremIpsum));
-        accordion.setWidth(2, 3);
-        accordion.addItemHiddenListener(event -> {
+    UkTabSwitcher createTabSwitcher() {
+        UkTabSwitcher tabSwitcher = new UkTabSwitcher();
+        UkCard card1 = new UkCard("Card 1", new Paragraph(loremIpsum));
+        card1.setVariant(CardVariant.DEFAULT);
+        UkCard card2 = new UkCard("Card 2", new Paragraph(loremIpsum));
+        card2.setVariant(CardVariant.SECONDARY);
+        UkCard card3 = new UkCard("Card 3: Chart", createChart("white"));
+        card3.setVariant(CardVariant.PRIMARY);
+        tabSwitcher.addItem("Tab 1", card1);
+        tabSwitcher.addItem("Tab 2", card2);
+        tabSwitcher.addItem("Tab 3", card3);
+        tabSwitcher.addItem("Tab 4", createGrid());
+        // tabSwitcher.setTabAlignment(TabAlignment.RIGHT);
+        // tabSwitcher.setTabPlacement(TabPlacement.BOTTOM);
+        tabSwitcher.setWidth(2, 3);
+        tabSwitcher.addItemShownListener(event -> {
             UkNotification.show("Item " + event.getIndex() + " '"
-                    + event.getItem().getCaption() + "' hidden");
-            if (event.getIndex() == 0) {
-                event.getItem().removeAll();
-                event.getItem().add(new UkCard("Ipsum",
-                        new Paragraph(loremIpsum.toUpperCase())));
-            }
+                    + event.getItem().getCaption() + "' shown");
         });
-        add(accordion);
+        return tabSwitcher;
     }
 
     Html createChart(String color) {
@@ -62,7 +67,7 @@ public class AccordionView extends UkFlex {
         Html chart = new Html(svg);
         chart.getElement().getStyle().set("height", "100px");
         return chart;
-    }
+    }    
 
     UkGrid createGrid() {
         UkGrid grid = new UkGrid();
@@ -78,26 +83,5 @@ public class AccordionView extends UkFlex {
                 .build();
         grid.setGapModifier(GapModifier.COLLAPSE);
         return grid;
-    }
-
-    UkTable createTable() {
-        UkTable table = new UkTable();
-        table
-                // .withHeaderRow()
-                // .withCell("Title")
-                // .withCell("Column 1")
-                // .withCell("Column 2")
-                .withRow()
-                .withCell(1, 2, new UkCard("chart", createChart("black")))
-                .withCell(new UkCard("card", new UkLabel("Cell 1,2")))
-                .withCell(new UkCard("card", new UkLabel("Cell 2,2"))).withRow()
-                .withCell(2, 1, loremIpsum).withRow().withCell("cell 1,3")
-                .withCell("cell 2,3").withCell("cell 3,3")
-                // .withFooterRow()
-                // .withCell(3,1,"footer")
-                .build();
-        table.setDivider(true);
-        table.setMiddle(true);
-        return table;
     }
 }

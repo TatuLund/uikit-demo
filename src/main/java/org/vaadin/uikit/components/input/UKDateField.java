@@ -8,9 +8,10 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.WeekFields;
 import java.util.Optional;
 
-import org.vaadin.uikit.interfaces.UKFormSizing;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKValidation;
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkFormSizing;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.AttachEvent;
@@ -24,9 +25,9 @@ import com.vaadin.flow.function.SerializableFunction;
 import com.vaadin.flow.server.WebBrowser;
 
 @Tag(Tag.INPUT)
-public class UKDateField extends AbstractSinglePropertyField<UKDateField, LocalDate>
-        implements UKValidation, HasStyle, Focusable<UKDateField>, UKTooltip,
-        UKFormSizing {
+public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalDate>
+        implements UkValidation, HasStyle, Focusable<UkDateField>, UkTooltip,
+        UkFormSizing, UkBorder {
 
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");
@@ -37,11 +38,11 @@ public class UKDateField extends AbstractSinglePropertyField<UKDateField, LocalD
 
     private Resolution resolution;
 
-    public UKDateField() {
+    public UkDateField() {
         this(Resolution.DAY);
     }
 
-    public UKDateField(Resolution resolution) {
+    public UkDateField(Resolution resolution) {
         super("value", LocalDate.now(), String.class, parseDate(resolution),
                 value -> "" + value);
         addClassName("uk-input");

@@ -2,7 +2,7 @@ package org.vaadin.uikit.interfaces;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKWidthAndHeight extends HasElement {
+public interface UkSizing extends HasElement {
 
     public enum FixedWidth {
         SMALL("uk-width-small"),

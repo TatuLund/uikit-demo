@@ -1,8 +1,8 @@
 package org.vaadin.uikit.components.input;
 
-public class UKTextField extends AbstractInput {
+public class UkTextField extends InputBase {
 
-    public UKTextField() {
+    public UkTextField() {
         addClassName("uk-input");
     }
 

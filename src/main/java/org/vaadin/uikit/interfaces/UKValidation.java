@@ -3,7 +3,7 @@ package org.vaadin.uikit.interfaces;
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.HasValidation;
 
-public interface UKValidation extends HasValidation, HasElement {
+public interface UkValidation extends HasValidation, HasElement {
 
     static String INVALID_CLASS = "uk-form-danger";
     static String ERROR_ATTRIBUTE = "uk-tooltip";

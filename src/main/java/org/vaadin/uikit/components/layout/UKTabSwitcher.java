@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -18,8 +18,8 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.shared.Registration;
 
-public class UKTabSwitcher extends Composite<Div>
-        implements UKWidthAndHeight, UKMargin, UKPadding {
+public class UkTabSwitcher extends Composite<Div>
+        implements UkSizing, UkMargin, UkPadding {
 
     public enum TabPlacement {
         TOP, BOTTOM;
@@ -42,19 +42,19 @@ public class UKTabSwitcher extends Composite<Div>
         }
     }
 
-    public class UKTabItem implements Serializable {
+    public class UkTabItem implements Serializable {
         ListItem tabItem = new ListItem();
         ListItem contentItem = new ListItem();
         Anchor caption = new Anchor("#");
         Div wrapper = new Div();
         String captionText;
 
-        public UKTabItem(String captionText) {
+        public UkTabItem(String captionText) {
             this(captionText, new Div());
             wrapper.removeAll();
         }
 
-        public UKTabItem(String captionText, Component... components) {
+        public UkTabItem(String captionText, Component... components) {
             setCaption(captionText);
             wrapper.add(components);
             tabItem.add(caption);
@@ -94,15 +94,15 @@ public class UKTabSwitcher extends Composite<Div>
     Div wrapper = new Div();
     UnorderedList tabNav = new UnorderedList();
     UnorderedList tabContainer = new UnorderedList();
-    List<UKTabItem> items = new ArrayList<>();
+    List<UkTabItem> items = new ArrayList<>();
     boolean first = true;
 
-    public UKTabItem addItem(String titleText) {
+    public UkTabItem addItem(String titleText) {
         return addItem(titleText, new Div());
     }
 
-    public UKTabItem addItem(String titleText, Component... components) {
-        UKTabItem item = new UKTabItem(titleText, components);
+    public UkTabItem addItem(String titleText, Component... components) {
+        UkTabItem item = new UkTabItem(titleText, components);
         item.getContent().getElement().addEventListener("shown", event -> {
             fireEvent(new TabItemShownEvent(this, item, true));
         });
@@ -125,7 +125,7 @@ public class UKTabSwitcher extends Composite<Div>
         return addListener(TabItemShownEvent.class, listener);
     }
 
-    public void show(UKTabItem item) {
+    public void show(UkTabItem item) {
         int index = items.indexOf(item);
         if (index != -1) {
             show(index);
@@ -164,17 +164,17 @@ public class UKTabSwitcher extends Composite<Div>
         return wrapper;
     }
 
-    abstract class TabSwitcherEvent extends ComponentEvent<UKTabSwitcher> {
+    abstract class TabSwitcherEvent extends ComponentEvent<UkTabSwitcher> {
 
-        private UKTabItem item;
+        private UkTabItem item;
 
-        public TabSwitcherEvent(UKTabSwitcher source, UKTabItem item,
+        public TabSwitcherEvent(UkTabSwitcher source, UkTabItem item,
                 boolean fromClient) {
             super(source, fromClient);
             this.item = item;
         }
 
-        public UKTabItem getItem() {
+        public UkTabItem getItem() {
             return item;
         }
 
@@ -184,14 +184,14 @@ public class UKTabSwitcher extends Composite<Div>
     }
 
     public class TabItemHiddenEvent extends TabSwitcherEvent {
-        public TabItemHiddenEvent(UKTabSwitcher source, UKTabItem item,
+        public TabItemHiddenEvent(UkTabSwitcher source, UkTabItem item,
                 boolean fromClient) {
             super(source, item, fromClient);
         }
     }
 
     public class TabItemShownEvent extends TabSwitcherEvent {
-        public TabItemShownEvent(UKTabSwitcher source, UKTabItem item,
+        public TabItemShownEvent(UkTabSwitcher source, UkTabItem item,
                 boolean fromClient) {
             super(source, item, fromClient);
         }

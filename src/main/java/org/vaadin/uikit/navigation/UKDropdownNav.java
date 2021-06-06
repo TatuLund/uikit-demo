@@ -6,9 +6,9 @@ import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.RouterLink;
 
-public class UKDropdownNav extends Composite<Div> {
+public class UkDropdownNav extends Composite<Div> {
 
-    class DropdownNav extends UKMenuBase {
+    class DropdownNav extends MenuBase {
         DropdownNav() {
              setDropDown();
         }
@@ -21,24 +21,24 @@ public class UKDropdownNav extends Composite<Div> {
     private Div wrapper = new Div();
     private DropdownNav nav = new DropdownNav();
 
-    public UKNavItem addMenuItem(String text) {
+    public UkNavItem addMenuItem(String text) {
         return nav.addMenuItem(text);
     }
 
-    public UKNavItem addMenuItem(String text,
+    public UkNavItem addMenuItem(String text,
             Class<? extends Component> navigationTarget) {
         return nav.addMenuItem(text, navigationTarget);
     }
 
-    public UKNavItem addMenuItem(String text, String href) {
+    public UkNavItem addMenuItem(String text, String href) {
         return nav.addMenuItem(text, href);
     }
 
-    public UKNavItem addMenuItem(RouterLink link) {
+    public UkNavItem addMenuItem(RouterLink link) {
         return nav.addMenuItem(link);
     }
 
-    public UKNavItem addMenuItem(Anchor anchor) {
+    public UkNavItem addMenuItem(Anchor anchor) {
         return nav.addMenuItem(anchor);
     }
 

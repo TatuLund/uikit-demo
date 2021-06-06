@@ -2,7 +2,7 @@ package org.vaadin.uikit.interfaces;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKMargin extends HasElement {
+public interface UkMargin extends HasElement {
 
     public enum MarginSize {
         DEFAULT("uk-margin"), 

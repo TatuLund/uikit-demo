@@ -1,8 +1,8 @@
 package org.vaadin.uikit.navigation;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlComponent;
@@ -13,7 +13,7 @@ import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.RouterLink;
 
 @Tag(Tag.NAV)
-public class UKNavbar extends HtmlComponent implements UKPadding, UKMargin, UKWidthAndHeight {
+public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSizing {
 
     private Div wrapper = new Div();
     private UnorderedList navbar = new UnorderedList();
@@ -39,33 +39,33 @@ public class UKNavbar extends HtmlComponent implements UKPadding, UKMargin, UKWi
     }    
 
 
-    public UKNavbarItem addNavbarItem(String text) {
-        UKNavbarItem menuItem = new UKNavbarItem(text);
+    public UkNavbarItem addNavbarItem(String text) {
+        UkNavbarItem menuItem = new UkNavbarItem(text);
         navbar.add(menuItem);
         return menuItem;
     }
 
-    public UKNavbarItem addNavbarItem(String text,
+    public UkNavbarItem addNavbarItem(String text,
             Class<? extends Component> navigationTarget) {
-        UKNavbarItem menuItem = new UKNavbarItem(text, navigationTarget);
+        UkNavbarItem menuItem = new UkNavbarItem(text, navigationTarget);
         navbar.add(menuItem);
         return menuItem;
     }
 
-    public UKNavbarItem addNavbarItem(String text, String href) {
-        UKNavbarItem menuItem = new UKNavbarItem(text, href);
+    public UkNavbarItem addNavbarItem(String text, String href) {
+        UkNavbarItem menuItem = new UkNavbarItem(text, href);
         navbar.add(menuItem);
         return menuItem;
     }
 
-    public UKNavbarItem addNavbarItem(RouterLink link) {
-        UKNavbarItem menuItem = new UKNavbarItem(link);
+    public UkNavbarItem addNavbarItem(RouterLink link) {
+        UkNavbarItem menuItem = new UkNavbarItem(link);
         navbar.add(menuItem);
         return menuItem;
     }
 
-    public UKNavbarItem addNavbarItem(Anchor anchor) {
-        UKNavbarItem menuItem = new UKNavbarItem(anchor);
+    public UkNavbarItem addNavbarItem(Anchor anchor) {
+        UkNavbarItem menuItem = new UkNavbarItem(anchor);
         navbar.add(menuItem);
         return menuItem;
     }
@@ -78,15 +78,15 @@ public class UKNavbar extends HtmlComponent implements UKPadding, UKMargin, UKWi
         }
     }
 
-    public UKNavbar() {
+    public UkNavbar() {
         this(Mode.HOVER);
     }
 
-    public UKNavbar(Mode mode) {
+    public UkNavbar(Mode mode) {
         this(mode, Alignment.LEFT);
     }
 
-    public UKNavbar(Mode mode, Alignment alignment) {
+    public UkNavbar(Mode mode, Alignment alignment) {
         if (mode == Mode.HOVER) {
             getElement().setAttribute("uk-navbar", true);
         } else {

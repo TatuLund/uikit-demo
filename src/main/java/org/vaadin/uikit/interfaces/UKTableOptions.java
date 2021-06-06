@@ -2,7 +2,7 @@ package org.vaadin.uikit.interfaces;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKTableOptions extends HasElement {
+public interface UkTableOptions extends HasElement {
 
     default void setStripes(boolean stripes) {
         if (stripes) {

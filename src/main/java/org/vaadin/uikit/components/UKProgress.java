@@ -1,19 +1,19 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 
 @Tag("progress")
-public class UKProgress extends Component
-        implements UKWidthAndHeight, UKTooltip, UKMargin {
+public class UkProgress extends Component
+        implements UkSizing, UkTooltip, UkMargin {
 
     int max = 100;
 
-    public UKProgress() {
+    public UkProgress() {
         getElement().getClassList().add("uk-progress");
         getElement().setAttribute("max", "" + max);
     }

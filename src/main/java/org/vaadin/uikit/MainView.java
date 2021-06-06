@@ -1,67 +1,48 @@
 package org.vaadin.uikit;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import org.vaadin.uikit.components.UkAlert;
+import org.vaadin.uikit.components.UkButton;
+import org.vaadin.uikit.components.UkCard;
+import org.vaadin.uikit.components.UkIcon;
+import org.vaadin.uikit.components.UkIcons;
+import org.vaadin.uikit.components.UkInline;
+import org.vaadin.uikit.components.UkModal;
+import org.vaadin.uikit.components.UkNotification;
+import org.vaadin.uikit.components.UkOffCanvas;
+import org.vaadin.uikit.components.UkProgress;
+import org.vaadin.uikit.components.UkSpinner;
+import org.vaadin.uikit.components.UkTile;
+import org.vaadin.uikit.components.UkAlert.AlertVariant;
+import org.vaadin.uikit.components.UkButton.ButtonVariant;
+import org.vaadin.uikit.components.UkCard.CardVariant;
+import org.vaadin.uikit.components.UkDropdown;
+import org.vaadin.uikit.components.UkNotification.Position;
+import org.vaadin.uikit.components.UkNotification.Status;
+import org.vaadin.uikit.components.UkOffCanvas.AnimationMode;
+import org.vaadin.uikit.components.UkTile.TileVariant;
+import org.vaadin.uikit.components.input.UkCheckbox;
+import org.vaadin.uikit.components.input.UkDateField;
+import org.vaadin.uikit.components.input.UkRange;
+import org.vaadin.uikit.components.input.UkTextArea;
+import org.vaadin.uikit.components.input.UkTextField;
+import org.vaadin.uikit.components.layout.UkFlex;
+import org.vaadin.uikit.components.layout.UkForm;
+import org.vaadin.uikit.interfaces.UkFormSizing.FieldSize;
+import org.vaadin.uikit.interfaces.UkFormSizing.FieldWidth;
 
-import org.vaadin.uikit.components.UKAlert;
-import org.vaadin.uikit.components.UKButton;
-import org.vaadin.uikit.components.UKCard;
-import org.vaadin.uikit.components.UKIcon;
-import org.vaadin.uikit.components.UKIcons;
-import org.vaadin.uikit.components.UKInline;
-import org.vaadin.uikit.components.UKModal;
-import org.vaadin.uikit.components.UKNotification;
-import org.vaadin.uikit.components.UKOffCanvas;
-import org.vaadin.uikit.components.UKProgress;
-import org.vaadin.uikit.components.UKSpinner;
-import org.vaadin.uikit.components.UKTile;
-import org.vaadin.uikit.components.UKAlert.AlertVariant;
-import org.vaadin.uikit.components.UKButton.ButtonVariant;
-import org.vaadin.uikit.components.UKCard.CardVariant;
-import org.vaadin.uikit.components.UKDropdown;
-import org.vaadin.uikit.components.UKNotification.Position;
-import org.vaadin.uikit.components.UKNotification.Status;
-import org.vaadin.uikit.components.UKOffCanvas.AnimationMode;
-import org.vaadin.uikit.components.UKTile.TileVariant;
-import org.vaadin.uikit.components.input.UKCheckbox;
-import org.vaadin.uikit.components.input.UKDateField;
-import org.vaadin.uikit.components.input.UKDateField.Resolution;
-import org.vaadin.uikit.components.input.UKNumberField;
-import org.vaadin.uikit.components.input.UKRange;
-import org.vaadin.uikit.components.input.UKTextArea;
-import org.vaadin.uikit.components.input.UKTextField;
-import org.vaadin.uikit.components.layout.UKFlex;
-import org.vaadin.uikit.components.layout.UKForm;
-import org.vaadin.uikit.interfaces.UKFormSizing.FieldSize;
-import org.vaadin.uikit.interfaces.UKFormSizing.FieldWidth;
-
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.StyleSheet;
-import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
-import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.validator.IntegerRangeValidator;
 import com.vaadin.flow.data.validator.StringLengthValidator;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.PWA;
 
 /**
  * The main view contains a button and a click listener.
  */
-@Route("")
-@PWA(name = "Project Base for Vaadin", shortName = "Project Base", enableInstallPrompt = false)
-@StyleSheet("context://uikit.css")
-@JavaScript("context://uikit.js")
-@JavaScript("context://uikit-icons.js")
-public class MainView extends UKFlex {
+@Route(value = "", layout = MainLayout.class)
+public class MainView extends UkFlex {
 
     public MainView() {
         setDirection(Direction.COLUMN);
@@ -69,20 +50,20 @@ public class MainView extends UKFlex {
         setHorizontalAlignment(HorizontalAlignment.AROUND);
         setSizeFull();
 
-        UKAlert alert = new UKAlert("Demo app loaded", AlertVariant.SUCCESS);
+        UkAlert alert = new UkAlert("Demo app loaded", AlertVariant.SUCCESS);
         alert.addAlertHiddenListener(event -> {
-            UKNotification.show("Ack!");
+            UkNotification.show("Ack!");
         });
         add(alert);
 
-        UKDropdown dropdown = new UKDropdown(true); 
+        UkDropdown dropdown = new UkDropdown(true); 
         dropdown.setCaption("Dropdown");
         dropdown.addDropdownHiddenListener(event -> {
-            UKNotification.show("Dropdown hidden");
+            UkNotification.show("Dropdown hidden");
         });
         add(dropdown);
         
-        UKCard card = new UKCard();
+        UkCard card = new UkCard();
         card.setWidth("500px");
         card.setHeight("200px");
         card.setTitle("Default");
@@ -93,33 +74,36 @@ public class MainView extends UKFlex {
         card.setVariant(CardVariant.SECONDARY);
         dropdown.add(card);
 
-        UKProgress progress = new UKProgress();
+        UkProgress progress = new UkProgress();
         progress.setWidth(FixedWidth.MEDIUM);
         progress.setTooltip("Progress bar");
         progress.setValue(73);
         add(progress);
 
-        UKRange range = new UKRange(1, 10, 0.1);
+        UkSpinner spinner = new UkSpinner();
+        add(spinner);
+
+        UkRange range = new UkRange(1, 10, 0.1);
         range.setTooltip("Range slider");
         range.setValue(5d);
         range.addValueChangeListener(event -> {
-            UKNotification.show("Value: " + event.getValue());
+            UkNotification.show("Value: " + event.getValue());
         });
         range.setWidth(FieldWidth.MEDIUM);
         range.setSize(FieldSize.SMALL);
         add(range);
 
-        UKDateField dateField = new UKDateField();
+        UkDateField dateField = new UkDateField();
         dateField.setWidth(FieldWidth.MEDIUM);
         dateField.setSize(FieldSize.SMALL);
         dateField.addValueChangeListener(event -> {
-            UKNotification.show("Date: " + event.getValue());
+            UkNotification.show("Date: " + event.getValue());
         });
         add(dateField);
         
-        UKCheckbox check = new UKCheckbox();
+        UkCheckbox check = new UkCheckbox();
         check.addValueChangeListener(event -> {
-            UKNotification.show("Value: " + event.getValue());
+            UkNotification.show("Value: " + event.getValue());
         });
         add(check);
 
@@ -139,21 +123,21 @@ public class MainView extends UKFlex {
         // breadcrumb.add(item1,item2,item3,item4);
         // add(breadcrumb);
 
-        UKIcon icon = UKIcons.CHECK.create();
+        UkIcon icon = UkIcons.CHECK.create();
         icon.getElement().setAttribute("uk-tooltip", "This is an icon");
         add(icon);
 
-        UKButton button = new UKButton("Click me");
+        UkButton button = new UkButton("Click me");
         button.addClickListener(event -> {
-            UKNotification notification = new UKNotification();
+            UkNotification notification = new UkNotification();
             notification.withPosition(Position.BOTTOM_CENTER)
                     .withStatus(Status.SUCCESS)
                     .view("Notification message " + range.getValue());
         });
         add(button);
 
-        UKOffCanvas offcanvas = new UKOffCanvas(AnimationMode.SLIDE);
-        UKButton openButton = new UKButton("Open drawer");
+        UkOffCanvas offcanvas = new UkOffCanvas(AnimationMode.SLIDE);
+        UkButton openButton = new UkButton("Open drawer");
         openButton.setTooltip("Open off-canvas");
         openButton.addClickListener(event -> {
             offcanvas.show();
@@ -163,32 +147,32 @@ public class MainView extends UKFlex {
         offcanvas.setFlip(true);
         offcanvas.setCloseButtonVisible(false);
         offcanvas.setEscClose(false);
-        UKTile tile = new UKTile(new Paragraph(
+        UkTile tile = new UkTile(new Paragraph(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."));
         tile.setPadding(PaddingSize.SMALL);
         tile.setVariant(TileVariant.PRIMARY);
         offcanvas.setContent(tile);
         add(offcanvas, openButton);
         offcanvas.addOffCanvasHiddenListener(event -> {
-            UKNotification.show("Good bye!");
+            UkNotification.show("Good bye!");
             offcanvas.setFlip(false);
         });
 
-        UKModal dialog = new UKModal();
+        UkModal dialog = new UkModal();
         dialog.setWidth(FixedWidth.XLARGE);
         dialog.setHeight(FixedHeight.LARGE);
 
-        UKForm form = new UKForm();
+        UkForm form = new UkForm();
         form.setHorizontal(true);
 
-        UKTextField nameField = new UKTextField();
-        UKInline inline = new UKInline(UKIcons.USER, nameField);
+        UkTextField nameField = new UkTextField();
+        UkInline inline = new UkInline(UkIcons.USER, nameField);
         inline.setIconFlip(true);
         nameField.setPlaceholder("name");
-        UKTextField ageField = new UKTextField();
+        UkTextField ageField = new UkTextField();
         ageField.setPlaceholder("age");
-        UKCheckbox acceptField = new UKCheckbox();
-        UKTextArea storyField = new UKTextArea();
+        UkCheckbox acceptField = new UkCheckbox();
+        UkTextArea storyField = new UkTextArea();
         storyField.setPlaceholder("story");
 
         form.add("Name", inline);
@@ -199,11 +183,11 @@ public class MainView extends UKFlex {
         dialog.add(form);
         // dialog.add(nameField,ageField,acceptField,storyField);
 
-        UKButton cancelButton = new UKButton("Cancel");
+        UkButton cancelButton = new UkButton("Cancel");
         cancelButton.addClickListener(event -> {
             dialog.hide();
         });
-        UKButton saveButton = new UKButton("Save");
+        UkButton saveButton = new UkButton("Save");
         saveButton.setVariant(ButtonVariant.PRIMARY);
 
         dialog.addToFooter(cancelButton, saveButton);
@@ -221,7 +205,7 @@ public class MainView extends UKFlex {
         binder.forField(acceptField).bind(Person::isAccept, Person::setAccept);
         binder.forField(storyField).bind(Person::getStory, Person::setStory);
 
-        UKButton openDialog = new UKButton("Edit");
+        UkButton openDialog = new UkButton("Edit");
         openDialog.addClickListener(event -> {
             dialog.show();
         });
@@ -234,19 +218,19 @@ public class MainView extends UKFlex {
             try {
                 binder.writeBean(person);
                 dialog.hide();
-                UKNotification note = new UKNotification();
+                UkNotification note = new UkNotification();
                 note.withStatus(Status.SUCCESS)
                         .view("Saved: " + person.getName() + " "
                                 + person.getAge() + " " + person.getStory());
 
             } catch (ValidationException e) {
-                UKNotification note = new UKNotification();
+                UkNotification note = new UkNotification();
                 note.withStatus(Status.DANGER).view("Person not valid");
             }
         });
 
         dialog.addModalHiddenListener(event -> {
-            UKNotification.show("Thanks!");
+            UkNotification.show("Thanks!");
         });
     }
 

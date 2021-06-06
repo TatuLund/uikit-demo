@@ -1,6 +1,6 @@
 package org.vaadin.uikit.components;
 
-public enum UKIcons {
+public enum UkIcons {
 	HOME("home"),
 	SIGN_IN("sign-in"),
 	SIGN_OUT("sign-out"),
@@ -147,7 +147,7 @@ public enum UKIcons {
 
     private final String icon;
 
-    UKIcons(String icon) {
+    UkIcons(String icon) {
         this.icon = icon;
     }
 
@@ -155,7 +155,7 @@ public enum UKIcons {
         return icon;
     }
 
-    public UKIcon create() {
-        return new UKIcon(this);
+    public UkIcon create() {
+        return new UkIcon(this);
     }
 }

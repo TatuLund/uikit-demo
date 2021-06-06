@@ -1,41 +1,37 @@
 package org.vaadin.uikit;
 
-import org.vaadin.uikit.components.UKCard;
-import org.vaadin.uikit.components.UKIcons;
-import org.vaadin.uikit.components.layout.UKFlex;
-import org.vaadin.uikit.navigation.UKNavItem;
-import org.vaadin.uikit.navigation.UKDropdownNav;
-import org.vaadin.uikit.navigation.UKNav;
-import org.vaadin.uikit.navigation.UKNavbar;
-import org.vaadin.uikit.navigation.UKNavbarItem;
-import org.vaadin.uikit.navigation.UKSubNav;
-import org.vaadin.uikit.navigation.UKNavbar.Alignment;
-import org.vaadin.uikit.navigation.UKNavbar.Mode;
+import org.vaadin.uikit.components.UkCard;
+import org.vaadin.uikit.components.UkIcons;
+import org.vaadin.uikit.components.layout.UkFlex;
+import org.vaadin.uikit.navigation.UkNavItem;
+import org.vaadin.uikit.navigation.UkDropdownNav;
+import org.vaadin.uikit.navigation.UkNav;
+import org.vaadin.uikit.navigation.UkNavbar;
+import org.vaadin.uikit.navigation.UkNavbarItem;
+import org.vaadin.uikit.navigation.UkSubNav;
+import org.vaadin.uikit.navigation.UkNavbar.Alignment;
+import org.vaadin.uikit.navigation.UkNavbar.Mode;
 
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.router.Route;
 
-@Route("menu")
-@StyleSheet("context://uikit.css")
-@JavaScript("context://uikit.js")
-@JavaScript("context://uikit-icons.js")
-public class MenuView extends UKFlex {
+@Route(value = "menu", layout = MainLayout.class)
+public class MenuView extends UkFlex {
 
     public MenuView() {
         setDirection(Direction.COLUMN);
         setVerticalAlignment(VerticalAlignment.MIDDLE);
         setHorizontalAlignment(HorizontalAlignment.AROUND);
+        setOverflow(OverflowMode.AUTO);
         setSizeFull();
 
-        UKCard navbarCard = new UKCard("Navbar");
-        UKNavbar navbar = new UKNavbar(Mode.CLICK, Alignment.CENTER);
+        UkCard navbarCard = new UkCard("Navbar");
+        UkNavbar navbar = new UkNavbar(Mode.CLICK, Alignment.CENTER);
         navbar.setWidth(FixedWidth.XXLARGE);
         navbar.addNavbarItem("Accordion", AccordionView.class);
         navbar.addNavbarItem("Combo", ComboView.class);
         navbar.addNavbarItem("Table", TableView.class);
-        UKNavbarItem item = navbar.addNavbarItem("Drop");
-        UKDropdownNav drop = item.addDropDown();
+        UkNavbarItem item = navbar.addNavbarItem("Drop");
+        UkDropdownNav drop = item.addDropDown();
         drop.addMenuItem("Accordion", AccordionView.class);
         drop.addDivider();
         drop.addMenuItem("Combo", ComboView.class);
@@ -43,43 +39,43 @@ public class MenuView extends UKFlex {
 
         navbarCard.setContent(navbar);
         
-        UKCard navCard = createNavCard();
+        UkCard navCard = createNavCard();
 
         add(navbarCard,navCard);
     }
 
-    private UKCard createNavCard() {
-        UKNav menu = new UKNav();
+    private UkCard createNavCard() {
+        UkNav menu = new UkNav();
         menu.setWidth(FixedWidth.LARGE);
         menu.setPadding();
         menu.setPrimary();
         menu.addHeader("Menu");
         menu.addDivider();
         menu.addMenuItem("Main 1",MainView.class);
-        UKNavItem item1 = menu.addMenuItem("Main 2");
-        item1.setIcon(UKIcons.MENU.create());
+        UkNavItem item1 = menu.addMenuItem("Main 2");
+        item1.setIcon(UkIcons.MENU.create());
         item1.setTooltip("Toggle sub menu");
         menu.setAccordion(true);
-        UKSubNav sub1 = item1.addSubMenu();
+        UkSubNav sub1 = item1.addSubMenu();
         sub1.setDivider();
         sub1.addMenuItem("Sub 1 - 1",AccordionView.class);
         sub1.addMenuItem("Sub 1 - 2",AccordionView.class);
         sub1.addMenuItem("Sub 1 - 3",AccordionView.class);
-        UKNavItem item2 = menu.addMenuItem("Main 3");
-        item2.setIcon(UKIcons.GRID.create());
-        UKSubNav sub2 = item2.addSubMenu();
+        UkNavItem item2 = menu.addMenuItem("Main 3");
+        item2.setIcon(UkIcons.GRID.create());
+        UkSubNav sub2 = item2.addSubMenu();
         sub2.setDivider();
         sub2.setAccordion(false);
         sub2.addMenuItem("Sub 2 - 1",ComboView.class);
         sub2.addMenuItem("Sub 2 - 2",ComboView.class);
-        UKNavItem subItem = sub2.addMenuItem("Sub 2 - 3");
-        UKSubNav subsub = subItem.addSubMenu();
+        UkNavItem subItem = sub2.addMenuItem("Sub 2 - 3");
+        UkSubNav subsub = subItem.addSubMenu();
         subsub.setDivider();
         subsub.addMenuItem("Subsub 1",TableView.class);
         subsub.addMenuItem("Subsub 2",TableView.class);
         menu.addMenuItem("Main 4",MainView.class);
 
-        UKCard card = new UKCard("Menu");
+        UkCard card = new UkCard("Menu");
         card.setContent(menu);
         return card;
     }

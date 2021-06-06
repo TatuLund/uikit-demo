@@ -3,8 +3,8 @@ package org.vaadin.uikit.components.layout;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -17,20 +17,20 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.shared.Registration;
 
-public class UKAccordion extends Composite<UnorderedList>
-        implements UKWidthAndHeight, UKMargin, HasSize {
+public class UkAccordion extends Composite<UnorderedList>
+        implements UkSizing, UkMargin, HasSize {
 
-    public class UKAccordionItem extends Composite<ListItem> {
+    public class UkAccordionItem extends Composite<ListItem> {
         ListItem listItem = new ListItem();
         Anchor caption = new Anchor("#");
         Div wrapper = new Div();
         String captionText;
 
-        public UKAccordionItem(String captionText) {
+        public UkAccordionItem(String captionText) {
             setCaption(captionText);
         }
 
-        public UKAccordionItem(String titleText, Component... components) {
+        public UkAccordionItem(String titleText, Component... components) {
             setCaption(titleText);
             wrapper.add(components);
         }
@@ -70,18 +70,18 @@ public class UKAccordion extends Composite<UnorderedList>
     }
 
     UnorderedList accordion = new UnorderedList();
-    List<UKAccordionItem> items = new ArrayList<>();
+    List<UkAccordionItem> items = new ArrayList<>();
     boolean animate = true;
     boolean first = true;
 
-    public UKAccordionItem addItem(String captionText) {
+    public UkAccordionItem addItem(String captionText) {
         Div div = new Div();
         return addItem(captionText, div);
     }
 
-    public UKAccordionItem addItem(String captionText,
+    public UkAccordionItem addItem(String captionText,
             Component... components) {
-        UKAccordionItem item = new UKAccordionItem(captionText, components);
+        UkAccordionItem item = new UkAccordionItem(captionText, components);
         item.getElement().addEventListener("shown", event -> {
             fireEvent(new AccordionItemShownEvent(this, item, true));
         });
@@ -103,7 +103,7 @@ public class UKAccordion extends Composite<UnorderedList>
         return addListener(AccordionItemShownEvent.class, listener);
     }
 
-    public void toggleItem(UKAccordionItem item) {
+    public void toggleItem(UkAccordionItem item) {
         int index = items.indexOf(item);
         if (index != -1) {
             toggleItem(index);
@@ -123,17 +123,17 @@ public class UKAccordion extends Composite<UnorderedList>
         return accordion;
     }
 
-    abstract class AccordionEvent extends ComponentEvent<UKAccordion> {
+    abstract class AccordionEvent extends ComponentEvent<UkAccordion> {
 
-        private UKAccordionItem item;
+        private UkAccordionItem item;
 
-        public AccordionEvent(UKAccordion source, UKAccordionItem item,
+        public AccordionEvent(UkAccordion source, UkAccordionItem item,
                 boolean fromClient) {
             super(source, fromClient);
             this.item = item;
         }
 
-        public UKAccordionItem getItem() {
+        public UkAccordionItem getItem() {
             return item;
         }
 
@@ -143,14 +143,14 @@ public class UKAccordion extends Composite<UnorderedList>
     }
 
     public class AccordionItemHiddenEvent extends AccordionEvent {
-        public AccordionItemHiddenEvent(UKAccordion source,
-                UKAccordionItem item, boolean fromClient) {
+        public AccordionItemHiddenEvent(UkAccordion source,
+                UkAccordionItem item, boolean fromClient) {
             super(source, item, fromClient);
         }
     }
 
     public class AccordionItemShownEvent extends AccordionEvent {
-        public AccordionItemShownEvent(UKAccordion source, UKAccordionItem item,
+        public AccordionItemShownEvent(UkAccordion source, UkAccordionItem item,
                 boolean fromClient) {
             super(source, item, fromClient);
         }

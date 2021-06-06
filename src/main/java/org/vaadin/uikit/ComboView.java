@@ -4,27 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.vaadin.uikit.components.UKCard;
-import org.vaadin.uikit.components.UKNotification;
-import org.vaadin.uikit.components.UKTile;
-import org.vaadin.uikit.components.UKTile.TileVariant;
-import org.vaadin.uikit.components.input.UKCheckboxGroup;
-import org.vaadin.uikit.components.input.UKCombo;
-import org.vaadin.uikit.components.input.UKRadioGroup;
-import org.vaadin.uikit.components.input.UKSelect;
-import org.vaadin.uikit.components.layout.UKFlex;
-import org.vaadin.uikit.components.layout.UKForm;
-import org.vaadin.uikit.interfaces.UKFormSizing.FieldSize;
+import org.vaadin.uikit.components.UkCard;
+import org.vaadin.uikit.components.UkCard.CardVariant;
+import org.vaadin.uikit.components.UkNotification;
+import org.vaadin.uikit.components.input.UkCheckboxGroup;
+import org.vaadin.uikit.components.input.UkCombo;
+import org.vaadin.uikit.components.input.UkRadioGroup;
+import org.vaadin.uikit.components.input.UkSelect;
+import org.vaadin.uikit.components.layout.UkFlex;
+import org.vaadin.uikit.components.layout.UkForm;
+import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.interfaces.UkFormSizing.FieldSize;
 
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.router.Route;
 
-@Route("combo")
-@StyleSheet("context://uikit.css")
-@JavaScript("context://uikit.js")
-@JavaScript("context://uikit-icons.js")
-public class ComboView extends UKFlex {
+@Route(value = "combo", layout = MainLayout.class)
+public class ComboView extends UkFlex {
 
     int itemCount = 0;
 
@@ -34,42 +29,45 @@ public class ComboView extends UKFlex {
         setHorizontalAlignment(HorizontalAlignment.AROUND);
         setSizeFull();
 
-        UKCombo<Item> combo = createCombo();
+        UkCombo<Item> combo = createCombo();
 
-        UKSelect<Item> select = createSelect();
+        UkSelect<Item> select = createSelect();
 
-        UKRadioGroup<Item> radioGroup = createRadioGroup();
+        UkRadioGroup<Item> radioGroup = createRadioGroup();
         
-        UKCheckboxGroup<Item> checkboxGroup = createCheckboxGroup();
+        UkCheckboxGroup<Item> checkboxGroup = createCheckboxGroup();
 
-        UKCard card = new UKCard();
+        UkCard card = new UkCard();
         
         card.setTitle("Selection components");
-        UKForm form = new UKForm();
+        UkForm form = new UkForm();
         form.add("Combo" , combo);
         form.add("Select" , select);
         form.add("Select one" , radioGroup);
         form.add("Select all that apply" , checkboxGroup);
         form.setWidth(FixedWidth.LARGE);
         card.setContent(form);
+        card.setBorder(BorderStyle.ROUNDED);
+        card.setVariant(CardVariant.SECONDARY);
         add(card);
     }
 
-    private UKCheckboxGroup<Item> createCheckboxGroup() {
-        UKCheckboxGroup<Item> radios = new UKCheckboxGroup<>(2);
+    private UkCheckboxGroup<Item> createCheckboxGroup() {
+        UkCheckboxGroup<Item> checkboxes = new UkCheckboxGroup<>(2);
         String[] array = { "Front end development", "Back end development", "CI/CD experience", "Java programming", "JavaScript coding", "SQL queries", "Integration tests",
                 "Unit tests", "Selenium", "Maven" };
         List<Item> list = new ArrayList<>();
         for (String item : array)
             list.add(new Item(item));
-        radios.setItems(list);
+        checkboxes.setItems(list);
 //        radios.setSize(FieldSize.DEFAULT);
 //        radios.setTooltip("Select one of these");
-        radios.addValueChangeListener(event -> {
-            UKNotification.show("Radios: Name: " + getNames(radios.getValue()));
+        checkboxes.addValueChangeListener(event -> {
+            UkNotification.show("Radios: Name: " + getNames(checkboxes.getValue()));
         });
-        radios.setItemLabelGenerator(item -> item.getName());
-        return radios;
+        checkboxes.setItemLabelGenerator(item -> item.getName());
+        checkboxes.setCheckboxBorder(BorderStyle.ROUNDED);
+        return checkboxes;
     }
 
     private String getNames(Set<Item> nameSet) {
@@ -80,44 +78,45 @@ public class ComboView extends UKFlex {
         return names;
     }
 
-    private UKRadioGroup<Item> createRadioGroup() {
-        UKRadioGroup<Item> radios = new UKRadioGroup<>(4);
+    private UkRadioGroup<Item> createRadioGroup() {
+        UkRadioGroup<Item> radios = new UkRadioGroup<>(4);
         String[] array = { "Zero", "One", "Two", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine" };
         List<Item> list = new ArrayList<>();
         for (String item : array)
             list.add(new Item(item));
         radios.setItems(list);
-        radios.setSize(FieldSize.DEFAULT);
+        radios.setSize(FieldSize.MEDIUM);
         radios.setTooltip("Select one of these");
         radios.addValueChangeListener(event -> {
-            UKNotification.show("Radios: Name: " + radios.getValue().getName()
+            UkNotification.show("Radios: Name: " + radios.getValue().getName()
                     + " Number " + radios.getValue().getNumber());
         });
         radios.setItemLabelGenerator(item -> item.getName());
         return radios;
     }
 
-    private UKSelect<Item> createSelect() {
-        UKSelect<Item> select = new UKSelect<>();
+    private UkSelect<Item> createSelect() {
+        UkSelect<Item> select = new UkSelect<>();
         String[] array = { "Zero", "One", "Two", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine" };
         List<Item> list = new ArrayList<>();
         for (String item : array)
             list.add(new Item(item));
         select.setItems(list);
-        select.setSize(FieldSize.DEFAULT);
+        select.setSize(FieldSize.MEDIUM);
         select.setTooltip("Select one of these");
         select.addValueChangeListener(event -> {
-            UKNotification.show("Select: Name: " + select.getValue().getName()
+            UkNotification.show("Select: Name: " + select.getValue().getName()
                     + " Number " + select.getValue().getNumber());
         });
         select.setItemLabelGenerator(item -> item.getName());
+        select.setBorder(BorderStyle.ROUNDED);
         return select;
     }
 
-    private UKCombo<Item> createCombo() {
-        UKCombo<Item> combo = new UKCombo<>();
+    private UkCombo<Item> createCombo() {
+        UkCombo<Item> combo = new UkCombo<>();
         String[] array = { "Zero", "One", "Two", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine" };
         List<Item> list = new ArrayList<>();
@@ -126,14 +125,15 @@ public class ComboView extends UKFlex {
                 list.add(new Item(i + "-" + item));
         }
         combo.setItems(list);
-        combo.setSize(FieldSize.DEFAULT);
+        combo.setSize(FieldSize.MEDIUM);
         combo.setTooltip("Select one of these");
         combo.addValueChangeListener(event -> {
-            UKNotification.show("Combo: Name: " + combo.getValue().getName()
+            UkNotification.show("Combo: Name: " + combo.getValue().getName()
                     + " Number " + combo.getValue().getNumber());
         });
         combo.setItemLabelGenerator(item -> item.getName());
         combo.setPlaceholder("number");
+        combo.setBorder(BorderStyle.ROUNDED);
         return combo;
     }
 

@@ -2,7 +2,7 @@ package org.vaadin.uikit.interfaces;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKTooltip extends HasElement {
+public interface UkTooltip extends HasElement {
 
     public default void setTooltip(String tooltip) {
         if (tooltip != null && !tooltip.isEmpty()) {

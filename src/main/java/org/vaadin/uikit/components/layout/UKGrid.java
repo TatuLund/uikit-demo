@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKWidthAndHeight;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.html.Div;
 
-public class UKGrid extends Composite<Div>
-        implements HasSize, UKWidthAndHeight, UKMargin, UKPadding {
+public class UkGrid extends Composite<Div>
+        implements HasSize, UkSizing, UkMargin, UkPadding {
 
     public enum GapModifier {
         SMALL("uk-grid-small"), 
@@ -50,11 +50,11 @@ public class UKGrid extends Composite<Div>
         }
     }
 
-    public class UKGridCell extends Composite<Div> {
+    public class UkGridCell extends Composite<Div> {
 
         Div cellDiv = new Div();
 
-        public UKGridCell(int width, int rowMaxWidth) {
+        public UkGridCell(int width, int rowMaxWidth) {
             int rmw = rowMaxWidth;
             if (rowMaxWidth % width == 0) {
                 rmw = rowMaxWidth / width;
@@ -64,7 +64,7 @@ public class UKGrid extends Composite<Div>
                     + responsiveBreak.getResponsiveBreak());
         }
 
-        public UKGridCell(int width, int rowMaxWidth, Component... components) {
+        public UkGridCell(int width, int rowMaxWidth, Component... components) {
             int rmw = rowMaxWidth;
             if (rowMaxWidth % width == 0) {
                 rmw = rowMaxWidth / width;
@@ -98,50 +98,50 @@ public class UKGrid extends Composite<Div>
         }
     }
 
-    public class UKGridRow implements Serializable {
-        List<UKGridCell> cells = new ArrayList<>();
+    public class UkGridRow implements Serializable {
+        List<UkGridCell> cells = new ArrayList<>();
         int maxRowWidth;
         int totalWidth;
 
-        public UKGridRow(int maxRowWidth) {
+        public UkGridRow(int maxRowWidth) {
             this.maxRowWidth = maxRowWidth;
         }
 
-        public UKGridRow withCell(int width) {
+        public UkGridRow withCell(int width) {
             totalWidth += width;
             if (totalWidth > maxRowWidth) {
                 throw new IllegalStateException(
                         "Sum of widths can't be larger that maximum row width");
             }
-            UKGridCell cell = new UKGridCell(width, maxRowWidth);
+            UkGridCell cell = new UkGridCell(width, maxRowWidth);
             cells.add(cell);
             return this;
         }
 
-        public UKGridRow withCell(int width, Component... components) {
+        public UkGridRow withCell(int width, Component... components) {
             totalWidth += width;
             if (totalWidth > maxRowWidth) {
                 throw new IllegalStateException(
                         "Sum of widths can't be larger that maximum row width");
             }
-            UKGridCell cell = new UKGridCell(width, maxRowWidth, components);
+            UkGridCell cell = new UkGridCell(width, maxRowWidth, components);
             cells.add(cell);
             return this;
         }
 
-        public UKGridRow withRow(int maxRowWidth) {
-            return UKGrid.this.withRow(maxRowWidth);
+        public UkGridRow withRow(int maxRowWidth) {
+            return UkGrid.this.withRow(maxRowWidth);
         }
 
         public void build() {
-            UKGrid.this.build();
+            UkGrid.this.build();
         }
 
-        public UKGridCell getCell(int cell) {
+        public UkGridCell getCell(int cell) {
             return cells.get(cell);
         }
 
-        public List<UKGridCell> getCells() {
+        public List<UkGridCell> getCells() {
             return cells;
         }
 
@@ -150,23 +150,23 @@ public class UKGrid extends Composite<Div>
         }
     }
 
-    List<UKGridRow> rows = new ArrayList<>();
+    List<UkGridRow> rows = new ArrayList<>();
     private boolean isBuilt = false;
     Div grid = new Div();
     private int numRows = 0;
     private ResponsiveBreak responsiveBreak = ResponsiveBreak.MEDIUM_960PX;
 
-    public UKGrid() {
+    public UkGrid() {
         this(ResponsiveBreak.MEDIUM_960PX);
     }
 
-    public UKGrid(ResponsiveBreak responsiveBreak) {
+    public UkGrid(ResponsiveBreak responsiveBreak) {
         this.responsiveBreak = responsiveBreak;
         getElement().setAttribute("uk-grid", true);
     }
 
-    public UKGridRow withRow(int maxRowWidth) {
-        UKGridRow row = new UKGridRow(maxRowWidth);
+    public UkGridRow withRow(int maxRowWidth) {
+        UkGridRow row = new UkGridRow(maxRowWidth);
         rows.add(row);
         return row;
     }
@@ -180,12 +180,12 @@ public class UKGrid extends Composite<Div>
             throw new IllegalStateException(
                     "Cell (" + row + "," + cell + ") does not exists in grid");
         }
-        UKGridCell cellComponent = rows.get(row).getCell(cell);
+        UkGridCell cellComponent = rows.get(row).getCell(cell);
         cellComponent.removeAll();
         cellComponent.add(components);
     }
 
-    public void populate(UKGridRow row, int cell, Component... components) {
+    public void populate(UkGridRow row, int cell, Component... components) {
         if (!isBuilt) {
             throw new IllegalStateException(
                     "Can't populate grid that has not been built");
@@ -194,12 +194,12 @@ public class UKGrid extends Composite<Div>
             throw new IllegalStateException(
                     "Cell " + cell + " does not exists in this grid row");
         }
-        UKGridCell cellComponent = row.getCell(cell);
+        UkGridCell cellComponent = row.getCell(cell);
         cellComponent.removeAll();
         cellComponent.add(components);
     }
 
-    public void populate(UKGridCell cell, Component... components) {
+    public void populate(UkGridCell cell, Component... components) {
         if (!isBuilt) {
             throw new IllegalStateException(
                     "Can't populate grid that has not been built");
@@ -209,9 +209,9 @@ public class UKGrid extends Composite<Div>
     }
 
     public void build() {
-        for (UKGridRow row : rows) {
+        for (UkGridRow row : rows) {
             numRows++;
-            for (UKGridCell cell : row.getCells()) {
+            for (UkGridCell cell : row.getCells()) {
                 grid.add(cell.getCellDiv());
             }
         }

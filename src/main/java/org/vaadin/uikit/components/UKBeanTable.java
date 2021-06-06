@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.UKTableOptions;
+import org.vaadin.uikit.interfaces.ComponentProvider;
+import org.vaadin.uikit.interfaces.UkTableOptions;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
@@ -52,8 +53,8 @@ import com.vaadin.flow.shared.Registration;
  */
 
 @Tag("table")
-public class UKBeanTable<T> extends HtmlComponent
-        implements HasDataProvider<T>, HasSize, UKTableOptions {
+public class UkBeanTable<T> extends HtmlComponent
+        implements HasDataProvider<T>, HasSize, UkTableOptions {
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>(this::getItemId);
     private DataProvider<T, ?> dataProvider = DataProvider.ofItems();
@@ -82,8 +83,8 @@ public class UKBeanTable<T> extends HtmlComponent
      */
     public class Column<R> {
         String header;
-        ValueProvider<T, ?> valueProvider;
-        ValueProvider<T, Component> componentProvider;
+        ValueProvider<R,?> valueProvider;
+        ComponentProvider<R> componentProvider;
 
         /**
          * Constructor with header and value provider
@@ -93,7 +94,7 @@ public class UKBeanTable<T> extends HtmlComponent
          * @param valueProvider
          *            The valuprovider
          */
-        public Column(String header, ValueProvider<T, ?> valueProvider) {
+        public Column(String header, ValueProvider<R,?> valueProvider) {
             this.header = header;
             this.valueProvider = valueProvider;
         }
@@ -109,15 +110,15 @@ public class UKBeanTable<T> extends HtmlComponent
         }
 
         public void setComponentProvider(
-                ValueProvider<T, Component> componentProvider) {
+                ComponentProvider<R> componentProvider) {
             this.componentProvider = componentProvider;
         }
 
-        public ValueProvider<T, ?> getValueProvider() {
+        public ValueProvider<R,?> getValueProvider() {
             return valueProvider;
         }
 
-        public ValueProvider<T, Component> getComponentProvider() {
+        public ComponentProvider<R> getComponentProvider() {
             return componentProvider;
         }
 
@@ -194,7 +195,7 @@ public class UKBeanTable<T> extends HtmlComponent
      * configuration. Use {@link #addColumn(String,ValueProvider)}
      * {@link #addComponentColumn(String,ValueProvider)} to configure columns.
      */
-    public UKBeanTable() {
+    public UkBeanTable() {
         addClassNames("uk-table", "uk-table-responsive");
         headerElement = new Element("thead");
         footerElement = new Element("tfoot");
@@ -215,7 +216,7 @@ public class UKBeanTable<T> extends HtmlComponent
      * @param pageLength
      *            Size of the page
      */
-    public UKBeanTable(int pageLength) {
+    public UkBeanTable(int pageLength) {
         this();
         this.pageLength = pageLength;
     }
@@ -229,7 +230,7 @@ public class UKBeanTable<T> extends HtmlComponent
      * @param beanType
      *            the bean type to use, not <code>null</code>
      */
-    public UKBeanTable(Class<T> beanType) {
+    public UkBeanTable(Class<T> beanType) {
         this(beanType, true);
     }
 
@@ -254,7 +255,7 @@ public class UKBeanTable<T> extends HtmlComponent
      *            when <code>true</code>, columns are created automatically for
      *            the properties of the beanType
      */
-    public UKBeanTable(Class<T> beanType, boolean autoCreateColumns) {
+    public UkBeanTable(Class<T> beanType, boolean autoCreateColumns) {
         this();
         Objects.requireNonNull(beanType, "Bean type can't be null");
         this.beanType = beanType;
@@ -287,7 +288,7 @@ public class UKBeanTable<T> extends HtmlComponent
      * @param pageLength
      *            Size of the page
      */
-    public UKBeanTable(Class<T> beanType, boolean autoCreateColumns,
+    public UkBeanTable(Class<T> beanType, boolean autoCreateColumns,
             int pageLength) {
         this(beanType, autoCreateColumns);
         this.pageLength = pageLength;
@@ -360,7 +361,7 @@ public class UKBeanTable<T> extends HtmlComponent
      * @return A column
      */
     public Column<T> addColumn(String header,
-            ValueProvider<T, ?> valueProvider) {
+            ValueProvider<T,?> valueProvider) {
         Column<T> column = new Column<>(header, valueProvider);
         columns.add(column);
         updateHeader();
@@ -379,7 +380,7 @@ public class UKBeanTable<T> extends HtmlComponent
      * @return A column
      */
     public Column<T> addComponentColumn(String header,
-            ValueProvider<T, Component> componentProvider) {
+            ComponentProvider<T> componentProvider) {
         Column<T> column = new Column<>();
         column.setHeader(header);
         column.setComponentProvider(componentProvider);
@@ -408,10 +409,10 @@ public class UKBeanTable<T> extends HtmlComponent
             Element cell = new Element("td");
             cell.setAttribute("colspan", "" + columns.size());
             rowElement.appendChild(cell);
-            UKIcon first = UKIcons.CHEVRON_DOUBLE_LEFT.create();
-            UKIcon previous = UKIcons.CHEVRON_LEFT.create();
-            UKIcon next = UKIcons.CHEVRON_RIGHT.create();
-            UKIcon last = UKIcons.CHEVRON_DOUBLE_RIGHT.create();
+            UkButton first = new UkButton(UkIcons.CHEVRON_DOUBLE_LEFT.create());
+            UkButton previous = new UkButton(UkIcons.CHEVRON_LEFT.create());
+            UkButton next = new UkButton(UkIcons.CHEVRON_RIGHT.create());
+            UkButton last = new UkButton(UkIcons.CHEVRON_DOUBLE_RIGHT.create());
             int lastPage = dataProviderSize % pageLength == 0
                     ? (dataProviderSize / pageLength) - 1
                     : (dataProviderSize / pageLength);
@@ -456,7 +457,7 @@ public class UKBeanTable<T> extends HtmlComponent
     @Override
     public void setDataProvider(DataProvider<T, ?> dataProvider) {
         this.dataProvider = dataProvider;
-        reset(true);
+        reset(false);
         setupDataProviderListener(dataProvider);
     }
 
@@ -510,7 +511,7 @@ public class UKBeanTable<T> extends HtmlComponent
                     inMemorySorting, filter);
         }
         getDataProvider().fetch(query).map(row -> createRow((T) row)).forEach(
-                rowItem -> addRow((UKBeanTable<T>.RowItem<T>) rowItem));
+                rowItem -> addRow((UkBeanTable<T>.RowItem<T>) rowItem));
     }
 
     /**

@@ -8,11 +8,13 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.UKFormSizing;
-import org.vaadin.uikit.interfaces.UKMargin;
-import org.vaadin.uikit.interfaces.UKPadding;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKValidation;
+import org.vaadin.uikit.interfaces.StringProvider;
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkFormSizing;
+import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ComponentEvent;
@@ -20,7 +22,6 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HtmlComponent;
-import com.vaadin.flow.component.ItemLabelGenerator;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.data.binder.HasDataProvider;
 import com.vaadin.flow.data.binder.HasItemsAndComponents;
@@ -35,10 +36,10 @@ import com.vaadin.flow.function.SerializablePredicate;
 import com.vaadin.flow.shared.Registration;
 
 @Tag(Tag.DIV)
-public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
-        implements HasItemsAndComponents<T>, SingleSelect<UKCombo<T>, T>,
-        Focusable<UKCombo<T>>, HasDataProvider<T>, UKValidation, UKTooltip,
-        UKFormSizing, UKMargin, UKPadding {
+public class UkCombo<T> extends SelectBase<UkCombo<T>, T>
+        implements HasItemsAndComponents<T>, SingleSelect<UkCombo<T>, T>,
+        Focusable<UkCombo<T>>, HasDataProvider<T>, UkValidation, UkTooltip,
+        UkFormSizing, UkMargin, UkPadding, UkBorder {
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>();
 
@@ -48,11 +49,11 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
 
     private SerializablePredicate<T> itemEnabledProvider = item -> isEnabled();
 
-    private ItemLabelGenerator<T> itemLabelGenerator = String::valueOf;
+    private StringProvider<T> itemLabelGenerator = String::valueOf;
 
     private boolean isReadOnly;
 
-    private UKTextField input = new UKTextField();
+    private UkTextField input = new UkTextField();
 
     private Element dataList = new Element("datalist");
 
@@ -68,7 +69,7 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
 
     private Comparator inMemorySorting;
 
-    private static <T> T presentationToModel(UKCombo<T> select,
+    private static <T> T presentationToModel(UkCombo<T> select,
             String presentation) {
         if (!select.keyMapper.containsKey(presentation)) {
             return null;
@@ -76,16 +77,16 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
         return select.keyMapper.get(presentation);
     }
 
-    private static <T> String modelToPresentation(UKCombo<T> select, T model) {
+    private static <T> String modelToPresentation(UkCombo<T> select, T model) {
         if (!select.keyMapper.has(model)) {
             return null;
         }
         return select.keyMapper.key(model);
     }
 
-    public UKCombo() {
-        super(null, null, String.class, UKCombo::presentationToModel,
-                UKCombo::modelToPresentation);
+    public UkCombo() {
+        super(null, null, String.class, UkCombo::presentationToModel,
+                UkCombo::modelToPresentation);
         input.getElement().setAttribute("list", getName());
         dataList.setAttribute("id", getName());
         add(input);
@@ -93,7 +94,7 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
         getElement().appendChild(dataList);
         input.addValueChangeListener(event -> {
             String caption = event.getValue();
-            Optional<UKCombo<T>.Option<T>> match = getOptions()
+            Optional<UkCombo<T>.Option<T>> match = getOptions()
                     .filter(option -> option.getValue().equals(caption))
                     .findFirst();
             if (match.isPresent()) {
@@ -152,6 +153,11 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
     @Override
     public void blur() {
         input.blur();
+    }
+
+    @Override
+    public void setBorder(BorderStyle borderStyle) {
+        input.setBorder(borderStyle);
     }
 
     public void setPlaceholder(String placeholder) {
@@ -218,9 +224,9 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
     @Override
     public void onEnabledStateChanged(boolean enabled) {
         if (isReadOnly()) {
-            setDisabled(true);
+            input.setDisabled(true);
         } else {
-            setDisabled(!enabled);
+            input.setDisabled(!enabled);
         }
         refreshOptions();
     }
@@ -229,7 +235,7 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
     public void setReadOnly(boolean readOnly) {
         isReadOnly = readOnly;
         if (isEnabled()) {
-            setDisabled(readOnly);
+            input.setDisabled(readOnly);
             refreshOptions();
         }
     }
@@ -307,14 +313,14 @@ public class UKCombo<T> extends SelectBase<UKCombo<T>, T>
     }
 
     public void setItemLabelGenerator(
-            ItemLabelGenerator<T> itemLabelGenerator) {
+            StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;
         reset();
     }
 
-    public ItemLabelGenerator<T> getItemLabelGenerator() {
+    public StringProvider<T> getItemLabelGenerator() {
         return itemLabelGenerator;
     }
 

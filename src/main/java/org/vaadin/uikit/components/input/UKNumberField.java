@@ -2,9 +2,10 @@ package org.vaadin.uikit.components.input;
 
 import java.util.Optional;
 
-import org.vaadin.uikit.interfaces.UKFormSizing;
-import org.vaadin.uikit.interfaces.UKTooltip;
-import org.vaadin.uikit.interfaces.UKValidation;
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkFormSizing;
+import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.Focusable;
@@ -14,18 +15,18 @@ import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 
 @Tag(Tag.INPUT)
-public class UKNumberField extends AbstractSinglePropertyField<UKNumberField, Double>
-        implements UKValidation, HasStyle, Focusable<UKNumberField>, UKTooltip,
-        UKFormSizing {
+public class UkNumberField extends AbstractSinglePropertyField<UkNumberField, Double>
+        implements UkValidation, HasStyle, Focusable<UkNumberField>, UkTooltip,
+        UkFormSizing, UkBorder {
 
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");
     
-    public UKNumberField() {
+    public UkNumberField() {
         this(0d, 100d, 1.0d);
     }
 
-    public UKNumberField(double min, double max, double step) {
+    public UkNumberField(double min, double max, double step) {
         super("value", 0d, String.class, value -> Double.valueOf(value),
                 value -> "" + value);
         addClassName("uk-input");

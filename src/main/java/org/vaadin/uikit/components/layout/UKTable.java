@@ -3,7 +3,7 @@ package org.vaadin.uikit.components.layout;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.interfaces.UKTableOptions;
+import org.vaadin.uikit.interfaces.UkTableOptions;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlComponent;
@@ -11,26 +11,26 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.dom.Element;
 
 @Tag("table")
-public class UKTable extends HtmlComponent implements UKTableOptions {
+public class UkTable extends HtmlComponent implements UkTableOptions {
 
-    public abstract class UKAbstractTableCell extends HtmlComponent {
+    public abstract class AbstractTableCell extends HtmlComponent {
 
-        public UKAbstractTableCell(String text) {
+        public AbstractTableCell(String text) {
             this(1, 1, text);
         }
 
-        public UKAbstractTableCell(Component component) {
+        public AbstractTableCell(Component component) {
             this(1, 1, component);
         }
 
-        public UKAbstractTableCell(int colSpan, int rowSpan,
+        public AbstractTableCell(int colSpan, int rowSpan,
                 Component component) {
             setColSpan(colSpan);
             setRowSpan(rowSpan);
             setContent(component);
         }
 
-        public UKAbstractTableCell(int colSpan, int rowSpan, String text) {
+        public AbstractTableCell(int colSpan, int rowSpan, String text) {
             setColSpan(colSpan);
             setRowSpan(rowSpan);
             setText(text);
@@ -75,97 +75,97 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
     }
 
     @Tag("td")
-    public class UKTableCell extends UKAbstractTableCell {
+    public class UkTableCell extends AbstractTableCell {
 
-        public UKTableCell(String text) {
+        public UkTableCell(String text) {
             super(text);
         }
 
-        public UKTableCell(Component component) {
+        public UkTableCell(Component component) {
             super(component);
         }
 
-        public UKTableCell(int colSpan, int rowSpan, Component component) {
+        public UkTableCell(int colSpan, int rowSpan, Component component) {
             super(colSpan, rowSpan, component);
         }
 
-        public UKTableCell(int colSpan, int rowSpan, String text) {
+        public UkTableCell(int colSpan, int rowSpan, String text) {
             super(colSpan, rowSpan, text);
         }
     }
 
     @Tag("th")
-    public class UKTableHeaderCell extends UKAbstractTableCell {
+    public class UkTableHeaderCell extends AbstractTableCell {
 
-        public UKTableHeaderCell(String text) {
+        public UkTableHeaderCell(String text) {
             super(text);
         }
 
-        public UKTableHeaderCell(Component component) {
+        public UkTableHeaderCell(Component component) {
             super(component);
         }
 
-        public UKTableHeaderCell(int colSpan, int rowSpan,
+        public UkTableHeaderCell(int colSpan, int rowSpan,
                 Component component) {
             super(colSpan, rowSpan, component);
         }
 
-        public UKTableHeaderCell(int colSpan, int rowSpan, String text) {
+        public UkTableHeaderCell(int colSpan, int rowSpan, String text) {
             super(colSpan, rowSpan, text);
         }
     }
 
     @Tag("tr")
-    public class UKTableRow extends HtmlComponent {
-        List<UKTableCell> cells = new ArrayList<>();
+    public class UkTableRow extends HtmlComponent {
+        List<UkTableCell> cells = new ArrayList<>();
         int maxRowWidth;
         int totalWidth;
 
-        public UKTableRow() {
+        public UkTableRow() {
         }
 
-        public UKTableRow withCell(String text) {
-            UKTableCell cell = new UKTableCell(text);
+        public UkTableRow withCell(String text) {
+            UkTableCell cell = new UkTableCell(text);
             cells.add(cell);
             return this;
         }
 
-        public UKTableRow withCell(Component component) {
-            UKTableCell cell = new UKTableCell(component);
+        public UkTableRow withCell(Component component) {
+            UkTableCell cell = new UkTableCell(component);
             cells.add(cell);
             return this;
         }
 
-        public UKTableRow withCell(int colSpan, int rowSpan,
+        public UkTableRow withCell(int colSpan, int rowSpan,
                 Component component) {
-            UKTableCell cell = new UKTableCell(colSpan, rowSpan, component);
+            UkTableCell cell = new UkTableCell(colSpan, rowSpan, component);
             cells.add(cell);
             return this;
         }
 
-        public UKTableRow withCell(int colSpan, int rowSpan, String text) {
-            UKTableCell cell = new UKTableCell(colSpan, rowSpan, text);
+        public UkTableRow withCell(int colSpan, int rowSpan, String text) {
+            UkTableCell cell = new UkTableCell(colSpan, rowSpan, text);
             cells.add(cell);
             return this;
         }
 
-        public UKTableRow withRow() {
-            return UKTable.this.withRow();
+        public UkTableRow withRow() {
+            return UkTable.this.withRow();
         }
 
-        public UKTableRow withFooterRow() {
-            return UKTable.this.withFooterRow();
+        public UkTableRow withFooterRow() {
+            return UkTable.this.withFooterRow();
         }
 
         public void build() {
-            UKTable.this.build();
+            UkTable.this.build();
         }
 
-        public UKTableCell getCell(int cell) {
+        public UkTableCell getCell(int cell) {
             return cells.get(cell);
         }
 
-        public List<UKTableCell> getCells() {
+        public List<UkTableCell> getCells() {
             return cells;
         }
 
@@ -174,55 +174,55 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
         }
     }
 
-    public class UKTableHeaderRow extends UKTableRow {
-        List<UKTableHeaderCell> cells = new ArrayList<>();
+    public class UkTableHeaderRow extends UkTableRow {
+        List<UkTableHeaderCell> cells = new ArrayList<>();
         int maxRowWidth;
         int totalWidth;
 
-        public UKTableHeaderRow() {
+        public UkTableHeaderRow() {
         }
 
-        public UKTableHeaderRow withCell(String text) {
-            UKTableHeaderCell cell = new UKTableHeaderCell(text);
+        public UkTableHeaderRow withCell(String text) {
+            UkTableHeaderCell cell = new UkTableHeaderCell(text);
             cells.add(cell);
             return this;
         }
 
-        public UKTableHeaderRow withCell(Component component) {
-            UKTableHeaderCell cell = new UKTableHeaderCell(component);
+        public UkTableHeaderRow withCell(Component component) {
+            UkTableHeaderCell cell = new UkTableHeaderCell(component);
             cells.add(cell);
             return this;
         }
 
-        public UKTableHeaderRow withCell(int colSpan, int rowSpan,
+        public UkTableHeaderRow withCell(int colSpan, int rowSpan,
                 Component component) {
-            UKTableHeaderCell cell = new UKTableHeaderCell(colSpan, rowSpan,
+            UkTableHeaderCell cell = new UkTableHeaderCell(colSpan, rowSpan,
                     component);
             cells.add(cell);
             return this;
         }
 
-        public UKTableHeaderRow withCell(int colSpan, int rowSpan,
+        public UkTableHeaderRow withCell(int colSpan, int rowSpan,
                 String text) {
-            UKTableHeaderCell cell = new UKTableHeaderCell(colSpan, rowSpan,
+            UkTableHeaderCell cell = new UkTableHeaderCell(colSpan, rowSpan,
                     text);
             cells.add(cell);
             return this;
         }
 
-        public UKTableRow withRow() {
-            return UKTable.this.withRow();
+        public UkTableRow withRow() {
+            return UkTable.this.withRow();
         }
 
         public void build() {
-            UKTable.this.build();
+            UkTable.this.build();
         }
 
-        public UKTableHeaderCell getHeaderCell(int cell) {
+        public UkTableHeaderCell getHeaderCell(int cell) {
             return cells.get(cell);
         }
 
-        public List<UKTableHeaderCell> getHeaderCells() {
+        public List<UkTableHeaderCell> getHeaderCells() {
             return cells;
         }
 
@@ -231,47 +231,47 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
         }
     }
 
-    List<UKTableRow> rows = new ArrayList<>();
+    List<UkTableRow> rows = new ArrayList<>();
     private boolean isBuilt = false;
     private int numRows = 0;
     Element bodyElement = new Element("tbody");
     Element headerElement = new Element("thead");
     Element footerElement = new Element("tfoot");
-    private UKTableHeaderRow headerRow;
-    private UKTableRow footerRow;
+    private UkTableHeaderRow headerRow;
+    private UkTableRow footerRow;
 
-    public UKTable() {
+    public UkTable() {
         addClassNames("uk-table", "uk-table-responsive");
     }
 
-    public UKTableRow withRow() {
-        UKTableRow row = new UKTableRow();
+    public UkTableRow withRow() {
+        UkTableRow row = new UkTableRow();
         rows.add(row);
         return row;
     }
 
-    public UKTableHeaderRow withHeaderRow() {
-        headerRow = new UKTableHeaderRow();
+    public UkTableHeaderRow withHeaderRow() {
+        headerRow = new UkTableHeaderRow();
         return headerRow;
     }
 
-    public UKTableRow withFooterRow() {
-        footerRow = new UKTableRow();
+    public UkTableRow withFooterRow() {
+        footerRow = new UkTableRow();
         return footerRow;
     }
 
     public void populate(int row, int cell, Component component) {
-        UKTableCell cellComponent = getCell(row, cell);
+        UkTableCell cellComponent = getCell(row, cell);
         cellComponent.setContent(component);
     }
 
-    public void populate(UKTableRow row, int cell, Component component) {
+    public void populate(UkTableRow row, int cell, Component component) {
         int rowIndex = rows.indexOf(row);
-        UKTableCell cellComponent = getCell(rowIndex, cell);
+        UkTableCell cellComponent = getCell(rowIndex, cell);
         cellComponent.setContent(component);
     }
 
-    public void populate(UKTableCell cell, Component component) {
+    public void populate(UkTableCell cell, Component component) {
         if (isBuilt) {
             throw new IllegalStateException(
                     "Can't populate table that has not been built");
@@ -280,17 +280,17 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
     }
 
     public void populate(int row, int cell, String text) {
-        UKTableCell cellComponent = getCell(row, cell);
+        UkTableCell cellComponent = getCell(row, cell);
         cellComponent.setText(text);
     }
 
-    public void populate(UKTableRow row, int cell, String text) {
+    public void populate(UkTableRow row, int cell, String text) {
         int rowIndex = rows.indexOf(row);
-        UKTableCell cellComponent = getCell(rowIndex, cell);
+        UkTableCell cellComponent = getCell(rowIndex, cell);
         cellComponent.setText(text);
     }
 
-    public void populate(UKTableCell cell, String text) {
+    public void populate(UkTableCell cell, String text) {
         if (!isBuilt) {
             throw new IllegalStateException(
                     "Can't populate table that has not been built");
@@ -298,7 +298,7 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
         cell.setText(text);
     }
 
-    public UKTableCell getCell(int row, int cell) {
+    public UkTableCell getCell(int row, int cell) {
         if (!isBuilt) {
             throw new IllegalStateException(
                     "Can't access table that has not been built");
@@ -313,7 +313,7 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
     public void build() {
         if (headerRow != null) {
             getElement().appendChild(headerElement);
-            for (UKTableHeaderCell cell : headerRow.getHeaderCells()) {
+            for (UkTableHeaderCell cell : headerRow.getHeaderCells()) {
                 headerRow.getElement().appendChild(cell.getElement());
             }
             headerElement.appendChild(headerRow.getElement());
@@ -323,17 +323,17 @@ public class UKTable extends HtmlComponent implements UKTableOptions {
             throw new IllegalStateException("Can't build table without rows");
         }
         getElement().appendChild(bodyElement);
-        for (UKTableRow row : rows) {
+        for (UkTableRow row : rows) {
             numRows++;
             bodyElement.appendChild(row.getElement());
-            for (UKTableCell cell : row.getCells()) {
+            for (UkTableCell cell : row.getCells()) {
                 row.getElement().appendChild(cell.getElement());
             }
         }
 
         if (footerRow != null) {
             getElement().appendChild(footerElement);
-            for (UKTableCell cell : footerRow.getCells()) {
+            for (UkTableCell cell : footerRow.getCells()) {
                 footerRow.getElement().appendChild(cell.getElement());
             }
             footerElement.appendChild(footerRow.getElement());

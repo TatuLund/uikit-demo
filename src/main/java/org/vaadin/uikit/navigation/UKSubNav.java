@@ -1,7 +1,7 @@
 package org.vaadin.uikit.navigation;
 
-public class UKSubNav extends UKMenuBase {
-    public UKSubNav() {
+public class UkSubNav extends MenuBase {
+    public UkSubNav() {
         setSub();
     }
 

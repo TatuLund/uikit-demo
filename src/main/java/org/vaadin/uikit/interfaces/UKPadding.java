@@ -2,7 +2,7 @@ package org.vaadin.uikit.interfaces;
 
 import com.vaadin.flow.component.HasElement;
 
-public interface UKPadding extends HasElement {
+public interface UkPadding extends HasElement {
 
     static String MODIFIER_BASE = "uk-padding-remove";
 
@@ -48,7 +48,7 @@ public interface UKPadding extends HasElement {
 
     default void setPadding(PaddingSize paddingSize) {
         for (PaddingSize padding : PaddingSize.values()) {
-            getElement().getClassList().remove(padding);
+            getElement().getClassList().remove(padding.getPadding());
         }
         getElement().getClassList().add(paddingSize.getPadding());
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.uikit.components.UkCard;
+import org.vaadin.uikit.components.UkCard.CardVariant;
 import org.vaadin.uikit.components.UkDescriptionList;
 import org.vaadin.uikit.components.UkTile;
 import org.vaadin.uikit.components.UkTile.TileVariant;
@@ -11,7 +12,10 @@ import org.vaadin.uikit.components.layout.UkFlex;
 import org.vaadin.uikit.components.layout.UkFlex.Direction;
 import org.vaadin.uikit.components.layout.UkFlex.HorizontalAlignment;
 import org.vaadin.uikit.components.layout.UkFlex.VerticalAlignment;
+import org.vaadin.uikit.components.layout.UkPanel;
 import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.interfaces.UkFloat.FloatStyle;
+import org.vaadin.uikit.interfaces.UkPadding.PaddingSize;
 
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
@@ -28,8 +32,9 @@ public class DescriptionView extends UkFlex {
         setOverflow(OverflowMode.AUTO);
         setSizeFull();
 
-        UkCard card = new UkCard();
         
+        UkCard card = new UkCard();
+        card.setTitle("Descriptions");
         String[] array = { "Front end development", "Back end development", "CI/CD experience", "Java programming", "JavaScript coding", "SQL queries", "Integration tests",
                 "Unit tests", "Selenium", "Maven" };
         List<Term> terms = new ArrayList<>();
@@ -40,8 +45,9 @@ public class DescriptionView extends UkFlex {
         UkDescriptionList<Term> list = new UkDescriptionList<>(Term::getTerm,Term::getDescription);
         list.setComponentProvider(term -> {
             UkTile tile = new UkTile(term.getDescription());
-            tile.setVariant(TileVariant.SECONDARY);
+            tile.setVariant(TileVariant.MUTED);
             tile.setBorder(BorderStyle.ROUNDED);
+            tile.setPadding(PaddingSize.SMALL);
             return tile;
         });
         list.setItems(terms);
@@ -49,7 +55,8 @@ public class DescriptionView extends UkFlex {
         list.setTermMargin();
 
         card.setContent(list);
-
+        card.setOverflow(OverflowMode.AUTO);
+        
         add(card);
     }
 

@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.vaadin.uikit.interfaces.UkBorder;
 import org.vaadin.uikit.interfaces.UkMargin;
+import org.vaadin.uikit.interfaces.UkOverflow;
 import org.vaadin.uikit.interfaces.UkPadding;
 import org.vaadin.uikit.interfaces.UkSizing;
 
@@ -15,7 +16,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
 public class UkCard extends Composite<Div>
-        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder {
+        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder, UkOverflow {
 
     H3 titleComponent = new H3();
     Div div = new Div();

@@ -6,8 +6,14 @@ import java.util.List;
 import org.vaadin.uikit.components.UkBeanTable;
 import org.vaadin.uikit.components.UkButton;
 import org.vaadin.uikit.components.UkNotification;
+import org.vaadin.uikit.components.UkButton.ButtonSize;
 import org.vaadin.uikit.components.UkButton.ButtonVariant;
+import org.vaadin.uikit.components.UkCard;
+import org.vaadin.uikit.components.UkCard.CardVariant;
+import org.vaadin.uikit.components.UkIcons;
 import org.vaadin.uikit.components.layout.UkFlex;
+import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.interfaces.UkFloat.FloatStyle;
 import org.vaadin.uikit.interfaces.UkOverflow.OverflowMode;
 
 import com.vaadin.flow.data.provider.ListDataProvider;
@@ -28,6 +34,9 @@ public class TableView extends UkFlex {
         setOverflow(OverflowMode.AUTO);
         setSizeFull();
 
+        UkCard card = new UkCard();
+        card.setTitle("Table");
+
         UkBeanTable<MonthlyExpense> table = new UkBeanTable<>(
                 MonthlyExpense.class, false, 12);
         table.setHtmlAllowed(true);
@@ -40,11 +49,16 @@ public class TableView extends UkFlex {
         table.addComponentColumn(null, expense -> {
             UkButton edit = new UkButton("edit");
             edit.setVariant(ButtonVariant.PRIMARY);
+            edit.setSize(ButtonSize.SMALL);
+            edit.setBorder(BorderStyle.ROUNDED);
+            edit.setFloat(FloatStyle.RIGHT);
+            edit.setIcon(UkIcons.PENCIL.create());
             edit.addClickListener(event -> {
                 UkNotification.show("Not implemented");
             });
             return edit;
         });
+        table.setButtonBorder(BorderStyle.ROUNDED);
         // table.setColumns("year","month","expenses");
         data = getData();
         table.setItems(data);
@@ -63,7 +77,12 @@ public class TableView extends UkFlex {
         table.setWidthFull();
         UkFlex buttons = new UkFlex();
         buttons.add(plus, minus);
-        add(table);
+        card.setContent(table);
+        card.setMargin(MarginSize.SMALL);
+        card.setVariant(CardVariant.SECONDARY);
+        card.setWidth(FixedWidth.XXLARGE);
+        card.setOverflow(OverflowMode.AUTO);
+        add(card);
     }
 
     public List<MonthlyExpense> getData() {

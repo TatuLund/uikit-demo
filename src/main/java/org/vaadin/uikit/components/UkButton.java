@@ -1,5 +1,7 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkFloat;
 import org.vaadin.uikit.interfaces.UkMargin;
 import org.vaadin.uikit.interfaces.UkTooltip;
 
@@ -7,7 +9,7 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.html.NativeButton;
 
-public class UkButton extends NativeButton implements UkTooltip, UkMargin {
+public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBorder, UkFloat {
 
     public enum ButtonVariant {
         DEFAULT("uk-button-default"),
@@ -73,6 +75,7 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin {
 
     public void setIcon(UkIcon icon) {
         this.icon= icon;
+        removeAll();
         add(icon);
         if (caption != null && !caption.isEmpty()) {
             add(caption);

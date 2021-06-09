@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import org.vaadin.uikit.interfaces.ComponentProvider;
 import org.vaadin.uikit.interfaces.StringProvider;
+import org.vaadin.uikit.interfaces.UkFloat;
 import org.vaadin.uikit.interfaces.UkMargin;
 import org.vaadin.uikit.interfaces.UkPadding;
 import org.vaadin.uikit.interfaces.UkSizing;
@@ -15,7 +16,6 @@ import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.DetachEvent;
-import com.vaadin.flow.component.ItemLabelGenerator;
 import com.vaadin.flow.component.html.DescriptionList;
 import com.vaadin.flow.component.html.DescriptionList.Description;
 import com.vaadin.flow.component.html.DescriptionList.Term;

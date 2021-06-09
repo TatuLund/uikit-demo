@@ -1,6 +1,8 @@
 package org.vaadin.uikit.components;
 
 import org.vaadin.uikit.components.UkButton.ButtonVariant;
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkFloat;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -9,7 +11,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
-public class UkDropdown extends Composite<Div> {
+public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
 
     public enum Position {
         TOP_JUSTIFY("top-justify"),
@@ -92,6 +94,20 @@ public class UkDropdown extends Composite<Div> {
         button.setVariant(variant);
     }
 
+    public void setIcon(UkIcon icon) {
+        button.setIcon(icon);
+    }
+
+    @Override
+    public void setFloat(FloatStyle floatStyle) {
+        button.setFloat(floatStyle);
+    }
+
+    @Override
+    public void setBorder(BorderStyle borderStyle) {
+        button.setBorder(borderStyle);        
+    }
+    
     public void removeAll() {
         dropdown.removeAll();
     }

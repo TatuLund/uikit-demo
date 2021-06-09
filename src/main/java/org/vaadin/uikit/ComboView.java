@@ -27,6 +27,7 @@ public class ComboView extends UkFlex {
         setDirection(Direction.COLUMN);
         setVerticalAlignment(VerticalAlignment.MIDDLE);
         setHorizontalAlignment(HorizontalAlignment.AROUND);
+        setOverflow(OverflowMode.AUTO);
         setSizeFull();
 
         UkCombo<Item> combo = createCombo();

@@ -1,5 +1,7 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.interfaces.UkFloat;
 import org.vaadin.uikit.interfaces.UkMargin;
 import org.vaadin.uikit.interfaces.UkPadding;
 import org.vaadin.uikit.interfaces.UkTooltip;
@@ -9,7 +11,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 
 public class UkLabel extends Composite<Span>
-        implements UkTooltip, UkMargin, UkSizing, UkPadding {
+        implements UkTooltip, UkMargin, UkSizing, UkPadding, UkBorder, UkFloat {
 
     public enum LabelVariant {
         SUCCESS("uk-label-success"), 

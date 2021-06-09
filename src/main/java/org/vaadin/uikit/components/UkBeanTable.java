@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import org.vaadin.uikit.interfaces.ComponentProvider;
+import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.interfaces.UkMargin.MarginSide;
+import org.vaadin.uikit.interfaces.UkMargin.MarginSize;
 import org.vaadin.uikit.interfaces.UkTableOptions;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -74,6 +77,7 @@ public class UkBeanTable<T> extends HtmlComponent
 
     private final ArrayList<QuerySortOrder> backEndSorting = new ArrayList<>();
     private int dataProviderSize = -1;
+    private BorderStyle borderStyle = BorderStyle.SHARP;
 
     /**
      * Configuration class for the Columns.
@@ -410,9 +414,15 @@ public class UkBeanTable<T> extends HtmlComponent
             cell.setAttribute("colspan", "" + columns.size());
             rowElement.appendChild(cell);
             UkButton first = new UkButton(UkIcons.CHEVRON_DOUBLE_LEFT.create());
+            first.setBorder(borderStyle);
+            first.setMargin(MarginSize.SMALL, MarginSide.RIGHT);
             UkButton previous = new UkButton(UkIcons.CHEVRON_LEFT.create());
+            previous.setBorder(borderStyle);
             UkButton next = new UkButton(UkIcons.CHEVRON_RIGHT.create());
+            next.setBorder(borderStyle);
+            next.setMargin(MarginSize.SMALL, MarginSide.RIGHT);
             UkButton last = new UkButton(UkIcons.CHEVRON_DOUBLE_RIGHT.create());
+            last.setBorder(borderStyle);
             int lastPage = dataProviderSize % pageLength == 0
                     ? (dataProviderSize / pageLength) - 1
                     : (dataProviderSize / pageLength);
@@ -572,5 +582,9 @@ public class UkBeanTable<T> extends HtmlComponent
      */
     public void setHtmlAllowed(boolean htmlAllowed) {
         this.htmlAllowed = htmlAllowed;
+    }
+
+    public void setButtonBorder(BorderStyle borderStyle) {
+        this.borderStyle = borderStyle;
     }
 }

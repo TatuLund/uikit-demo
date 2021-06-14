@@ -103,8 +103,8 @@ public class UkBeanTable<T> extends HtmlComponent
      */
     public enum ColumnWrapping {
         WRAP(null),
-        SHIRNK("uk-text-truncate"),
-        EXPAND("uk-text-nowrap");
+        TRUNCATE("uk-text-truncate"),
+        NOWRAP("uk-text-nowrap");
 
         private final String wrapping;
 
@@ -128,7 +128,7 @@ public class UkBeanTable<T> extends HtmlComponent
         ValueProvider<R,?> valueProvider;
         ComponentProvider<R> componentProvider;
         private ColumnWidth width = ColumnWidth.NONE;
-        private ColumnWrapping wrapping;
+        private ColumnWrapping wrapping = ColumnWrapping.WRAP;
 
         /**
          * Constructor with header and value provider

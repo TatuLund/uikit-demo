@@ -32,9 +32,10 @@ import com.vaadin.flow.server.RouteRegistry;
 import com.vaadin.flow.server.SessionRouteRegistry;
 import com.vaadin.flow.server.VaadinSession;
 
-@StyleSheet("context://uikit.css")
-@JavaScript("context://uikit.js")
-@JavaScript("context://uikit-icons.js")
+//@StyleSheet("context://custom.css")
+@StyleSheet("context://uikit.min.css")
+@JavaScript("context://uikit.min.js")
+@JavaScript("context://uikit-icons.min.js")
 public class UkAppLayout extends Composite<UkFlex> {
 
     UkFlex flex = new UkFlex();
@@ -91,6 +92,18 @@ public class UkAppLayout extends Composite<UkFlex> {
         }        
     }
 
+    public void setMenu() {
+        setMenu(MenuType.SIDE);
+    }
+    
+    public void setMenu(MenuType type) {
+        setMenu(null,type);
+    }
+    
+    public void setMenu(String caption, MenuType type) {
+        setMenu(caption,type,true);
+    }
+    
     public void setMenu(String caption, MenuType type, boolean autoPopulate) {
         if (caption == null) caption = "";
         if (type == MenuType.BAR) {

@@ -1,8 +1,10 @@
 package org.vaadin.uikit.components.layout;
 
+import org.vaadin.uikit.interfaces.UkPadding;
+
 import com.vaadin.flow.component.html.Div;
 
-public class UkContainer extends Div {
+public class UkContainer extends Div implements UkPadding {
 
     public enum ContainerMaxWidth {
         XSMALL("uk-container-xsmall"),

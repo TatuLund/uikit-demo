@@ -1,0 +1,16 @@
+// 1. Your custom variables and variable overwrites.
+$global-link-color: #DA7D02;
+$global-primary-background: rgb(128, 64, 0);
+$global-muted-background: rgb(255, 213, 191);
+$global-secondary-background: rgb(55, 34, 13);
+$global-muted-color: rgb(211, 176, 95);
+
+// 2. Import default variables and available mixins.
+@import "../../uikit/variables-theme.scss";
+@import "../../uikit/mixins-theme.scss";
+
+// 3. Your custom mixin overwrites.
+// @mixin hook-card() { color: #000; }
+
+// 4. Import UIkit.
+@import "../../uikit/uikit-theme.scss";

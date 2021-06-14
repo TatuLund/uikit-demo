@@ -11,7 +11,7 @@ import com.vaadin.flow.server.PWA;
 public class MainLayout extends UkAppLayout implements RouterLayout {
 
     public MainLayout() {
-        setMenu(null,MenuType.SIDE,true);
+        setMenu();
         setLogo("Demo application");
         setLogout();
     }

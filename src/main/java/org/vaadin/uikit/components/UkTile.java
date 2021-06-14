@@ -60,11 +60,11 @@ public class UkTile extends Composite<Div>
         return div;
     }
 
-    public void setVariant(TileVariant cardVariant) {
+    public void setVariant(TileVariant tileVariant) {
         for (TileVariant variant : TileVariant.values()) {
             div.removeClassName(variant.getVariantName());
         }
-        div.addClassName(cardVariant.getVariantName());
+        div.addClassName(tileVariant.getVariantName());
     }
 
 

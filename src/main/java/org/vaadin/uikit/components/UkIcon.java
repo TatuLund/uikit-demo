@@ -17,9 +17,9 @@ public class UkIcon extends Composite<Span> implements UkTooltip, UkMargin, UkFl
         icon.getElement().setAttribute("uk-icon", iconName.getIconName());
     }
 
-    public UkIcon(UkIcons iconName, int ratio) {
+    public UkIcon(UkIcons iconName, double ratio) {
         icon.getElement().setAttribute("uk-icon",
-                "icon: " + iconName.getIconName() + ", ratio: " + ratio);
+                "icon: " + iconName.getIconName() + "; ratio: " + ratio);
     }
 
     public void setButtonStyle(boolean buttonStyle) {

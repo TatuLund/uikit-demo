@@ -15,8 +15,10 @@ import org.vaadin.uikit.components.layout.UkGrid.GapModifier;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@PageTitle("Accordion")
 @Route(value = "accordion", layout = MainLayout.class)
 public class AccordionView extends UkFlex {
 

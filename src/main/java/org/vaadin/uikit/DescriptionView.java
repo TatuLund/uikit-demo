@@ -18,8 +18,11 @@ import org.vaadin.uikit.interfaces.UkFloat.FloatStyle;
 import org.vaadin.uikit.interfaces.UkPadding.PaddingSize;
 
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 
+@PageTitle("Descriptions")
 @Route(value = "description", layout = MainLayout.class)
 public class DescriptionView extends UkFlex {
 

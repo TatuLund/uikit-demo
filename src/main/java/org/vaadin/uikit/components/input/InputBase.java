@@ -9,4 +9,11 @@ import com.vaadin.flow.component.html.Input;
 
 public abstract class InputBase extends Input implements UkValidation, UkTooltip, UkMargin, UkBorder {
 
+    public void setDisabled(boolean disabled) {
+        this.getElement().setProperty("disabled", disabled);
+    }
+
+    public boolean isDisabled() {
+        return getElement().getProperty("disabled", false);
+    }
 }

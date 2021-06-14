@@ -80,6 +80,44 @@ public class UkBeanTable<T> extends HtmlComponent
     private BorderStyle borderStyle = BorderStyle.SHARP;
 
     /**
+     * The column width style
+     */
+    public enum ColumnWidth {
+        NONE(null),
+        SHIRNK("uk-table-shrink"),
+        EXPAND("uk-table-expand");
+
+        private final String width;
+
+        ColumnWidth(String width) {
+            this.width = width;
+        }
+
+        public String getWidth() {
+            return width;
+        }
+    }
+
+    /**
+     * The column text wrapping style
+     */
+    public enum ColumnWrapping {
+        WRAP(null),
+        SHIRNK("uk-text-truncate"),
+        EXPAND("uk-text-nowrap");
+
+        private final String wrapping;
+
+        ColumnWrapping(String wrapping) {
+            this.wrapping = wrapping;
+        }
+
+        public String getWrapping() {
+            return wrapping;
+        }
+    }
+
+    /**
      * Configuration class for the Columns.
      *
      * @param <R>
@@ -89,6 +127,8 @@ public class UkBeanTable<T> extends HtmlComponent
         String header;
         ValueProvider<R,?> valueProvider;
         ComponentProvider<R> componentProvider;
+        private ColumnWidth width = ColumnWidth.NONE;
+        private ColumnWrapping wrapping;
 
         /**
          * Constructor with header and value provider
@@ -109,13 +149,15 @@ public class UkBeanTable<T> extends HtmlComponent
         public Column() {
         }
 
-        public void setHeader(String header) {
+        public Column<R> setHeader(String header) {
             this.header = header;
+            return this;
         }
 
-        public void setComponentProvider(
+        public Column<R> setComponentProvider(
                 ComponentProvider<R> componentProvider) {
             this.componentProvider = componentProvider;
+            return this;
         }
 
         public ValueProvider<R,?> getValueProvider() {
@@ -129,6 +171,36 @@ public class UkBeanTable<T> extends HtmlComponent
         public String getHeader() {
             return header;
         }
+
+        /**
+         * Set the column width style for this column.
+         * 
+         * @param width The column width style
+         * @return The column for chaining
+         */
+        public Column<R> setWidth(ColumnWidth width) {
+            this.width = width;
+            return this;
+        }
+        
+        public ColumnWidth getWidth() {
+            return width;
+        }
+ 
+        /**
+         * Set the column text wrapping style for this column.
+         * 
+         * @param wrapping Text wrapping style
+         * @return The column for chaining
+         */
+        public Column<R> setWrapping(ColumnWrapping wrapping) {
+            this.wrapping = wrapping;
+            return this;
+        }
+        
+        public ColumnWrapping getWrapping() {
+            return wrapping;
+        }    
     }
 
     /**
@@ -401,6 +473,12 @@ public class UkBeanTable<T> extends HtmlComponent
             if (column.getHeader() != null) {
                 cell.setText(column.getHeader());
             }
+            if (column.getWidth() != ColumnWidth.NONE) {
+                cell.getClassList().add(column.getWidth().getWidth());
+            }
+            if (column.getWrapping() != ColumnWrapping.WRAP) {
+                cell.getClassList().add(column.getWrapping().getWrapping());
+            }
             rowElement.appendChild(cell);
         });
         headerElement.appendChild(rowElement);
@@ -584,6 +662,11 @@ public class UkBeanTable<T> extends HtmlComponent
         this.htmlAllowed = htmlAllowed;
     }
 
+    /**
+     * Set the Border style used in paging buttons.
+     * 
+     * @param borderStyle The border style. 
+     */
     public void setButtonBorder(BorderStyle borderStyle) {
         this.borderStyle = borderStyle;
     }

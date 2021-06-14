@@ -1,5 +1,7 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.interfaces.UkBorder;
+
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Composite;
@@ -10,7 +12,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.shared.Registration;
 
-public class UkAlert extends Composite<Div> implements HasSize {
+public class UkAlert extends Composite<Div> implements HasSize, UkBorder {
 
     public enum AlertVariant {
         SUCCESS("uk-alert-success"),

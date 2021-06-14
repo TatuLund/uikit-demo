@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.uikit.components.UkBeanTable;
+import org.vaadin.uikit.components.UkBeanTable.ColumnWidth;
 import org.vaadin.uikit.components.UkButton;
 import org.vaadin.uikit.components.UkNotification;
 import org.vaadin.uikit.components.UkButton.ButtonSize;
@@ -13,12 +14,12 @@ import org.vaadin.uikit.components.UkCard.CardVariant;
 import org.vaadin.uikit.components.UkIcons;
 import org.vaadin.uikit.components.layout.UkFlex;
 import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
-import org.vaadin.uikit.interfaces.UkFloat.FloatStyle;
-import org.vaadin.uikit.interfaces.UkOverflow.OverflowMode;
 
 import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@PageTitle("Table")
 @Route(value = "table", layout = MainLayout.class)
 public class TableView extends UkFlex {
 
@@ -41,17 +42,16 @@ public class TableView extends UkFlex {
                 MonthlyExpense.class, false, 12);
         table.setHtmlAllowed(true);
         table.setSmall(true);
-        table.addColumn("year", MonthlyExpense::getYear);
+        table.addColumn("year", MonthlyExpense::getYear).setWidth(ColumnWidth.SHIRNK);
         table.addColumn("month",
-                expense -> "<i>" + expense.getMonth() + "</i>");
-        table.addColumn("expense", MonthlyExpense::getExpenses);
+                expense -> "<i>" + expense.getMonth() + "</i>").setWidth(ColumnWidth.EXPAND);
+        table.addColumn("expense", MonthlyExpense::getExpenses).setWidth(ColumnWidth.EXPAND);
         table.setStripes(true);
         table.addComponentColumn(null, expense -> {
             UkButton edit = new UkButton("edit");
             edit.setVariant(ButtonVariant.PRIMARY);
             edit.setSize(ButtonSize.SMALL);
             edit.setBorder(BorderStyle.ROUNDED);
-            edit.setFloat(FloatStyle.RIGHT);
             edit.setIcon(UkIcons.PENCIL.create());
             edit.addClickListener(event -> {
                 UkNotification.show("Not implemented");

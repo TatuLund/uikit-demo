@@ -16,8 +16,10 @@ import org.vaadin.uikit.components.layout.UkForm;
 import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
 import org.vaadin.uikit.interfaces.UkFormSizing.FieldSize;
 
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@PageTitle("Selections")
 @Route(value = "combo", layout = MainLayout.class)
 public class ComboView extends UkFlex {
 

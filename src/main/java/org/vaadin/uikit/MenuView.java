@@ -12,8 +12,10 @@ import org.vaadin.uikit.navigation.UkSubNav;
 import org.vaadin.uikit.navigation.UkNavbar.Alignment;
 import org.vaadin.uikit.navigation.UkNavbar.Mode;
 
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@PageTitle("Menues")
 @Route(value = "menu", layout = MainLayout.class)
 public class MenuView extends UkFlex {
 

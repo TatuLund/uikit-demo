@@ -158,4 +158,9 @@ public enum UkIcons {
     public UkIcon create() {
         return new UkIcon(this);
     }
+
+    public UkIcon create(double ratio) {
+        return new UkIcon(this,ratio);
+    }
+
 }

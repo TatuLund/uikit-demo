@@ -1,5 +1,6 @@
 package org.vaadin.uikit.navigation;
 
+import org.vaadin.uikit.components.UkButton;
 import org.vaadin.uikit.interfaces.UkMargin;
 import org.vaadin.uikit.interfaces.UkPadding;
 import org.vaadin.uikit.interfaces.UkSizing;
@@ -15,6 +16,8 @@ import com.vaadin.flow.router.RouterLink;
 @Tag(Tag.NAV)
 public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSizing {
 
+    private Div left = new Div();
+    private Div right = new Div();
     private Div wrapper = new Div();
     private UnorderedList navbar = new UnorderedList();
 
@@ -78,6 +81,28 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
         }
     }
 
+    public void setLogo(String logoText) {
+        left.addClassName(Alignment.LEFT.getAlignment());
+        Div item = new Div();
+        item.addClassNames("uk-navbar-item","uk-logo");
+        item.setText(logoText);
+        left.removeAll();
+        left.add(item);
+        getElement().removeAllChildren();
+        getElement().appendChild(left.getElement(),wrapper.getElement(),right.getElement());
+    }
+
+    public void addLogout(UkButton logout) {
+        right.addClassNames(Alignment.RIGHT.getAlignment(),"uk-margin-small-left");
+        Div item = new Div();
+        item.addClassName("uk-navbar-item");
+        item.add(logout);
+        right.removeAll();
+        right.add(item);
+        getElement().removeAllChildren();
+        getElement().appendChild(left.getElement(),wrapper.getElement(),right.getElement());
+    }
+
     public UkNavbar() {
         this(Mode.HOVER);
     }
@@ -96,6 +121,6 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
         wrapper.addClassName(alignment.getAlignment());
         navbar.addClassName("uk-navbar-nav");
         wrapper.add(navbar);
-        this.getElement().appendChild(wrapper.getElement());
+        getElement().appendChild(wrapper.getElement());
     }
 }

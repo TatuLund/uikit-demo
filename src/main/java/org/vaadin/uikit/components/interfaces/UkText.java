@@ -1,6 +1,6 @@
-package org.vaadin.uikit.interfaces;
+package org.vaadin.uikit.components.interfaces;
 
-import org.vaadin.uikit.interfaces.UkSizing.FixedWidth;
+import org.vaadin.uikit.components.interfaces.UkSizing.FixedWidth;
 
 import com.vaadin.flow.component.HasElement;
 

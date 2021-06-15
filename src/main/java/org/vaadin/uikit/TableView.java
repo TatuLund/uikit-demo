@@ -11,9 +11,9 @@ import org.vaadin.uikit.components.UkButton.ButtonSize;
 import org.vaadin.uikit.components.UkButton.ButtonVariant;
 import org.vaadin.uikit.components.UkCard;
 import org.vaadin.uikit.components.UkCard.CardVariant;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
 import org.vaadin.uikit.components.UkIcons;
 import org.vaadin.uikit.components.layout.UkFlex;
-import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
 
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;

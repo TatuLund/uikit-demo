@@ -1,9 +1,9 @@
-package org.vaadin.uikit.navigation;
+package org.vaadin.uikit.components.navigation;
 
 import org.vaadin.uikit.components.UkButton;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlComponent;
@@ -93,7 +93,10 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
     }
 
     public void addLogout(UkButton logout) {
-        right.addClassNames(Alignment.RIGHT.getAlignment(),"uk-margin-small-left");
+        right.addClassName(Alignment.RIGHT.getAlignment());
+        if (wrapper.getElement().getClassList().contains(Alignment.RIGHT.getAlignment())) {
+            right.addClassName("uk-margin-small-left");
+        }
         Div item = new Div();
         item.addClassName("uk-navbar-item");
         item.add(logout);

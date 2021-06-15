@@ -1,11 +1,11 @@
 package org.vaadin.uikit.components.input;
 
-import org.vaadin.uikit.interfaces.UkBorder;
-import org.vaadin.uikit.interfaces.UkFormSizing;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkTooltip;
-import org.vaadin.uikit.interfaces.UkValidation;
+import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
+import org.vaadin.uikit.components.interfaces.UkValidation;
 
 public class UkTextArea extends TextAreaBase
         implements UkValidation, UkTooltip, UkMargin, UkPadding, UkFormSizing, UkBorder {

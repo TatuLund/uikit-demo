@@ -1,6 +1,6 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkBorder;
 
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;

@@ -1,8 +1,8 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UkFloat;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;

@@ -11,10 +11,10 @@ import org.vaadin.uikit.components.input.UkCheckboxGroup;
 import org.vaadin.uikit.components.input.UkCombo;
 import org.vaadin.uikit.components.input.UkRadioGroup;
 import org.vaadin.uikit.components.input.UkSelect;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldSize;
 import org.vaadin.uikit.components.layout.UkFlex;
 import org.vaadin.uikit.components.layout.UkForm;
-import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
-import org.vaadin.uikit.interfaces.UkFormSizing.FieldSize;
 
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;

@@ -8,10 +8,10 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.WeekFields;
 import java.util.Optional;
 
-import org.vaadin.uikit.interfaces.UkBorder;
-import org.vaadin.uikit.interfaces.UkFormSizing;
-import org.vaadin.uikit.interfaces.UkTooltip;
-import org.vaadin.uikit.interfaces.UkValidation;
+import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
+import org.vaadin.uikit.components.interfaces.UkValidation;
 
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.AttachEvent;

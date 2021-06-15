@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.ComponentProvider;
-import org.vaadin.uikit.interfaces.StringProvider;
-import org.vaadin.uikit.interfaces.UkFloat;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.ComponentProvider;
+import org.vaadin.uikit.components.interfaces.StringProvider;
+import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;

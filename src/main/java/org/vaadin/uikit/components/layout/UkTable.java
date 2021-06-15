@@ -3,7 +3,7 @@ package org.vaadin.uikit.components.layout;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.interfaces.UkTableOptions;
+import org.vaadin.uikit.components.interfaces.UkTableOptions;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HtmlComponent;

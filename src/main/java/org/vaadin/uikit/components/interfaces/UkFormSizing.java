@@ -1,6 +1,6 @@
-package org.vaadin.uikit.interfaces;
+package org.vaadin.uikit.components.interfaces;
 
-import org.vaadin.uikit.interfaces.UkText.FontSize;
+import org.vaadin.uikit.components.interfaces.UkText.FontSize;
 
 import com.vaadin.flow.component.HasElement;
 

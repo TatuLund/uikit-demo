@@ -1,7 +1,7 @@
 package org.vaadin.uikit.components.layout;
 
-import org.vaadin.uikit.interfaces.UkBorder;
-import org.vaadin.uikit.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.html.Div;
 

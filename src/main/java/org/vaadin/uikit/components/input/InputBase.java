@@ -1,9 +1,9 @@
 package org.vaadin.uikit.components.input;
 
-import org.vaadin.uikit.interfaces.UkBorder;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkTooltip;
-import org.vaadin.uikit.interfaces.UkValidation;
+import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
+import org.vaadin.uikit.components.interfaces.UkValidation;
 
 import com.vaadin.flow.component.html.Input;
 

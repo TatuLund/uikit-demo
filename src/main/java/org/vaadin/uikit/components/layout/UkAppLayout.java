@@ -8,23 +8,21 @@ import org.vaadin.uikit.components.UkOffCanvas;
 import org.vaadin.uikit.components.UkButton.ButtonVariant;
 import org.vaadin.uikit.components.UkIcon;
 import org.vaadin.uikit.components.UkOffCanvas.AnimationMode;
+import org.vaadin.uikit.components.interfaces.UkMargin.MarginSide;
+import org.vaadin.uikit.components.interfaces.UkMargin.MarginSize;
 import org.vaadin.uikit.components.layout.UkContainer.ContainerMaxWidth;
 import org.vaadin.uikit.components.layout.UkFlex.Direction;
 import org.vaadin.uikit.components.layout.UkFlex.VerticalAlignment;
 import org.vaadin.uikit.components.layout.UkSection.SectionPadding;
 import org.vaadin.uikit.components.layout.UkSection.SectionVariant;
-import org.vaadin.uikit.interfaces.UkMargin.MarginSide;
-import org.vaadin.uikit.interfaces.UkMargin.MarginSize;
-import org.vaadin.uikit.navigation.UkDropdownNav;
-import org.vaadin.uikit.navigation.UkNav;
-import org.vaadin.uikit.navigation.UkNavbar;
-import org.vaadin.uikit.navigation.UkNavbar.Alignment;
-import org.vaadin.uikit.navigation.UkNavbar.Mode;
-import org.vaadin.uikit.navigation.UkNavbarItem;
+import org.vaadin.uikit.components.navigation.UkDropdownNav;
+import org.vaadin.uikit.components.navigation.UkNav;
+import org.vaadin.uikit.components.navigation.UkNavbar;
+import org.vaadin.uikit.components.navigation.UkNavbarItem;
+import org.vaadin.uikit.components.navigation.UkNavbar.Alignment;
+import org.vaadin.uikit.components.navigation.UkNavbar.Mode;
 
 import com.vaadin.flow.component.Composite;
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouteData;
@@ -32,10 +30,6 @@ import com.vaadin.flow.server.RouteRegistry;
 import com.vaadin.flow.server.SessionRouteRegistry;
 import com.vaadin.flow.server.VaadinSession;
 
-//@StyleSheet("context://custom.css")
-@StyleSheet("context://uikit.min.css")
-@JavaScript("context://uikit.min.js")
-@JavaScript("context://uikit-icons.min.js")
 public class UkAppLayout extends Composite<UkFlex> {
 
     UkFlex flex = new UkFlex();
@@ -50,6 +44,7 @@ public class UkAppLayout extends Composite<UkFlex> {
     private UkButton logout = new UkButton(UkIcons.LOCK.create(1.5));
     private String logoText;
     private boolean hasLogout;
+    private MenuType menuType;
 
     public enum MenuType {
         BAR, DROPDOWN, SIDE
@@ -73,6 +68,7 @@ public class UkAppLayout extends Composite<UkFlex> {
     }
 
     public void setLogo(String logoText) {
+        if (menuType == null) return;
         this.logoText = logoText;
         if (navbar != null) {
             navbar.setLogo(logoText);
@@ -83,6 +79,7 @@ public class UkAppLayout extends Composite<UkFlex> {
     }
 
     public void setLogout() {
+        if (hasLogout || menuType == null) return;
         hasLogout = true;
         if (navbar != null) {
             navbar.addLogout(logout);
@@ -90,6 +87,10 @@ public class UkAppLayout extends Composite<UkFlex> {
             if (logoText != null) logo.setText(logoText);
             logo.add(logout);
         }        
+    }
+
+    public UkButton getLogout() {
+        return logout;
     }
 
     public void setMenu() {
@@ -105,6 +106,8 @@ public class UkAppLayout extends Composite<UkFlex> {
     }
     
     public void setMenu(String caption, MenuType type, boolean autoPopulate) {
+        if (menuType != null) return;
+        menuType = type; 
         if (caption == null) caption = "";
         if (type == MenuType.BAR) {
             navbar = new UkNavbar(Mode.CLICK, Alignment.CENTER);

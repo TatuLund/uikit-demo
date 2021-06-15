@@ -1,8 +1,8 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UkSizing;
-import org.vaadin.uikit.interfaces.UkSizing.FixedHeight;
-import org.vaadin.uikit.interfaces.UkSizing.FixedWidth;
+import org.vaadin.uikit.components.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.UkSizing.FixedHeight;
+import org.vaadin.uikit.components.interfaces.UkSizing.FixedWidth;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;

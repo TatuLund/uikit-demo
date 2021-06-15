@@ -1,4 +1,4 @@
-package org.vaadin.uikit.navigation;
+package org.vaadin.uikit.components.navigation;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Anchor;

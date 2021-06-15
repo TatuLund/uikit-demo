@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;

@@ -1,4 +1,4 @@
-package org.vaadin.uikit.interfaces;
+package org.vaadin.uikit.components.interfaces;
 
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.HasValidation;

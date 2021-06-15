@@ -1,9 +1,9 @@
-package org.vaadin.uikit.interfaces;
+package org.vaadin.uikit.components.interfaces;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.function.ValueProvider;
 
-public interface ComponentProvider<T> extends ValueProvider<T, Component> {
+@FunctionalInterface
+public interface StringProvider<T> extends ValueProvider<T, String> {
 
     /**
      * Gets a caption for the {@code item}.
@@ -13,5 +13,5 @@ public interface ComponentProvider<T> extends ValueProvider<T, Component> {
      * @return the caption of the item, not {@code null}
      */
     @Override
-    Component apply(T item);
+    String apply(T item);
 }

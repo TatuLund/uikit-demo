@@ -8,14 +8,14 @@ import org.vaadin.uikit.components.UkCard.CardVariant;
 import org.vaadin.uikit.components.UkDescriptionList;
 import org.vaadin.uikit.components.UkTile;
 import org.vaadin.uikit.components.UkTile.TileVariant;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.components.interfaces.UkFloat.FloatStyle;
+import org.vaadin.uikit.components.interfaces.UkPadding.PaddingSize;
 import org.vaadin.uikit.components.layout.UkFlex;
 import org.vaadin.uikit.components.layout.UkFlex.Direction;
 import org.vaadin.uikit.components.layout.UkFlex.HorizontalAlignment;
 import org.vaadin.uikit.components.layout.UkFlex.VerticalAlignment;
 import org.vaadin.uikit.components.layout.UkPanel;
-import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
-import org.vaadin.uikit.interfaces.UkFloat.FloatStyle;
-import org.vaadin.uikit.interfaces.UkPadding.PaddingSize;
 
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.PageTitle;

@@ -7,13 +7,13 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.StringProvider;
-import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
-import org.vaadin.uikit.interfaces.UkFormSizing;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkTooltip;
-import org.vaadin.uikit.interfaces.UkValidation;
+import org.vaadin.uikit.components.interfaces.StringProvider;
+import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
+import org.vaadin.uikit.components.interfaces.UkValidation;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Composite;

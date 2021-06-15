@@ -1,6 +1,6 @@
 package org.vaadin.uikit.components.layout;
 
-import org.vaadin.uikit.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkPadding;
 
 import com.vaadin.flow.component.html.Div;
 

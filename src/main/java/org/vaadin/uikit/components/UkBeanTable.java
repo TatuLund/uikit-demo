@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import org.vaadin.uikit.interfaces.ComponentProvider;
-import org.vaadin.uikit.interfaces.UkBorder.BorderStyle;
-import org.vaadin.uikit.interfaces.UkMargin.MarginSide;
-import org.vaadin.uikit.interfaces.UkMargin.MarginSize;
-import org.vaadin.uikit.interfaces.UkTableOptions;
+import org.vaadin.uikit.components.interfaces.ComponentProvider;
+import org.vaadin.uikit.components.interfaces.UkTableOptions;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.components.interfaces.UkMargin.MarginSide;
+import org.vaadin.uikit.components.interfaces.UkMargin.MarginSize;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;

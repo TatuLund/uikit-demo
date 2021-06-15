@@ -1,11 +1,11 @@
 package org.vaadin.uikit.components;
 
-import org.vaadin.uikit.interfaces.UkBorder;
-import org.vaadin.uikit.interfaces.UkFloat;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkTooltip;
-import org.vaadin.uikit.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkSizing;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;

@@ -18,9 +18,9 @@ import org.vaadin.uikit.components.UkTile.TileVariant;
 import org.vaadin.uikit.components.input.UkCheckbox;
 import org.vaadin.uikit.components.input.UkDateField;
 import org.vaadin.uikit.components.input.UkRange;
+import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldSize;
+import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldWidth;
 import org.vaadin.uikit.components.layout.UkFlex;
-import org.vaadin.uikit.interfaces.UkFormSizing.FieldSize;
-import org.vaadin.uikit.interfaces.UkFormSizing.FieldWidth;
 
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.router.PageTitle;

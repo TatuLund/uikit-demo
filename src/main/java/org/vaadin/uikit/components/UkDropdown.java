@@ -1,8 +1,8 @@
 package org.vaadin.uikit.components;
 
 import org.vaadin.uikit.components.UkButton.ButtonVariant;
-import org.vaadin.uikit.interfaces.UkBorder;
-import org.vaadin.uikit.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkFloat;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;

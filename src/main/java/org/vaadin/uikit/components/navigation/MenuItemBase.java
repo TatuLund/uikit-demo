@@ -1,9 +1,9 @@
-package org.vaadin.uikit.navigation;
+package org.vaadin.uikit.components.navigation;
 
 import org.vaadin.uikit.components.UkIcon;
-import org.vaadin.uikit.interfaces.UkMargin;
-import org.vaadin.uikit.interfaces.UkPadding;
-import org.vaadin.uikit.interfaces.UkTooltip;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+import org.vaadin.uikit.components.interfaces.UkTooltip;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;

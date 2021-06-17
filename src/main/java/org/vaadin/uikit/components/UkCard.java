@@ -18,10 +18,10 @@ import com.vaadin.flow.component.html.H3;
 public class UkCard extends Composite<Div>
         implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder, UkOverflow {
 
-    H3 titleComponent = new H3();
-    Div div = new Div();
-    Component content = new Div();
-    Div badge = new Div();
+    private H3 titleComponent = new H3();
+    private Div div = new Div();
+    private Component content = new Div();
+    private Div badge = new Div();
 
     public enum CardVariant {
         DEFAULT("uk-card-default"),

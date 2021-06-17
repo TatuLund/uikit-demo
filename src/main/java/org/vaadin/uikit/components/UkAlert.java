@@ -36,9 +36,9 @@ public class UkAlert extends Composite<Div> implements HasSize, UkBorder {
         }
     }
 
-    Div alert = new Div();
-    H3 titleComponent = new H3();
-    Paragraph p = new Paragraph();
+    private Div alert = new Div();
+    private H3 titleComponent = new H3();
+    private Paragraph p = new Paragraph();
 
     public UkAlert(String alertText) {
         this(alertText, null, 150, true);

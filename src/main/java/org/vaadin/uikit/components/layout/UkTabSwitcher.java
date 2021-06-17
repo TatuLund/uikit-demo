@@ -26,10 +26,8 @@ public class UkTabSwitcher extends Composite<Div>
     }
 
     public enum TabAlignment {
-        LEFT("uk-flex-left"),
-        CENTER("uk-flex-center"),
-        RIGHT("uk-flex-right"),
-        EXPAND("uk-child-width-expand");
+        LEFT("uk-flex-left"), CENTER("uk-flex-center"), RIGHT(
+                "uk-flex-right"), EXPAND("uk-child-width-expand");
 
         private final String alignment;
 
@@ -133,8 +131,8 @@ public class UkTabSwitcher extends Composite<Div>
     }
 
     public void show(int index) {
-        tabNav.getElement().executeJs("UIkit.switcher($0).show($1)", index,
-                tabNav.getElement());
+        tabNav.getElement().executeJs("UIkit.switcher($0).show($1)",
+                tabNav.getElement(), index);
     }
 
     public void setTabPlacement(TabPlacement tabPlacement) {

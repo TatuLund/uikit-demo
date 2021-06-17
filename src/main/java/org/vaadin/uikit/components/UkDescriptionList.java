@@ -29,7 +29,7 @@ import com.vaadin.flow.shared.Registration;
 public class UkDescriptionList<T> extends Composite<DescriptionList>
         implements HasDataProvider<T>, UkMargin, UkPadding, UkSizing {
 
-    DescriptionList list = new DescriptionList();
+    private DescriptionList list = new DescriptionList();
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>(this::getItemId);
     private DataProvider<T, ?> dataProvider = DataProvider.ofItems();

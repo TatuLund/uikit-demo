@@ -7,11 +7,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.vaadin.uikit.components.interfaces.UkInverse;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
+import org.vaadin.uikit.components.util.ClassResourceFactory;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -22,6 +24,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.server.AbstractStreamResource;
+import com.vaadin.flow.server.InputStreamFactory;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.shared.Registration;
 
@@ -101,13 +104,14 @@ public class UkSlideshow extends Composite<Div>
         return addListener(SlideShownEvent.class, listener);
     }
 
-    public UkSlide addImage(String fileName) {
-        StreamResource streamResource = new ClassResource(fileName)
-                .getStreamResource();
-        return addImage(streamResource);
+    public UkSlide addSlide(String fileName) throws FileNotFoundException {
+        StreamResource streamResource = null;
+        streamResource = new StreamResource(fileName, new ClassResourceFactory(fileName));
+        return addSlide(streamResource);
     }
 
-    public UkSlide addImage(AbstractStreamResource streamResource) {
+    public UkSlide addSlide(AbstractStreamResource streamResource) {
+        Objects.requireNonNull(streamResource,"Resource can't be null");
         UkSlide slide = new UkSlide(streamResource);
         ListItem li = slide.getListItem();
         li.getElement().addEventListener("itemshown", event -> {
@@ -241,26 +245,4 @@ public class UkSlideshow extends Composite<Div>
         }
     }
 
-    public class ClassResource {
-        private InputStream is = null;
-        private String fileName;
-
-        public ClassResource(String fileName) {
-            this.fileName = fileName;
-            URL resource = this.getClass().getClassLoader()
-                    .getResource(fileName);
-            File file = new File(resource.getFile());
-            try {
-                is = new FileInputStream(file);
-            } catch (FileNotFoundException e) {
-            }
-
-        }
-
-        public StreamResource getStreamResource() {
-            StreamResource streamResource = new StreamResource(fileName,
-                    () -> is);
-            return streamResource;
-        }
-    }
 }

@@ -14,7 +14,7 @@ import com.vaadin.flow.server.VaadinSession;
 
 @StyleSheet("context://custom.css")
 //@StyleSheet("context://uikit.min.css")
-@JavaScript("context://uikit.js")
+@JavaScript("context://uikit.min.js")
 @JavaScript("context://uikit-icons.min.js")
 @Push
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base", enableInstallPrompt = false)

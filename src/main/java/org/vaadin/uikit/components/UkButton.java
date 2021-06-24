@@ -10,9 +10,7 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.html.NativeButton;
 
 /**
- * 
- * 
- *
+ * A button component based on NativeButton with UIkit styles.
  */
 public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBorder, UkFloat {
 

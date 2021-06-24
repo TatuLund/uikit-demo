@@ -1,21 +1,28 @@
 package org.vaadin.uikit;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.vaadin.uikit.components.UkCard;
+import org.vaadin.uikit.components.UkNotification;
 import org.vaadin.uikit.components.UkSlideshow;
 import org.vaadin.uikit.components.UkSlideshow.Animation;
 import org.vaadin.uikit.components.UkSlideshow.NavMode;
+import org.vaadin.uikit.components.UkVideo;
 import org.vaadin.uikit.components.interfaces.UkInverse.Invert;
 import org.vaadin.uikit.components.layout.UkFlex;
+import org.vaadin.uikit.components.util.ClassResourceFactory;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 
+@PreserveOnRefresh
 @PageTitle("SlideShow")
 @Route(value = "slide", layout = MainLayout.class)
 public class SlideView extends UkFlex {
@@ -28,16 +35,31 @@ public class SlideView extends UkFlex {
         UkSlideshow slideShow = new UkSlideshow();
         UkCard card = new UkCard();
         card.setTitle("Slideshow");
-        slideShow.addImage("photo.jpg").add(new H3("Daily temperature"),createChart("#ffffff"));
-        slideShow.addImage("light.jpg");
-        slideShow.addImage("dark.jpg");
+        try {
+            slideShow.addSlide("photo.jpg").add(new H3("Daily temperature"),createChart("#ffffff"));
+            slideShow.addSlide("light.jpg");
+            slideShow.addSlide("dark.jpg");
+        } catch (FileNotFoundException e) {
+            UkNotification.show("File not found");
+        }
 //        slideShow.setNavMode(NavMode.DOTS);
         slideShow.setInverse(Invert.LIGHT);
         card.setContent(slideShow);
         card.setWidth(1,2);
         slideShow.setAnimation(Animation.FADE);
 //        slide.play();
+        
         add(card);
+
+//        File file;
+//        try {
+//            file = new ClassResourceFactory("big_buck_bunny.mp4").getFile();
+//            UkVideo video = new UkVideo(file,"Bunny video");
+//            add(video);
+//        } catch (FileNotFoundException e) {
+//            UkNotification.show("Video not found");
+//        }
+
     }
 
     Html createChart(String color) {

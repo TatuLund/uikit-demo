@@ -68,7 +68,9 @@ public class MainView extends UkFlex {
         UkColorPicker picker = new UkColorPicker();
         picker.setValue("cyan");
         picker.addValueChangeListener(event -> {
-            UkNotification.show("Value: " + event.getValue());
+            if (event.isFromClient()) {
+                UkNotification.show("Value: " + event.getValue());
+            }
         });
         add(picker);
         

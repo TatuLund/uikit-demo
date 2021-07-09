@@ -6,6 +6,7 @@ import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.RouterLink;
 
+@SuppressWarnings("serial")
 public class UkDropdownNav extends Composite<Div> {
 
     class DropdownNav extends MenuBase {

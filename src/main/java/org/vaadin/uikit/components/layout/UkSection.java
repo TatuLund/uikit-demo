@@ -5,6 +5,7 @@ import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.html.Div;
 
+@SuppressWarnings("serial")
 public class UkSection extends Div implements UkSizing, UkBorder {
 
     public enum SectionVariant {

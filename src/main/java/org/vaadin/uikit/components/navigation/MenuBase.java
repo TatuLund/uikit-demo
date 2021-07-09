@@ -14,6 +14,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.RouterLink;
 
+@SuppressWarnings("serial")
 public abstract class MenuBase extends Composite<UnorderedList>
         implements UkSizing, UkMargin, UkPadding {
 

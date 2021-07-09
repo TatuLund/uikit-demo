@@ -11,12 +11,14 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinSession;
+import com.vaadin.flow.theme.NoTheme;
 
 @StyleSheet("context://custom.css")
 //@StyleSheet("context://uikit.min.css")
 @JavaScript("context://uikit.min.js")
 @JavaScript("context://uikit-icons.min.js")
 @Push
+@NoTheme
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base", enableInstallPrompt = false)
 public class MainLayout extends UkAppLayout implements RouterLayout, BeforeEnterObserver {
 

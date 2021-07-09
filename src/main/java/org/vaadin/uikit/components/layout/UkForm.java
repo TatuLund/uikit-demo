@@ -1,9 +1,12 @@
 package org.vaadin.uikit.components.layout;
 
+import java.util.Random;
+
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
+import org.vaadin.uikit.components.util.Utils;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -15,6 +18,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.dom.Element;
 
+@SuppressWarnings("serial")
 @Tag("form")
 public class UkForm extends HtmlContainer
         implements HasStyle, HasElement, UkSizing, UkMargin, UkPadding {
@@ -27,8 +31,14 @@ public class UkForm extends HtmlContainer
         public UkFormItem(String labelText, Component field) {
             label.setText(labelText);
             fieldWrapper.add(field);
-            field.getId().ifPresent(
-                    id -> label.getElement().setAttribute("for", id));
+            String id = "";
+            if (field.getId().isPresent()) {
+                id = field.getId().get();
+            } else {
+                id = "field-"+Utils.randomKey(10);
+                field.setId(id);
+            }
+            label.getElement().setAttribute("for", id);
             field.getElement().addPropertyChangeListener("required", event -> {
                 if (field.getElement().getProperty("required").equals("true")) {
                     label.setText(labelText + " *");

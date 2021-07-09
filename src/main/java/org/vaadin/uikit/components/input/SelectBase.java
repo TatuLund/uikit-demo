@@ -6,6 +6,7 @@ import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.function.SerializableBiFunction;
 import com.vaadin.flow.function.SerializableFunction;
 
+@SuppressWarnings("serial")
 public abstract class SelectBase<R extends SelectBase<R, T>, T>
         extends AbstractSinglePropertyField<R, T> implements HasSize, HasStyle {
 

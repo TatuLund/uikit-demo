@@ -6,6 +6,7 @@ import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 
+@SuppressWarnings("serial")
 public class UkInline extends Composite<Div> {
     Div div = new Div();
     Span icon = new Span();

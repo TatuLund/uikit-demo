@@ -12,6 +12,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkAlert extends Composite<Div> implements HasSize, UkBorder {
 
     public enum AlertVariant {

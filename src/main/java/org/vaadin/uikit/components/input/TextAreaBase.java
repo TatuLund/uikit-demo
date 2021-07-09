@@ -12,6 +12,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.data.value.HasValueChangeMode;
 import com.vaadin.flow.data.value.ValueChangeMode;
 
+@SuppressWarnings("serial")
 @Tag(Tag.TEXTAREA)
 public abstract class TextAreaBase
         extends AbstractSinglePropertyField<TextAreaBase, String> implements

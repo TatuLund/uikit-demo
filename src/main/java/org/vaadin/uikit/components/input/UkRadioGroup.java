@@ -11,6 +11,7 @@ import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
 import org.vaadin.uikit.components.interfaces.UkValidation;
+import org.vaadin.uikit.components.util.Utils;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
@@ -29,6 +30,7 @@ import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.function.SerializablePredicate;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 @Tag(Tag.DIV)
 public class UkRadioGroup<T> extends SelectBase<UkRadioGroup<T>, T>
         implements HasItemsAndComponents<T>, SingleSelect<UkRadioGroup<T>, T>,
@@ -47,9 +49,7 @@ public class UkRadioGroup<T> extends SelectBase<UkRadioGroup<T>, T>
 
     private boolean isReadOnly;
 
-    private Random random = new Random();
-
-    private String name = "combo-" + random.nextInt();
+    private String name = "radio-" + Utils.randomKey(10);
 
     private static <T> T presentationToModel(UkRadioGroup<T> select,
             String presentation) {

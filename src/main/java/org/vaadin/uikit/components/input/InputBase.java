@@ -8,6 +8,7 @@ import org.vaadin.uikit.components.interfaces.UkValidation;
 import com.vaadin.flow.component.KeyNotifier;
 import com.vaadin.flow.component.html.Input;
 
+@SuppressWarnings("serial")
 public abstract class InputBase extends Input implements UkValidation, UkTooltip, UkMargin, UkBorder, KeyNotifier {
 
     public void setDisabled(boolean disabled) {

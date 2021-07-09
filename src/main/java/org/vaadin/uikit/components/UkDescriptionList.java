@@ -26,6 +26,7 @@ import com.vaadin.flow.data.provider.KeyMapper;
 import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkDescriptionList<T> extends Composite<DescriptionList>
         implements HasDataProvider<T>, UkMargin, UkPadding, UkSizing {
 

@@ -28,6 +28,7 @@ import com.vaadin.flow.server.InputStreamFactory;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkSlideshow extends Composite<Div>
         implements UkSizing, UkMargin, UkPadding, UkInverse {
 
@@ -230,6 +231,7 @@ public class UkSlideshow extends Composite<Div>
                 autoplayInterval, finite, pauseOnHover, ratio);
     }
 
+    @SuppressWarnings("serial")
     public static class SlideShownEvent extends ComponentEvent<UkSlideshow> {
 
         private UkSlide slide;

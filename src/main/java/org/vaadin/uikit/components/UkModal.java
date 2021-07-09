@@ -13,6 +13,7 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkModal extends Composite<Div> implements UkSizing {
 
     Div dialog = new Div();

@@ -10,6 +10,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkIcon extends Composite<Span> implements UkTooltip, UkMargin, UkFloat {
     Span icon = new Span();
 

@@ -55,6 +55,7 @@ import com.vaadin.flow.shared.Registration;
  *            Bean type for the Table
  */
 
+@SuppressWarnings("serial")
 @Tag("table")
 public class UkBeanTable<T> extends HtmlComponent
         implements HasDataProvider<T>, HasSize, UkTableOptions {

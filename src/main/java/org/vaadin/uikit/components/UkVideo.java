@@ -23,6 +23,7 @@ import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 @Tag("video")
 public class UkVideo extends HtmlComponent {
 
@@ -213,6 +214,7 @@ public class UkVideo extends HtmlComponent {
         getElement().executeJs("this.pause()");
     }
 
+    @SuppressWarnings("serial")
     public static class VideoPausedEvent extends ComponentEvent<UkVideo> {
 
         public VideoPausedEvent(UkVideo source, boolean fromClient) {

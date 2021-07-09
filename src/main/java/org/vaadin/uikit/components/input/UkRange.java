@@ -11,6 +11,7 @@ import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 
+@SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkRange extends AbstractSinglePropertyField<UkRange, Double>
         implements UkValidation, HasStyle, Focusable<UkRange>, UkTooltip,

@@ -17,6 +17,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkAccordion extends Composite<UnorderedList>
         implements UkSizing, UkMargin, HasSize {
 

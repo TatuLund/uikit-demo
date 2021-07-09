@@ -39,6 +39,7 @@ import com.vaadin.flow.shared.Registration;
 import elemental.json.Json;
 import elemental.json.JsonArray;
 
+@SuppressWarnings("serial")
 @Tag(Tag.DIV)
 public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
         implements HasItemsAndComponents<T>, HasSize, HasValidation,
@@ -125,6 +126,7 @@ public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
             return div;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public T getItem() {
             return (T) item;

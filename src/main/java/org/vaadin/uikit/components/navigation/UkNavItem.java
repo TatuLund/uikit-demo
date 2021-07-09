@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.router.RouterLink;
 
+@SuppressWarnings("serial")
 public class UkNavItem extends MenuItemBase {
 
     public UkNavItem(String text) {

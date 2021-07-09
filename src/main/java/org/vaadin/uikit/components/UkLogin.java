@@ -20,6 +20,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkLogin extends Composite<UkFlex> {
 
     private UkFlex flex = new UkFlex();
@@ -96,12 +97,14 @@ public class UkLogin extends Composite<UkFlex> {
         return flex ;
     }
 
+    @SuppressWarnings("serial")
     public static class ForgotPasswordEvent extends ComponentEvent<UkLogin> {
         public ForgotPasswordEvent(UkLogin source, boolean fromClient) {
             super(source, fromClient);
         }
     }    
 
+    @SuppressWarnings("serial")
     public static class LoginEvent extends ComponentEvent<UkLogin> {
 
         private String username;

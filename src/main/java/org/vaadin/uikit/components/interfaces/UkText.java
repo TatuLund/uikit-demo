@@ -6,6 +6,31 @@ import com.vaadin.flow.component.HasElement;
 
 public interface UkText extends HasElement {
 
+    public enum TextStyle {
+        SMALL("uk-text-lead"),
+        DEFAULT(null),
+        LARGE("uk-text-meta");
+
+        private String textStyle;
+
+        TextStyle(String textStyle) {
+            this.textStyle = textStyle;
+        }
+
+        public String getTextStyle() {
+            return textStyle;
+        }
+    }
+
+    default void setTextStyle(TextStyle textStyle) {
+        for (TextStyle style : TextStyle.values()) {
+            if (style.getTextStyle() != null)
+                getElement().getClassList().remove(style.getTextStyle());
+        }
+        if (textStyle != TextStyle.DEFAULT)
+            getElement().getClassList().add(textStyle.getTextStyle());
+    }
+
     public enum FontSize {
         SMALL("uk-text-small"),
         DEFAULT(null),
@@ -29,6 +54,56 @@ public interface UkText extends HasElement {
         }
         if (fontSize != FontSize.DEFAULT)
             getElement().getClassList().add(fontSize.getFontSize());
+    }
+
+    public enum Transform {
+        CAPITALIZE("uk-text-capitalize"),
+        UPPERCASE("uk-text-uppercase"),
+        LOWERCASE("uk-text-lowercase");
+
+        private String transform;
+
+        Transform(String transform) {
+            this.transform = transform;
+        }
+
+        public String getTransform() {
+            return transform;
+        }
+    }
+
+    default void setTransform(Transform transform) {
+        for (Transform trans : Transform.values()) {
+            getElement().getClassList().remove(trans.getTransform());
+        }
+        getElement().getClassList().add(transform.getTransform());
+    }
+
+    public enum TextColor {
+        MUTED("uk-text-muted"),
+        EMPHASIS("uk-text-emphasis"),
+        PRIMARY("uk-text-primary"),
+        SECONDARY("uk-text-secondary"),
+        SUCCESS("uk-text-success"),
+        WARNING("uk-text-warning"),
+        BOLDER("uk-text-danger");
+
+        private String textColor;
+
+        TextColor(String textColor) {
+            this.textColor = textColor;
+        }
+
+        public String getTextColor() {
+            return textColor;
+        }
+    }
+
+    default void setTextColor(TextColor textColor) {
+        for (TextColor color : TextColor.values()) {
+            getElement().getClassList().remove(color.getTextColor());
+        }
+        getElement().getClassList().add(textColor.getTextColor());
     }
 
     public enum FontWeight {
@@ -56,6 +131,14 @@ public interface UkText extends HasElement {
         getElement().getClassList().add(fontWeight.getFontWeigth());
     }
 
+    default void setItalic(boolean italic) {
+        if (italic) {
+            getElement().getClassList().add("uk-text-italic");
+        } else {
+            getElement().getClassList().remove("uk-text-italic");            
+        }
+    }
+    
     public enum TextAlignment {
         LEFT("uk-text-left"),
         RIGH("uk-text-right"),

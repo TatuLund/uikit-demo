@@ -30,6 +30,7 @@ import com.vaadin.flow.server.RouteRegistry;
 import com.vaadin.flow.server.SessionRouteRegistry;
 import com.vaadin.flow.server.VaadinSession;
 
+@SuppressWarnings("serial")
 public class UkAppLayout extends Composite<UkFlex> {
 
     UkFlex flex = new UkFlex();

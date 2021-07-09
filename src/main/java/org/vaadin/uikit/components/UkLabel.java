@@ -10,6 +10,7 @@ import org.vaadin.uikit.components.interfaces.UkTooltip;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 
+@SuppressWarnings("serial")
 public class UkLabel extends Composite<Span>
         implements UkTooltip, UkMargin, UkSizing, UkPadding, UkBorder, UkFloat {
 

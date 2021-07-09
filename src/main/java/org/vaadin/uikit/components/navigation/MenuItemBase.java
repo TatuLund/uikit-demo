@@ -11,6 +11,7 @@ import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.router.RouterLink;
 
+@SuppressWarnings("serial")
 public abstract class MenuItemBase extends Composite<ListItem> implements UkMargin, UkPadding, UkTooltip {
     protected ListItem li = new ListItem();
     private Anchor anchor = null;

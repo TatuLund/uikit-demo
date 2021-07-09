@@ -7,6 +7,7 @@ import org.vaadin.uikit.components.interfaces.UkTooltip;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 
+@SuppressWarnings("serial")
 @Tag("progress")
 public class UkProgress extends Component
         implements UkSizing, UkTooltip, UkMargin {

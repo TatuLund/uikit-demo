@@ -24,6 +24,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.function.SerializableFunction;
 import com.vaadin.flow.server.WebBrowser;
 
+@SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalDate>
         implements UkValidation, HasStyle, Focusable<UkDateField>, UkTooltip,
@@ -47,7 +48,7 @@ public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalD
                 value -> "" + value);
         addClassName("uk-input");
         this.resolution = resolution;
-        getElement().synchronizeProperty("value", "change");
+        setSynchronizedEvent("change");
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkOffCanvas extends Composite<Div> {
 
     public enum AnimationMode {
@@ -151,6 +152,7 @@ public class UkOffCanvas extends Composite<Div> {
         return offcanvas;
     }
 
+    @SuppressWarnings("serial")
     public static class OffCanvasHiddenEvent
             extends ComponentEvent<UkOffCanvas> {
 
@@ -159,6 +161,7 @@ public class UkOffCanvas extends Composite<Div> {
         }
     }
 
+    @SuppressWarnings("serial")
     public static class OffCanvasShownEvent
             extends ComponentEvent<UkOffCanvas> {
 

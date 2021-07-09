@@ -12,6 +12,7 @@ import com.vaadin.flow.component.html.NativeButton;
 /**
  * A button component based on NativeButton with UIkit styles.
  */
+@SuppressWarnings("serial")
 public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBorder, UkFloat {
 
     public enum ButtonVariant {

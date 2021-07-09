@@ -14,6 +14,7 @@ import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
 
+@SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkNumberField extends AbstractSinglePropertyField<UkNumberField, Double>
         implements UkValidation, HasStyle, Focusable<UkNumberField>, UkTooltip,
@@ -31,7 +32,7 @@ public class UkNumberField extends AbstractSinglePropertyField<UkNumberField, Do
                 value -> "" + value);
         addClassName("uk-input");
         getElement().setAttribute("type", "number");
-        getElement().synchronizeProperty("value", "change");
+        setSynchronizedEvent("change");
         setMin(min);
         setMax(max);
         setStep(step);

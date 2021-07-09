@@ -3,6 +3,7 @@ package org.vaadin.uikit.components;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
 
+@SuppressWarnings("serial")
 public class UkSpinner extends Composite<Div> {
 
     Div div = new Div();

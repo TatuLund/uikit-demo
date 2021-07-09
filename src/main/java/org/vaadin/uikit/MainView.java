@@ -17,6 +17,7 @@ import org.vaadin.uikit.components.UkNotification.Status;
 import org.vaadin.uikit.components.UkOffCanvas.AnimationMode;
 import org.vaadin.uikit.components.UkTile.TileVariant;
 import org.vaadin.uikit.components.input.UkCheckbox;
+import org.vaadin.uikit.components.input.UkColorPicker;
 import org.vaadin.uikit.components.input.UkDateField;
 import org.vaadin.uikit.components.input.UkRange;
 import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldSize;
@@ -64,6 +65,13 @@ public class MainView extends UkFlex {
         card.setVariant(CardVariant.SECONDARY);
         dropdown.add(card);
 
+        UkColorPicker picker = new UkColorPicker();
+        picker.setValue("cyan");
+        picker.addValueChangeListener(event -> {
+            UkNotification.show("Value: " + event.getValue());
+        });
+        add(picker);
+        
         UkRange range = new UkRange(1, 10, 0.1);
         range.setTooltip("Range slider");
         range.setValue(5d);

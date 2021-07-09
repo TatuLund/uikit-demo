@@ -1,8 +1,11 @@
 package org.vaadin.uikit.components;
 
+import java.io.Serializable;
+
 import com.vaadin.flow.component.UI;
 
-public class UkNotification {
+@SuppressWarnings("serial")
+public class UkNotification implements Serializable {
 
     public enum Position {
         TOP_LEFT("top-left"),

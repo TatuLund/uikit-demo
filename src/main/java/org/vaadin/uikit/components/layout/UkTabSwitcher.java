@@ -18,6 +18,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkTabSwitcher extends Composite<Div>
         implements UkSizing, UkMargin, UkPadding {
 

@@ -9,6 +9,7 @@ import java.util.Objects;
 import com.vaadin.flow.server.InputStreamFactory;
 import com.vaadin.flow.server.StreamResource;
 
+@SuppressWarnings("serial")
 public class FileResourceFactory implements InputStreamFactory {
     private String fileName;
     private InputStream is = null;

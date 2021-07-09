@@ -10,6 +10,7 @@ import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.dom.Element;
 
+@SuppressWarnings("serial")
 @Tag("table")
 public class UkTable extends HtmlComponent implements UkTableOptions {
 

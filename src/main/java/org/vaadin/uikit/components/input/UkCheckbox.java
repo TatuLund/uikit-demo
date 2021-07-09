@@ -9,6 +9,7 @@ import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 
+@SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkCheckbox extends AbstractSinglePropertyField<UkCheckbox, Boolean>
         implements UkValidation, HasStyle, Focusable<UkCheckbox>, UkTooltip, UkBorder {

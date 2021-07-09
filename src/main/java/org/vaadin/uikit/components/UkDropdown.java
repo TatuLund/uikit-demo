@@ -11,6 +11,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
 
     public enum Position {
@@ -165,6 +166,7 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
                 dropdown.getElement(), "- *", position.getPosition(), mode, "0", delayHide, flip, "0", duration);
     }
 
+    @SuppressWarnings("serial")
     public static class DropdownHiddenEvent
             extends ComponentEvent<UkDropdown> {
 
@@ -173,6 +175,7 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
         }
     }
 
+    @SuppressWarnings("serial")
     public static class DropdownShownEvent
             extends ComponentEvent<UkDropdown> {
 

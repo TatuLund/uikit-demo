@@ -10,6 +10,7 @@ import org.vaadin.uikit.components.interfaces.UkValidation;
 /**
  * A component based on a native textarea html element with UIkit styles. 
  */
+@SuppressWarnings("serial")
 public class UkTextArea extends TextAreaBase
         implements UkValidation, UkTooltip, UkMargin, UkPadding, UkFormSizing, UkBorder {
 

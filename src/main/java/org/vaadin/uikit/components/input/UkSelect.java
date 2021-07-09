@@ -28,6 +28,7 @@ import com.vaadin.flow.data.selection.SingleSelect;
 import com.vaadin.flow.function.SerializablePredicate;
 import com.vaadin.flow.shared.Registration;
 
+@SuppressWarnings("serial")
 @Tag(Tag.SELECT)
 public class UkSelect<T> extends SelectBase<UkSelect<T>, T>
         implements HasItemsAndComponents<T>, SingleSelect<UkSelect<T>, T>,

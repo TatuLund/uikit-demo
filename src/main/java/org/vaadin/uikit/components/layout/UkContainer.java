@@ -4,6 +4,7 @@ import org.vaadin.uikit.components.interfaces.UkPadding;
 
 import com.vaadin.flow.component.html.Div;
 
+@SuppressWarnings("serial")
 public class UkContainer extends Div implements UkPadding {
 
     public enum ContainerMaxWidth {

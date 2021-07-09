@@ -13,6 +13,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.RouterLink;
 
+@SuppressWarnings("serial")
 @Tag(Tag.NAV)
 public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSizing {
 

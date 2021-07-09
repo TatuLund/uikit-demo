@@ -15,6 +15,7 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
+@SuppressWarnings("serial")
 public class UkCard extends Composite<Div>
         implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder, UkOverflow {
 

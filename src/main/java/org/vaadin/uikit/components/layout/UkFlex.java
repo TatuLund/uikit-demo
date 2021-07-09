@@ -7,6 +7,7 @@ import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.html.Div;
 
+@SuppressWarnings("serial")
 public class UkFlex extends Div
         implements UkMargin, UkSizing, UkPadding, UkOverflow {
 

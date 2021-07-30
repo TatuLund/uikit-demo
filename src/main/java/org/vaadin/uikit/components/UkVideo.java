@@ -2,13 +2,9 @@ package org.vaadin.uikit.components;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.AbstractMap;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
-import org.vaadin.uikit.components.UkAlert.AlertHiddenEvent;
+import org.vaadin.uikit.components.util.FileRegistrations;
 import org.vaadin.uikit.components.util.FileResourceFactory;
 
 import com.vaadin.flow.component.ComponentEvent;
@@ -33,12 +29,7 @@ public class UkVideo extends HtmlComponent {
     private static final PropertyDescriptor<String, Optional<String>> altDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("alt", "");
 
-    private static final Map<String, AbstractMap.SimpleImmutableEntry<StreamRegistration, File>> resourcesRegistrations = Collections
-            .synchronizedMap(new HashMap<>());
-
     private StreamRegistration registration;
-
-    private File file;
 
     private StreamResource resource;
 
@@ -50,7 +41,7 @@ public class UkVideo extends HtmlComponent {
         getElement().setAttribute("controls", true);
         getElement().setAttribute("preload", "auto");
         addDetachListener(event -> {
-            unregisterResource(registration);
+            FileRegistrations.unregisterResource(registration);
         });
         getElement().addEventListener("ended", event -> {
             fireEvent(new VideoEndedEvent(this, true));
@@ -113,42 +104,6 @@ public class UkVideo extends HtmlComponent {
         return addListener(VideoPlayEvent.class, listener);
     }
 
-    public StreamRegistration registerResource(VaadinSession session, StreamResource streamResource,
-            File file) {
-        if (file == null || !file.exists() || streamResource == null)
-            return null;
-
-        StreamRegistration registration = session.getResourceRegistry()
-                .registerResource(streamResource);
-
-        getResourcesRegistrations().put(
-                "/" + registration.getResourceUri().toString().replace(" ",
-                        "%20"),
-                new AbstractMap.SimpleImmutableEntry<>(registration, file));
-
-        return registration;
-    }
-
-    public AbstractMap.SimpleImmutableEntry<StreamRegistration, File> unregisterResource(
-            StreamRegistration registration) {
-        if (registration == null)
-            return null;
-
-        registration.unregister();
-
-        return getResourcesRegistrations()
-                .remove(registration.getResourceUri().toString());
-    }
-
-    public void unregisterAllResources(StreamRegistration registration) {
-        if (registration == null)
-            return;
-
-        getResourcesRegistrations()
-                .forEach((key, value) -> value.getKey().unregister());
-        getResourcesRegistrations().clear();
-    }
-
     /**
      * Gets the video URL.
      *
@@ -176,9 +131,8 @@ public class UkVideo extends HtmlComponent {
      * @throws FileNotFoundException 
      */
     public void setSrc(File file) throws FileNotFoundException {
-        this.file = file;
-        this.resource  = new StreamResource(file.getName(), new FileResourceFactory(file));
-        registration = registerResource(VaadinSession.getCurrent(),resource,file);
+        resource  = new StreamResource(file.getName(), new FileResourceFactory(file));
+        registration = FileRegistrations.registerResource(VaadinSession.getCurrent(),resource,file);
         getElement().setAttribute("src", registration.getResourceUri().toString());
     }
 
@@ -200,10 +154,6 @@ public class UkVideo extends HtmlComponent {
      */
     public Optional<String> getAlt() {
         return get(altDescriptor);
-    }
-
-    public static Map<String, AbstractMap.SimpleImmutableEntry<StreamRegistration, File>> getResourcesRegistrations() {
-        return resourcesRegistrations;
     }
     
     public void play() {

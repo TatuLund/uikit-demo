@@ -50,7 +50,7 @@ public class ContentRangeRequestHandler extends StreamRequestHandler {
         
 //        System.out.println("Path: "+resourcePathFromRequest);
 //
-        File file = UkVideo.getResourcesRegistrations()
+        File file = FileRegistrations.getResourcesRegistrations()
                 .get(resourcePathFromRequest).getValue();
         if (!file.exists()) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -72,7 +72,7 @@ public class ContentRangeRequestHandler extends StreamRequestHandler {
                     rangeEnd = Long.parseLong(split[1]);
                 }
 
-                StreamResource streamResource = (StreamResource) UkVideo
+                StreamResource streamResource = (StreamResource) FileRegistrations
                         .getResourcesRegistrations()
                         .get(resourcePathFromRequest).getKey().getResource();
 

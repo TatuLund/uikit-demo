@@ -2,7 +2,6 @@ package org.vaadin.uikit;
 
 import org.vaadin.uikit.components.UkAlert;
 import org.vaadin.uikit.components.UkButton;
-import org.vaadin.uikit.components.UkButton.ButtonVariant;
 import org.vaadin.uikit.components.UkCard;
 import org.vaadin.uikit.components.UkIcon;
 import org.vaadin.uikit.components.UkIcons;

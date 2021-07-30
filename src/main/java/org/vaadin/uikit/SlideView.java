@@ -19,10 +19,8 @@ import org.vaadin.uikit.components.util.ClassResourceFactory;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 
-@PreserveOnRefresh
 @PageTitle("SlideShow")
 @Route(value = "slide", layout = MainLayout.class)
 public class SlideView extends UkFlex {

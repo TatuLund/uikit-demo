@@ -22,8 +22,10 @@ import org.vaadin.uikit.components.navigation.UkNavbarItem;
 import org.vaadin.uikit.components.navigation.UkNavbar.Alignment;
 import org.vaadin.uikit.components.navigation.UkNavbar.Mode;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouteData;
 import com.vaadin.flow.server.RouteRegistry;
@@ -162,20 +164,29 @@ public class UkAppLayout extends Composite<UkFlex> {
                 .getSessionRegistry(VaadinSession.getCurrent());
         List<RouteData> routes = reg.getRegisteredRoutes();
         routes.forEach(route -> {
-            PageTitle title = route.getNavigationTarget()
-                    .getAnnotation(PageTitle.class);
+            Class<? extends Component> navigationTarget = route.getNavigationTarget();
+            PageTitle title = navigationTarget.getAnnotation(PageTitle.class);            
             String titleString = "";
             if (title != null) {
                 titleString = title.value();
             } else {
-                titleString = route.getNavigationTarget().getTypeName();
+                titleString = navigationTarget.getTypeName();
             }
             if (type == MenuType.SIDE) {
-                getNav().addMenuItem(titleString, route.getNavigationTarget());
+                try {
+                    getNav().addMenuItem(titleString, navigationTarget);
+                } catch (IllegalArgumentException e) {
+                }
             } else if (type == MenuType.BAR) {
-                getNavbar().addNavbarItem(titleString, route.getNavigationTarget());
+                try {
+                    getNavbar().addNavbarItem(titleString, navigationTarget);
+                } catch (IllegalArgumentException e) {
+                }
             } else {
-                dropDown.addMenuItem(titleString, route.getNavigationTarget());
+                try {
+                    dropDown.addMenuItem(titleString, navigationTarget);
+                } catch (IllegalArgumentException e) {
+                }
             }            
         });
     }

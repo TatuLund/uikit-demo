@@ -1,11 +1,12 @@
 package org.vaadin.uikit.components.layout;
 
+import org.vaadin.uikit.components.interfaces.UkOverflow;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 
 import com.vaadin.flow.component.html.Div;
 
 @SuppressWarnings("serial")
-public class UkContainer extends Div implements UkPadding {
+public class UkContainer extends Div implements UkPadding, UkOverflow {
 
     public enum ContainerMaxWidth {
         XSMALL("uk-container-xsmall"),

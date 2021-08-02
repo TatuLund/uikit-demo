@@ -21,7 +21,7 @@ public class UkCard extends Composite<Div>
 
     private H3 titleComponent = new H3();
     private Div div = new Div();
-    private Component content = new Div();
+    private Div content = new Div();
     private Div badge = new Div();
 
     public enum CardVariant {
@@ -92,11 +92,11 @@ public class UkCard extends Composite<Div>
             div.remove(content);
         Html html = new Html(sanitized);
         div.add(html);
-        content = html;
+        content.add(html);
     }
 
     public void setContent(Component component) {
-        content = component;
+        content.add(component);
     }
 
     public void setBadge(String badgeText) {

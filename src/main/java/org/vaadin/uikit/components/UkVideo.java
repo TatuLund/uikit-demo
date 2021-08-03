@@ -124,7 +124,7 @@ public class UkVideo extends HtmlComponent {
     }
 
     /**
-     * Sets the video URL with the URL of the given File.
+     * Sets the video URL with the URL of the given File. Range requests supported.
      *
      * @param src
      *            the file, not null
@@ -136,6 +136,15 @@ public class UkVideo extends HtmlComponent {
         getElement().setAttribute("src", registration.getResourceUri().toString());
     }
 
+    /**
+     * Set the video from StreamResource. Range requests not supported.
+     * 
+     * @param src The resource
+     */
+    public void setSrc(AbstractStreamResource src) {
+        getElement().setAttribute("src", src);
+    }
+    
     /**
      * Sets the alternate text for the video.
      *

@@ -14,6 +14,7 @@ import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
 import org.vaadin.uikit.components.util.ClassResourceFactory;
+import org.vaadin.uikit.components.util.FileResourceFactory;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -49,6 +50,10 @@ public class UkSlideshow extends Composite<Div>
         DOTS, DOTS_INLINE, BUTTONS
     }
 
+    public enum SlideType {
+        IMAGE, VIDEO
+    }
+
     public enum Animation {
         SLIDE("slide"),
         FADE("fade"),
@@ -69,15 +74,38 @@ public class UkSlideshow extends Composite<Div>
 
     public class UkSlide {
         ListItem li = new ListItem();
-        UkImage image = new UkImage();
         Div div = null;
 
-        public UkSlide(AbstractStreamResource streamResource) {
-            image.setSrc(streamResource);
-            image.getElement().setAttribute("uk-cover", true);
-            li.add(image);
+        public UkSlide(AbstractStreamResource streamResource, SlideType slideType) {
+            Component content;
+            if (slideType == SlideType.IMAGE) {
+                content = new UkImage();
+                ((UkImage) content).setSrc(streamResource);
+                content.getElement().setAttribute("uk-cover", true);
+            } else {
+                content = new UkVideo();
+                ((UkVideo) content).setSrc(streamResource);
+                content.getElement().setAttribute("uk-cover", true);                
+            }
+            li.add(content);
         }
 
+        public UkSlide(File file, SlideType slideType) throws FileNotFoundException {
+            Component content;
+            if (slideType == SlideType.IMAGE) {
+                content = new UkImage();
+                FileResourceFactory resource;
+                resource = new FileResourceFactory(file);
+                ((UkImage) content).setSrc(resource.getStreamResource());
+                content.getElement().setAttribute("uk-cover", true);
+            } else {
+                content = new UkVideo();
+                ((UkVideo) content).setSrc(file);
+                content.getElement().setAttribute("uk-cover", true);                
+            }
+            li.add(content);
+        }
+        
         public void add(Component... components) {
             if (div == null) {
                 div = new Div();
@@ -105,22 +133,33 @@ public class UkSlideshow extends Composite<Div>
         return addListener(SlideShownEvent.class, listener);
     }
 
-    public UkSlide addSlide(String fileName) throws FileNotFoundException {
+    public UkSlide addSlide(String fileName, SlideType slideType) throws FileNotFoundException {
         StreamResource streamResource = null;
         streamResource = new StreamResource(fileName, new ClassResourceFactory(fileName));
-        return addSlide(streamResource);
+        return addSlide(streamResource, slideType);
     }
 
-    public UkSlide addSlide(AbstractStreamResource streamResource) {
+    public UkSlide addSlide(File file, SlideType slideType) throws FileNotFoundException {
+        Objects.requireNonNull(file,"File can't be null");
+        UkSlide slide = new UkSlide(file, slideType);
+        doAddSlide(slide);
+        return slide;
+    }    
+
+    public UkSlide addSlide(AbstractStreamResource streamResource, SlideType slideType) {
         Objects.requireNonNull(streamResource,"Resource can't be null");
-        UkSlide slide = new UkSlide(streamResource);
+        UkSlide slide = new UkSlide(streamResource, slideType);
+        doAddSlide(slide);
+        return slide;
+    }
+
+    private void doAddSlide(UkSlide slide) {
         ListItem li = slide.getListItem();
         li.getElement().addEventListener("itemshown", event -> {
             fireEvent(new SlideShownEvent(this, true, slide));
         });
         ul.add(li);
         slides.add(slide);
-        return slide;
     }
 
     @Override

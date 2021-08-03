@@ -8,8 +8,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
+import org.vaadin.uikit.components.interfaces.UkText.TextAlignment;
+
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Article;
 import com.vaadin.flow.component.html.H1;
@@ -61,10 +65,32 @@ public class UkArticle extends Composite<Article> {
         return this;
     }
 
+    public UkArticle withCitation(String text, boolean columnSpan) {
+        Paragraph p = new Paragraph();
+        p.setText(text);
+        p.addClassNames("uk-text-emphasis","uk-text-italic","uk-margin-left");
+        if (columnSpan) {
+            p.addClassName("uk-column-span");
+        }
+        paragraphs.add(p);
+        return this;
+    }
+
+    public UkArticle withParagraph(Component component) {
+        Paragraph p = new Paragraph();
+        p.add(component);
+        paragraphs.add(p);
+        return this;
+    }
+
     public UkArticle withFile(File file) throws IOException {
+        return withFile(file,false);
+    }
+
+    public UkArticle withFile(File file, boolean lead) throws IOException {
         InputStream is = new FileInputStream(file);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        first = true;
+        first = lead;
         reader.lines().forEach(line -> {
             if (first) {
                 withLead(line);
@@ -77,9 +103,51 @@ public class UkArticle extends Composite<Article> {
         return this;
     }
 
-    public UkArticle withColumns() {
-        article.addClassNames("uk-column-1-2@s","uk-column-1-3@m","uk-column-1-4@l");
+    public UkArticle withText(String text) {
+        return withText(text,false);
+    }
+    
+    public UkArticle withText(String text, boolean lead) {
+        first = lead;
+        for (String line : text.split("\n")) {
+            if (first) {
+                withLead(line);
+                first = false;
+            } else {
+                withParagraph(line);
+            }
+        }
         return this;
+    }
+
+    public UkArticle withColumns(int columns) {
+        article.getClassNames().forEach(className -> {
+            if (className.startsWith("uk-column-1")) {
+                article.removeClassName(className);
+            }
+        });
+        if (columns == 5) {
+            article.addClassNames("uk-column-1-2@s","uk-column-1-3@m","uk-column-1-4@l","uk-column-1-5@xl");
+        } else if (columns == 4) {
+            article.addClassNames("uk-column-1-2@s","uk-column-1-3@m","uk-column-1-4@l");
+        } else if (columns == 3) {
+            article.addClassNames("uk-column-1-2@m","uk-column-1-3@l");
+        } else if (columns == 2) {
+            article.addClassNames("uk-column-1-2@l");
+        }
+        return this;
+    }
+
+    public UkArticle withTextAlignment(TextAlignment textAlignment) {
+        for (TextAlignment alignment : TextAlignment.values()) {
+            article.removeClassName(alignment.getAlignment());
+        }
+        article.addClassName(textAlignment.getAlignment());
+        return this;
+    }
+
+    public UkArticle withColumns() {
+        return withColumns(4);
     }
 
     public UkArticle withColumnDivider() {
@@ -87,11 +155,14 @@ public class UkArticle extends Composite<Article> {
         return this;
     }
 
-    public UkArticle withHeaderSpan(ArticleHeaderSpan articleHeaderSpan) {
+    public UkArticle withHeaderSpan(ArticleHeaderSpan articleHeaderSpan, TextAlignment alignment) {
         heading.addClassName("uk-column-span");
+        heading.addClassName(alignment.getAlignment());
         meta.addClassName("uk-column-span");
+        meta.addClassName(alignment.getAlignment());
         if (articleHeaderSpan == ArticleHeaderSpan.WITH_LEAD) {
             lead.addClassName("uk-column-span");
+            lead.addClassName(alignment.getAlignment());
         }
         return this;
     }

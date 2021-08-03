@@ -11,6 +11,7 @@ import org.vaadin.uikit.components.UkNotification;
 import org.vaadin.uikit.components.UkSlideshow;
 import org.vaadin.uikit.components.UkSlideshow.Animation;
 import org.vaadin.uikit.components.UkSlideshow.NavMode;
+import org.vaadin.uikit.components.UkSlideshow.SlideType;
 import org.vaadin.uikit.components.UkVideo;
 import org.vaadin.uikit.components.interfaces.UkInverse.Invert;
 import org.vaadin.uikit.components.layout.UkFlex;
@@ -34,9 +35,11 @@ public class SlideView extends UkFlex {
         UkCard card = new UkCard();
         card.setTitle("Slideshow");
         try {
-            slideShow.addSlide("photo.jpg").add(new H3("Daily temperature"),createChart("#ffffff"));
-            slideShow.addSlide("light.jpg");
-            slideShow.addSlide("dark.jpg");
+            slideShow.addSlide("photo.jpg",SlideType.IMAGE).add(new H3("Daily temperature"),createChart("#ffffff"));
+            slideShow.addSlide("light.jpg",SlideType.IMAGE);
+            slideShow.addSlide("dark.jpg",SlideType.IMAGE);
+            File file = new ClassResourceFactory("big_buck_bunny.mp4").getFile();
+            slideShow.addSlide(file,SlideType.VIDEO);
         } catch (FileNotFoundException e) {
             UkNotification.show("File not found");
         }

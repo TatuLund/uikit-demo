@@ -1,7 +1,5 @@
 package org.vaadin.uikit.components.interfaces;
 
-import org.vaadin.uikit.components.interfaces.UkSizing.FixedWidth;
-
 import com.vaadin.flow.component.HasElement;
 
 public interface UkText extends HasElement {
@@ -141,7 +139,7 @@ public interface UkText extends HasElement {
     
     public enum TextAlignment {
         LEFT("uk-text-left"),
-        RIGH("uk-text-right"),
+        RIGHT("uk-text-right"),
         CENTER("uk-text-center"),
         JUSTIFY("uk-text-justify");
 

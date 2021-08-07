@@ -22,7 +22,7 @@ import com.vaadin.flow.server.VaadinSession;
 public class LoginView extends UkLogin {
     
     public LoginView() {
-//        super();
+        super();
         addLoginListener(event -> {
             if (event.getUsername().equals("user")
                     && event.getPassword().equals("user")) {

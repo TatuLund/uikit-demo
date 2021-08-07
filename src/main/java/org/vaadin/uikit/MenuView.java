@@ -17,15 +17,9 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Menues")
 @Route(value = "menu", layout = MainLayout.class)
-public class MenuView extends UkFlex {
+public class MenuView extends AbstractView {
 
     public MenuView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
-        setSizeFull();
-
         UkCard navbarCard = new UkCard("Navbar");
         UkNavbar navbar = new UkNavbar(Mode.CLICK, Alignment.CENTER);
         navbar.setWidth(FixedWidth.XXLARGE);

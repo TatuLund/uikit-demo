@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkOverflow;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
 
@@ -20,7 +21,7 @@ import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
 public class UkTabSwitcher extends Composite<Div>
-        implements UkSizing, UkMargin, UkPadding {
+        implements UkSizing, UkMargin, UkPadding, UkOverflow {
 
     public enum TabPlacement {
         TOP, BOTTOM;

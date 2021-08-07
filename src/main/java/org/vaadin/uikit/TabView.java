@@ -21,20 +21,17 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("TabSwitcher")
 @Route(value = "tab", layout = MainLayout.class)
-public class TabView extends UkFlex {
+public class TabView extends AbstractView {
 
     String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
     public TabView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setSizeFull();
         add(createTabSwitcher());
     }
 
     UkTabSwitcher createTabSwitcher() {
         UkTabSwitcher tabSwitcher = new UkTabSwitcher();
+        tabSwitcher.setOverflow(OverflowMode.AUTO);
         UkCard card1 = new UkCard("Card 1", new Paragraph(loremIpsum));
         card1.setVariant(CardVariant.DEFAULT);
         UkCard card2 = new UkCard("Card 2", new Paragraph(loremIpsum));

@@ -23,14 +23,9 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Dialog")
 @Route(value = "dialog", layout = MainLayout.class)
-public class DialogView extends UkFlex {
+public class DialogView extends AbstractView {
 
     public DialogView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setSizeFull();
-
         UkModal dialog = new UkModal();
         dialog.setWidth(FixedWidth.XLARGE);
         dialog.setHeight(FixedHeight.LARGE);

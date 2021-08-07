@@ -24,18 +24,11 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Descriptions")
 @Route(value = "description", layout = MainLayout.class)
-public class DescriptionView extends UkFlex {
+public class DescriptionView extends AbstractView {
 
     String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
     public DescriptionView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
-        setSizeFull();
-
-        
         UkCard card = new UkCard();
         card.setTitle("Descriptions");
         String[] array = { "Front end development", "Back end development", "CI/CD experience", "Java programming", "JavaScript coding", "SQL queries", "Integration tests",

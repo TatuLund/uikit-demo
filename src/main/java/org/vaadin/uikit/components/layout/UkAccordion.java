@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkOverflow;
 import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.Component;
@@ -19,7 +20,7 @@ import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
 public class UkAccordion extends Composite<UnorderedList>
-        implements UkSizing, UkMargin, HasSize {
+        implements UkSizing, UkMargin, HasSize, UkOverflow {
 
     public class UkAccordionItem extends Composite<ListItem> {
         ListItem listItem = new ListItem();

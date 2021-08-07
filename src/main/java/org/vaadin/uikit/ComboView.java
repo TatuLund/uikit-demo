@@ -21,17 +21,11 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Selections")
 @Route(value = "combo", layout = MainLayout.class)
-public class ComboView extends UkFlex {
+public class ComboView extends AbstractView {
 
     int itemCount = 0;
 
     public ComboView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
-        setSizeFull();
-
         UkCombo<Item> combo = createCombo();
 
         UkSelect<Item> select = createSelect();

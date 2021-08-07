@@ -12,14 +12,9 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Progress")
 @Route(value = "progress", layout = MainLayout.class)
-public class ProgressView extends UkFlex {
+public class ProgressView extends AbstractView {
 
     public ProgressView()  {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setSizeFull();
-
         UkCard card = new UkCard();
         card.setTitle("Progress");
         UkFlex flex = new UkFlex();

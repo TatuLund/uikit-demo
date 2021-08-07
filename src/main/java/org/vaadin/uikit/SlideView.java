@@ -24,13 +24,9 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("SlideShow")
 @Route(value = "slide", layout = MainLayout.class)
-public class SlideView extends UkFlex {
+public class SlideView extends AbstractView {
 
     public SlideView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setSizeFull();
         UkSlideshow slideShow = new UkSlideshow();
         UkCard card = new UkCard();
         card.setTitle("Slideshow");

@@ -21,7 +21,7 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Table")
 @Route(value = "table", layout = MainLayout.class)
-public class TableView extends UkFlex {
+public class TableView extends AbstractView {
 
     int year = 2000;
     private List<MonthlyExpense> data;
@@ -29,12 +29,6 @@ public class TableView extends UkFlex {
     private int index = 0;
 
     public TableView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
-        setSizeFull();
-
         UkCard card = new UkCard();
         card.setTitle("Table");
 

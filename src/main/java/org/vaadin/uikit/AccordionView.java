@@ -20,18 +20,13 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Accordion")
 @Route(value = "accordion", layout = MainLayout.class)
-public class AccordionView extends UkFlex {
+public class AccordionView extends AbstractView {
 
     String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
     public AccordionView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
-        setSizeFull();
-
         UkAccordion accordion = new UkAccordion();
+        accordion.setOverflow(OverflowMode.AUTO);
         accordion.addItem("Tab 1", new Paragraph(loremIpsum));
         accordion.addItem("Tab 2", createGrid());
         accordion.addItem("Tab 3", createTable());
@@ -85,18 +80,18 @@ public class AccordionView extends UkFlex {
     UkTable createTable() {
         UkTable table = new UkTable();
         table
-                // .withHeaderRow()
-                // .withCell("Title")
-                // .withCell("Column 1")
-                // .withCell("Column 2")
+//                 .withHeaderRow()
+//                 .withCell("Title")
+//                 .withCell("Column 1")
+//                 .withCell("Column 2")
                 .withRow()
                 .withCell(1, 2, new UkCard("chart", createChart("black")))
                 .withCell(new UkCard("card", new UkLabel("Cell 1,2")))
                 .withCell(new UkCard("card", new UkLabel("Cell 2,2"))).withRow()
                 .withCell(2, 1, loremIpsum).withRow().withCell("cell 1,3")
                 .withCell("cell 2,3").withCell("cell 3,3")
-                // .withFooterRow()
-                // .withCell(3,1,"footer")
+//                 .withFooterRow()
+//                 .withCell(3,1,"footer")
                 .build();
         table.setDivider(true);
         table.setMiddle(true);

@@ -19,17 +19,11 @@ import com.vaadin.flow.router.Route;
 
 @PageTitle("Article")
 @Route(value = "article", layout = MainLayout.class)
-public class ArticleView extends UkFlex {
+public class ArticleView extends AbstractView {
 
     String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
     public ArticleView() {
-        setDirection(Direction.COLUMN);
-        setVerticalAlignment(VerticalAlignment.MIDDLE);
-        setHorizontalAlignment(HorizontalAlignment.AROUND);
-        setOverflow(OverflowMode.AUTO);
-        setSizeFull();
-        
         UkArticle article = new UkArticle();        
         UkContainer container = new UkContainer();
         container.setMaxWidth(ContainerMaxWidth.EXPAND);

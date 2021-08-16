@@ -4,22 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.vaadin.uikit.components.UkCard;
-import org.vaadin.uikit.components.UkCard.CardVariant;
 import org.vaadin.uikit.components.UkDescriptionList;
 import org.vaadin.uikit.components.UkTile;
 import org.vaadin.uikit.components.UkTile.TileVariant;
 import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
-import org.vaadin.uikit.components.interfaces.UkFloat.FloatStyle;
-import org.vaadin.uikit.components.interfaces.UkPadding.PaddingSize;
-import org.vaadin.uikit.components.layout.UkFlex;
-import org.vaadin.uikit.components.layout.UkFlex.Direction;
-import org.vaadin.uikit.components.layout.UkFlex.HorizontalAlignment;
-import org.vaadin.uikit.components.layout.UkFlex.VerticalAlignment;
-import org.vaadin.uikit.components.layout.UkPanel;
 
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("Descriptions")
@@ -38,7 +28,8 @@ public class DescriptionView extends AbstractView {
             terms.add(new Term(term));
         }
         
-        UkDescriptionList<Term> list = new UkDescriptionList<>(Term::getTerm,Term::getDescription);
+        UkDescriptionList<Term> list = new UkDescriptionList<>(Term::getTerm,Term::getDescription,3);
+        list.setButtonBorder(BorderStyle.PILL);
         list.setComponentProvider(term -> {
             UkTile tile = new UkTile(term.getDescription());
             tile.setVariant(TileVariant.MUTED);
@@ -46,9 +37,9 @@ public class DescriptionView extends AbstractView {
             tile.setPadding(PaddingSize.SMALL);
             return tile;
         });
-        list.setItems(terms);
-        list.setMargin();
         list.setTermMargin();
+        list.setMargin();
+        list.setItems(terms);
 
         card.setContent(list);
         card.setOverflow(OverflowMode.AUTO);

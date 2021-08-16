@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import org.vaadin.uikit.components.interfaces.ComponentProvider;
 import org.vaadin.uikit.components.interfaces.StringProvider;
-import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -17,6 +17,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.html.DescriptionList;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.DescriptionList.Description;
 import com.vaadin.flow.component.html.DescriptionList.Term;
 import com.vaadin.flow.data.binder.HasDataProvider;
@@ -24,6 +25,8 @@ import com.vaadin.flow.data.provider.DataChangeEvent;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.KeyMapper;
 import com.vaadin.flow.data.provider.Query;
+import com.vaadin.flow.data.provider.QuerySortOrder;
+import com.vaadin.flow.function.SerializableComparator;
 import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
@@ -40,18 +43,40 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
     private ComponentProvider<T> componentProvider;
     private List<DescriptionItem<T>> rows = new ArrayList<>();
 
+    private int pageLength = -1;
+    private int currentPage = 0;
+    private Object filter;
+    private SerializableComparator<T> inMemorySorting;
+
+    private final ArrayList<QuerySortOrder> backEndSorting = new ArrayList<>();
+    private int dataProviderSize = -1;
+    private BorderStyle borderStyle = BorderStyle.SHARP;
+
+    private MarginSize termMargin;
+    private MarginSize descriptionMargin;
+    private PaddingSize descriptionPadding;
+    private PaddingSize termPadding;
+
     class UkTerm extends Term implements UkMargin, UkPadding {
 
         public UkTerm() {
             super();
+            settings();
         }
 
         public UkTerm(String text) {
             super(text);
+            settings();
         }
 
         public UkTerm(Component component) {
             super(component);
+            settings();
+        }
+
+        private void settings() {
+            if (termMargin != null) setMargin(termMargin);
+            if (termPadding != null) setPadding(termPadding);
         }
     }
 
@@ -59,15 +84,23 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
         public UkDescription() {
             super();
+            settings();
         }
 
         public UkDescription(String text) {
             super(text);
+            settings();
         }
 
         public UkDescription(Component component) {
             super(component);
+            settings();
         }        
+
+        private void settings() {
+            if (descriptionMargin != null) setMargin(descriptionMargin);
+            if (descriptionPadding != null) setPadding(descriptionPadding);
+        }
     }
 
     class DescriptionItem<R> {
@@ -114,14 +147,26 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public UkDescriptionList(StringProvider<T> termProvider,
             ComponentProvider<T> componentProvider) {
+        this(termProvider,componentProvider,-1);
+    }
+    
+    public UkDescriptionList(StringProvider<T> termProvider,
+            ComponentProvider<T> componentProvider, int pageLength) {
         this.termProvider = termProvider;
         this.componentProvider = componentProvider;
+        this.pageLength = pageLength;
     }
 
     public UkDescriptionList(StringProvider<T> termProvider,
             StringProvider<T> descriptionProvider) {
+        this(termProvider,descriptionProvider,-1);
+    }
+    
+    public UkDescriptionList(StringProvider<T> termProvider,
+            StringProvider<T> descriptionProvider, int pageLength) {
         this.termProvider = termProvider;
         this.descriptionProvider = descriptionProvider;
+        this.pageLength = pageLength;
     }
 
     public ComponentProvider<T> getComponentProvider() {
@@ -229,11 +274,26 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     private void reset() {
         rows = new ArrayList<>();
-        keyMapper.removeAll();
         list.removeAll();
+        keyMapper.removeAll();
 
-        getDataProvider().fetch(new Query<>()).map(this::createDescriptionItem)
-                .forEach(this::addDescriptionItem);
+        Query query = null;
+        if (pageLength < 0) {
+            query = new Query<>();
+        } else {
+            dataProviderSize = dataProvider.size(new Query(filter));
+            int offset = pageLength * currentPage;
+            query = new Query<>(offset, pageLength, backEndSorting,
+                    inMemorySorting, filter);
+        }
+        
+        getDataProvider().fetch(query).map(item -> createDescriptionItem((T) item))
+                .forEach(descriptionItem -> addDescriptionItem((DescriptionItem<T>) descriptionItem));
+
+        if (pageLength > 0) {
+            addFooter();
+        }
+
     }
 
     private void addDescriptionItem(DescriptionItem<T> descriptionItem) {
@@ -242,6 +302,60 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
         list.add(descriptionItem.getDescription());
     }
 
+    private void addFooter() {
+        list.add(new UkTerm(""));
+        list.add(new UkDescription(createPaging()));
+    }
+    
+    private Div createPaging() {
+        UkButton first = new UkButton(UkIcons.CHEVRON_DOUBLE_LEFT.create());
+        first.setBorder(borderStyle);
+        first.setMargin(MarginSize.SMALL, MarginSide.RIGHT);
+        UkButton previous = new UkButton(UkIcons.CHEVRON_LEFT.create());
+        previous.setBorder(borderStyle);
+        UkButton next = new UkButton(UkIcons.CHEVRON_RIGHT.create());
+        next.setBorder(borderStyle);
+        next.setMargin(MarginSize.SMALL, MarginSide.RIGHT);
+        UkButton last = new UkButton(UkIcons.CHEVRON_DOUBLE_RIGHT.create());
+        last.setBorder(borderStyle);
+        int lastPage = dataProviderSize % pageLength == 0
+                ? (dataProviderSize / pageLength) - 1
+                : (dataProviderSize / pageLength);
+        first.addClickListener(event -> {
+            if (currentPage != 0) {
+                currentPage = 0;
+                dataProvider.refreshAll();
+            }
+        });
+        next.addClickListener(event -> {
+            if (currentPage < lastPage) {
+                currentPage++;
+                dataProvider.refreshAll();
+            }
+        });
+        previous.addClickListener(event -> {
+            if (currentPage > 0) {
+                currentPage--;
+                dataProvider.refreshAll();
+            }
+        });
+        last.addClickListener(event -> {
+            if (currentPage != lastPage) {
+                currentPage = lastPage;
+                dataProvider.refreshAll();
+            }
+        });
+        Div div = new Div();
+        div.getStyle().set("width", "100%");
+        div.getStyle().set("display", "flex");
+        div.getStyle().set("flex-direction", "row");
+        Div spacer = new Div();
+        spacer.getStyle().set("flex-grow", "1");
+        spacer.getStyle().set("text-align", "center");
+        spacer.setText((currentPage + 1) + "/" + (lastPage + 1));
+        div.add(first, previous, spacer, next, last);
+        return div;
+    }    
     private void updateDescriptionItem(DescriptionItem<T> descriptionItem,
             T item) {
         descriptionItem.setItem(item);
@@ -261,35 +375,42 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
     }
 
     public void setTermMargin() {
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getTerm().setMargin());
+        setTermMargin(MarginSize.DEFAULT);
     }
 
     public void setTermMargin(MarginSize marginSize) {
+        this.termMargin = marginSize;
         getDescriptionItems().forEach(descriptionItem -> descriptionItem.getTerm().setMargin(marginSize));
     }
 
     public void setDescriptionMargin() {
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getDescription().setMargin());
+        setDescriptionMargin(MarginSize.DEFAULT);
     }
 
     public void setDescriptionMargin(MarginSize marginSize) {
+        this.descriptionMargin = marginSize;
         getDescriptionItems().forEach(descriptionItem -> descriptionItem.getDescription().setMargin(marginSize));
     }
 
     public void setTermPadding() {
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getTerm().setPadding());
+        setTermPadding(PaddingSize.DEFAULT);
     }
 
     public void setTermPadding(PaddingSize paddingSize) {
+        this.termPadding = paddingSize;
         getDescriptionItems().forEach(descriptionItem -> descriptionItem.getTerm().setPadding(paddingSize));
     }
 
     public void setDescriptionPadding() {
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getDescription().setPadding());
+        setDescriptionPadding(PaddingSize.DEFAULT);
     }
 
     public void setDescriptionPadding(PaddingSize paddingSize) {
+        this.descriptionPadding = paddingSize;
         getDescriptionItems().forEach(descriptionItem -> descriptionItem.getDescription().setPadding(paddingSize));
     }
 
+    public void setButtonBorder(BorderStyle borderStyle) {
+        this.borderStyle = borderStyle;
+    }
 }

@@ -4,6 +4,8 @@ Vaadin in addition its own components has Java API for standard html elements. T
 
 The whole concept of this demo application is about creating Java API abstraction to the library.
 
+Originally UIkit has been designed for creation of functional web-sites. So it has required some thinking how to create Java API's for the components, so that they facilitate connection to typical Java logic and backend data in a meaningful way. Here I have exploited greatly similar patterns than has been used in regular Vaadin components.
+
 ## Overview
 
 ### Getting started
@@ -60,7 +62,7 @@ This demonstrator shows the flexibility of the Vaadin's core framework, which is
 
 There is about 50 components in the collection now.
 
-#### UkAccordion
+#### `UkAccordion`
 
 Java API for UIkit's accordion component. A layout component with usual "accordion" approach. Accordion is vertical list of tabs, where one tab can be open at the time. Has event for opening and closing of a accordion tab.
 
@@ -70,7 +72,7 @@ Java API for UIkit's accordion component. A layout component with usual "accordi
     accordion.addItem("Table", createTable());
     add(accordion);
 
-#### UkAlert
+#### `UkAlert`
 
 A component with `SUCCESS`,`PRIMARY`, `WARNING` and `DANGER` styles, which typically has a text and disappears automatically after set timeout or clicking integrated close button. Has event listener for closing event.
 
@@ -80,7 +82,7 @@ A component with `SUCCESS`,`PRIMARY`, `WARNING` and `DANGER` styles, which typic
     });
     add(alert);
         
-#### UkAppLayout
+#### `UkAppLayout`
 
 UIkit does not have app layout component. This is a macro component done by composing several components. This app layout component has option for auto generated menu, which is populated by scanning available `@Route`'s and `@PageTitle`'s. The menu can be either `UkNavBar`, `UkNav` or populated in `UkOffcanvas`.  
 
@@ -100,17 +102,17 @@ UIkit does not have app layout component. This is a macro component done by comp
 
 ![UkAppLayout](https://github.com/TatuLund/uikit-demo/blob/master/applayout.JPG?raw=true)
 
-#### UkArticle
+#### `UkArticle`
 
 A component to show an article or document. The content is wrapped in `article` html tag. There is fluent API to construct the API from heading, lead, paragraphs and citations etc. The paragraphs can be read from a `File` or `String`. There some styling options, like enable responsive columns between 1-5. 
 
 ![UkArticle](https://github.com/TatuLund/uikit-demo/blob/master/article.JPG?raw=true)
 
-#### UkBadge
+#### `UkBadge`
 
 A `span` with a Badge style.
 
-#### UkBeanTable<T>
+#### `UkBeanTable<T>`
 
 A variant of html `table` based component, which is populated by beans from `DataProvider`. The component supports paging and if you use `DataProvider` from callbacks, the pages are lazy loaded from the backend. You can populate table's cells with `String`, `Component` etc. There are is a alternative constructor to auto generate columns from bean properties by introspection. There is also `UkTable` component that has different kind of Java API purposed for table as a layout use case. The both are using the same UIkit styles for html `table`. `UkBeanTable` has responsive styles enabled, which means that when screen / browser is narrow, the data is collapsed to one column.
 
@@ -124,49 +126,49 @@ A variant of html `table` based component, which is populated by beans from `Dat
 
 ![UkBeanTable](https://github.com/TatuLund/uikit-demo/blob/master/table.JPG?raw=true)
         
-#### UkButton
+#### `UkButton`
 
 A button component with `DEFAULT`,`PRIMARY`, `SECONDARY`, `DANGER`, `LINK` and `TEXT` styles. Uses native html `button` element. Caption can contain text and/or icon. Has click listener for click event. Also used in in UkDropdown, and paging buttons of `UkBeanTable` and `UkDescriptionList`.
 
-#### UkCard
+#### `UkCard`
 
 A single component (or text) containing component with title, optional badge. Has  `DEFAULT`,`PRIMARY` and `SECONDARY` variants.
 
-#### UkCheckbox
+#### `UkCheckbox`
 
 A single `input` element of checkbox type.
 
-#### UkCheckboxGroup<T>
+#### `UkCheckboxGroup<T>`
 
 A multiselect component composed from list of checkboxes similar to `UkCheckbox`. The value of the field is of type `Set<T>`. The component is backed by `DataProvider`, but note, paging is not supported, so it is not suitable for large data sets. The wrapping container element is responsive and number of columns can be set. See also `UkRadioGroup`.
 
 ![UkCheckboxGroup](https://github.com/TatuLund/uikit-demo/blob/master/checkboxes.JPG?raw=true)
 
-#### UkColorPicker
+#### `UkColorPicker`
 
-#### UkContainer
+#### `UkContainer`
 
-#### UkCombo<T>
+#### `UkCombo<T>`
 
 A single select component consisting of `input` and `datalist` elements. Typically such component is called as combobox, autosuggest or filter select. The component is populated by bean list from `DataProvider`. The maximum size of datalist popup can be set, so the component is well suited also larger data sets and `DataProvider` from callbacks. If more than max size items matches filter, only the first matches upto max size are shown.
 
-#### UkDateField
+#### `UkDateField`
 
 UIkit at the moment does not have specific implementation for date picker, thus this is just native html `input` with date type and basic UIkit styling for the `input` itself. The value type of the Java implementation is `LocalDate`.
 
-#### UkDescriptionList<T>
+#### `UkDescriptionList<T>`
 
 List of term and description pairs properly constructed with `dl`, `dt` and `dd` html elements. The list is populated by beans from `DataProvider`. The component supports paging and if you use `DataProvider` from callbacks, the pages are lazy loaded from the backend. The description can be populated by text `String` or `Component`.
 
-#### UkDropdown
+#### `UkDropdown`
 
 A component that wraps a `UkButton` and dropdown that opens when the button is clicked. The dropdown can be populated by a `Component`.
 
-#### UkFlex
+#### `UkFlex`
 
 A basic `div` based component container with CSS flexbox rules. For a responsive grid like layout see `UkGrid`.
 
-#### UkForm
+#### `UkForm`
 
 A responsive layout component based on `form` html element. The class contains `UkFormItem` subcomponent to wrap proper `label` element with the wrapped field meeting typical A11y criteria. `UkFormItem` has also required status indicator inherited from the wrapped field.
 
@@ -188,7 +190,7 @@ A responsive layout component based on `form` html element. The class contains `
     form.add("Story", storyField);
     form.add("Accept", acceptField);
 
-#### UkGrid
+#### `UkGrid`
 
 A `div` based responsive grid layout component container with CSS flexbox rules provided by UIkit. Has fluent Java API in similar fashion as `UkTable`. Note, do not mix this with CSS grid. For basic flex layout see `UkFlex`. Supports 1-6 columns and different number of columns per row.
 
@@ -209,7 +211,7 @@ A `div` based responsive grid layout component container with CSS flexbox rules 
 
 ![UkGrid](https://github.com/TatuLund/uikit-demo/blob/master/grid.JPG?raw=true)
 
-#### UkIcon
+#### `UkIcon`
 
 A `span` containing icon from `UkIcons` collection. The size can be defined.
 
@@ -217,15 +219,15 @@ A `span` containing icon from `UkIcons` collection. The size can be defined.
     icon.setTooltip("This is an icon");
     add(icon);
 
-#### UkLabel
+#### `UkLabel`
 
 A `span` with a Label style. Not to be mixed with proper html `label`. Use `UkFormItem` of `UkForm` to wrap proper label with a field component.
 
-#### UkLogin
+#### `UkLogin`
 
 UIkit itself does not have component for login. This is a component made by composing a login form using other components, such as `UkForm`, `UkTextField`, `UkPassword` and `UkButton`.
 
-#### UkModal
+#### `UkModal`
 
 A modal popup dialog overlay component.
 
@@ -241,29 +243,29 @@ A modal popup dialog overlay component.
 
 ![UkModal](https://github.com/TatuLund/uikit-demo/blob/master/modal.JPG?raw=true)
 
-#### UkImage
+#### `UkImage`
 
-#### UkInline
+#### `UkInline`
 
 A helper component for wrapping an icon from `UkIcons` to the `UkTextField`, `UkPassword`, `UkNumberfield` or `UkDateField`.
 
-#### UkNav
+#### `UkNav`
 
 Tree like menu with vertical orientation.
 
 ![UkNav](https://github.com/TatuLund/uikit-demo/blob/master/nav.JPG?raw=true)
 
-#### UkNavBar
+#### `UkNavBar`
 
 Implementation of menu bar of the UIkit.
 
 ![UkNavBar](https://github.com/TatuLund/uikit-demo/blob/master/navbar.JPG?raw=true)
 
-#### UkNumberField
+#### `UkNumberField`
 
 A regular html `input` of number type. Value of the field is `Double`. The min and max range can be set as well as step amount. 
 
-#### UkNotification
+#### `UkNotification`
 
     UkButton button = new UkButton("Click me");
     button.addClickListener(event -> {
@@ -274,27 +276,27 @@ A regular html `input` of number type. Value of the field is `Double`. The min a
         .view("Notification message " + range.getValue());
     });
         
-#### UkOffCanvas
+#### `UkOffCanvas`
 
 An overlay component container that is normally hidden, but can be slid to view either from the left or right.
 
-#### UkPanel
+#### `UkPanel`
 
-#### UkPassword
+#### `UkPassword`
 
 A regular html `input` of password type. Value of the field is `String`.
 
-#### UkProgress
+#### `UkProgress`
 
 A progress bar component using styles from UIkit.
 
-#### UkRadioGroup<T>
+#### `UkRadioGroup<T>`
 
 A single select component composed from list of radio buttons similar. The value of the field is of type `T`. The component is backed by `DataProvider`, but note, paging is not supported, so it is not suitable for large data sets. The wrapping container element is responsive and number of columns can be set. See also `UkCheckboxGroup`.
 
 ![UkRadioGroup](https://github.com/TatuLund/uikit-demo/blob/master/radios.JPG?raw=true)
 
-#### UkRange
+#### `UkRange`
 
 A regular html `input` of range or so called slider type. Value of the field is `Double`. The min and max range can be set as well as step amount. 
 
@@ -307,11 +309,11 @@ A regular html `input` of range or so called slider type. Value of the field is 
     range.setWidth(FieldWidth.MEDIUM);
     range.setSize(FieldSize.SMALL);
         
-#### UkSection
+#### `UkSection`
 
-#### UkSelect<T>
+#### `UkSelect<T>`
 
-#### UkTable
+#### `UkTable`
 
 Variant of html `table` based component, which can be constructed using fluent API. You can populate table's cells with `String` or `Component`. The component supports also row span and column span. There is also `UkBeanTable` component that has different kind of Java API purposed for table as a data list / grid. The both are using the same UIkit styles for html `table`. `UkTable` has responsive styles enabled, which means that when screen / browser is narrow, the data is collapsed to one column.
 
@@ -332,29 +334,43 @@ Variant of html `table` based component, which can be constructed using fluent A
 
 ![UkTable](https://github.com/TatuLund/uikit-demo/blob/master/table2.JPG?raw=true)
 
-#### UkSlideshow
+#### `UkSlideshow`
 
 UIkit has css and JavaScript combo component for Slideshows. This is Java API for it. The slides can contain image or video as baseline and additional component on top of media positioned in various ways. The media is loaded when slide is shown, i.e. lazy loading. Also there are event listener for slide change.
 
-#### UkSpinner
+#### `UkSpinner`
 
 A simple spinner component to show indeterminate progress / waiting status. 
 
-#### UkTabSwitcher
+#### `UkTabSwitcher`
 
-This is a tabsheet type of a layout component. Tabs can be either on the top or bottom side of the content. There is event to listen for tab view / exit. See also UkAccordion.
+This is a tabsheet type of a layout component. Tabs can be either on the top or bottom side of the content. There is event to listen for tab view / exit. See also `UkAccordion`.
 
-#### UkTextArea
+    UkTabSwitcher tabSwitcher = new UkTabSwitcher();
+    tabSwitcher.setOverflow(OverflowMode.AUTO);
+    UkCard card1 = new UkCard("Card 1", new Paragraph(loremIpsum));
+    card1.setVariant(CardVariant.DEFAULT);
+    UkCard card2 = new UkCard("Card 2", new Paragraph(loremIpsum));
+    card2.setVariant(CardVariant.SECONDARY);
+    UkCard card3 = new UkCard("Card 3", new Paragraph(loremIpsum));
+    card3.setVariant(CardVariant.PRIMARY);
+    tabSwitcher.addItem("Tab 1", card1);
+    tabSwitcher.addItem("Tab 2", card2);
+    tabSwitcher.addItem("Tab 3", card3);
+
+![UkTabSwitcher](https://github.com/TatuLund/uikit-demo/blob/master/tabswitcher.JPG?raw=true)
+
+#### `UkTextArea`
 
 Optionally resizeable text field based on native html `textarea` element.  Value of the field is `String`.
 
-#### UkTextField
+#### `UkTextField`
 
 A regular `input` of textual type. Value of the field is `String`. 
 
-#### UkTile
+#### `UkTile`
 
-#### UkVideo
+#### `UkVideo`
 
 ### Other sources
 

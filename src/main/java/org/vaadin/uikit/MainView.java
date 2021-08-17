@@ -114,7 +114,7 @@ public class MainView extends UkFlex {
         // add(breadcrumb);
 
         UkIcon icon = UkIcons.CHECK.create();
-        icon.getElement().setAttribute("uk-tooltip", "This is an icon");
+        icon.setTooltip("This is an icon");
         add(icon);
 
         UkButton button = new UkButton("Click me");

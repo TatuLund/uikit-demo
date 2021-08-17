@@ -203,6 +203,10 @@ A `div` based responsive grid layout component container with CSS flexbox rules 
 
 A `span` containing icon from `UkIcons` collection. The size can be defined.
 
+    UkIcon icon = UkIcons.CHECK.create();
+    icon.setTooltip("This is an icon");
+    add(icon);
+
 #### UkLabel
 
 A `span` with a Label style. Not to be mixed with proper html `label`. Use `UkFormItem` of `UkForm` to wrap proper label with a field component.
@@ -243,6 +247,17 @@ Implementation of menu bar of the UIkit.
 
 A regular html `input` of number type. Value of the field is `Double`. The min and max range can be set as well as step amount. 
 
+#### UkNotification
+
+    UkButton button = new UkButton("Click me");
+    button.addClickListener(event -> {
+    UkNotification notification = new UkNotification();
+    notification
+        .withPosition(Position.BOTTOM_CENTER)
+        .withStatus(Status.SUCCESS)
+        .view("Notification message " + range.getValue());
+    });
+        
 #### UkOffCanvas
 
 An overlay component container that is normally hidden, but can be slid to view either from the left or right.
@@ -263,6 +278,15 @@ A single select component composed from list of radio buttons similar. The value
 
 A regular html `input` of range or so called slider type. Value of the field is `Double`. The min and max range can be set as well as step amount. 
 
+    UkRange range = new UkRange(1, 10, 0.1);
+    range.setTooltip("Range slider");
+    range.setValue(5d);
+    range.addValueChangeListener(event -> {
+        UkNotification.show("Value: " + event.getValue());
+    });
+    range.setWidth(FieldWidth.MEDIUM);
+    range.setSize(FieldSize.SMALL);
+        
 #### UkSection
 
 #### UkSelect<T>

@@ -64,21 +64,21 @@ There is about 50 components in the collection now.
 
 Java API for UIkit's accordion component. A layout component with usual "accordion" approach. Accordion is vertical list of tabs, where one tab can be open at the time. Has event for opening and closing of a accordion tab.
 
-        UkAccordion accordion = new UkAccordion();
-        accordion.setOverflow(OverflowMode.AUTO);
-        accordion.addItem("Grid", createGrid());
-        accordion.addItem("Table", createTable());
-        add(accordion);
+    UkAccordion accordion = new UkAccordion();
+    accordion.setOverflow(OverflowMode.AUTO);
+    accordion.addItem("Grid", createGrid());
+    accordion.addItem("Table", createTable());
+    add(accordion);
 
 #### UkAlert
 
 A component with `SUCCESS`,`PRIMARY`, `WARNING` and `DANGER` styles, which typically has a text and disappears automatically after set timeout or clicking integrated close button. Has event listener for closing event.
 
-        UkAlert alert = new UkAlert("Demo app loaded", AlertVariant.SUCCESS);
-        alert.addAlertHiddenListener(event -> {
-            UkNotification.show("Ack!");
-        });
-        add(alert);
+    UkAlert alert = new UkAlert("Demo app loaded", AlertVariant.SUCCESS);
+    alert.addAlertHiddenListener(event -> {
+        UkNotification.show("Ack!");
+    });
+    add(alert);
         
 #### UkAppLayout
 
@@ -110,13 +110,15 @@ A `span` with a Badge style.
 
 A variant of html `table` based component, which is populated by beans from `DataProvider`. The component supports paging and if you use `DataProvider` from callbacks, the pages are lazy loaded from the backend. You can populate table's cells with `String`, `Component` etc. There are is a alternative constructor to auto generate columns from bean properties by introspection. There is also `UkTable` component that has different kind of Java API purposed for table as a layout use case. The both are using the same UIkit styles for html `table`. `UkBeanTable` has responsive styles enabled, which means that when screen / browser is narrow, the data is collapsed to one column.
 
-        // Auto create paged Table with columns from properties of MonthlyExpense class
-        UkBeanTable<MonthlyExpense> table = new UkBeanTable<>(
-                MonthlyExpense.class, true, 12);
-        table.setSmall(true);
-        table.setStripes(true);
-        List<MonthlyExpense> data = getData(); 
-        table.setItems(data);  // Populate the table with given list
+    // Auto create paged Table with columns from properties of MonthlyExpense class
+    UkBeanTable<MonthlyExpense> table = new UkBeanTable<>(
+            MonthlyExpense.class, true, 12);
+    table.setSmall(true);
+    table.setStripes(true);
+    List<MonthlyExpense> data = getData(); 
+    table.setItems(data);  // Populate the table with given list
+
+![Table](https://github.com/tatulund/uikit-demo/blob/master/table.jpg?raw=true)
         
 #### UkButton
 
@@ -265,6 +267,8 @@ An overlay component container that is normally hidden, but can be slid to view 
 #### UkPanel
 
 #### UkPassword
+
+A regular html `input` of password type. Value of the field is `String`.
 
 #### UkProgress
 

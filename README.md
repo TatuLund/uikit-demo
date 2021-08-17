@@ -97,10 +97,14 @@ UIkit does not have app layout component. This is a macro component done by comp
             });
         }
     }
-    
+
+![UkAppLayout](https://github.com/TatuLund/uikit-demo/blob/master/applayout.JPG?raw=true)
+
 #### UkArticle
 
 A component to show an article or document. The content is wrapped in `article` html tag. There is fluent API to construct the API from heading, lead, paragraphs and citations etc. The paragraphs can be read from a `File` or `String`. There some styling options, like enable responsive columns between 1-5. 
+
+![UkArticle](https://github.com/TatuLund/uikit-demo/blob/master/article.JPG?raw=true)
 
 #### UkBadge
 
@@ -118,7 +122,7 @@ A variant of html `table` based component, which is populated by beans from `Dat
     List<MonthlyExpense> data = getData(); 
     table.setItems(data);  // Populate the table with given list
 
-![Table](https://github.com/tatulund/uikit-demo/blob/master/table.jpg?raw=true)
+![UkBeanTable](https://github.com/TatuLund/uikit-demo/blob/master/table.JPG?raw=true)
         
 #### UkButton
 
@@ -135,6 +139,8 @@ A single `input` element of checkbox type.
 #### UkCheckboxGroup<T>
 
 A multiselect component composed from list of checkboxes similar to `UkCheckbox`. The value of the field is of type `Set<T>`. The component is backed by `DataProvider`, but note, paging is not supported, so it is not suitable for large data sets. The wrapping container element is responsive and number of columns can be set. See also `UkRadioGroup`.
+
+![UkCheckboxGroup](https://github.com/TatuLund/uikit-demo/blob/master/checkboxes.JPG?raw=true)
 
 #### UkColorPicker
 
@@ -200,7 +206,9 @@ A `div` based responsive grid layout component container with CSS flexbox rules 
         .withCell(1, new UkCard("card", new UkLabel("Cell 2-3")))
         .build();
     grid.setGapModifier(GapModifier.COLLAPSE);
-        
+
+![UkGrid](https://github.com/TatuLund/uikit-demo/blob/master/grid.JPG?raw=true)
+
 #### UkIcon
 
 A `span` containing icon from `UkIcons` collection. The size can be defined.
@@ -230,7 +238,9 @@ A modal popup dialog overlay component.
     dialog.addModalHiddenListener(event -> {
         UkNotification.show("Thanks!");
     });
-        
+
+![UkModal](https://github.com/TatuLund/uikit-demo/blob/master/modal.JPG?raw=true)
+
 #### UkImage
 
 #### UkInline
@@ -241,9 +251,13 @@ A helper component for wrapping an icon from `UkIcons` to the `UkTextField`, `Uk
 
 Tree like menu with vertical orientation.
 
+![UkNav](https://github.com/TatuLund/uikit-demo/blob/master/nav.JPG?raw=true)
+
 #### UkNavBar
 
 Implementation of menu bar of the UIkit.
+
+![UkNavBar](https://github.com/TatuLund/uikit-demo/blob/master/navbar.JPG?raw=true)
 
 #### UkNumberField
 
@@ -274,9 +288,11 @@ A regular html `input` of password type. Value of the field is `String`.
 
 A progress bar component using styles from UIkit.
 
-#### UkRadioxGroup<T>
+#### UkRadioGroup<T>
 
 A single select component composed from list of radio buttons similar. The value of the field is of type `T`. The component is backed by `DataProvider`, but note, paging is not supported, so it is not suitable for large data sets. The wrapping container element is responsive and number of columns can be set. See also `UkCheckboxGroup`.
+
+![UkRadioGroup](https://github.com/TatuLund/uikit-demo/blob/master/radios.JPG?raw=true)
 
 #### UkRange
 
@@ -313,7 +329,9 @@ Variant of html `table` based component, which can be constructed using fluent A
         .build();
     table.setDivider(true);
     table.setMiddle(true);
-        
+
+![UkTable](https://github.com/TatuLund/uikit-demo/blob/master/table2.JPG?raw=true)
+
 #### UkSlideshow
 
 UIkit has css and JavaScript combo component for Slideshows. This is Java API for it. The slides can contain image or video as baseline and additional component on top of media positioned in various ways. The media is loaded when slide is shown, i.e. lazy loading. Also there are event listener for slide change.

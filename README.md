@@ -58,6 +58,8 @@ This demonstrator shows the flexibility of the Vaadin's core framework, which is
 
 ### Components
 
+There is about 50 components in the collection now.
+
 #### UkAlert
 
 A component with `SUCCESS`,`PRIMARY`, `WARNING` and `DANGER` styles, which typically has a text and disappears automatically after set timeout or clicking integrated close button. Has event listener for closing event.

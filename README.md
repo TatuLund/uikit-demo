@@ -60,7 +60,7 @@ This demonstrator shows the flexibility of the Vaadin's core framework, which is
 
 ### Components
 
-There is about 50 components in the collection now.
+There is about 50 components in the collection now. Component's class names are prefixed with "Uk" to avoid conflicts with Vaadin's own components. 
 
 #### `UkAccordion`
 
@@ -71,6 +71,8 @@ Java API for UIkit's accordion component. A layout component with usual "accordi
     accordion.addItem("Grid", createGrid());
     accordion.addItem("Table", createTable());
     add(accordion);
+
+![UkAppLayout](https://github.com/TatuLund/uikit-demo/blob/master/accordion.JPG?raw=true)
 
 #### `UkAlert`
 
@@ -106,6 +108,18 @@ UIkit does not have app layout component. This is a macro component done by comp
 
 A component to show an article or document. The content is wrapped in `article` html tag. There is fluent API to construct the API from heading, lead, paragraphs and citations etc. The paragraphs can be read from a `File` or `String`. There some styling options, like enable responsive columns between 1-5. 
 
+    UkArticle article = new UkArticle();
+    article
+       .withHeading("Lorem ipsum dolor sit amet")
+       .withLead(loremIpsum)
+       .withParagraph(new UkImage("photo.jpg","Photo"))
+       .withFile(file) // Read content from file, translate each line to a paragraph
+       .withTextAlignment(TextAlignment.JUSTIFY)
+       .withMeta("By John Doe "+ LocalDate.now().toString())
+       .withColumns(3)
+       .withHeaderSpan(ArticleHeaderSpan.WITH_LEAD,TextAlignment.CENTER)
+       .build();
+                
 ![UkArticle](https://github.com/TatuLund/uikit-demo/blob/master/article.JPG?raw=true)
 
 #### `UkBadge`
@@ -147,6 +161,8 @@ A multiselect component composed from list of checkboxes similar to `UkCheckbox`
 #### `UkColorPicker`
 
 #### `UkContainer`
+
+A `div` based component container with styles from `uk-container` to a block element to give it a max-width and wrap the main content. The element will be centered and have padding on the sides, that adapts automatically for large screens.
 
 #### `UkCombo<T>`
 
@@ -282,6 +298,8 @@ An overlay component container that is normally hidden, but can be slid to view 
 
 #### `UkPanel`
 
+A `div` element based component container which has set box-sizing to border-box. Optionally you can enable scrolling using `panel.setScrollable(true)`.
+
 #### `UkPassword`
 
 A regular html `input` of password type. Value of the field is `String`.
@@ -311,7 +329,11 @@ A regular html `input` of range or so called slider type. Value of the field is 
         
 #### `UkSection`
 
+Sections are used to separate the content of a page into differently styled blocks. You can use `UkContainer` component to modify the width of the content inside sections and add horizontal padding. Note that the padding of a nested container will be reset.
+
 #### `UkSelect<T>`
+
+A single select field component based on natvie html `select` element.
 
 #### `UkTable`
 
@@ -369,6 +391,8 @@ Optionally resizeable text field based on native html `textarea` element.  Value
 A regular `input` of textual type. Value of the field is `String`. 
 
 #### `UkTile`
+
+A single component (or text) containing component. Has  `DEFAULT`,`PRIMARY`, `MUTED` and `SECONDARY` variants for background color accent.
 
 #### `UkVideo`
 

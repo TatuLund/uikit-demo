@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import org.vaadin.uikit.components.UkArticle;
 import org.vaadin.uikit.components.UkArticle.ArticleHeaderSpan;
+import org.vaadin.uikit.components.UkArticle.ArticleFileOption;
 import org.vaadin.uikit.components.interfaces.UkText.TextAlignment;
 import org.vaadin.uikit.components.UkImage;
 import org.vaadin.uikit.components.layout.UkContainer;
@@ -34,7 +35,7 @@ public class ArticleView extends AbstractView {
             article
                 .withLead(loremIpsum)
                 .withParagraph(new UkImage("photo.jpg","Photo"))
-                .withFile(file)
+                .withFile(file,ArticleFileOption.DROPCAP_FIRST)
                 .withHeading("Lorem ipsum dolor sit amet")
                 .withTextAlignment(TextAlignment.JUSTIFY)
                 .withMeta("By John Doe "+ LocalDate.now().toString())

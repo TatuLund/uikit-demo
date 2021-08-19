@@ -26,12 +26,17 @@ public class UkArticle extends Composite<Article> {
         WITH_LEAD, WITHOUT_LEAD;
     }
 
+    public enum ArticleFileOption {
+        LEAD, DROPCAP_FIRST, DROPCAP_ALL, DROPCAP_LEAD, NONE
+    }
+
     private H1 heading = null;
     private Paragraph lead;
     private Paragraph meta;
     private Article article = new Article(); 
     private List<Paragraph> paragraphs = new ArrayList<>();
     private boolean first;
+    private boolean dropcap;
 
     public UkArticle() {
         article.addClassName("uk-article");
@@ -45,9 +50,16 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withLead(String leadText) {
+        return withLead(leadText,false);
+    }
+
+    public UkArticle withLead(String leadText, boolean dropcap) {
         lead = new Paragraph();
         lead.setText(leadText);
         lead.addClassName("uk-text-lead");
+        if (dropcap) {
+            lead.addClassName("uk-dropcap");
+        }
         return this;
     }
 
@@ -59,8 +71,15 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withParagraph(String text) {
+        return withParagraph(text,false);
+    }
+    
+    public UkArticle withParagraph(String text, boolean dropcap) {
         Paragraph p = new Paragraph();
         p.setText(text);
+        if (dropcap) {
+            p.addClassName("uk-dropcap");
+        }
         paragraphs.add(p);
         return this;
     }
@@ -77,26 +96,39 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withParagraph(Component component) {
+        return withParagraph(component,false);
+    }
+    
+    public UkArticle withParagraph(Component component, boolean dropcap) {
         Paragraph p = new Paragraph();
         p.add(component);
+        if (dropcap) {
+            p.addClassName("uk-dropcap");
+        }
         paragraphs.add(p);
         return this;
     }
 
     public UkArticle withFile(File file) throws IOException {
-        return withFile(file,false);
+        return withFile(file, ArticleFileOption.NONE);
     }
 
-    public UkArticle withFile(File file, boolean lead) throws IOException {
+    public UkArticle withFile(File file, ArticleFileOption... options) throws IOException {
         InputStream is = new FileInputStream(file);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        first = lead;
+        first = Stream.of(options).anyMatch(option -> option == ArticleFileOption.LEAD);
+        dropcap = Stream.of(options).anyMatch(option -> option == ArticleFileOption.DROPCAP_FIRST);
         reader.lines().forEach(line -> {
             if (first) {
-                withLead(line);
+                withLead(line,Stream.of(options).anyMatch(option -> option == ArticleFileOption.DROPCAP_LEAD));
                 first = false;
             } else {
-                withParagraph(line);
+                if (dropcap) {
+                    withParagraph(line,true);
+                    dropcap = false;
+                } else {
+                    withParagraph(line,Stream.of(options).anyMatch(option -> option == ArticleFileOption.DROPCAP_ALL));
+                }
             }
         });
         reader.close();
@@ -179,6 +211,7 @@ public class UkArticle extends Composite<Article> {
         }
         paragraphs.forEach(paragraph -> {
             article.add(paragraph);
+            first = false;
         });
     }
 

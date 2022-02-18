@@ -13,8 +13,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinSession;
 
-@StyleSheet("context://custom.css")
-//@StyleSheet("context://uikit.min.css")
+//@StyleSheet("context://custom.css")
+@StyleSheet("context://uikit.min.css")
 @JavaScript("context://uikit.min.js")
 @JavaScript("context://uikit-icons.min.js")
 @PageTitle("Login")

@@ -12,7 +12,6 @@ import org.vaadin.uikit.components.interfaces.UkText.TextAlignment;
 import org.vaadin.uikit.components.UkImage;
 import org.vaadin.uikit.components.layout.UkContainer;
 import org.vaadin.uikit.components.layout.UkContainer.ContainerMaxWidth;
-import org.vaadin.uikit.components.layout.UkFlex;
 import org.vaadin.uikit.components.util.ClassResourceFactory;
 
 import com.vaadin.flow.router.PageTitle;

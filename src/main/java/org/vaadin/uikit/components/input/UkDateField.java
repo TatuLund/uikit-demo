@@ -45,7 +45,7 @@ public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalD
 
     public UkDateField(Resolution resolution) {
         super("value", LocalDate.now(), String.class, parseDate(resolution),
-                value -> "" + value);
+                value -> value.toString());
         addClassName("uk-input");
         this.resolution = resolution;
         setSynchronizedEvent("change");

@@ -13,8 +13,8 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.NoTheme;
 
-@StyleSheet("context://custom.css")
-//@StyleSheet("context://uikit.min.css")
+//@StyleSheet("context://custom.css")
+@StyleSheet("context://uikit.min.css")
 @JavaScript("context://uikit.min.js")
 @JavaScript("context://uikit-icons.min.js")
 @Push

@@ -19,6 +19,7 @@ import org.vaadin.uikit.components.input.UkCheckbox;
 import org.vaadin.uikit.components.input.UkColorPicker;
 import org.vaadin.uikit.components.input.UkDateField;
 import org.vaadin.uikit.components.input.UkRange;
+import org.vaadin.uikit.components.input.UkTimeField;
 import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldSize;
 import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldWidth;
 import org.vaadin.uikit.components.layout.UkFlex;
@@ -90,6 +91,14 @@ public class MainView extends UkFlex {
             UkNotification.show("Date: " + event.getValue());
         });
         add(dateField);
+
+        UkTimeField timeField = new UkTimeField();
+        timeField.setWidth(FieldWidth.MEDIUM);
+        timeField.setSize(FieldSize.SMALL);
+        timeField.addValueChangeListener(event -> {
+            UkNotification.show("Time: " + event.getValue());
+        });
+        add(timeField);
         
         UkCheckbox check = new UkCheckbox();
         check.addValueChangeListener(event -> {

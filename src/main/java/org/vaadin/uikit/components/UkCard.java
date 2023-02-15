@@ -1,7 +1,7 @@
 package org.vaadin.uikit.components;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 import org.vaadin.uikit.components.interfaces.UkBorder;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkOverflow;
@@ -87,7 +87,7 @@ public class UkCard extends Composite<Div>
     }
 
     public void setContent(String htmlContent) {
-        String sanitized = Jsoup.clean(htmlContent, Whitelist.basic());
+        String sanitized = Jsoup.clean(htmlContent, Safelist.basic());
         if (content != null)
             div.remove(content);
         Html html = new Html(sanitized);

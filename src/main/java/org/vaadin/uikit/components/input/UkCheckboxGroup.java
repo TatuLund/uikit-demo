@@ -8,12 +8,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import org.vaadin.uikit.components.interfaces.StringProvider;
-import org.vaadin.uikit.components.interfaces.UkFormSizing;
-import org.vaadin.uikit.components.interfaces.UkMargin;
-import org.vaadin.uikit.components.interfaces.UkPadding;
-import org.vaadin.uikit.components.interfaces.UkTooltip;
-import org.vaadin.uikit.components.interfaces.UkValidation;
-import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Composite;
@@ -32,7 +26,6 @@ import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.data.selection.MultiSelect;
 import com.vaadin.flow.data.selection.MultiSelectionEvent;
 import com.vaadin.flow.data.selection.MultiSelectionListener;
-import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.function.SerializablePredicate;
 import com.vaadin.flow.shared.Registration;
 
@@ -43,8 +36,7 @@ import elemental.json.JsonArray;
 @Tag(Tag.DIV)
 public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
         implements HasItemsAndComponents<T>, HasSize, HasValidation,
-        MultiSelect<UkCheckboxGroup<T>, T>, HasDataProvider<T>, UkValidation,
-        UkTooltip, UkFormSizing, UkMargin, UkPadding {
+        MultiSelect<UkCheckboxGroup<T>, T>, HasDataProvider<T>, UkField {
 
     private static final String VALUE = "value";
 
@@ -216,8 +208,7 @@ public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
         super.onDetach(detachEvent);
     }
 
-    public void setItemLabelGenerator(
-            StringProvider<T> itemLabelGenerator) {
+    public void setItemLabelGenerator(StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;
@@ -276,7 +267,7 @@ public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
             setDisabled(readOnly);
             refreshCheckboxes();
         }
-    }    
+    }
 
     @Override
     public boolean isReadOnly() {
@@ -316,7 +307,8 @@ public class UkCheckboxGroup<T> extends SelectBase<UkCheckboxGroup<T>, Set<T>>
 
     public void setCheckboxBorder(BorderStyle borderStyle) {
         this.borderStyle = borderStyle;
-        getCheckboxItems().forEach(checkbox -> checkbox.getCheckbox().setBorder(borderStyle));
+        getCheckboxItems().forEach(
+                checkbox -> checkbox.getCheckbox().setBorder(borderStyle));
     }
 
     private void updateCheckbox(CheckboxItem<T> checkbox) {

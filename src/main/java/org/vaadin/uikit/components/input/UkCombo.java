@@ -5,21 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 
 import org.vaadin.uikit.components.interfaces.StringProvider;
-import org.vaadin.uikit.components.interfaces.UkBorder;
-import org.vaadin.uikit.components.interfaces.UkFormSizing;
-import org.vaadin.uikit.components.interfaces.UkMargin;
-import org.vaadin.uikit.components.interfaces.UkPadding;
-import org.vaadin.uikit.components.interfaces.UkTooltip;
-import org.vaadin.uikit.components.interfaces.UkValidation;
 import org.vaadin.uikit.components.util.Utils;
 
 import com.vaadin.flow.component.AttachEvent;
-import com.vaadin.flow.component.ComponentEvent;
-import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HtmlComponent;
@@ -40,8 +31,7 @@ import com.vaadin.flow.shared.Registration;
 @Tag(Tag.DIV)
 public class UkCombo<T> extends SelectBase<UkCombo<T>, T>
         implements HasItemsAndComponents<T>, SingleSelect<UkCombo<T>, T>,
-        Focusable<UkCombo<T>>, HasDataProvider<T>, UkValidation, UkTooltip,
-        UkFormSizing, UkMargin, UkPadding, UkBorder {
+        Focusable<UkCombo<T>>, HasDataProvider<T>, UkField{
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>();
 

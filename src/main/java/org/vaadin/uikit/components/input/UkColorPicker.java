@@ -1,10 +1,5 @@
 package org.vaadin.uikit.components.input;
 
-import org.vaadin.uikit.components.interfaces.UkBorder;
-import org.vaadin.uikit.components.interfaces.UkFormSizing;
-import org.vaadin.uikit.components.interfaces.UkTooltip;
-import org.vaadin.uikit.components.interfaces.UkValidation;
-
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasStyle;
@@ -16,8 +11,7 @@ import com.vaadin.flow.component.dependency.JavaScript;
 @JavaScript("context://canvas-color.js")
 public class UkColorPicker
         extends AbstractSinglePropertyField<UkColorPicker, String>
-        implements UkValidation, HasStyle, Focusable<UkColorPicker>, UkTooltip,
-        UkBorder, UkFormSizing {
+        implements HasStyle, Focusable<UkColorPicker>, UkField {
 
     public UkColorPicker() {
         super("value", "", false);

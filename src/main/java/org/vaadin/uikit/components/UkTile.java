@@ -3,6 +3,7 @@ package org.vaadin.uikit.components;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -15,7 +16,7 @@ import com.vaadin.flow.component.html.Div;
 
 @SuppressWarnings("serial")
 public class UkTile extends Composite<Div>
-        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder {
+        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder, UkHidden {
 
     Div div = new Div();
     Component content = new Div();

@@ -1,10 +1,12 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.components.interfaces.UkHidden;
+
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
 
 @SuppressWarnings("serial")
-public class UkSpinner extends Composite<Div> {
+public class UkSpinner extends Composite<Div> implements UkHidden {
 
     Div div = new Div();
 

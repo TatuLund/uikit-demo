@@ -1,5 +1,7 @@
 package org.vaadin.uikit.components.layout;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkOverflow;
 import org.vaadin.uikit.components.interfaces.UkPadding;
@@ -9,7 +11,7 @@ import com.vaadin.flow.component.html.Div;
 
 @SuppressWarnings("serial")
 public class UkFlex extends Div
-        implements UkMargin, UkSizing, UkPadding, UkOverflow {
+        implements UkMargin, UkSizing, UkPadding, UkOverflow, UkBoxShadow, UkHidden {
 
     public enum HorizontalAlignment {
         // @formatter:off        

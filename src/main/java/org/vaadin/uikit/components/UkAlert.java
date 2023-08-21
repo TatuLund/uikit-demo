@@ -1,6 +1,7 @@
 package org.vaadin.uikit.components;
 
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
 
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -13,7 +14,7 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
-public class UkAlert extends Composite<Div> implements HasSize, UkBorder {
+public class UkAlert extends Composite<Div> implements HasSize, UkBorder, UkBoxShadow {
 
     public enum AlertVariant {
         // @formatter:off

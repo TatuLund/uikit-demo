@@ -1,7 +1,9 @@
 package org.vaadin.uikit.components;
 
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
 import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -11,8 +13,8 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Span;
 
 @SuppressWarnings("serial")
-public class UkLabel extends Composite<Span>
-        implements UkTooltip, UkMargin, UkSizing, UkPadding, UkBorder, UkFloat {
+public class UkLabel extends Composite<Span> implements UkTooltip, UkMargin,
+        UkSizing, UkPadding, UkBorder, UkFloat, UkHidden {
 
     public enum LabelVariant {
         // @formatter:off

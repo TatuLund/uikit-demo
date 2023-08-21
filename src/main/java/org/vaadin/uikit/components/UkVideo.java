@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.util.FileRegistrations;
 import org.vaadin.uikit.components.util.FileResourceFactory;
 
@@ -21,7 +25,8 @@ import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
 @Tag("video")
-public class UkVideo extends HtmlComponent {
+public class UkVideo extends HtmlComponent
+        implements UkHidden, UkBoxShadow, UkPadding, UkMargin {
 
     private static final PropertyDescriptor<String, String> srcDescriptor = PropertyDescriptors
             .attributeWithDefault("src", "");

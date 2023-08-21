@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkOverflow;
 import org.vaadin.uikit.components.interfaces.UkPadding;
@@ -20,8 +22,8 @@ import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
-public class UkTabSwitcher extends Composite<Div>
-        implements UkSizing, UkMargin, UkPadding, UkOverflow {
+public class UkTabSwitcher extends Composite<Div> implements UkSizing, UkMargin,
+        UkPadding, UkOverflow, UkBoxShadow, UkHidden {
 
     public enum TabPlacement {
         TOP, BOTTOM;

@@ -2,7 +2,9 @@ package org.vaadin.uikit.components;
 
 import org.vaadin.uikit.components.UkButton.ButtonVariant;
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
 import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -12,7 +14,8 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
-public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
+public class UkDropdown extends Composite<Div>
+        implements UkFloat, UkBorder, UkHidden, UkBoxShadow {
 
     public enum Position {
         // @formatter:off

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -15,7 +17,7 @@ import com.vaadin.flow.component.html.Div;
 
 @SuppressWarnings("serial")
 public class UkGrid extends Composite<Div>
-        implements HasSize, UkSizing, UkMargin, UkPadding {
+        implements HasSize, UkSizing, UkMargin, UkPadding, UkBoxShadow, UkHidden {
 
     public enum GapModifier {
         // @formatter:off

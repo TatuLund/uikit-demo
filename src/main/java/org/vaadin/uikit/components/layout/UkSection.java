@@ -1,12 +1,15 @@
 package org.vaadin.uikit.components.layout;
 
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkSizing;
 
 import com.vaadin.flow.component.html.Div;
 
 @SuppressWarnings("serial")
-public class UkSection extends Div implements UkSizing, UkBorder {
+public class UkSection extends Div
+        implements UkSizing, UkBorder, UkBoxShadow, UkHidden {
 
     public enum SectionVariant {
         // @formatter:off

@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 import org.vaadin.uikit.components.interfaces.ComponentProvider;
 import org.vaadin.uikit.components.interfaces.StringProvider;
 import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -31,7 +33,8 @@ import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
 public class UkDescriptionList<T> extends Composite<DescriptionList>
-        implements HasDataProvider<T>, UkMargin, UkPadding, UkSizing {
+        implements HasDataProvider<T>, UkMargin, UkPadding, UkSizing,
+        UkBoxShadow, UkHidden {
 
     private DescriptionList list = new DescriptionList();
 

@@ -1,5 +1,7 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkSizing;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
@@ -10,7 +12,7 @@ import com.vaadin.flow.component.Tag;
 @SuppressWarnings("serial")
 @Tag("progress")
 public class UkProgress extends Component
-        implements UkSizing, UkTooltip, UkMargin {
+        implements UkSizing, UkTooltip, UkMargin, UkHidden, UkBoxShadow {
 
     int max = 100;
 

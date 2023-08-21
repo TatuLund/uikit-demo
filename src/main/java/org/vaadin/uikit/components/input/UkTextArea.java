@@ -2,17 +2,17 @@ package org.vaadin.uikit.components.input;
 
 import org.vaadin.uikit.components.interfaces.UkBorder;
 import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
 import org.vaadin.uikit.components.interfaces.UkValidation;
 
 /**
- * A component based on a native textarea html element with UIkit styles. 
+ * A component based on a native textarea html element with UIkit styles.
  */
 @SuppressWarnings("serial")
-public class UkTextArea extends TextAreaBase
-        implements UkValidation, UkTooltip, UkMargin, UkPadding, UkFormSizing, UkBorder {
+public class UkTextArea extends TextAreaBase implements UkField {
 
     public UkTextArea() {
         addClassName("uk-textarea");

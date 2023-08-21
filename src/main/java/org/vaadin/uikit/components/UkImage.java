@@ -1,12 +1,17 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
+
 import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.AbstractStreamResource;
 
 @SuppressWarnings("serial")
-public class UkImage extends Image {
+public class UkImage extends Image implements UkHidden, UkBoxShadow, UkPadding, UkMargin {
 
     private static final PropertyDescriptor<String, String> srcDescriptor = PropertyDescriptors
             .attributeWithDefault("data-src", "");

@@ -1,6 +1,7 @@
 package org.vaadin.uikit.components.input;
 
 import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
 import org.vaadin.uikit.components.interfaces.UkValidation;
 
@@ -14,8 +15,7 @@ import com.vaadin.flow.component.Tag;
 @SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkRange extends AbstractSinglePropertyField<UkRange, Double>
-        implements UkValidation, HasStyle, Focusable<UkRange>, UkTooltip,
-        UkFormSizing {
+        implements HasStyle, Focusable<UkRange>, UkField {
 
     private static final PropertyDescriptor<String, String> typeDescriptor = PropertyDescriptors
             .attributeWithDefault("type", "range");

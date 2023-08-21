@@ -1,6 +1,8 @@
 package org.vaadin.uikit.components.navigation;
 
 import org.vaadin.uikit.components.UkButton;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -16,7 +18,7 @@ import com.vaadin.flow.router.RouterLink;
 @SuppressWarnings("serial")
 @Tag(Tag.NAV)
 public class UkNavbar extends HtmlComponent
-        implements UkPadding, UkMargin, UkSizing {
+        implements UkPadding, UkMargin, UkSizing, UkBoxShadow, UkHidden {
 
     private Div left = new Div();
     private Div right = new Div();

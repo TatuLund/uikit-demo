@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import org.vaadin.uikit.components.interfaces.StringProvider;
 import org.vaadin.uikit.components.interfaces.UkBorder;
 import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
@@ -32,8 +33,7 @@ import com.vaadin.flow.shared.Registration;
 @Tag(Tag.SELECT)
 public class UkSelect<T> extends SelectBase<UkSelect<T>, T>
         implements HasItemsAndComponents<T>, SingleSelect<UkSelect<T>, T>,
-        Focusable<UkSelect<T>>, HasDataProvider<T>, UkValidation, UkTooltip,
-        UkFormSizing, UkMargin, UkPadding, UkBorder {
+        Focusable<UkSelect<T>>, HasDataProvider<T>, UkField {
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>();
 

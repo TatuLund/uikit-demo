@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import org.vaadin.uikit.components.interfaces.StringProvider;
 import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
@@ -34,8 +35,7 @@ import com.vaadin.flow.shared.Registration;
 @Tag(Tag.DIV)
 public class UkRadioGroup<T> extends SelectBase<UkRadioGroup<T>, T>
         implements HasItemsAndComponents<T>, SingleSelect<UkRadioGroup<T>, T>,
-        Focusable<UkRadioGroup<T>>, HasDataProvider<T>, UkValidation, UkTooltip,
-        UkFormSizing, UkMargin, UkPadding {
+        Focusable<UkRadioGroup<T>>, HasDataProvider<T>, UkField {
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>();
 

@@ -1,6 +1,8 @@
 package org.vaadin.uikit.components;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
 import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
 
@@ -12,7 +14,7 @@ import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
 public class UkIcon extends Composite<Span>
-        implements UkTooltip, UkMargin, UkFloat {
+        implements UkTooltip, UkMargin, UkFloat, UkHidden, UkBoxShadow {
     Span icon = new Span();
 
     public UkIcon(UkIcons iconName) {

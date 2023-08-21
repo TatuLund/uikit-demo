@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 import org.vaadin.uikit.components.UkCard;
 import org.vaadin.uikit.components.UkLabel;
 import org.vaadin.uikit.components.UkNotification;
+import org.vaadin.uikit.components.UkTile;
+import org.vaadin.uikit.components.UkTile.TileVariant;
+import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow.BoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden.Hidden;
 import org.vaadin.uikit.components.UkCard.CardVariant;
 import org.vaadin.uikit.components.layout.UkTabSwitcher;
 import org.vaadin.uikit.components.layout.UkFlex;
@@ -14,6 +19,7 @@ import org.vaadin.uikit.components.layout.UkGrid;
 import org.vaadin.uikit.components.layout.UkGrid.GapModifier;
 
 import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.router.HasDynamicTitle;
 import com.vaadin.flow.router.PageTitle;
@@ -32,7 +38,15 @@ public class TabView extends AbstractView {
     UkTabSwitcher createTabSwitcher() {
         UkTabSwitcher tabSwitcher = new UkTabSwitcher();
         tabSwitcher.setOverflow(OverflowMode.AUTO);
-        UkCard card1 = new UkCard("Card 1", new Paragraph(loremIpsum));
+        UkFlex content = new UkFlex();
+        content.setDirection(Direction.ROW);
+        UkTile tile = new UkTile(new Paragraph("A tile"));
+        tile.setVariant(TileVariant.SECONDARY);
+        tile.setBorder(BorderStyle.ROUNDED);
+        tile.setHidden(Hidden.INVISIBLE_HOVER);
+        tile.setWidth(FixedWidth.MEDIUM);
+        content.add(new Paragraph(loremIpsum), tile);
+        UkCard card1 = new UkCard("Card 1", content);
         card1.setVariant(CardVariant.DEFAULT);
         UkCard card2 = new UkCard("Card 2", new Paragraph(loremIpsum));
         card2.setVariant(CardVariant.SECONDARY);
@@ -49,6 +63,7 @@ public class TabView extends AbstractView {
             UkNotification.show("Item " + event.getIndex() + " '"
                     + event.getItem().getCaption() + "' shown");
         });
+        tabSwitcher.setBoxShadow(BoxShadow.LARGE);
         return tabSwitcher;
     }
 

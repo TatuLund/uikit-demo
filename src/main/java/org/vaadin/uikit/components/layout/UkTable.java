@@ -3,6 +3,8 @@ package org.vaadin.uikit.components.layout;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkTableOptions;
 
 import com.vaadin.flow.component.Component;
@@ -12,7 +14,8 @@ import com.vaadin.flow.dom.Element;
 
 @SuppressWarnings("serial")
 @Tag("table")
-public class UkTable extends HtmlComponent implements UkTableOptions {
+public class UkTable extends HtmlComponent
+        implements UkTableOptions, UkBoxShadow, UkHidden {
 
     public abstract class AbstractTableCell extends HtmlComponent {
 

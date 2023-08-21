@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
+import org.vaadin.uikit.components.interfaces.UkMargin;
+import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkText.TextAlignment;
 
 import com.vaadin.flow.component.Component;
@@ -20,7 +24,8 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
 
 @SuppressWarnings("serial")
-public class UkArticle extends Composite<Article> {
+public class UkArticle extends Composite<Article>
+        implements UkHidden, UkPadding, UkMargin, UkBoxShadow {
 
     public enum ArticleHeaderSpan {
         WITH_LEAD, WITHOUT_LEAD;

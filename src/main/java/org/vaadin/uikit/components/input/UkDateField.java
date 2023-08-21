@@ -8,11 +8,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.WeekFields;
 import java.util.Optional;
 
-import org.vaadin.uikit.components.interfaces.UkBorder;
-import org.vaadin.uikit.components.interfaces.UkFormSizing;
-import org.vaadin.uikit.components.interfaces.UkTooltip;
-import org.vaadin.uikit.components.interfaces.UkValidation;
-
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Focusable;
@@ -28,8 +23,7 @@ import com.vaadin.flow.server.WebBrowser;
 @Tag(Tag.INPUT)
 public class UkDateField
         extends AbstractSinglePropertyField<UkDateField, LocalDate>
-        implements UkValidation, HasStyle, Focusable<UkDateField>, UkTooltip,
-        UkFormSizing, UkBorder {
+        implements HasStyle, Focusable<UkDateField>, UkField {
 
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");

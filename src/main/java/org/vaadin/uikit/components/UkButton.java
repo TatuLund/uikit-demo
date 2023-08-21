@@ -1,7 +1,9 @@
 package org.vaadin.uikit.components;
 
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
 import org.vaadin.uikit.components.interfaces.UkFloat;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
 
@@ -13,8 +15,8 @@ import com.vaadin.flow.component.html.NativeButton;
  * A button component based on NativeButton with UIkit styles.
  */
 @SuppressWarnings("serial")
-public class UkButton extends NativeButton
-        implements UkTooltip, UkMargin, UkBorder, UkFloat {
+public class UkButton extends NativeButton implements UkTooltip, UkMargin,
+        UkBorder, UkFloat, UkHidden, UkBoxShadow {
 
     public enum ButtonVariant {
         // @formatter:off

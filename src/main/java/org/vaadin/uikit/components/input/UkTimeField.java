@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.vaadin.uikit.components.interfaces.UkBorder;
 import org.vaadin.uikit.components.interfaces.UkFormSizing;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkTooltip;
 import org.vaadin.uikit.components.interfaces.UkValidation;
 
@@ -20,8 +21,7 @@ import com.vaadin.flow.function.SerializableFunction;
 @Tag(Tag.INPUT)
 public class UkTimeField
         extends AbstractSinglePropertyField<UkTimeField, LocalTime>
-        implements UkValidation, HasStyle, Focusable<UkTimeField>, UkTooltip,
-        UkFormSizing, UkBorder {
+        implements HasStyle, Focusable<UkTimeField>, UkField {
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");
 
@@ -52,8 +52,8 @@ public class UkTimeField
         setSynchronizedEvent("change");
     }
 
-    private static SerializableFunction<String, LocalTime> parseTime() {
-        return value -> value.isEmpty() ? null : LocalTime.parse(value);
+    public TimeResolution getResolution() {
+        return resolution;
     }
 
     /**

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkInverse;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
@@ -30,8 +32,8 @@ import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
-public class UkSlideshow extends Composite<Div>
-        implements UkSizing, UkMargin, UkPadding, UkInverse {
+public class UkSlideshow extends Composite<Div> implements UkSizing, UkMargin,
+        UkPadding, UkInverse, UkHidden, UkBoxShadow {
 
     private Div div = new Div();
     private UnorderedList ul = new UnorderedList();

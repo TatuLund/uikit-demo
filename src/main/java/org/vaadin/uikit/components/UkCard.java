@@ -3,6 +3,7 @@ package org.vaadin.uikit.components;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
 import org.vaadin.uikit.components.interfaces.UkBorder;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkOverflow;
 import org.vaadin.uikit.components.interfaces.UkPadding;
@@ -17,7 +18,7 @@ import com.vaadin.flow.component.html.H3;
 
 @SuppressWarnings("serial")
 public class UkCard extends Composite<Div> implements HasSize, UkSizing,
-        UkMargin, UkPadding, UkBorder, UkOverflow {
+        UkMargin, UkPadding, UkBorder, UkOverflow, UkHidden {
 
     private H3 titleComponent = new H3();
     private Div div = new Div();

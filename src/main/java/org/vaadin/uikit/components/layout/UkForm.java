@@ -2,6 +2,8 @@ package org.vaadin.uikit.components.layout;
 
 import java.util.Random;
 
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin;
 import org.vaadin.uikit.components.interfaces.UkPadding;
 import org.vaadin.uikit.components.interfaces.UkSizing;
@@ -20,10 +22,11 @@ import com.vaadin.flow.dom.Element;
 
 @SuppressWarnings("serial")
 @Tag("form")
-public class UkForm extends HtmlContainer
-        implements HasStyle, HasElement, UkSizing, UkMargin, UkPadding {
+public class UkForm extends HtmlContainer implements HasStyle, HasElement,
+        UkSizing, UkMargin, UkPadding, UkBoxShadow, UkHidden {
 
-    public class UkFormItem extends Composite<Div> implements UkTooltip {
+    public class UkFormItem extends Composite<Div>
+            implements UkTooltip, UkBoxShadow, UkHidden {
         Label label = new Label();
         Div div = new Div();
         Div fieldWrapper = new Div();

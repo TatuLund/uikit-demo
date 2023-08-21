@@ -1,9 +1,5 @@
 package org.vaadin.uikit.components.input;
 
-import org.vaadin.uikit.components.interfaces.UkBorder;
-import org.vaadin.uikit.components.interfaces.UkTooltip;
-import org.vaadin.uikit.components.interfaces.UkValidation;
-
 import com.vaadin.flow.component.AbstractSinglePropertyField;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasStyle;
@@ -12,8 +8,7 @@ import com.vaadin.flow.component.Tag;
 @SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkCheckbox extends AbstractSinglePropertyField<UkCheckbox, Boolean>
-        implements UkValidation, HasStyle, Focusable<UkCheckbox>, UkTooltip,
-        UkBorder {
+        implements HasStyle, Focusable<UkCheckbox>, UkField {
 
     public UkCheckbox() {
         super("value", false, String.class, value -> Boolean.valueOf(value),

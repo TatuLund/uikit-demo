@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 import org.vaadin.uikit.components.interfaces.ComponentProvider;
 import org.vaadin.uikit.components.interfaces.UkTableOptions;
 import org.vaadin.uikit.components.interfaces.UkBorder.BorderStyle;
+import org.vaadin.uikit.components.interfaces.UkBoxShadow;
+import org.vaadin.uikit.components.interfaces.UkHidden;
 import org.vaadin.uikit.components.interfaces.UkMargin.MarginSide;
 import org.vaadin.uikit.components.interfaces.UkMargin.MarginSize;
 
@@ -57,8 +59,8 @@ import com.vaadin.flow.shared.Registration;
 
 @SuppressWarnings("serial")
 @Tag("table")
-public class UkBeanTable<T> extends HtmlComponent
-        implements HasDataProvider<T>, HasSize, UkTableOptions {
+public class UkBeanTable<T> extends HtmlComponent implements HasDataProvider<T>,
+        HasSize, UkTableOptions, UkHidden, UkBoxShadow {
 
     private final KeyMapper<T> keyMapper = new KeyMapper<>(this::getItemId);
     private DataProvider<T, ?> dataProvider = DataProvider.ofItems();

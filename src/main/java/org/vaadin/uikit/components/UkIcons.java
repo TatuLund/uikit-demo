@@ -144,7 +144,13 @@ public enum UkIcons {
 	WORDPRESS("wordpress"),
 	XING("xing"),
 	YELP("yelp"),
-	YOUTUBE("youtube");
+	YOUTUBE("youtube"),
+	ANDROID_ROBOT("android-robot"),
+	MICROSOFT("microsoft"),
+	APPLE("apple"),
+	EYE("eye"),
+	EYE_SLASH("eye-slash"),
+	CROSSHAIRS("crosshairs");
         // @formatter:on
 
     private final String icon;

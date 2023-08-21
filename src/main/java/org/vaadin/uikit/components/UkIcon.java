@@ -26,9 +26,19 @@ public class UkIcon extends Composite<Span>
 
     public void setButtonStyle(boolean buttonStyle) {
         if (buttonStyle) {
+            icon.removeClassName("uk-icon-link");
             icon.addClassName("uk-icon-button");
         } else {
             icon.removeClassName("uk-icon-button");
+        }
+    }
+
+    public void setLinkStyle(boolean linkStyle) {
+        if (linkStyle) {
+            icon.addClassName("uk-icon-link");
+            icon.removeClassName("uk-icon-button");
+        } else {
+            icon.removeClassName("uk-icon-link");
         }
     }
 

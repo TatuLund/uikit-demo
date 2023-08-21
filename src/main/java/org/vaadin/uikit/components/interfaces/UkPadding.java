@@ -7,9 +7,11 @@ public interface UkPadding extends HasElement {
     static String MODIFIER_BASE = "uk-padding-remove";
 
     public enum PaddingSize {
+        // @formatter:off
         DEFAULT("uk-padding"),
         SMALL("uk-padding-small"),
         LARGE("uk-padding-large");
+        // @formatter:on
 
         private final String padding;
 
@@ -23,6 +25,7 @@ public interface UkPadding extends HasElement {
     }
 
     public enum PaddingModifier {
+        // @formatter:off
         ALL(""),
         VERTICAL("-bottom"),
         HORIZONTAL("-left"),
@@ -30,6 +33,7 @@ public interface UkPadding extends HasElement {
         BOTTOM("-bottom"),
         LEFT("-left"),
         RIGHT("-right");
+        // @formatter:on
 
         private final String modifier;
 

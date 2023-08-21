@@ -21,14 +21,17 @@ public class DescriptionView extends AbstractView {
     public DescriptionView() {
         UkCard card = new UkCard();
         card.setTitle("Descriptions");
-        String[] array = { "Front end development", "Back end development", "CI/CD experience", "Java programming", "JavaScript coding", "SQL queries", "Integration tests",
-                "Unit tests", "Selenium", "Maven" };
+        String[] array = { "Front end development", "Back end development",
+                "CI/CD experience", "Java programming", "JavaScript coding",
+                "SQL queries", "Integration tests", "Unit tests", "Selenium",
+                "Maven" };
         List<Term> terms = new ArrayList<>();
         for (String term : array) {
             terms.add(new Term(term));
         }
-        
-        UkDescriptionList<Term> list = new UkDescriptionList<>(Term::getTerm,Term::getDescription,3);
+
+        UkDescriptionList<Term> list = new UkDescriptionList<>(Term::getTerm,
+                Term::getDescription, 3);
         list.setButtonBorder(BorderStyle.PILL);
         list.setComponentProvider(term -> {
             UkTile tile = new UkTile(term.getDescription());
@@ -43,7 +46,7 @@ public class DescriptionView extends AbstractView {
 
         card.setContent(list);
         card.setOverflow(OverflowMode.AUTO);
-        
+
         add(card);
     }
 

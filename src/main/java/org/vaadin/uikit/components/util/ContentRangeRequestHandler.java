@@ -38,18 +38,20 @@ public class ContentRangeRequestHandler extends StreamRequestHandler {
         }
 
         String splitter = "/";
-        String resourcePathFromRequest = Arrays.stream(request.getPathInfo().split(splitter))        
+        String resourcePathFromRequest = Arrays
+                .stream(request.getPathInfo().split(splitter))
                 .map((String value) -> {
                     try {
-                        return URLEncoder.encode(value, StandardCharsets.UTF_8.name()).replace("+", "%20");
+                        return URLEncoder
+                                .encode(value, StandardCharsets.UTF_8.name())
+                                .replace("+", "%20");
                     } catch (UnsupportedEncodingException e1) {
                         return "";
                     }
-                })
-                .collect(Collectors.joining(splitter));
-        
-//        System.out.println("Path: "+resourcePathFromRequest);
-//
+                }).collect(Collectors.joining(splitter));
+
+        // System.out.println("Path: "+resourcePathFromRequest);
+        //
         File file = FileRegistrations.getResourcesRegistrations()
                 .get(resourcePathFromRequest).getValue();
         if (!file.exists()) {

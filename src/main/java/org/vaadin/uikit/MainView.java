@@ -22,6 +22,7 @@ import org.vaadin.uikit.components.input.UkRange;
 import org.vaadin.uikit.components.input.UkTimeField;
 import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldSize;
 import org.vaadin.uikit.components.interfaces.UkFormSizing.FieldWidth;
+import org.vaadin.uikit.components.interfaces.UkTooltip.TooltipPosition;
 import org.vaadin.uikit.components.layout.UkFlex;
 
 import com.vaadin.flow.component.html.Paragraph;
@@ -47,13 +48,13 @@ public class MainView extends UkFlex {
         });
         add(alert);
 
-        UkDropdown dropdown = new UkDropdown(true); 
+        UkDropdown dropdown = new UkDropdown(true);
         dropdown.setCaption("Dropdown");
         dropdown.addDropdownHiddenListener(event -> {
             UkNotification.show("Dropdown hidden");
         });
         add(dropdown);
-        
+
         UkCard card = new UkCard();
         card.setWidth("500px");
         card.setHeight("200px");
@@ -73,9 +74,9 @@ public class MainView extends UkFlex {
             }
         });
         add(picker);
-        
+
         UkRange range = new UkRange(1, 10, 0.1);
-        range.setTooltip("Range slider");
+        range.setTooltip("Range slider", TooltipPosition.RIGHT);
         range.setValue(5d);
         range.addValueChangeListener(event -> {
             UkNotification.show("Value: " + event.getValue());
@@ -99,7 +100,7 @@ public class MainView extends UkFlex {
             UkNotification.show("Time: " + event.getValue());
         });
         add(timeField);
-        
+
         UkCheckbox check = new UkCheckbox();
         check.addValueChangeListener(event -> {
             UkNotification.show("Value: " + event.getValue());

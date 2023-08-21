@@ -55,9 +55,9 @@ public class UkAppLayout extends Composite<UkFlex> {
 
     public UkAppLayout() {
         logo = new Div();
-        logo.addClassNames("uk-logo","uk-float-right");
+        logo.addClassNames("uk-logo", "uk-float-right");
         logout.setVariant(ButtonVariant.TEXT);
-        logout.setMargin(MarginSize.SMALL,MarginSide.LEFT);
+        logout.setMargin(MarginSize.SMALL, MarginSide.LEFT);
         menu.setVariant(ButtonVariant.TEXT);
         container.add(logo);
     }
@@ -71,25 +71,29 @@ public class UkAppLayout extends Composite<UkFlex> {
     }
 
     public void setLogo(String logoText) {
-        if (menuType == null) return;
+        if (menuType == null)
+            return;
         this.logoText = logoText;
         if (navbar != null) {
             navbar.setLogo(logoText);
         } else {
             logo.setText(logoText);
-            if (hasLogout) logo.add(logout);
+            if (hasLogout)
+                logo.add(logout);
         }
     }
 
     public void setLogout() {
-        if (hasLogout || menuType == null) return;
+        if (hasLogout || menuType == null)
+            return;
         hasLogout = true;
         if (navbar != null) {
             navbar.addLogout(logout);
         } else {
-            if (logoText != null) logo.setText(logoText);
+            if (logoText != null)
+                logo.setText(logoText);
             logo.add(logout);
-        }        
+        }
     }
 
     public UkButton getLogout() {
@@ -99,22 +103,24 @@ public class UkAppLayout extends Composite<UkFlex> {
     public void setMenu() {
         setMenu(MenuType.SIDE);
     }
-    
+
     public void setMenu(MenuType type) {
-        setMenu(null,type);
+        setMenu(null, type);
     }
-    
+
     public void setMenu(String caption, MenuType type) {
-        setMenu(caption,type,true);
+        setMenu(caption, type, true);
     }
-    
+
     public void setMenu(String caption, MenuType type, boolean autoPopulate) {
-        if (menuType != null) return;
-        menuType = type; 
-        if (caption == null) caption = "";
+        if (menuType != null)
+            return;
+        menuType = type;
+        if (caption == null)
+            caption = "";
         if (type == MenuType.BAR) {
             navbar = new UkNavbar(Mode.CLICK, Alignment.CENTER);
-            navbar.setWidth(1,1);
+            navbar.setWidth(1, 1);
             flex.add(navbar);
         } else if (type == MenuType.SIDE) {
             topBar = new UkSection();
@@ -144,7 +150,7 @@ public class UkAppLayout extends Composite<UkFlex> {
                 item.setIcon(icon);
             }
             dropDown = item.addDropDown();
-            navbar.setWidth(1,1);
+            navbar.setWidth(1, 1);
             flex.add(navbar);
         }
 
@@ -153,10 +159,10 @@ public class UkAppLayout extends Composite<UkFlex> {
                 nav.setPrimary();
             } else if (type == MenuType.DROPDOWN) {
                 dropDown.setPrimary();
-            }                 
+            }
             populateMenu(type);
         }
-        
+
     }
 
     private void populateMenu(MenuType type) {
@@ -164,8 +170,9 @@ public class UkAppLayout extends Composite<UkFlex> {
                 .getSessionRegistry(VaadinSession.getCurrent());
         List<RouteData> routes = reg.getRegisteredRoutes();
         routes.forEach(route -> {
-            Class<? extends Component> navigationTarget = route.getNavigationTarget();
-            PageTitle title = navigationTarget.getAnnotation(PageTitle.class);            
+            Class<? extends Component> navigationTarget = route
+                    .getNavigationTarget();
+            PageTitle title = navigationTarget.getAnnotation(PageTitle.class);
             String titleString = "";
             if (title != null) {
                 titleString = title.value();
@@ -187,12 +194,12 @@ public class UkAppLayout extends Composite<UkFlex> {
                     dropDown.addMenuItem(titleString, navigationTarget);
                 } catch (IllegalArgumentException e) {
                 }
-            }            
+            }
         });
     }
 
     @Override
-    protected UkFlex initContent() {        
+    protected UkFlex initContent() {
         flex.setDirection(Direction.COLUMN);
         flex.setVerticalAlignment(VerticalAlignment.TOP);
         flex.setSizeFull();

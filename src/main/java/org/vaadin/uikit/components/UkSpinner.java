@@ -9,11 +9,11 @@ public class UkSpinner extends Composite<Div> {
     Div div = new Div();
 
     public UkSpinner() {
-        div.getElement().setAttribute("uk-spinner",true);        
+        div.getElement().setAttribute("uk-spinner", true);
     }
 
     public UkSpinner(double i) {
-        div.getElement().setAttribute("uk-spinner","ratio: "+i);        
+        div.getElement().setAttribute("uk-spinner", "ratio: " + i);
     }
 
     @Override

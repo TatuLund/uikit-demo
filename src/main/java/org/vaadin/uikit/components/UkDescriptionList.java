@@ -75,8 +75,10 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
         }
 
         private void settings() {
-            if (termMargin != null) setMargin(termMargin);
-            if (termPadding != null) setPadding(termPadding);
+            if (termMargin != null)
+                setMargin(termMargin);
+            if (termPadding != null)
+                setPadding(termPadding);
         }
     }
 
@@ -95,11 +97,13 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
         public UkDescription(Component component) {
             super(component);
             settings();
-        }        
+        }
 
         private void settings() {
-            if (descriptionMargin != null) setMargin(descriptionMargin);
-            if (descriptionPadding != null) setPadding(descriptionPadding);
+            if (descriptionMargin != null)
+                setMargin(descriptionMargin);
+            if (descriptionPadding != null)
+                setPadding(descriptionPadding);
         }
     }
 
@@ -147,9 +151,9 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public UkDescriptionList(StringProvider<T> termProvider,
             ComponentProvider<T> componentProvider) {
-        this(termProvider,componentProvider,-1);
+        this(termProvider, componentProvider, -1);
     }
-    
+
     public UkDescriptionList(StringProvider<T> termProvider,
             ComponentProvider<T> componentProvider, int pageLength) {
         this.termProvider = termProvider;
@@ -159,9 +163,9 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public UkDescriptionList(StringProvider<T> termProvider,
             StringProvider<T> descriptionProvider) {
-        this(termProvider,descriptionProvider,-1);
+        this(termProvider, descriptionProvider, -1);
     }
-    
+
     public UkDescriptionList(StringProvider<T> termProvider,
             StringProvider<T> descriptionProvider, int pageLength) {
         this.termProvider = termProvider;
@@ -286,9 +290,11 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
             query = new Query<>(offset, pageLength, backEndSorting,
                     inMemorySorting, filter);
         }
-        
-        getDataProvider().fetch(query).map(item -> createDescriptionItem((T) item))
-                .forEach(descriptionItem -> addDescriptionItem((DescriptionItem<T>) descriptionItem));
+
+        getDataProvider().fetch(query)
+                .map(item -> createDescriptionItem((T) item))
+                .forEach(descriptionItem -> addDescriptionItem(
+                        (DescriptionItem<T>) descriptionItem));
 
         if (pageLength > 0) {
             addFooter();
@@ -306,7 +312,7 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
         list.add(new UkTerm(""));
         list.add(new UkDescription(createPaging()));
     }
-    
+
     private Div createPaging() {
         UkButton first = new UkButton(UkIcons.CHEVRON_DOUBLE_LEFT.create());
         first.setBorder(borderStyle);
@@ -355,7 +361,8 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
         spacer.setText((currentPage + 1) + "/" + (lastPage + 1));
         div.add(first, previous, spacer, next, last);
         return div;
-    }    
+    }
+
     private void updateDescriptionItem(DescriptionItem<T> descriptionItem,
             T item) {
         descriptionItem.setItem(item);
@@ -380,7 +387,8 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public void setTermMargin(MarginSize marginSize) {
         this.termMargin = marginSize;
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getTerm().setMargin(marginSize));
+        getDescriptionItems().forEach(descriptionItem -> descriptionItem
+                .getTerm().setMargin(marginSize));
     }
 
     public void setDescriptionMargin() {
@@ -389,7 +397,8 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public void setDescriptionMargin(MarginSize marginSize) {
         this.descriptionMargin = marginSize;
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getDescription().setMargin(marginSize));
+        getDescriptionItems().forEach(descriptionItem -> descriptionItem
+                .getDescription().setMargin(marginSize));
     }
 
     public void setTermPadding() {
@@ -398,7 +407,8 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public void setTermPadding(PaddingSize paddingSize) {
         this.termPadding = paddingSize;
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getTerm().setPadding(paddingSize));
+        getDescriptionItems().forEach(descriptionItem -> descriptionItem
+                .getTerm().setPadding(paddingSize));
     }
 
     public void setDescriptionPadding() {
@@ -407,7 +417,8 @@ public class UkDescriptionList<T> extends Composite<DescriptionList>
 
     public void setDescriptionPadding(PaddingSize paddingSize) {
         this.descriptionPadding = paddingSize;
-        getDescriptionItems().forEach(descriptionItem -> descriptionItem.getDescription().setPadding(paddingSize));
+        getDescriptionItems().forEach(descriptionItem -> descriptionItem
+                .getDescription().setPadding(paddingSize));
     }
 
     public void setButtonBorder(BorderStyle borderStyle) {

@@ -5,8 +5,10 @@ import com.vaadin.flow.component.HasElement;
 public interface UkOverflow extends HasElement {
 
     public enum OverflowMode {
+        // @formatter:off
         HIDDEN("uk-overflow-hidden"), 
         AUTO("uk-overflow-auto");
+        // @formatter:on
 
         private final String overflow;
 
@@ -17,7 +19,7 @@ public interface UkOverflow extends HasElement {
         public String getOverflow() {
             return overflow;
         }
-    }    
+    }
 
     default void setOverflow(OverflowMode overflowMode) {
         clearOverflow();

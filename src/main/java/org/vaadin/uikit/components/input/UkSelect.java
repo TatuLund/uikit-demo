@@ -193,8 +193,7 @@ public class UkSelect<T> extends SelectBase<UkSelect<T>, T>
                 .forEach(this::add);
     }
 
-    public void setItemLabelGenerator(
-            StringProvider<T> itemLabelGenerator) {
+    public void setItemLabelGenerator(StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;

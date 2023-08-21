@@ -12,11 +12,13 @@ public class UkFlex extends Div
         implements UkMargin, UkSizing, UkPadding, UkOverflow {
 
     public enum HorizontalAlignment {
+        // @formatter:off        
         LEFT("uk-flex-left"),
         CENTER("uk-flex-center"),
         RIGHT("uk-flex-right"),
         BETWEEN("uk-flex-between"),
         AROUND("uk-flex-around");
+        // @formatter:on
 
         private final String alignment;
 
@@ -30,10 +32,12 @@ public class UkFlex extends Div
     }
 
     public enum VerticalAlignment {
+        // @formatter:off
         STRETCH("uk-flex-stretch"),
         TOP("uk-flex-top"),
         MIDDLE("uk-flex-middle"),
         BOTTOM("uk-flex-bottom");
+        // @formatter:on
 
         private final String alignment;
 
@@ -47,10 +51,12 @@ public class UkFlex extends Div
     }
 
     public enum Direction {
+        // @formatter:off
         ROW("uk-flex-row"),
         ROW_REVERSE("uk-flex-row-reverse"), 
         COLUMN("uk-flex-column"), 
         COLUMN_REVERSE("uk-flex-column-reverse");
+        // @formatter:on
 
         private final String direction;
 
@@ -64,9 +70,11 @@ public class UkFlex extends Div
     }
 
     public enum WrapBehavior {
+        // @formatter:off
         WRAP("uk-flex-wrap"),
         WRAP_REVERSE("uk-flex-wrap-reverse"),
         NOWRAP("uk-flex-nowrap");
+        // @formatter:on
 
         private final String wrapBehavior;
 
@@ -80,12 +88,14 @@ public class UkFlex extends Div
     }
 
     public enum WrapModifier {
+        // @formatter:off
         STRETCH("uk-flex-wrap-stretch"),
         BETWEEN("uk-flex-wrap-between"),
         AROUND("uk-flex-wrap-around"),
         TOP("uk-flex-wrap-top"),
         MIDDLE("uk-flex-wrap-middle"),
         BOTTOM("uk-flex-wrap-bottom");
+        // @formatter:on
 
         private final String wrapModifier;
 

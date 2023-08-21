@@ -25,7 +25,7 @@ public class UkImage extends Image {
         this();
         setSrc(src);
         setAlt(alt);
-    }    
+    }
 
     @Override
     public void setSrc(String src) {
@@ -38,14 +38,14 @@ public class UkImage extends Image {
     }
 
     public void setWidth(int width) {
-        getElement().setAttribute("width", ""+width);
+        getElement().setAttribute("width", "" + width);
     }
 
     public void setHeight(int height) {
-        getElement().setAttribute("height", ""+height);
+        getElement().setAttribute("height", "" + height);
     }
 
     public void setSizes(boolean sizes) {
-        getElement().setAttribute("sizes", sizes);        
+        getElement().setAttribute("sizes", sizes);
     }
 }

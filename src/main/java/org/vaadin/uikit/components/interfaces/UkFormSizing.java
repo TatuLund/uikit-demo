@@ -1,15 +1,15 @@
 package org.vaadin.uikit.components.interfaces;
 
-import org.vaadin.uikit.components.interfaces.UkText.FontSize;
-
 import com.vaadin.flow.component.HasElement;
 
 public interface UkFormSizing extends HasElement {
 
     public enum FieldSize {
+        // @formatter:off
         SMALL("uk-form-small"),
         MEDIUM(null),
         LARGE("uk-form-large");
+        // @formatter:on
 
         private final String size;
 
@@ -23,10 +23,12 @@ public interface UkFormSizing extends HasElement {
     }
 
     public enum FieldWidth {
+        // @formatter:off
         LARGE("uk-form-width-large"),
         MEDIUM("uk-form-width-medium"),
         SMALL("uk-form-width-small"),
         XSMALL("uk-form-width-xsmall");
+        // @formatter:on
 
         private final String size;
 

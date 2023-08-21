@@ -80,18 +80,18 @@ public class AccordionView extends AbstractView {
     UkTable createTable() {
         UkTable table = new UkTable();
         table
-//                 .withHeaderRow()
-//                 .withCell("Title")
-//                 .withCell("Column 1")
-//                 .withCell("Column 2")
+                // .withHeaderRow()
+                // .withCell("Title")
+                // .withCell("Column 1")
+                // .withCell("Column 2")
                 .withRow()
                 .withCell(1, 2, new UkCard("chart", createChart("black")))
                 .withCell(new UkCard("card", new UkLabel("Cell 1,2")))
                 .withCell(new UkCard("card", new UkLabel("Cell 2,2"))).withRow()
                 .withCell(2, 1, loremIpsum).withRow().withCell("cell 1,3")
                 .withCell("cell 2,3").withCell("cell 3,3")
-//                 .withFooterRow()
-//                 .withCell(3,1,"footer")
+                // .withFooterRow()
+                // .withCell(3,1,"footer")
                 .build();
         table.setDivider(true);
         table.setMiddle(true);

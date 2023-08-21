@@ -24,8 +24,7 @@ public class FileResourceFactory implements InputStreamFactory {
         if (is == null) {
             return null;
         }
-        StreamResource streamResource = new StreamResource(fileName,
-                () -> is);
+        StreamResource streamResource = new StreamResource(fileName, () -> is);
         return streamResource;
     }
 

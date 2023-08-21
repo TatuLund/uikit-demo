@@ -34,10 +34,10 @@ public class MenuView extends AbstractView {
         drop.addMenuItem("Table", TableView.class);
 
         navbarCard.setContent(navbar);
-        
+
         UkCard navCard = createNavCard();
 
-        add(navbarCard,navCard);
+        add(navbarCard, navCard);
     }
 
     private UkCard createNavCard() {
@@ -47,29 +47,29 @@ public class MenuView extends AbstractView {
         menu.setPrimary();
         menu.addHeader("Menu");
         menu.addDivider();
-        menu.addMenuItem("Main 1",MainView.class);
+        menu.addMenuItem("Main 1", MainView.class);
         UkNavItem item1 = menu.addMenuItem("Main 2");
         item1.setIcon(UkIcons.MENU.create());
         item1.setTooltip("Toggle sub menu");
         menu.setAccordion(true);
         UkSubNav sub1 = item1.addSubMenu();
         sub1.setDivider();
-        sub1.addMenuItem("Sub 1 - 1",AccordionView.class);
-        sub1.addMenuItem("Sub 1 - 2",AccordionView.class);
-        sub1.addMenuItem("Sub 1 - 3",AccordionView.class);
+        sub1.addMenuItem("Sub 1 - 1", AccordionView.class);
+        sub1.addMenuItem("Sub 1 - 2", AccordionView.class);
+        sub1.addMenuItem("Sub 1 - 3", AccordionView.class);
         UkNavItem item2 = menu.addMenuItem("Main 3");
         item2.setIcon(UkIcons.GRID.create());
         UkSubNav sub2 = item2.addSubMenu();
         sub2.setDivider();
         sub2.setAccordion(false);
-        sub2.addMenuItem("Sub 2 - 1",ComboView.class);
-        sub2.addMenuItem("Sub 2 - 2",ComboView.class);
+        sub2.addMenuItem("Sub 2 - 1", ComboView.class);
+        sub2.addMenuItem("Sub 2 - 2", ComboView.class);
         UkNavItem subItem = sub2.addMenuItem("Sub 2 - 3");
         UkSubNav subsub = subItem.addSubMenu();
         subsub.setDivider();
-        subsub.addMenuItem("Subsub 1",TableView.class);
-        subsub.addMenuItem("Subsub 2",TableView.class);
-        menu.addMenuItem("Main 4",MainView.class);
+        subsub.addMenuItem("Subsub 1", TableView.class);
+        subsub.addMenuItem("Subsub 2", TableView.class);
+        menu.addMenuItem("Main 4", MainView.class);
 
         UkCard card = new UkCard("Menu");
         card.setContent(menu);

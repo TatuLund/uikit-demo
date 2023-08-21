@@ -11,14 +11,15 @@ public class UkDropdownNav extends Composite<Div> {
 
     class DropdownNav extends MenuBase {
         DropdownNav() {
-             setDropDown();
+            setDropDown();
         }
+
         void setDropDown() {
-             getElement().getClassList().add("uk-navbar-dropdown-nav");
+            getElement().getClassList().add("uk-navbar-dropdown-nav");
         }
 
     }
-    
+
     private Div wrapper = new Div();
     private DropdownNav nav = new DropdownNav();
 
@@ -53,13 +54,12 @@ public class UkDropdownNav extends Composite<Div> {
 
     public void setPrimary() {
         nav.setPrimary();
-    }        
+    }
 
     @Override
     protected Div initContent() {
         wrapper.addClassName("uk-navbar-dropdown");
         wrapper.add(nav);
         return wrapper;
-    }        
+    }
 }
-

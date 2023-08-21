@@ -19,8 +19,7 @@ public class ClassResourceFactory implements InputStreamFactory {
     public ClassResourceFactory(String fileName) throws FileNotFoundException {
         Objects.requireNonNull(fileName, "The fileName can't be null");
         this.fileName = fileName;
-        URL resource = this.getClass().getClassLoader()
-                .getResource(fileName);
+        URL resource = this.getClass().getClassLoader().getResource(fileName);
         if (resource != null) {
             file = new File(resource.getFile());
             try {
@@ -36,15 +35,14 @@ public class ClassResourceFactory implements InputStreamFactory {
         if (is == null) {
             return null;
         }
-        StreamResource streamResource = new StreamResource(fileName,
-                () -> is);
+        StreamResource streamResource = new StreamResource(fileName, () -> is);
         return streamResource;
     }
 
     public File getFile() {
         return file;
     }
-    
+
     @Override
     public InputStream createInputStream() {
         return is;

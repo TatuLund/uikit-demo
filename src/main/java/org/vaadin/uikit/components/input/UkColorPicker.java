@@ -14,15 +14,18 @@ import com.vaadin.flow.component.dependency.JavaScript;
 @SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 @JavaScript("context://canvas-color.js")
-public class UkColorPicker extends AbstractSinglePropertyField<UkColorPicker, String>
-    implements UkValidation, HasStyle, Focusable<UkColorPicker>, UkTooltip, UkBorder, UkFormSizing {
+public class UkColorPicker
+        extends AbstractSinglePropertyField<UkColorPicker, String>
+        implements UkValidation, HasStyle, Focusable<UkColorPicker>, UkTooltip,
+        UkBorder, UkFormSizing {
 
     public UkColorPicker() {
         super("value", "", false);
         getElement().setAttribute("type", "color");
         addClassNames("uk-input");
         setWidth(FieldWidth.SMALL);
-        // By default AbstractSinglePropertyField listens to a "value-changed" event,
+        // By default AbstractSinglePropertyField listens to a "value-changed"
+        // event,
         // but input type=color fires "change"
         setSynchronizedEvent("change");
     }
@@ -32,9 +35,10 @@ public class UkColorPicker extends AbstractSinglePropertyField<UkColorPicker, St
         if (value.matches("#......")) {
             super.setValue(value);
         } else {
-            getElement().executeJs("return colorToHex($0)",value).then(String.class, result -> {
-                super.setValue(result);
-            });
+            getElement().executeJs("return colorToHex($0)", value)
+                    .then(String.class, result -> {
+                        super.setValue(result);
+                    });
         }
     }
 

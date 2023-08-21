@@ -36,10 +36,12 @@ public class TableView extends AbstractView {
                 MonthlyExpense.class, false, 12);
         table.setHtmlAllowed(true);
         table.setSmall(true);
-        table.addColumn("year", MonthlyExpense::getYear).setWidth(ColumnWidth.SHIRNK);
-        table.addColumn("month",
-                expense -> "<i>" + expense.getMonth() + "</i>").setWidth(ColumnWidth.EXPAND);
-        table.addColumn("expense", MonthlyExpense::getExpenses).setWidth(ColumnWidth.EXPAND);
+        table.addColumn("year", MonthlyExpense::getYear)
+                .setWidth(ColumnWidth.SHIRNK);
+        table.addColumn("month", expense -> "<i>" + expense.getMonth() + "</i>")
+                .setWidth(ColumnWidth.EXPAND);
+        table.addColumn("expense", MonthlyExpense::getExpenses)
+                .setWidth(ColumnWidth.EXPAND);
         table.setStripes(true);
         table.addComponentColumn(null, expense -> {
             UkButton edit = new UkButton("edit");

@@ -15,7 +15,7 @@ public class UkPanel extends Div implements UkSizing {
         if (scrollable) {
             addClassName("uk-panel-scrollable");
         } else {
-            removeClassName("uk-panel-scrollable");            
+            removeClassName("uk-panel-scrollable");
         }
     }
 }

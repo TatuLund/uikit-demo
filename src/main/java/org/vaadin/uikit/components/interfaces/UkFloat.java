@@ -5,9 +5,11 @@ import com.vaadin.flow.component.HasElement;
 public interface UkFloat extends HasElement {
 
     public enum FloatStyle {
+        // @formatter:off
         NONE(null),
         RIGHT("uk-float-right"),
         LEFT("uk-float-left");
+        // @formatter:on
 
         private final String floatStyle;
 

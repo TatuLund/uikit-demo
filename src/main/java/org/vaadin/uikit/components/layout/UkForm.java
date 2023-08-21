@@ -35,7 +35,7 @@ public class UkForm extends HtmlContainer
             if (field.getId().isPresent()) {
                 id = field.getId().get();
             } else {
-                id = "field-"+Utils.randomKey(10);
+                id = "field-" + Utils.randomKey(10);
                 field.setId(id);
             }
             label.getElement().setAttribute("for", id);
@@ -74,18 +74,25 @@ public class UkForm extends HtmlContainer
         fieldSet.appendChild(legend);
         getElement().appendChild(fieldSet);
         addClassName("uk-form-stacked");
-
     }
 
     public void setLegend(String legendText) {
         legend.setText(legendText);
     }
 
+    /**
+     * Position field labels on the left if true.
+     * 
+     * @param horizontal
+     *            boolean value.
+     */
     public void setHorizontal(boolean horizontal) {
         if (horizontal) {
             addClassName("uk-form-horizontal");
+            removeClassName("uk-form-stacked");
         } else {
             removeClassName("uk-form-horizontal");
+            addClassName("uk-form-stacked");
         }
     }
 

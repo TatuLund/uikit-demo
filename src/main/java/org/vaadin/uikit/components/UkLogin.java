@@ -24,7 +24,7 @@ import com.vaadin.flow.shared.Registration;
 public class UkLogin extends Composite<UkFlex> {
 
     private UkFlex flex = new UkFlex();
-    private UkCard card = new UkCard(); 
+    private UkCard card = new UkCard();
     private UkTextField nameField = new UkTextField();
     private UkPasswordField passwordField = new UkPasswordField();
     private UkButton loginButton = new UkButton("Login");
@@ -34,41 +34,48 @@ public class UkLogin extends Composite<UkFlex> {
     private String passwordLabel;
 
     public UkLogin() {
-        this(null,null,null,null,null);
+        this(null, null, null, null, null);
     }
 
-    public UkLogin(String loginTitle, String nameLabel, String passwordLabel, String loginLabel, String forgotLabel) {
+    public UkLogin(String loginTitle, String nameLabel, String passwordLabel,
+            String loginLabel, String forgotLabel) {
         this.loginTitle = loginTitle == null ? "Login" : loginTitle;
         this.nameLabel = nameLabel == null ? "User name" : nameLabel;
         this.passwordLabel = passwordLabel == null ? "Password" : passwordLabel;
-        if (loginLabel != null) loginButton.setText(loginLabel);
-        if (forgotLabel != null) forgotButton.setText(forgotLabel);
+        if (loginLabel != null)
+            loginButton.setText(loginLabel);
+        if (forgotLabel != null)
+            forgotButton.setText(forgotLabel);
         loginButton.addClickListener(event -> {
             fireIfValid();
         });
         nameField.addKeyPressListener(Key.ENTER, event -> {
             passwordField.focus();
-        }); 
+        });
         passwordField.addKeyPressListener(Key.ENTER, event -> {
             fireIfValid();
-        }); 
+        });
         forgotButton.addClickListener(event -> {
             fireEvent(new ForgotPasswordEvent(this, true));
         });
     }
 
     private void fireIfValid() {
-        if (!nameField.getValue().isEmpty() && !passwordField.getValue().isEmpty()) {
-            fireEvent(new LoginEvent(this, true, nameField.getValue(), passwordField.getValue()));
+        if (!nameField.getValue().isEmpty()
+                && !passwordField.getValue().isEmpty()) {
+            fireEvent(new LoginEvent(this, true, nameField.getValue(),
+                    passwordField.getValue()));
         }
     }
 
-    public Registration addLoginListener(ComponentEventListener<LoginEvent> listener) {
-        return addListener(LoginEvent.class, listener);        
+    public Registration addLoginListener(
+            ComponentEventListener<LoginEvent> listener) {
+        return addListener(LoginEvent.class, listener);
     }
 
-    public Registration addForgotPasswordListener(ComponentEventListener<ForgotPasswordEvent> listener) {
-        return addListener(ForgotPasswordEvent.class, listener);        
+    public Registration addForgotPasswordListener(
+            ComponentEventListener<ForgotPasswordEvent> listener) {
+        return addListener(ForgotPasswordEvent.class, listener);
     }
 
     @Override
@@ -89,12 +96,12 @@ public class UkLogin extends Composite<UkFlex> {
         loginButton.setSize(ButtonSize.SMALL);
         forgotButton.setVariant(ButtonVariant.TEXT);
         forgotButton.setMargin(MarginSize.LARGE, MarginSide.RIGHT);
-        form.add(forgotButton,loginButton);
+        form.add(forgotButton, loginButton);
         card.setTitle(loginTitle);
         card.setContent(form);
         card.setVariant(CardVariant.PRIMARY);
         flex.add(card);
-        return flex ;
+        return flex;
     }
 
     @SuppressWarnings("serial")
@@ -102,7 +109,7 @@ public class UkLogin extends Composite<UkFlex> {
         public ForgotPasswordEvent(UkLogin source, boolean fromClient) {
             super(source, fromClient);
         }
-    }    
+    }
 
     @SuppressWarnings("serial")
     public static class LoginEvent extends ComponentEvent<UkLogin> {
@@ -110,8 +117,8 @@ public class UkLogin extends Composite<UkFlex> {
         private String username;
         private String password;
 
-        public LoginEvent(UkLogin source, boolean fromClient,
-                          String username, String password) {
+        public LoginEvent(UkLogin source, boolean fromClient, String username,
+                String password) {
             super(source, fromClient);
             this.username = username;
             this.password = password;

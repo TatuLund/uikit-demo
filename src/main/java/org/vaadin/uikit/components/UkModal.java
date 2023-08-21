@@ -56,7 +56,7 @@ public class UkModal extends Composite<Div> implements UkSizing {
         header.add(dialogTitle);
         footer.addClassNames("uk-modal-footer", "uk-text-right");
         body.addClassName("uk-modal-body");
-        body.getElement().setAttribute("uk-overflow-auto",true);
+        body.getElement().setAttribute("uk-overflow-auto", true);
         dialogContent.add(header, body, footer);
         dialog.add(dialogContent);
         return dialog;

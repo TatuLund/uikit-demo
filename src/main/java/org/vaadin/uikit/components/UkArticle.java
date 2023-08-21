@@ -21,7 +21,7 @@ import com.vaadin.flow.component.html.Paragraph;
 
 @SuppressWarnings("serial")
 public class UkArticle extends Composite<Article> {
-    
+
     public enum ArticleHeaderSpan {
         WITH_LEAD, WITHOUT_LEAD;
     }
@@ -33,7 +33,7 @@ public class UkArticle extends Composite<Article> {
     private H1 heading = null;
     private Paragraph lead;
     private Paragraph meta;
-    private Article article = new Article(); 
+    private Article article = new Article();
     private List<Paragraph> paragraphs = new ArrayList<>();
     private boolean first;
     private boolean dropcap;
@@ -50,7 +50,7 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withLead(String leadText) {
-        return withLead(leadText,false);
+        return withLead(leadText, false);
     }
 
     public UkArticle withLead(String leadText, boolean dropcap) {
@@ -71,9 +71,9 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withParagraph(String text) {
-        return withParagraph(text,false);
+        return withParagraph(text, false);
     }
-    
+
     public UkArticle withParagraph(String text, boolean dropcap) {
         Paragraph p = new Paragraph();
         p.setText(text);
@@ -87,7 +87,7 @@ public class UkArticle extends Composite<Article> {
     public UkArticle withCitation(String text, boolean columnSpan) {
         Paragraph p = new Paragraph();
         p.setText(text);
-        p.addClassNames("uk-text-emphasis","uk-text-italic","uk-margin-left");
+        p.addClassNames("uk-text-emphasis", "uk-text-italic", "uk-margin-left");
         if (columnSpan) {
             p.addClassName("uk-column-span");
         }
@@ -96,9 +96,9 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withParagraph(Component component) {
-        return withParagraph(component,false);
+        return withParagraph(component, false);
     }
-    
+
     public UkArticle withParagraph(Component component, boolean dropcap) {
         Paragraph p = new Paragraph();
         p.add(component);
@@ -113,21 +113,26 @@ public class UkArticle extends Composite<Article> {
         return withFile(file, ArticleFileOption.NONE);
     }
 
-    public UkArticle withFile(File file, ArticleFileOption... options) throws IOException {
+    public UkArticle withFile(File file, ArticleFileOption... options)
+            throws IOException {
         InputStream is = new FileInputStream(file);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        first = Stream.of(options).anyMatch(option -> option == ArticleFileOption.LEAD);
-        dropcap = Stream.of(options).anyMatch(option -> option == ArticleFileOption.DROPCAP_FIRST);
+        first = Stream.of(options)
+                .anyMatch(option -> option == ArticleFileOption.LEAD);
+        dropcap = Stream.of(options)
+                .anyMatch(option -> option == ArticleFileOption.DROPCAP_FIRST);
         reader.lines().forEach(line -> {
             if (first) {
-                withLead(line,Stream.of(options).anyMatch(option -> option == ArticleFileOption.DROPCAP_LEAD));
+                withLead(line, Stream.of(options).anyMatch(
+                        option -> option == ArticleFileOption.DROPCAP_LEAD));
                 first = false;
             } else {
                 if (dropcap) {
-                    withParagraph(line,true);
+                    withParagraph(line, true);
                     dropcap = false;
                 } else {
-                    withParagraph(line,Stream.of(options).anyMatch(option -> option == ArticleFileOption.DROPCAP_ALL));
+                    withParagraph(line, Stream.of(options).anyMatch(
+                            option -> option == ArticleFileOption.DROPCAP_ALL));
                 }
             }
         });
@@ -136,9 +141,9 @@ public class UkArticle extends Composite<Article> {
     }
 
     public UkArticle withText(String text) {
-        return withText(text,false);
+        return withText(text, false);
     }
-    
+
     public UkArticle withText(String text, boolean lead) {
         first = lead;
         for (String line : text.split("\n")) {
@@ -159,11 +164,13 @@ public class UkArticle extends Composite<Article> {
             }
         });
         if (columns == 5) {
-            article.addClassNames("uk-column-1-2@s","uk-column-1-3@m","uk-column-1-4@l","uk-column-1-5@xl");
+            article.addClassNames("uk-column-1-2@s", "uk-column-1-3@m",
+                    "uk-column-1-4@l", "uk-column-1-5@xl");
         } else if (columns == 4) {
-            article.addClassNames("uk-column-1-2@s","uk-column-1-3@m","uk-column-1-4@l");
+            article.addClassNames("uk-column-1-2@s", "uk-column-1-3@m",
+                    "uk-column-1-4@l");
         } else if (columns == 3) {
-            article.addClassNames("uk-column-1-2@m","uk-column-1-3@l");
+            article.addClassNames("uk-column-1-2@m", "uk-column-1-3@l");
         } else if (columns == 2) {
             article.addClassNames("uk-column-1-2@l");
         }
@@ -187,7 +194,8 @@ public class UkArticle extends Composite<Article> {
         return this;
     }
 
-    public UkArticle withHeaderSpan(ArticleHeaderSpan articleHeaderSpan, TextAlignment alignment) {
+    public UkArticle withHeaderSpan(ArticleHeaderSpan articleHeaderSpan,
+            TextAlignment alignment) {
         heading.addClassName("uk-column-span");
         heading.addClassName(alignment.getAlignment());
         meta.addClassName("uk-column-span");

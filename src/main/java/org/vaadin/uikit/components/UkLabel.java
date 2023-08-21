@@ -15,9 +15,11 @@ public class UkLabel extends Composite<Span>
         implements UkTooltip, UkMargin, UkSizing, UkPadding, UkBorder, UkFloat {
 
     public enum LabelVariant {
+        // @formatter:off
         SUCCESS("uk-label-success"), 
         WARNING("uk-label-warning"), 
         DANGER("uk-label-danger");
+        // @formatter:on
 
         private final String variant;
 

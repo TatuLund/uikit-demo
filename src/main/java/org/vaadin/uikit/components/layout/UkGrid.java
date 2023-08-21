@@ -18,10 +18,12 @@ public class UkGrid extends Composite<Div>
         implements HasSize, UkSizing, UkMargin, UkPadding {
 
     public enum GapModifier {
-        SMALL("uk-grid-small"), 
+        // @formatter:off
+        SMALL("uk-grid-small"),
         MEDIUM("uk-grid-medium"),
         LARGE("uk-grid-large"),
         COLLAPSE("uk-grid-collapse");
+        // @formatter:on
 
         private final String modifier;
 
@@ -35,10 +37,12 @@ public class UkGrid extends Composite<Div>
     }
 
     public enum ResponsiveBreak {
-        NONE(""), 
-        SMALL_640PX("@s"), 
-        MEDIUM_960PX("@m"), 
+        // @formatter:off
+        NONE(""),
+        SMALL_640PX("@s"),
+        MEDIUM_960PX("@m"),
         LARGE_1200PX("@l");
+        // @formatter:on
 
         private final String responsiveBreak;
 

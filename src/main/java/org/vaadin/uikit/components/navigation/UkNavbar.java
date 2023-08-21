@@ -15,7 +15,8 @@ import com.vaadin.flow.router.RouterLink;
 
 @SuppressWarnings("serial")
 @Tag(Tag.NAV)
-public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSizing {
+public class UkNavbar extends HtmlComponent
+        implements UkPadding, UkMargin, UkSizing {
 
     private Div left = new Div();
     private Div right = new Div();
@@ -27,9 +28,11 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
     }
 
     public enum Alignment {
+        // @formatter:off
         LEFT("uk-navbar-left"),
         CENTER("uk-navbar-center"),
         RIGHT("uk-navbar-right");
+        // @formatter:on
 
         private final String alignment;
 
@@ -40,8 +43,7 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
         public String getAlignment() {
             return alignment;
         }
-    }    
-
+    }
 
     public UkNavbarItem addNavbarItem(String text) {
         UkNavbarItem menuItem = new UkNavbarItem(text);
@@ -76,7 +78,7 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
 
     public void setTransparent(boolean transparent) {
         if (transparent) {
-            addClassName("uk-navbar-transparent");            
+            addClassName("uk-navbar-transparent");
         } else {
             removeClassName("uk-navbar-transparent");
         }
@@ -85,17 +87,19 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
     public void setLogo(String logoText) {
         left.addClassName(Alignment.LEFT.getAlignment());
         Div item = new Div();
-        item.addClassNames("uk-navbar-item","uk-logo");
+        item.addClassNames("uk-navbar-item", "uk-logo");
         item.setText(logoText);
         left.removeAll();
         left.add(item);
         getElement().removeAllChildren();
-        getElement().appendChild(left.getElement(),wrapper.getElement(),right.getElement());
+        getElement().appendChild(left.getElement(), wrapper.getElement(),
+                right.getElement());
     }
 
     public void addLogout(UkButton logout) {
         right.addClassName(Alignment.RIGHT.getAlignment());
-        if (wrapper.getElement().getClassList().contains(Alignment.RIGHT.getAlignment())) {
+        if (wrapper.getElement().getClassList()
+                .contains(Alignment.RIGHT.getAlignment())) {
             right.addClassName("uk-margin-small-left");
         }
         Div item = new Div();
@@ -104,7 +108,8 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
         right.removeAll();
         right.add(item);
         getElement().removeAllChildren();
-        getElement().appendChild(left.getElement(),wrapper.getElement(),right.getElement());
+        getElement().appendChild(left.getElement(), wrapper.getElement(),
+                right.getElement());
     }
 
     public UkNavbar() {
@@ -119,7 +124,7 @@ public class UkNavbar extends HtmlComponent implements UkPadding, UkMargin, UkSi
         if (mode == Mode.HOVER) {
             getElement().setAttribute("uk-navbar", true);
         } else {
-            getElement().setAttribute("uk-navbar", "mode: click");            
+            getElement().setAttribute("uk-navbar", "mode: click");
         }
         addClassName("uk-navbar-container");
         wrapper.addClassName(alignment.getAlignment());

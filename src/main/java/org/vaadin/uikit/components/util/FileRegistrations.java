@@ -15,13 +15,12 @@ public class FileRegistrations {
     private static final Map<String, AbstractMap.SimpleImmutableEntry<StreamRegistration, File>> resourcesRegistrations = Collections
             .synchronizedMap(new HashMap<>());
 
-
     public static Map<String, AbstractMap.SimpleImmutableEntry<StreamRegistration, File>> getResourcesRegistrations() {
         return resourcesRegistrations;
     }
 
-    public static StreamRegistration registerResource(VaadinSession session, StreamResource streamResource,
-            File file) {
+    public static StreamRegistration registerResource(VaadinSession session,
+            StreamResource streamResource, File file) {
         if (file == null || !file.exists() || streamResource == null)
             return null;
 

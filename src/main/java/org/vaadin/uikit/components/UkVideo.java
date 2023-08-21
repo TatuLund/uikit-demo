@@ -78,7 +78,7 @@ public class UkVideo extends HtmlComponent {
      *            the resource value, not null
      * @param alt
      *            the alternate text
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException
      *
      * @see #setSrc(AbstractStreamResource)
      * @see #setAlt(String)
@@ -124,27 +124,32 @@ public class UkVideo extends HtmlComponent {
     }
 
     /**
-     * Sets the video URL with the URL of the given File. Range requests supported.
+     * Sets the video URL with the URL of the given File. Range requests
+     * supported.
      *
      * @param src
      *            the file, not null
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException
      */
     public void setSrc(File file) throws FileNotFoundException {
-        resource  = new StreamResource(file.getName(), new FileResourceFactory(file));
-        registration = FileRegistrations.registerResource(VaadinSession.getCurrent(),resource,file);
-        getElement().setAttribute("src", registration.getResourceUri().toString());
+        resource = new StreamResource(file.getName(),
+                new FileResourceFactory(file));
+        registration = FileRegistrations
+                .registerResource(VaadinSession.getCurrent(), resource, file);
+        getElement().setAttribute("src",
+                registration.getResourceUri().toString());
     }
 
     /**
      * Set the video from StreamResource. Range requests not supported.
      * 
-     * @param src The resource
+     * @param src
+     *            The resource
      */
     public void setSrc(AbstractStreamResource src) {
         getElement().setAttribute("src", src);
     }
-    
+
     /**
      * Sets the alternate text for the video.
      *
@@ -164,7 +169,7 @@ public class UkVideo extends HtmlComponent {
     public Optional<String> getAlt() {
         return get(altDescriptor);
     }
-    
+
     public void play() {
         getElement().executeJs("this.play()");
     }
@@ -179,19 +184,19 @@ public class UkVideo extends HtmlComponent {
         public VideoPausedEvent(UkVideo source, boolean fromClient) {
             super(source, fromClient);
         }
-    }    
+    }
 
     public static class VideoEndedEvent extends ComponentEvent<UkVideo> {
 
         public VideoEndedEvent(UkVideo source, boolean fromClient) {
             super(source, fromClient);
         }
-    }    
+    }
 
     public static class VideoPlayEvent extends ComponentEvent<UkVideo> {
 
         public VideoPlayEvent(UkVideo source, boolean fromClient) {
             super(source, fromClient);
         }
-    }      
+    }
 }

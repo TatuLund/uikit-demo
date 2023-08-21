@@ -11,13 +11,12 @@ public class UkNavItem extends MenuItemBase {
         super(text);
     }
 
-    public UkNavItem(String text,
-            Class<? extends Component> navigationTarget) {
-        super(text,navigationTarget);
+    public UkNavItem(String text, Class<? extends Component> navigationTarget) {
+        super(text, navigationTarget);
     }
 
     public UkNavItem(String text, String href) {
-        super(text,href);
+        super(text, href);
     }
 
     public UkNavItem(Anchor anchor) {

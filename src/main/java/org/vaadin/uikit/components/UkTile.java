@@ -13,6 +13,7 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 
+@SuppressWarnings("serial")
 public class UkTile extends Composite<Div>
         implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder {
 
@@ -20,10 +21,12 @@ public class UkTile extends Composite<Div>
     Component content = new Div();
 
     public enum TileVariant {
+        // @formatter:off
         DEFAULT("uk-tile-default"),
         MUTED("uk-tile-muted"),
         PRIMARY("uk-tile-primary"),
         SECONDARY("uk-tile-secondary");
+        // @formatter:on
 
         private final String variant;
 
@@ -65,7 +68,6 @@ public class UkTile extends Composite<Div>
         }
         div.addClassName(tileVariant.getVariantName());
     }
-
 
     public void setText(String textContent) {
         div.setText(textContent);

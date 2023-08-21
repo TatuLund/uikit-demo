@@ -5,9 +5,11 @@ import com.vaadin.flow.component.HasElement;
 public interface UkText extends HasElement {
 
     public enum TextStyle {
+        // @formatter:off
         SMALL("uk-text-lead"),
         DEFAULT(null),
         LARGE("uk-text-meta");
+        // @formatter:on
 
         private String textStyle;
 
@@ -30,9 +32,11 @@ public interface UkText extends HasElement {
     }
 
     public enum FontSize {
+        // @formatter:off
         SMALL("uk-text-small"),
         DEFAULT(null),
         LARGE("uk-text-large");
+        // @formatter:on
 
         private String fontSize;
 
@@ -55,9 +59,11 @@ public interface UkText extends HasElement {
     }
 
     public enum Transform {
+        // @formatter:off
         CAPITALIZE("uk-text-capitalize"),
         UPPERCASE("uk-text-uppercase"),
         LOWERCASE("uk-text-lowercase");
+        // @formatter:on
 
         private String transform;
 
@@ -78,6 +84,7 @@ public interface UkText extends HasElement {
     }
 
     public enum TextColor {
+        // @formatter:off
         MUTED("uk-text-muted"),
         EMPHASIS("uk-text-emphasis"),
         PRIMARY("uk-text-primary"),
@@ -85,6 +92,7 @@ public interface UkText extends HasElement {
         SUCCESS("uk-text-success"),
         WARNING("uk-text-warning"),
         BOLDER("uk-text-danger");
+        // @formatter:on
 
         private String textColor;
 
@@ -105,11 +113,13 @@ public interface UkText extends HasElement {
     }
 
     public enum FontWeight {
+        // @formatter:off
         LIGHT("uk-text-light"),
         NORMAL("uk-text-normal"),
         BOLD("uk-text-bold"),
         LIGHTER("uk-text-lighter"),
         BOLDER("uk-text-bolder");
+        // @formatter:on
 
         private String fontWeight;
 
@@ -133,15 +143,17 @@ public interface UkText extends HasElement {
         if (italic) {
             getElement().getClassList().add("uk-text-italic");
         } else {
-            getElement().getClassList().remove("uk-text-italic");            
+            getElement().getClassList().remove("uk-text-italic");
         }
     }
-    
+
     public enum TextAlignment {
+        // @formatter:off
         LEFT("uk-text-left"),
         RIGHT("uk-text-right"),
         CENTER("uk-text-center"),
         JUSTIFY("uk-text-justify");
+        // @formatter:on
 
         private String textAlignment;
 
@@ -162,8 +174,12 @@ public interface UkText extends HasElement {
     }
 
     public enum TextVerticalAlignment {
-        TOP("uk-text-top"), MIDDLE("uk-text-middle"), BOTTOM(
-                "uk-text-bottom"), BASELINE("uk-text-baseline");
+        // @formatter:off
+        TOP("uk-text-top"),
+        MIDDLE("uk-text-middle"),
+        BOTTOM("uk-text-bottom"), 
+        BASELINE("uk-text-baseline");
+        // @formatter:on
 
         private String textAlignment;
 

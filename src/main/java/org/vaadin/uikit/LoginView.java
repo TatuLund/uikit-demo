@@ -20,7 +20,7 @@ import com.vaadin.flow.server.VaadinSession;
 @PageTitle("Login")
 @Route("login")
 public class LoginView extends UkLogin {
-    
+
     public LoginView() {
         super();
         addLoginListener(event -> {
@@ -36,10 +36,11 @@ public class LoginView extends UkLogin {
                 } else {
                     UI.getCurrent().navigate("");
                 }
-            }           
+            }
         });
         addForgotPasswordListener(event -> {
-            UkNotification.show("User name: user, Password: user", Status.PRIMARY, Position.TOP_CENTER, 2000); 
+            UkNotification.show("User name: user, Password: user",
+                    Status.PRIMARY, Position.TOP_CENTER, 2000);
         });
     }
 

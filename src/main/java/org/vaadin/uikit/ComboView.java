@@ -31,17 +31,17 @@ public class ComboView extends AbstractView {
         UkSelect<Item> select = createSelect();
 
         UkRadioGroup<Item> radioGroup = createRadioGroup();
-        
+
         UkCheckboxGroup<Item> checkboxGroup = createCheckboxGroup();
 
         UkCard card = new UkCard();
-        
+
         card.setTitle("Selection components");
         UkForm form = new UkForm();
-        form.add("Combo" , combo);
-        form.add("Select" , select);
-        form.add("Select one" , radioGroup);
-        form.add("Select all that apply" , checkboxGroup);
+        form.add("Combo", combo);
+        form.add("Select", select);
+        form.add("Select one", radioGroup);
+        form.add("Select all that apply", checkboxGroup);
         form.setWidth(FixedWidth.LARGE);
         card.setContent(form);
         card.setBorder(BorderStyle.ROUNDED);
@@ -51,16 +51,19 @@ public class ComboView extends AbstractView {
 
     private UkCheckboxGroup<Item> createCheckboxGroup() {
         UkCheckboxGroup<Item> checkboxes = new UkCheckboxGroup<>(2);
-        String[] array = { "Front end development", "Back end development", "CI/CD experience", "Java programming", "JavaScript coding", "SQL queries", "Integration tests",
-                "Unit tests", "Selenium", "Maven" };
+        String[] array = { "Front end development", "Back end development",
+                "CI/CD experience", "Java programming", "JavaScript coding",
+                "SQL queries", "Integration tests", "Unit tests", "Selenium",
+                "Maven" };
         List<Item> list = new ArrayList<>();
         for (String item : array)
             list.add(new Item(item));
         checkboxes.setItems(list);
-//        radios.setSize(FieldSize.DEFAULT);
-//        radios.setTooltip("Select one of these");
+        // radios.setSize(FieldSize.DEFAULT);
+        // radios.setTooltip("Select one of these");
         checkboxes.addValueChangeListener(event -> {
-            UkNotification.show("Radios: Name: " + getNames(checkboxes.getValue()));
+            UkNotification
+                    .show("Radios: Name: " + getNames(checkboxes.getValue()));
         });
         checkboxes.setItemLabelGenerator(item -> item.getName());
         checkboxes.setCheckboxBorder(BorderStyle.ROUNDED);
@@ -68,9 +71,9 @@ public class ComboView extends AbstractView {
     }
 
     private String getNames(Set<Item> nameSet) {
-        String names="";
+        String names = "";
         for (Item name : nameSet) {
-            names+=" "+name.getName();
+            names += " " + name.getName();
         }
         return names;
     }

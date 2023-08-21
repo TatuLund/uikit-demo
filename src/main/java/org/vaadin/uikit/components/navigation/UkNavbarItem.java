@@ -13,11 +13,11 @@ public class UkNavbarItem extends MenuItemBase {
 
     public UkNavbarItem(String text,
             Class<? extends Component> navigationTarget) {
-        super(text,navigationTarget);
+        super(text, navigationTarget);
     }
 
     public UkNavbarItem(String text, String href) {
-        super(text,href);
+        super(text, href);
     }
 
     public UkNavbarItem(Anchor anchor) {
@@ -28,7 +28,6 @@ public class UkNavbarItem extends MenuItemBase {
         super(link);
     }
 
-    
     public UkDropdownNav addDropDown() {
         if (!subMenuPossible) {
             throw new IllegalStateException(
@@ -40,4 +39,3 @@ public class UkNavbarItem extends MenuItemBase {
         return dropDown;
     }
 }
-

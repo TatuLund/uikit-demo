@@ -12,7 +12,8 @@ import com.vaadin.flow.component.Tag;
 @SuppressWarnings("serial")
 @Tag(Tag.INPUT)
 public class UkCheckbox extends AbstractSinglePropertyField<UkCheckbox, Boolean>
-        implements UkValidation, HasStyle, Focusable<UkCheckbox>, UkTooltip, UkBorder {
+        implements UkValidation, HasStyle, Focusable<UkCheckbox>, UkTooltip,
+        UkBorder {
 
     public UkCheckbox() {
         super("value", false, String.class, value -> Boolean.valueOf(value),

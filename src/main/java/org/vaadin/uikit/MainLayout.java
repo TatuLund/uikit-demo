@@ -20,7 +20,8 @@ import com.vaadin.flow.theme.NoTheme;
 @Push
 @NoTheme
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base", enableInstallPrompt = false)
-public class MainLayout extends UkAppLayout implements RouterLayout, BeforeEnterObserver {
+public class MainLayout extends UkAppLayout
+        implements RouterLayout, BeforeEnterObserver {
 
     public MainLayout() {
         setMenu();
@@ -28,7 +29,7 @@ public class MainLayout extends UkAppLayout implements RouterLayout, BeforeEnter
         setLogout();
         getLogout().addClickListener(event -> {
             VaadinSession.getCurrent().getSession().invalidate();
-            UI.getCurrent().navigate("login");            
+            UI.getCurrent().navigate("login");
         });
     }
 
@@ -39,13 +40,12 @@ public class MainLayout extends UkAppLayout implements RouterLayout, BeforeEnter
         String route = event.getLocation().getPath();
         if (!route.equals("login")) {
             if (loggedIn == null || !loggedIn) {
-                VaadinSession.getCurrent().setAttribute("intendedRoute",
-                        route);
+                VaadinSession.getCurrent().setAttribute("intendedRoute", route);
                 event.rerouteTo("login");
             }
         } else if (loggedIn != null && loggedIn) {
             event.forwardTo("");
-        }        
+        }
     }
 
 }

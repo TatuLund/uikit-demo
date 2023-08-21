@@ -5,10 +5,12 @@ import com.vaadin.flow.component.HasElement;
 public interface UkBorder extends HasElement {
 
     public enum BorderStyle {
+        // @formatter:off
         SHARP(null),
         ROUNDED("uk-border-rounded"),
         PILL("uk-border-pill"),
         CIRCLE("uk-border-circle");
+        // @formatter:on
 
         private final String border;
 

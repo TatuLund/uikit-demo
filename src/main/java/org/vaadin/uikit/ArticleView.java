@@ -24,23 +24,22 @@ public class ArticleView extends AbstractView {
     String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
     public ArticleView() {
-        UkArticle article = new UkArticle();        
+        UkArticle article = new UkArticle();
         UkContainer container = new UkContainer();
         container.setMaxWidth(ContainerMaxWidth.EXPAND);
         container.setOverflow(OverflowMode.AUTO);
         add(container);
         try {
             File file = new ClassResourceFactory("lorem_ipsum.txt").getFile();
-            article
-                .withLead(loremIpsum)
-                .withParagraph(new UkImage("photo.jpg","Photo"))
-                .withFile(file,ArticleFileOption.DROPCAP_FIRST)
-                .withHeading("Lorem ipsum dolor sit amet")
-                .withTextAlignment(TextAlignment.JUSTIFY)
-                .withMeta("By John Doe "+ LocalDate.now().toString())
-                .withColumns(3)
-                .withHeaderSpan(ArticleHeaderSpan.WITH_LEAD,TextAlignment.CENTER)
-                .build();
+            article.withLead(loremIpsum)
+                    .withParagraph(new UkImage("photo.jpg", "Photo"))
+                    .withFile(file, ArticleFileOption.DROPCAP_FIRST)
+                    .withHeading("Lorem ipsum dolor sit amet")
+                    .withTextAlignment(TextAlignment.JUSTIFY)
+                    .withMeta("By John Doe " + LocalDate.now().toString())
+                    .withColumns(3).withHeaderSpan(ArticleHeaderSpan.WITH_LEAD,
+                            TextAlignment.CENTER)
+                    .build();
             container.add(article);
         } catch (FileNotFoundException e) {
         } catch (IOException e) {

@@ -31,31 +31,33 @@ public class SlideView extends AbstractView {
         UkCard card = new UkCard();
         card.setTitle("Slideshow");
         try {
-            slideShow.addSlide("photo.jpg",SlideType.IMAGE).add(new H3("Daily temperature"),createChart("#ffffff"));
-            slideShow.addSlide("light.jpg",SlideType.IMAGE);
-            slideShow.addSlide("dark.jpg",SlideType.IMAGE);
-            File file = new ClassResourceFactory("big_buck_bunny.mp4").getFile();
-            slideShow.addSlide(file,SlideType.VIDEO);
+            slideShow.addSlide("photo.jpg", SlideType.IMAGE)
+                    .add(new H3("Daily temperature"), createChart("#ffffff"));
+            slideShow.addSlide("light.jpg", SlideType.IMAGE);
+            slideShow.addSlide("dark.jpg", SlideType.IMAGE);
+            File file = new ClassResourceFactory("big_buck_bunny.mp4")
+                    .getFile();
+            slideShow.addSlide(file, SlideType.VIDEO);
         } catch (FileNotFoundException e) {
             UkNotification.show("File not found");
         }
-//        slideShow.setNavMode(NavMode.DOTS);
+        // slideShow.setNavMode(NavMode.DOTS);
         slideShow.setInverse(Invert.LIGHT);
         card.setContent(slideShow);
-        card.setWidth(1,2);
+        card.setWidth(1, 2);
         slideShow.setAnimation(Animation.FADE);
-//        slide.play();
-        
+        // slide.play();
+
         add(card);
 
-//        File file;
-//        try {
-//            file = new ClassResourceFactory("big_buck_bunny.mp4").getFile();
-//            UkVideo video = new UkVideo(file,"Bunny video");
-//            add(video);
-//        } catch (FileNotFoundException e) {
-//            UkNotification.show("Video not found");
-//        }
+        // File file;
+        // try {
+        // file = new ClassResourceFactory("big_buck_bunny.mp4").getFile();
+        // UkVideo video = new UkVideo(file,"Bunny video");
+        // add(video);
+        // } catch (FileNotFoundException e) {
+        // UkNotification.show("Video not found");
+        // }
 
     }
 

@@ -8,12 +8,14 @@ import com.vaadin.flow.component.UI;
 public class UkNotification implements Serializable {
 
     public enum Position {
+        // @formatter:off
         TOP_LEFT("top-left"),
         TOP_CENTER("top-center"),
         TOP_RIGHT("top-right"),
         BOTTOM_LEFT("bottom-left"),
         BOTTOM_CENTER("bottom-center"),
         BOTTOM_RIGHT("bottom-right");
+        // @formatter:on
 
         private final String position;
 
@@ -27,10 +29,12 @@ public class UkNotification implements Serializable {
     }
 
     public enum Status {
+        // @formatter:off
         PRIMARY("primary"),
         SUCCESS("success"),
         WARNING("warning"),
         DANGER("danger");
+        // @formatter:on
 
         private final String status;
 
@@ -43,7 +47,6 @@ public class UkNotification implements Serializable {
         }
     }
 
-    private String message = "";
     private Status status = Status.PRIMARY;
     private int timeout = 5000;
     private Position position = Position.TOP_CENTER;

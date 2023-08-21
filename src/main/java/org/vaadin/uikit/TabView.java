@@ -67,7 +67,7 @@ public class TabView extends AbstractView {
         Html chart = new Html(svg);
         chart.getElement().getStyle().set("height", "100px");
         return chart;
-    }    
+    }
 
     UkGrid createGrid() {
         UkGrid grid = new UkGrid();

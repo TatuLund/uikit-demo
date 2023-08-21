@@ -15,6 +15,7 @@ import com.vaadin.flow.shared.Registration;
 public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
 
     public enum Position {
+        // @formatter:off
         TOP_JUSTIFY("top-justify"),
         TOP_LEFT("top-left"),
         TOP_CENTER("top-center"),
@@ -29,6 +30,7 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
         RIGHT_TOP("right-top"),
         RIGHT_CENTER("right-center"),
         RIGHT_BOTTOM("right-bottom");
+        // @formatter:on
 
         private final String position;
 
@@ -38,7 +40,7 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
 
         public String getPosition() {
             return position;
-        }        
+        }
     }
 
     UkButton button = new UkButton();
@@ -72,12 +74,12 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
     public Registration addDropdownShownListener(
             ComponentEventListener<DropdownShownEvent> listener) {
         return addListener(DropdownShownEvent.class, listener);
-    }    
+    }
 
     @Override
     protected Div initContent() {
         div.addClassNames("uk-inline");
-        div.add(button,dropdown);
+        div.add(button, dropdown);
         dropdown.getElement().addEventListener("hidden", event -> {
             fireEvent(new DropdownHiddenEvent(this, true));
         });
@@ -106,9 +108,9 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
 
     @Override
     public void setBorder(BorderStyle borderStyle) {
-        button.setBorder(borderStyle);        
+        button.setBorder(borderStyle);
     }
-    
+
     public void removeAll() {
         dropdown.removeAll();
     }
@@ -140,7 +142,7 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
         if (click) {
             mode = "click";
         } else {
-            mode = "hover";            
+            mode = "hover";
         }
         sendSettings();
     }
@@ -157,18 +159,18 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
 
     public void hide(boolean delay) {
         dropdown.getElement().executeJs("UIkit.dropdown($0).hide($1)",
-                dropdown.getElement(),delay);
+                dropdown.getElement(), delay);
     }
-    
+
     private void sendSettings() {
         dropdown.getElement().executeJs(
                 "UIkit.dropdown($0, {toggle: $1, pos: $2, mode: $3, delayShow: $4, flip: $5, offset: $6, animation: false, duration: $7})",
-                dropdown.getElement(), "- *", position.getPosition(), mode, "0", delayHide, flip, "0", duration);
+                dropdown.getElement(), "- *", position.getPosition(), mode, "0",
+                delayHide, flip, "0", duration);
     }
 
     @SuppressWarnings("serial")
-    public static class DropdownHiddenEvent
-            extends ComponentEvent<UkDropdown> {
+    public static class DropdownHiddenEvent extends ComponentEvent<UkDropdown> {
 
         public DropdownHiddenEvent(UkDropdown source, boolean fromClient) {
             super(source, fromClient);
@@ -176,12 +178,11 @@ public class UkDropdown extends Composite<Div> implements UkFloat, UkBorder {
     }
 
     @SuppressWarnings("serial")
-    public static class DropdownShownEvent
-            extends ComponentEvent<UkDropdown> {
+    public static class DropdownShownEvent extends ComponentEvent<UkDropdown> {
 
         public DropdownShownEvent(UkDropdown source, boolean fromClient) {
             super(source, fromClient);
         }
     }
-    
+
 }

@@ -13,9 +13,11 @@ import com.vaadin.flow.component.html.NativeButton;
  * A button component based on NativeButton with UIkit styles.
  */
 @SuppressWarnings("serial")
-public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBorder, UkFloat {
+public class UkButton extends NativeButton
+        implements UkTooltip, UkMargin, UkBorder, UkFloat {
 
     public enum ButtonVariant {
+        // @formatter:off
         /**
          * Default button style.
          */
@@ -40,6 +42,7 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
          * Makes a <button> look like an <a> element.
          */
         LINK("uk-button-link");
+        // @formatter:on
 
         private final String variant;
 
@@ -53,9 +56,11 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     }
 
     public enum ButtonSize {
+        // @formatter:off
         SMALL("uk-button-small"),
         MEDIUM(null),
         LARGE("uk-button-large");
+        // @formatter:on
 
         private final String size;
 
@@ -67,7 +72,7 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
             return size;
         }
     }
-      
+
     private String caption;
     private UkIcon icon;
 
@@ -77,13 +82,14 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     public UkButton() {
         super();
         getElement().setAttribute("type", "button");
-        addClassNames("uk-button", "uk-button-default");        
+        addClassNames("uk-button", "uk-button-default");
     }
 
     /**
      * Create button with caption text.
      * 
-     * @param text The caption text.
+     * @param text
+     *            The caption text.
      */
     public UkButton(String text) {
         this();
@@ -94,7 +100,8 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     /**
      * Create a button with an icon, but without caption.
      * 
-     * @param icon The icon used the in the button.
+     * @param icon
+     *            The icon used the in the button.
      */
     public UkButton(UkIcon icon) {
         this();
@@ -103,11 +110,13 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     }
 
     /**
-     * A convenience constructor for a button with a caption text and a 
-     * click listener.
+     * A convenience constructor for a button with a caption text and a click
+     * listener.
      * 
-     * @param text The caption text.
-     * @param clickListener The click listener.
+     * @param text
+     *            The caption text.
+     * @param clickListener
+     *            The click listener.
      */
     public UkButton(String text,
             ComponentEventListener<ClickEvent<NativeButton>> clickListener) {
@@ -116,13 +125,14 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     }
 
     /**
-     * Set the icon in the button, preserves the caption if such exists. The icon
-     * will be placed before the text.
+     * Set the icon in the button, preserves the caption if such exists. The
+     * icon will be placed before the text.
      * 
-     * @param icon The icon used in the button.
+     * @param icon
+     *            The icon used in the button.
      */
     public void setIcon(UkIcon icon) {
-        this.icon= icon;
+        this.icon = icon;
         removeAll();
         add(icon);
         if (caption != null && !caption.isEmpty()) {
@@ -131,10 +141,11 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     }
 
     /**
-     * Set the caption in the button, preserves the icon if such exists. The text
-     * will be placed after the icon.
+     * Set the caption in the button, preserves the icon if such exists. The
+     * text will be placed after the icon.
      * 
-     * @param text The caption text used in the button.
+     * @param text
+     *            The caption text used in the button.
      */
     public void setText(String text) {
         this.caption = text;
@@ -146,9 +157,10 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
     }
 
     /**
-     * Set the size modifier. 
+     * Set the size modifier.
      *
-     * @param size The size modifier.
+     * @param size
+     *            The size modifier.
      */
     public void setSize(ButtonSize size) {
         for (ButtonSize s : ButtonSize.values()) {
@@ -157,12 +169,13 @@ public class UkButton extends NativeButton implements UkTooltip, UkMargin, UkBor
         }
         if (size != ButtonSize.MEDIUM)
             getElement().getClassList().add(size.getButtonSize());
-    }    
+    }
 
     /**
      * Set the button variant.
      * 
-     * @param buttonVariant The button variant.
+     * @param buttonVariant
+     *            The button variant.
      */
     public void setVariant(ButtonVariant buttonVariant) {
         for (ButtonVariant variant : ButtonVariant.values()) {

@@ -16,8 +16,8 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
 @SuppressWarnings("serial")
-public class UkCard extends Composite<Div>
-        implements HasSize, UkSizing, UkMargin, UkPadding, UkBorder, UkOverflow {
+public class UkCard extends Composite<Div> implements HasSize, UkSizing,
+        UkMargin, UkPadding, UkBorder, UkOverflow {
 
     private H3 titleComponent = new H3();
     private Div div = new Div();
@@ -25,9 +25,11 @@ public class UkCard extends Composite<Div>
     private Div badge = new Div();
 
     public enum CardVariant {
+        // @formatter:off
         DEFAULT("uk-card-default"),
         PRIMARY("uk-card-primary"),
         SECONDARY("uk-card-secondary");
+        // @formatter:on
 
         private final String variant;
 

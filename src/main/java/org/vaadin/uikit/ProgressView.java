@@ -14,7 +14,7 @@ import com.vaadin.flow.router.Route;
 @Route(value = "progress", layout = MainLayout.class)
 public class ProgressView extends AbstractView {
 
-    public ProgressView()  {
+    public ProgressView() {
         UkCard card = new UkCard();
         card.setTitle("Progress");
         UkFlex flex = new UkFlex();
@@ -23,7 +23,7 @@ public class ProgressView extends AbstractView {
         flex.setHorizontalAlignment(HorizontalAlignment.BETWEEN);
         flex.setHeight(FixedHeight.MEDIUM);
         card.setContent(flex);
-        
+
         UkProgress progress = new UkProgress();
         progress.setWidth(FixedWidth.MEDIUM);
         progress.setTooltip("Progress bar");
@@ -33,7 +33,7 @@ public class ProgressView extends AbstractView {
         UkSpinner spinner = new UkSpinner(2);
         flex.add(spinner);
         spinner.setVisible(false);
-        
+
         UkButton button = new UkButton(UkIcons.PLAY.create());
         button.addClickListener(event -> {
             Thread thread = new Thread(() -> {
@@ -42,12 +42,12 @@ public class ProgressView extends AbstractView {
                         spinner.setVisible(true);
                     });
                 });
-                for (int i=0;i<11;i++) {
+                for (int i = 0; i < 11; i++) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                     }
-                    final int value = i*10;
+                    final int value = i * 10;
                     getUI().ifPresent(ui -> {
                         ui.access(() -> {
                             progress.setValue(value);
@@ -60,12 +60,12 @@ public class ProgressView extends AbstractView {
                     });
                 });
             });
-                        
+
             thread.start();
         });
 
         flex.add(button);
-        
+
         add(card);
     }
 }

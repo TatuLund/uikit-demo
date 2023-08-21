@@ -9,10 +9,12 @@ import com.vaadin.flow.component.html.Div;
 public class UkSection extends Div implements UkSizing, UkBorder {
 
     public enum SectionVariant {
+        // @formatter:off
         DEFAULT("uk-section-default"),
         MUTED("uk-section-muted"),
         PRIMARY("uk-section-primary"),
         SECONDARY("uk-section-secondary");
+        // @formatter:on
 
         private final String variant;
 
@@ -31,11 +33,13 @@ public class UkSection extends Div implements UkSizing, UkBorder {
     }
 
     public enum SectionPadding {
+        // @formatter:off
         XSMALL("uk-section-xsmall"),
         SMALL("uk-section-small"),
         LARGE("uk-section-large"),
         XLARGE("uk-section-xlarge"),
         NONE("uk-padding-remove-vertical");
+        // @formatter:on
 
         private final String padding;
 

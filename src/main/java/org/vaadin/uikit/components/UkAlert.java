@@ -16,10 +16,12 @@ import com.vaadin.flow.shared.Registration;
 public class UkAlert extends Composite<Div> implements HasSize, UkBorder {
 
     public enum AlertVariant {
+        // @formatter:off
         SUCCESS("uk-alert-success"),
         PRIMARY("uk-alert-primary"),
         WARNING("uk-alert-warning"),
         DANGER("uk-alert-danger");
+        // @formatter:on
 
         private final String variant;
 

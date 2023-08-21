@@ -76,7 +76,8 @@ public class UkRadioGroup<T> extends SelectBase<UkRadioGroup<T>, T>
                 UkRadioGroup::modelToPresentation);
         if (columns > 0) {
             getElement().setAttribute("uk-grid", true);
-            addClassNames("uk-flex-left","uk-grid-collapse","uk-child-width-1-"+columns);
+            addClassNames("uk-flex-left", "uk-grid-collapse",
+                    "uk-child-width-1-" + columns);
         }
     }
 
@@ -212,8 +213,7 @@ public class UkRadioGroup<T> extends SelectBase<UkRadioGroup<T>, T>
                 .forEach(this::add);
     }
 
-    public void setItemLabelGenerator(
-            StringProvider<T> itemLabelGenerator) {
+    public void setItemLabelGenerator(StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;

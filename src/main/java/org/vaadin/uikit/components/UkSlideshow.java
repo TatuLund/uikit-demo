@@ -55,11 +55,13 @@ public class UkSlideshow extends Composite<Div>
     }
 
     public enum Animation {
+        // @formatter:off
         SLIDE("slide"),
         FADE("fade"),
         SCALE("scale"),
         PULL("pull"),
         PUSH("push");
+        // @formatter:on
 
         private final String animation;
 
@@ -76,7 +78,8 @@ public class UkSlideshow extends Composite<Div>
         ListItem li = new ListItem();
         Div div = null;
 
-        public UkSlide(AbstractStreamResource streamResource, SlideType slideType) {
+        public UkSlide(AbstractStreamResource streamResource,
+                SlideType slideType) {
             Component content;
             if (slideType == SlideType.IMAGE) {
                 content = new UkImage();
@@ -85,12 +88,13 @@ public class UkSlideshow extends Composite<Div>
             } else {
                 content = new UkVideo();
                 ((UkVideo) content).setSrc(streamResource);
-                content.getElement().setAttribute("uk-cover", true);                
+                content.getElement().setAttribute("uk-cover", true);
             }
             li.add(content);
         }
 
-        public UkSlide(File file, SlideType slideType) throws FileNotFoundException {
+        public UkSlide(File file, SlideType slideType)
+                throws FileNotFoundException {
             Component content;
             if (slideType == SlideType.IMAGE) {
                 content = new UkImage();
@@ -101,11 +105,11 @@ public class UkSlideshow extends Composite<Div>
             } else {
                 content = new UkVideo();
                 ((UkVideo) content).setSrc(file);
-                content.getElement().setAttribute("uk-cover", true);                
+                content.getElement().setAttribute("uk-cover", true);
             }
             li.add(content);
         }
-        
+
         public void add(Component... components) {
             if (div == null) {
                 div = new Div();
@@ -133,21 +137,25 @@ public class UkSlideshow extends Composite<Div>
         return addListener(SlideShownEvent.class, listener);
     }
 
-    public UkSlide addSlide(String fileName, SlideType slideType) throws FileNotFoundException {
+    public UkSlide addSlide(String fileName, SlideType slideType)
+            throws FileNotFoundException {
         StreamResource streamResource = null;
-        streamResource = new StreamResource(fileName, new ClassResourceFactory(fileName));
+        streamResource = new StreamResource(fileName,
+                new ClassResourceFactory(fileName));
         return addSlide(streamResource, slideType);
     }
 
-    public UkSlide addSlide(File file, SlideType slideType) throws FileNotFoundException {
-        Objects.requireNonNull(file,"File can't be null");
+    public UkSlide addSlide(File file, SlideType slideType)
+            throws FileNotFoundException {
+        Objects.requireNonNull(file, "File can't be null");
         UkSlide slide = new UkSlide(file, slideType);
         doAddSlide(slide);
         return slide;
-    }    
+    }
 
-    public UkSlide addSlide(AbstractStreamResource streamResource, SlideType slideType) {
-        Objects.requireNonNull(streamResource,"Resource can't be null");
+    public UkSlide addSlide(AbstractStreamResource streamResource,
+            SlideType slideType) {
+        Objects.requireNonNull(streamResource, "Resource can't be null");
         UkSlide slide = new UkSlide(streamResource, slideType);
         doAddSlide(slide);
         return slide;

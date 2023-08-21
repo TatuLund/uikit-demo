@@ -5,11 +5,13 @@ import com.vaadin.flow.component.HasElement;
 public interface UkSizing extends HasElement {
 
     public enum FixedWidth {
+        // @formatter:off
         SMALL("uk-width-small"),
         MEDIUM("uk-width-medium"),
         LARGE("uk-width-large"),
         XLARGE("uk-width-xlarge"),
         XXLARGE("uk-width-2xlarge");
+        // @formatter:on
 
         private final String width;
 
@@ -45,10 +47,12 @@ public interface UkSizing extends HasElement {
     }
 
     public enum FixedHeight {
+        // @formatter:off
         HEIGHT100("uk-height-1-1"),
         SMALL("uk-height-small"),
         MEDIUM("uk-height-medium"),
         LARGE("uk-height-large");
+        // @formatter:on
 
         private final String height;
 

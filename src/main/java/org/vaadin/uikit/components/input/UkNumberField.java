@@ -16,13 +16,14 @@ import com.vaadin.flow.component.Tag;
 
 @SuppressWarnings("serial")
 @Tag(Tag.INPUT)
-public class UkNumberField extends AbstractSinglePropertyField<UkNumberField, Double>
+public class UkNumberField
+        extends AbstractSinglePropertyField<UkNumberField, Double>
         implements UkValidation, HasStyle, Focusable<UkNumberField>, UkTooltip,
         UkFormSizing, UkBorder {
 
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");
-    
+
     public UkNumberField() {
         this(0d, 100d, 1.0d);
     }
@@ -60,7 +61,7 @@ public class UkNumberField extends AbstractSinglePropertyField<UkNumberField, Do
     public Optional<String> getPlaceholder() {
         return get(placeholderDescriptor);
     }
-   
+
     public void setDisabled(boolean disabled) {
         this.getElement().setProperty("disabled", disabled);
     }

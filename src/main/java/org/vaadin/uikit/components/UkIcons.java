@@ -1,6 +1,7 @@
 package org.vaadin.uikit.components;
 
 public enum UkIcons {
+    // @formatter:off
 	HOME("home"),
 	SIGN_IN("sign-in"),
 	SIGN_OUT("sign-out"),
@@ -144,6 +145,7 @@ public enum UkIcons {
 	XING("xing"),
 	YELP("yelp"),
 	YOUTUBE("youtube");
+        // @formatter:on
 
     private final String icon;
 
@@ -160,7 +162,7 @@ public enum UkIcons {
     }
 
     public UkIcon create(double ratio) {
-        return new UkIcon(this,ratio);
+        return new UkIcon(this, ratio);
     }
 
 }

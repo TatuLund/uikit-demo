@@ -312,8 +312,7 @@ public class UkCombo<T> extends SelectBase<UkCombo<T>, T>
                 .forEach(option -> addOption((Option<T>) option));
     }
 
-    public void setItemLabelGenerator(
-            StringProvider<T> itemLabelGenerator) {
+    public void setItemLabelGenerator(StringProvider<T> itemLabelGenerator) {
         Objects.requireNonNull(itemLabelGenerator,
                 "The item label generator can not be null");
         this.itemLabelGenerator = itemLabelGenerator;

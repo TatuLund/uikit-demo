@@ -26,13 +26,14 @@ import com.vaadin.flow.server.WebBrowser;
 
 @SuppressWarnings("serial")
 @Tag(Tag.INPUT)
-public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalDate>
+public class UkDateField
+        extends AbstractSinglePropertyField<UkDateField, LocalDate>
         implements UkValidation, HasStyle, Focusable<UkDateField>, UkTooltip,
         UkFormSizing, UkBorder {
 
     private static final PropertyDescriptor<String, Optional<String>> placeholderDescriptor = PropertyDescriptors
             .optionalAttributeWithDefault("placeholder", "");
-    
+
     public enum Resolution {
         DAY, WEEK, MONTH;
     }
@@ -59,24 +60,29 @@ public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalD
             getElement().setAttribute("type", "week");
         } else {
             getElement().setAttribute("type", "date");
-        }        
+        }
     }
 
     private static boolean hasWeekMonth() {
         WebBrowser browser = UI.getCurrent().getSession().getBrowser();
-        boolean weekMonth = (browser.isChrome() || browser.isEdge() || browser.isOpera());   
+        boolean weekMonth = (browser.isChrome() || browser.isEdge()
+                || browser.isOpera());
         return weekMonth;
     }
 
-    private static SerializableFunction<String, LocalDate> parseDate(Resolution resolution) {
+    private static SerializableFunction<String, LocalDate> parseDate(
+            Resolution resolution) {
         if (hasWeekMonth() && resolution == Resolution.MONTH) {
-            return value -> value.isEmpty() ? null : LocalDate.from(YearMonth.parse(value).atDay(1));
+            return value -> value.isEmpty() ? null
+                    : LocalDate.from(YearMonth.parse(value).atDay(1));
         } else if (hasWeekMonth() && resolution == Resolution.WEEK) {
             DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                     .appendPattern("YYYY-'W'ww")
-                    .parseDefaulting(WeekFields.ISO.dayOfWeek(), DayOfWeek.SUNDAY.getValue())
+                    .parseDefaulting(WeekFields.ISO.dayOfWeek(),
+                            DayOfWeek.SUNDAY.getValue())
                     .toFormatter();
-            return value -> value.isEmpty() ? null : LocalDate.parse(value,formatter);
+            return value -> value.isEmpty() ? null
+                    : LocalDate.parse(value, formatter);
         } else {
             return value -> value.isEmpty() ? null : LocalDate.parse(value);
         }
@@ -104,7 +110,7 @@ public class UkDateField extends AbstractSinglePropertyField<UkDateField, LocalD
     public Optional<String> getPlaceholder() {
         return get(placeholderDescriptor);
     }
-   
+
     public void setDisabled(boolean disabled) {
         this.getElement().setProperty("disabled", disabled);
     }

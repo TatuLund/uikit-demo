@@ -5,11 +5,13 @@ import com.vaadin.flow.component.HasElement;
 public interface UkMargin extends HasElement {
 
     public enum MarginSize {
-        DEFAULT("uk-margin"), 
-        SMALL("uk-margin-small"), 
-        MEDIUM("uk-margin-medium"), 
+        // @formatter:off
+        DEFAULT("uk-margin"),
+        SMALL("uk-margin-small"),
+        MEDIUM("uk-margin-medium"),
         LARGE("uk-margin-large"),
         XLARGE("uk-margin-xlarge");
+        // @formatter:on
 
         private final String margin;
 
@@ -23,10 +25,12 @@ public interface UkMargin extends HasElement {
     }
 
     public enum MarginSide {
-        TOP("-top"), 
-        BOTTOM("-bottom"), 
-        LEFT("-left"), 
+        // @formatter:off
+        TOP("-top"),
+        BOTTOM("-bottom"),
+        LEFT("-left"),
         RIGHT("-right");
+        // @formatter:on
 
         private final String margin;
 

@@ -14,10 +14,12 @@ import com.vaadin.flow.shared.Registration;
 public class UkOffCanvas extends Composite<Div> {
 
     public enum AnimationMode {
+        // @formatter:off
         SLIDE("slide"),
         REVEAL("reveal"),
         PUSH("push"),
         NONE("none");
+        // @formatter:on
 
         private final String animationMode;
 

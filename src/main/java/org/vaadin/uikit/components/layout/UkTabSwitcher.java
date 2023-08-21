@@ -28,8 +28,12 @@ public class UkTabSwitcher extends Composite<Div>
     }
 
     public enum TabAlignment {
-        LEFT("uk-flex-left"), CENTER("uk-flex-center"), RIGHT(
-                "uk-flex-right"), EXPAND("uk-child-width-expand");
+        // @formatter:off
+        LEFT("uk-flex-left"),
+        CENTER("uk-flex-center"),
+        RIGHT("uk-flex-right"),
+        EXPAND("uk-child-width-expand");
+        // @formatter:on
 
         private final String alignment;
 

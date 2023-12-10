@@ -78,7 +78,9 @@ public class UkCombo<T> extends SelectBase<UkCombo<T>, T>
         super(null, null, String.class, UkCombo::presentationToModel,
                 UkCombo::modelToPresentation);
         input.getElement().setAttribute("list", getName());
+        input.getElement().setAttribute("role", "combobox");
         dataList.setAttribute("id", getName());
+        dataList.setAttribute("role", "listbox");
         add(input);
         input.setValueChangeMode(ValueChangeMode.EAGER);
         getElement().appendChild(dataList);
